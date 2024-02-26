@@ -7,6 +7,7 @@ public class Game implements Runnable {
 	private Thread gameThread;
 	private final int FPS_SET = 120;
 	
+	//Main Game Constructor
 	public Game() {
 		gamePanel = new GamePanel();
 		gameWindow = new GameWindow(gamePanel);
@@ -14,7 +15,7 @@ public class Game implements Runnable {
 		startGameLoop();
 
 	}
-	
+	//Begins main Loop on a seperate thread
 	private void startGameLoop() {
 		gameThread = new Thread(this);
 		gameThread.start();
@@ -22,7 +23,7 @@ public class Game implements Runnable {
 
 	@Override
 	public void run() {
-		//FPS Counter
+		//FPS Counter - [Don't change, will condense this next commit]
 		double timePerFrame = 1000000000.0/FPS_SET; //A billion s
 		long lastFrame = System.nanoTime();
 		long now = System.nanoTime();

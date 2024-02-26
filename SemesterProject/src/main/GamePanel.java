@@ -12,6 +12,7 @@ import inputs.MouseInputs;
 
 public class GamePanel extends JPanel{
 	
+	private static final long serialVersionUID = 1L;
 	private MouseInputs mouseInputs;
 	private float xDelta = 100, yDelta = 100;
 	private float xDir = 1f, yDir = 1f;
@@ -35,6 +36,7 @@ public class GamePanel extends JPanel{
 	public void changeYDelta(int value) {
 		this.yDelta += value;
 	}
+	
 	//Magic method called when game starts 
 	//graphics allows us to draw and redraw inside panel
 	public void paintComponent(Graphics g) {
@@ -50,7 +52,7 @@ public class GamePanel extends JPanel{
 		g.drawRect((int)xDelta, (int)yDelta, 200, 50);//draws rectangle for testing
 		
 	}
-
+//Anything regarding a rectangle is to draw SOMETHING to the screen so I'm sure it's working properly
 	private void updateRectangle() {
 		// TODO Auto-generated method stub
 		xDelta += xDir;
@@ -64,7 +66,7 @@ public class GamePanel extends JPanel{
 			color = getRandColor();
 		}
 	}
-
+//Generates random color for DVD Logo Rectangle
 	private Color getRandColor() {
 		// TODO Auto-generated method stub
 		int r = random.nextInt(255);
