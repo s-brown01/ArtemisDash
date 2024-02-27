@@ -17,13 +17,17 @@ public class GameWindow{
 		gameFrame.setLocationRelativeTo(null);
 		gameFrame.setVisible(true); //Has to be at bottom
 
-		jframe.addWindowFocusListener(new WindowFocusListener() {
-
+		// if the user clicks onto/away from screen
+		gameFrame.addWindowFocusListener(new WindowFocusListener() {
+			
+			// onto screen
             @Override
             public void windowGainedFocus(WindowEvent e) {
 
             }
 
+            
+            // away from screen
             @Override
             public void windowLostFocus(WindowEvent e) {
                 // gamePanel.getGame().windowFocusLost();
