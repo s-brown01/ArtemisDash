@@ -18,17 +18,31 @@ public class GamePanel extends JPanel{
 	private float xDelta = 100, yDelta = 100;
 	private BufferedImage img;
 	private String image = "player_sprites.png";
+	private BufferedImage[] idleAnimation;
+	private int aniTick,aniIndex,aniSpeed = 10; //120 fps, 12 animations/second = 30
 	public GamePanel() {
 		mouseInputs = new MouseInputs(this);//Forwards all mouse listener events to input class
 		addKeyListener(new KeyboardInputs(this));//Forwards all key listener events to input class
 		
 		importImg();
+		loadAnimations();
 		
 		setPanelSize();
 		addMouseListener(mouseInputs);
 		addMouseMotionListener(mouseInputs);
 	}
 	
+	private void loadAnimations() {
+		idleAnimation = new BufferedImage[12]; //12 is the amount of frames in the idle animation
+		for (int i = 0; i <idleAnimation.length;i++) {
+			if (i == 0) {
+				idleAnimation[i] = img.getSubimage(100, 70, 64, 64);
+			}else {
+				idleAnimation[i] = img.getSubimage(i*400, 70, 64, 64);
+			}
+		}
+	}
+
 	public void importImg() {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(image);
 		
@@ -37,11 +51,18 @@ public class GamePanel extends JPanel{
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+				try {
+					is.close();
+				} catch (IOException e){
+					e.printStackTrace();
+				}
 			}
 	}
 
 	private void setPanelSize() {
-		Dimension size = new Dimension(1280,800);
+		
+		Dimension size = new Dimension(1280,800);//SIZE OF GAME WINDOW/PANEL
 		setPreferredSize(size);
 	}
 
@@ -60,10 +81,23 @@ public class GamePanel extends JPanel{
 	//graphics allows us to draw and redraw inside panel
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);//Uses JPanel's own paint method
-		
+		updateAniTick();
 		g.drawImage(img.getSubimage(100, 70, 64, 60), 0, 0, 120,120, null);
+//		g.drawImage(idleAnimation[aniIndex], (int)xDelta, (int)yDelta, 120,120, null);
 		//100 px offset from top left corner, 70px offset from top
 		//Width is ~64, Height ~60
 		//Doubled X and Y size 
+	}
+
+	private void updateAniTick() {
+		aniTick ++;
+		if (aniTick >= aniSpeed) {
+			aniTick = 0;
+			aniIndex++;
+			if (aniIndex >= idleAnimation.length) {
+				aniIndex = 0;
+			}
+		}
+		
 	}
 }
