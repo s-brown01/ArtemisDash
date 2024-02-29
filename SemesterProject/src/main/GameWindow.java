@@ -25,7 +25,6 @@ public class GameWindow{
             public void windowGainedFocus(WindowEvent e) {
 
             }
-
             
             // away from screen
             @Override

@@ -1,5 +1,30 @@
 package states;
 
-public class State {
+import java.awt.event.MouseEvent;
+
+import main.Game;
+import ui.MenuButton;
+
+public abstract class State {
+	
+	// protected = private for children
+	protected Game game;
+	
+	public State(Game game) {
+		// there should be a game that the state is in
+		this.game = game;
+	}
+	
+    public boolean isInMB(MouseEvent e, MenuButton mb) {
+    	// TO CHANGE
+    	// check if the given MenuButton contains the MouseEvent coordinates
+    	return false;
+    }
+    
+    public Game getGame() {
+        return game;
+    }
+    
+
 
 }

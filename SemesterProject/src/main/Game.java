@@ -1,5 +1,8 @@
 package main;
 
+import states.Playing;
+import states.Menu;
+
 public class Game implements Runnable {
 	
 	private GameWindow gameWindow;
@@ -7,14 +10,25 @@ public class Game implements Runnable {
 	private Thread gameThread;
 	private final int FPS_SET = 120;
 	
-	//Main Game Constructor
+	private Playing playing;
+	private Menu menu;
+	
+	// Main Game Constructor
 	public Game() {
-		gamePanel = new GamePanel();
+		initClasses();
+		gamePanel = new GamePanel(this);
 		gameWindow = new GameWindow(gamePanel);
 		gamePanel.requestFocus();
 		startGameLoop();
 
 	}
+	
+	private void initClasses() {
+		menu = new Menu(this);
+		playing = new Playing(this);
+	}
+	
+	
 	//Begins main Loop on a seperate thread
 	private void startGameLoop() {
 		gameThread = new Thread(this);
@@ -44,5 +58,13 @@ public class Game implements Runnable {
 				frames = 0;
 			}
 		}
+	}
+	
+	public Playing getPlaying() {
+		return playing;
+	}
+	
+	public Menu getMenu() {
+		return menu;
 	}
 }

@@ -14,13 +14,31 @@ import inputs.MouseInputs;
 
 public class GamePanel extends JPanel{
 	
+	private Game game;
+	
 	private MouseInputs mouseInputs;
 	private float xDelta = 100, yDelta = 100;
 	private BufferedImage img;
 	private String image = "player_sprites.png";
 	private BufferedImage[] idleAnimation;
 	private int aniTick,aniIndex,aniSpeed = 10; //120 fps, 12 animations/second = 30
-	public GamePanel() {
+	
+	public GamePanel(Game game) {
+		// adding a Game to the constructor allows us to access the GameState from the gamePanel
+		/*
+		 * How to create a custom cursor, perhaps for a recticle on mouse to show shots?
+		 * 
+		 * Toolkit toolkit = Toolkit.getDefaultToolkit();
+		 * Image image = toolkit.getImage("icons/handwriting.gif");
+		 * Cursor c = toolkit.createCustomCursor(image , new Point(mainPane.getX(), 
+		 *            mainPane.getY()), "img");
+		 * mainPane.setCursor (c);
+		 * 
+		 * how to restore to default cursor (good for the menu?):
+		 * setCursor(Cursor.getDefaultCursor());
+		 */
+		
+		this.game = game;
 		mouseInputs = new MouseInputs(this);//Forwards all mouse listener events to input class
 		addKeyListener(new KeyboardInputs(this));//Forwards all key listener events to input class
 		
@@ -45,16 +63,16 @@ public class GamePanel extends JPanel{
 
 	public void importImg() {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(image);
-		
 			try {
 				img = ImageIO.read(is);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				System.out.println("NULL");
 				e.printStackTrace();
 			} finally {
 				try {
 					is.close();
 				} catch (IOException e){
+					System.out.println("NULL");
 					e.printStackTrace();
 				}
 			}
@@ -98,6 +116,9 @@ public class GamePanel extends JPanel{
 				aniIndex = 0;
 			}
 		}
-		
+	}
+	
+	public Game getGame() {
+		return game;
 	}
 }
