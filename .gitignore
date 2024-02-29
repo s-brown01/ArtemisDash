@@ -1,3 +1,4 @@
 /.metadata/
-SemesterProject/bin
+SemesterProject/bin/
 bin/
+*.class
