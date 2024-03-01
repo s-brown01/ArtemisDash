@@ -11,9 +11,11 @@ public class GameWindow{
 	public GameWindow(GamePanel gamePanel) {
 		gameFrame = new JFrame();
 		
-		gameFrame.setSize(400,400);
+//		gameFrame.setSize(400,400);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.add(gamePanel);
+		gameFrame.pack();
+		gameFrame.setResizable(false);
 		gameFrame.setLocationRelativeTo(null);
 		gameFrame.setVisible(true); //Has to be at bottom
 

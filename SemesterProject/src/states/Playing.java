@@ -1,8 +1,10 @@
 package states;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import entities.Player;
 import main.Game;
@@ -37,11 +39,17 @@ public class Playing extends State implements StateMethods {
 		
 	}
 
+	public void draw(Graphics g, BufferedImage img) {
+		draw(g);
+		g.drawImage(img.getSubimage(100, 70, 64, 60), 0, 0, 120,120, null);
+	}
+	
 	@Override
 	public void draw(Graphics g) {
 		// draw everything
 		// background - tiles - player/enemies
-		
+		g.setColor(Color.red);
+		g.drawRect(0, 0, 400, 400);
 		if (paused)
 			// draw the pause menu/overlay here
 			// overlays should be after everything else
@@ -89,16 +97,16 @@ public class Playing extends State implements StateMethods {
 		// decide what to do with the different key inputs
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			System.out.println("W - Move Up - Playing class");
+			System.out.println("W - Move Up - Playing");
 			break;
 		case KeyEvent.VK_A:
-			System.out.println("A - Move Left - Playing class");
+			System.out.println("A - Move Left - Playing");
 			break;
 		case KeyEvent.VK_S:
-			System.out.println("S - Move Down - Playing class");
+			System.out.println("S - Move Down - Playing");
 			break;
 		case KeyEvent.VK_D:
-			System.out.println("D - Move Right - Playing class");
+			System.out.println("D - Move Right - Playing");
 			break;
 		case KeyEvent.VK_ESCAPE:
 		case KeyEvent.VK_P:
@@ -110,6 +118,10 @@ public class Playing extends State implements StateMethods {
 			// switch the current value of paused
 			paused = !paused;
 			break;
+		case KeyEvent.VK_BACK_SPACE:
+			// REMOVE THIS LATER
+			System.out.println("SWITCH BACK TO MENU");
+			GameStates.state = GameStates.PLAYING;
 		default:
 			break;
 		}

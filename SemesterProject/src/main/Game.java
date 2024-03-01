@@ -1,6 +1,11 @@
 package main;
 
 import states.Playing;
+
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
+import states.GameStates;
 import states.Menu;
 
 public class Game implements Runnable {
@@ -33,6 +38,32 @@ public class Game implements Runnable {
 	private void startGameLoop() {
 		gameThread = new Thread(this);
 		gameThread.start();
+	}
+	
+	public void update() {
+		switch(GameStates.state) {
+		case MENU:
+			menu.update();
+			break;
+		case PLAYING:
+			playing.update();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public void render(Graphics g, BufferedImage img) {
+		switch(GameStates.state) {
+		case MENU:
+			menu.draw(g);
+			break;
+		case PLAYING:
+			playing.draw(g, img);
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override

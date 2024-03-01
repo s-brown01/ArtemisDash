@@ -1,5 +1,6 @@
 package states;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -15,7 +16,6 @@ public class Menu extends State implements StateMethods {
 
 	public Menu(Game game) {
 		super(game);
-		// TODO Auto-generated constructor stub
 		loadImgs();
 		loadButtons();
 	}
@@ -27,8 +27,10 @@ public class Menu extends State implements StateMethods {
 	
 	private void loadButtons() {
 		// this is where we create and load MenuButtons
-		// THIS IS JUST EXAMPLE CODE
-		// CHANGE THIS
+		/*
+		 *  THIS IS JUST EXAMPLE CODE
+		 *  CHANGE THIS EVENTUALLY
+		 */
 		final int amount_of_buttons = 1;
 		buttons = new MenuButton[amount_of_buttons];
 		buttons[0] = new MenuButton();
@@ -36,7 +38,7 @@ public class Menu extends State implements StateMethods {
 	
 	private void resetButtons() {
 		for (MenuButton mb : buttons) {
-			// mb.reset or mb.resetBools? something simialr to this
+			// mb.reset or mb.resetBools? something similar to this
 		}
 	}
 
@@ -51,10 +53,9 @@ public class Menu extends State implements StateMethods {
 	@Override
 	public void draw(Graphics g) {
 		// draw background/buttons/menu
-		// g.draw(backgroundImg, 0, 0, gamewidth, gameheight);
-		for (MenuButton mb : buttons) {
-			// mb.draw(g);
-		}	}
+		g.setColor(Color.CYAN);
+		g.fillRect(0, 0, 300, 300);
+		}
 
 	@Override
 	public void MouseDragged(MouseEvent e) {
@@ -111,8 +112,10 @@ public class Menu extends State implements StateMethods {
 	public void KeyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		// decide what to do with keyboard inputs here
-		if (e.getKeyCode() == KeyEvent.VK_ENTER)
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			System.out.println("SWITCH FROM MENU TO PLAYING");
 			GameStates.state = GameStates.PLAYING;
+		}
 	}
 
 	@Override

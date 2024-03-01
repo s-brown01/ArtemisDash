@@ -79,7 +79,6 @@ public class GamePanel extends JPanel{
 	}
 
 	private void setPanelSize() {
-		
 		Dimension size = new Dimension(1280,800);//SIZE OF GAME WINDOW/PANEL
 		setPreferredSize(size);
 	}
@@ -87,10 +86,12 @@ public class GamePanel extends JPanel{
 	public void changeXDelta(int value) {
 		this.xDelta += value;
 	}
+	
 	public void setRectPos(int x, int y) {
 		this.xDelta = x;
 		this.yDelta = y;
 	}
+	
 	public void changeYDelta(int value) {
 		this.yDelta += value;
 	}
@@ -100,7 +101,9 @@ public class GamePanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);//Uses JPanel's own paint method
 		updateAniTick();
-		g.drawImage(img.getSubimage(100, 70, 64, 60), 0, 0, 120,120, null);
+		game.render(g, img);
+//		g.drawImage(img.getSubimage(100, 70, 64, 60), 0, 0, 120,120, null);
+
 //		g.drawImage(idleAnimation[aniIndex], (int)xDelta, (int)yDelta, 120,120, null);
 		//100 px offset from top left corner, 70px offset from top
 		//Width is ~64, Height ~60
