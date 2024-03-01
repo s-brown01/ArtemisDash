@@ -41,7 +41,8 @@ public class Playing extends State implements StateMethods {
 
 	public void draw(Graphics g, BufferedImage img) {
 		draw(g);
-		g.drawImage(img.getSubimage(100, 70, 64, 60), 0, 0, 120,120, null);
+		final BufferedImage temp = img.getSubimage(100, 70, 64, 60);
+		g.drawImage(temp, Game.GAME_WIDTH/2 - temp.getWidth()/2, Game.GAME_HEIGHT/2 - temp.getHeight()/2, 120,120, null);
 	}
 	
 	@Override
@@ -49,7 +50,7 @@ public class Playing extends State implements StateMethods {
 		// draw everything
 		// background - tiles - player/enemies
 		g.setColor(Color.red);
-		g.drawRect(0, 0, 400, 400);
+		g.fillRect(0, 0, Game.GAME_WIDTH/2, Game.GAME_HEIGHT/2);
 		if (paused)
 			// draw the pause menu/overlay here
 			// overlays should be after everything else

@@ -54,7 +54,8 @@ public class Menu extends State implements StateMethods {
 	public void draw(Graphics g) {
 		// draw background/buttons/menu
 		g.setColor(Color.CYAN);
-		g.fillRect(0, 0, 300, 300);
+		g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		
 		}
 
 	@Override

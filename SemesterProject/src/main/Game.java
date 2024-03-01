@@ -10,6 +10,10 @@ import states.Menu;
 
 public class Game implements Runnable {
 	
+	// values tbd
+	public final static int GAME_WIDTH = 1280;
+	public final static int GAME_HEIGHT = 800;
+	
 	private GameWindow gameWindow;
 	private GamePanel gamePanel;
 	private Thread gameThread;
