@@ -16,7 +16,7 @@ public abstract class State {
 	}
 	
     public boolean isInMB(MouseEvent e, MenuButton mb) {
-    	// TO CHANGE
+    	// TODO CHANGE THIS COMMAND, implement once we have MenuButtons
     	// check if the given MenuButton contains the MouseEvent coordinates
     	return false;
     }
