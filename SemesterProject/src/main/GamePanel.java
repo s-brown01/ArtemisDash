@@ -19,7 +19,7 @@ public class GamePanel extends JPanel{
 	private MouseInputs mouseInputs;
 	private float xDelta = 100, yDelta = 100;
 	private BufferedImage img;
-	private String image = "TEST.png";
+	private String image = "Artemis_Finished.png";
 	private BufferedImage[] idleAnimation;
 	private int aniTick,aniIndex,aniSpeed = 10; //120 fps, 12 animations/second = 30
 	
@@ -53,9 +53,14 @@ public class GamePanel extends JPanel{
 	private void loadAnimations() {
 		idleAnimation = new BufferedImage[12]; //12 is the amount of frames in the idle animation
 		for (int i = 0; i <idleAnimation.length;i++) {
-				idleAnimation[i] = img.getSubimage(i*50, 0, 50, 42); //i* sprite WIDTH
-				//Test Run Animation: img.getSubimage(i*50, 50, 50, 42); Set BufferedImage[10]
-				//Test Jump Animation: img.getSubimage(i*50, 95, 50, 42);Set BufferedImage[11]
+				idleAnimation[i] = img.getSubimage(i*60, 0, 60, 45); //i* sprite WIDTH
+				//Test Idle Animation: img.getSubimage(i*60, 0, 60, 45); Set BufferedImage[12]
+				//Test Run Animation: img.getSubimage(i*60, 45, 60, 45); Set BufferedImage[10]
+				//Test Jump Animation: img.getSubimage(i*60, 90, 60, 45);Set BufferedImage[11]
+				//Test Land Animation: img.getSubimage(i*60, 135, 60, 45);Set BufferedImage[3]
+				//Test Death Animation: img.getSubimage(i*60, 180, 60, 45);Set BufferedImage[20]
+				
+				//img.getSubimage(WIDTH of sprite, Y position, Width of selection, Height of selection)
 		}
 	}
 
@@ -98,17 +103,10 @@ public class GamePanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);//Uses JPanel's own paint method
 		updateAniTick();
-//		g.drawImage(img.getSubimage(210, 10, 110, 110), 0, 0, 120,120, null); //50 px spaced 
-		//12,222,432,632,832,1232,1412,
 		
-//		g.drawImage(img.getSubimage(200, 2, 50, 44), 0, 0, 220,220, null); //50 px spaced 
-		//0,50,100,150,200,250,300,350,400,450,500,550,600,
-		
+		g.drawImage(img.getSubimage(0, 0, 60, 45), 0, 0, 220,220, null);	
 		
 		g.drawImage(idleAnimation[aniIndex], (int)xDelta, (int)yDelta, 420,420, null);
-		//100 px offset from top left corner, 70px offset from top
-		//Width is ~64, Height ~60
-		//Doubled X and Y size 
 	}
 
 	private void updateAniTick() {
