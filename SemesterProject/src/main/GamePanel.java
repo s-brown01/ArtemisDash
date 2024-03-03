@@ -19,7 +19,7 @@ public class GamePanel extends JPanel{
 	private MouseInputs mouseInputs;
 	private float xDelta = 100, yDelta = 100;
 	private BufferedImage img;
-	private String image = "player_sprites.png";
+	private String image = "TEST.png";
 	private BufferedImage[] idleAnimation;
 	private int aniTick,aniIndex,aniSpeed = 10; //120 fps, 12 animations/second = 30
 	
@@ -43,7 +43,7 @@ public class GamePanel extends JPanel{
 		addKeyListener(new KeyboardInputs(this));//Forwards all key listener events to input class
 		
 		importImg();
-		loadAnimations();
+		loadAnimations(); 
 		
 		setPanelSize();
 		addMouseListener(mouseInputs);
@@ -53,11 +53,9 @@ public class GamePanel extends JPanel{
 	private void loadAnimations() {
 		idleAnimation = new BufferedImage[12]; //12 is the amount of frames in the idle animation
 		for (int i = 0; i <idleAnimation.length;i++) {
-			if (i == 0) {
-				idleAnimation[i] = img.getSubimage(100, 70, 64, 64);
-			}else {
-				idleAnimation[i] = img.getSubimage(i*400, 70, 64, 64);
-			}
+				idleAnimation[i] = img.getSubimage(i*50, 0, 50, 42); //i* sprite WIDTH
+				//Test Run Animation: img.getSubimage(i*50, 50, 50, 42); Set BufferedImage[10]
+				//Test Jump Animation: img.getSubimage(i*50, 95, 50, 42);Set BufferedImage[11]
 		}
 	}
 
@@ -100,8 +98,14 @@ public class GamePanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);//Uses JPanel's own paint method
 		updateAniTick();
-		g.drawImage(img.getSubimage(100, 70, 64, 60), 0, 0, 120,120, null);
-//		g.drawImage(idleAnimation[aniIndex], (int)xDelta, (int)yDelta, 120,120, null);
+//		g.drawImage(img.getSubimage(210, 10, 110, 110), 0, 0, 120,120, null); //50 px spaced 
+		//12,222,432,632,832,1232,1412,
+		
+//		g.drawImage(img.getSubimage(200, 2, 50, 44), 0, 0, 220,220, null); //50 px spaced 
+		//0,50,100,150,200,250,300,350,400,450,500,550,600,
+		
+		
+		g.drawImage(idleAnimation[aniIndex], (int)xDelta, (int)yDelta, 420,420, null);
 		//100 px offset from top left corner, 70px offset from top
 		//Width is ~64, Height ~60
 		//Doubled X and Y size 
