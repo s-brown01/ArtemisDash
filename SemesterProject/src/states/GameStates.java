@@ -2,7 +2,7 @@ package states;
 
 public enum GameStates {
 	
-	PLAYING, MENU, OPTIONS, QUIT;
+	PLAYING, MENU, OVERWORLD, OPTIONS, QUIT;
 	
 	// every game should start on the menu
 	public static GameStates state = MENU;
