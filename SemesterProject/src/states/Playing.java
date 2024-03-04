@@ -1,5 +1,10 @@
 package states;
 
+import static utils.Constants.Directions.DOWN;
+import static utils.Constants.Directions.LEFT;
+import static utils.Constants.Directions.RIGHT;
+import static utils.Constants.Directions.UP;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -31,6 +36,7 @@ public class Playing extends State implements StateMethods {
 	
 	@Override
 	public void update() {
+		game.getGamePanel().updateGame();
 		if (paused)
 			// update pause menu or pause overlay
 			return;
@@ -40,12 +46,12 @@ public class Playing extends State implements StateMethods {
 		
 	}
 
-	public void draw(Graphics g, BufferedImage img) {
-		player.draw(g);
-		draw(g);
-		final BufferedImage temp = img.getSubimage(100, 70, 64, 60);
-		g.drawImage(temp, Game.GAME_WIDTH/2 - temp.getWidth()/2, Game.GAME_HEIGHT/2 - temp.getHeight()/2, 120,120, null);
-	}
+//	public void draw(Graphics g, BufferedImage img) {
+//		player.draw(g);
+//		draw(g);
+//		final BufferedImage temp = img.getSubimage(100, 70, 64, 60);
+//		g.drawImage(temp, Game.GAME_WIDTH/2 - temp.getWidth()/2, Game.GAME_HEIGHT/2 - temp.getHeight()/2, 120,120, null);
+//	}
 	
 	@Override
 	public void draw(Graphics g) {
@@ -102,18 +108,20 @@ public class Playing extends State implements StateMethods {
 	@Override
 	public void KeyPressed(KeyEvent e) {
 		// decide what to do with the different key inputs
+		
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			System.out.println("W - Move Up - Playing");
+//			game.getGamePanel().getGame().getPlaying().KeyReleased(e);
+			game.getGamePanel().setDirection(UP);
 			break;
 		case KeyEvent.VK_A:
-			System.out.println("A - Move Left - Playing");
-			break;
+			game.getGamePanel().setDirection(LEFT);
+			 break;
 		case KeyEvent.VK_S:
-			System.out.println("S - Move Down - Playing");
-			break;
+			game.getGamePanel().setDirection(DOWN);
+			 break;
 		case KeyEvent.VK_D:
-			System.out.println("D - Move Right - Playing");
+			game.getGamePanel().setDirection(RIGHT);
 			break;
 		case KeyEvent.VK_ESCAPE:
 		case KeyEvent.VK_P:
@@ -125,10 +133,6 @@ public class Playing extends State implements StateMethods {
 			// switch the current value of paused
 			paused = !paused;
 			break;
-		case KeyEvent.VK_BACK_SPACE:
-			// REMOVE THIS LATER
-			System.out.println("SWITCH BACK TO MENU");
-			GameStates.state = GameStates.PLAYING;
 		default:
 			break;
 		}

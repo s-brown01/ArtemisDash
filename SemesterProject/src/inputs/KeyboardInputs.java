@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import main.GamePanel;
 import states.GameStates;
+import static utils.Constants.Directions.*;
 
 public class KeyboardInputs implements KeyListener {
 	
@@ -33,6 +34,7 @@ public class KeyboardInputs implements KeyListener {
 		default:
 			break;
 		}
+		
 	}
 
 	@Override
@@ -51,6 +53,14 @@ public class KeyboardInputs implements KeyListener {
 		default:
 			break;
 			
+		}
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+		case KeyEvent.VK_A:
+		case KeyEvent.VK_S:
+		case KeyEvent.VK_D:
+			gamePanel.setMoving(false);
+			break;
 		}
 		
 		

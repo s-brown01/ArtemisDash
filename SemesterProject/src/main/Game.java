@@ -20,6 +20,7 @@ public class Game implements Runnable {
 	private GamePanel gamePanel;
 	private Thread gameThread;
 	private final int FPS_SET = 120;
+	private final int UPS_SET = 200;
 	
 	private Playing playing;
 	private Menu menu;
@@ -60,44 +61,68 @@ public class Game implements Runnable {
 		}
 	}
 	
-	public void render(Graphics g, BufferedImage img) {
+	public void render(Graphics g) {
 		switch(GameStates.state) {
 		case MENU:
 			menu.draw(g);
 			break;
 		case PLAYING:
-			playing.draw(g, img);
+			playing.draw(g);
 			break;
 		default:
 			break;
 		}
 	}
-
+	
 	@Override
 	public void run() {
 		//FPS Counter - [Don't change, will condense this next commit]
-		double timePerFrame = 1000000000.0/FPS_SET; //A billion s
-		long lastFrame = System.nanoTime();
-		long now = System.nanoTime();
+		double timePerFrame = 1000000000.0/FPS_SET; //A billion seconds
+		double timePerUpdate = 1000000000.0/UPS_SET;//
+		
+		long previousTime = System.nanoTime();
+		
 		int frames = 0;
+		int updates = 0;
 		long lastCheck = System.currentTimeMillis();
+		
+		double deltaU = 0;
+		double deltaF = 0; //deltaFrames
+		
 		while(true) {
+			long currentTime = System.nanoTime();
 			
-			now = System.nanoTime();
-			if(System.nanoTime() - lastFrame >= timePerFrame) {
-				
-				gamePanel.repaint();
-				lastFrame = System.nanoTime();
-				frames++;
+			deltaU +=(currentTime - previousTime)/timePerUpdate;
+			deltaF +=(currentTime - previousTime)/timePerFrame;
+			previousTime = currentTime;
+			
+			if (deltaU >=1) {
+				update();
+				updates++;
+				deltaU--;
 			}
+			
+			if(deltaF >=1) {
+				gamePanel.repaint();
+				frames++;
+				deltaF --;
+			}
+			
 			if (System.currentTimeMillis() - lastCheck >=1000) {
 				lastCheck = System.currentTimeMillis();
-				System.out.println("FPS: " + frames);
+				System.out.println("FPS: " + frames + " | UPS: " + updates);
 				frames = 0;
+				updates = 0;
 			}
 		}
 	}
 	
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
+	
+	
+
 	public Playing getPlaying() {
 		return playing;
 	}
