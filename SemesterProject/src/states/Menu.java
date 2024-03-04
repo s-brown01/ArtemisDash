@@ -1,6 +1,7 @@
 package states;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -53,8 +54,14 @@ public class Menu extends State implements StateMethods {
 	@Override
 	public void draw(Graphics g) {
 		// draw background/buttons/menu
-		g.setColor(Color.CYAN);
+		g.setColor(new Color(100,100,100,200));
 		g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		g.setColor(new Color(255, 255, 255));
+		final Font boldFont = new Font(Font.DIALOG, Font.BOLD, 13);
+		g.setFont(boldFont);
+		g.drawString("MENU", Game.GAME_WIDTH / 2 - 10, Game.GAME_HEIGHT / 2 - 10);
+		g.drawString("Press ENTER to continue", Game.GAME_WIDTH / 2 - 65, Game.GAME_HEIGHT / 2 + 20);
+
 		
 		}
 

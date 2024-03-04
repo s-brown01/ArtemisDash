@@ -1,6 +1,7 @@
 package states;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -49,8 +50,11 @@ public class Playing extends State implements StateMethods {
 	public void draw(Graphics g) {
 		// draw everything
 		// background - tiles - player/enemies
-		g.setColor(Color.red);
-		g.fillRect(0, 0, Game.GAME_WIDTH/2, Game.GAME_HEIGHT/2);
+		g.setColor(new Color(0, 0, 0, 200));
+		g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+		g.setColor(Color.white);
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+		g.drawString("PLAYING SCREEN", Game.GAME_WIDTH / 2 - 30, 100);
 		if (paused)
 			// draw the pause menu/overlay here
 			// overlays should be after everything else
@@ -76,6 +80,7 @@ public class Playing extends State implements StateMethods {
 	public void MouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		// shoot when the mouse is pressed and released?
+		
 		
 	}
 
