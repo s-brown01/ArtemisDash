@@ -7,7 +7,7 @@ import static utils.Constants.PlayerConstants.*;
 
 public class Player extends Entity {
 	
-	private BufferedImage[][] imgs;
+	private BufferedImage[][] amimations;
 	private int aniIndex, aniTick;
 	private int aniSpeed = 120 / 10; // 120 frames per second / 10 animations per second
 	private int playerAction = IDLE;
