@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import main.GamePanel;
 import states.GameStates;
+import static utils.Constants.Directions.*;
 
 public class KeyboardInputs implements KeyListener {
 	
@@ -32,25 +33,40 @@ public class KeyboardInputs implements KeyListener {
 		case PLAYING:
 			// TO BE CHANGED LATER
 			// for now deal with it all here
-			switch (e.getKeyCode()) {
-			case KeyEvent.VK_W:
-				gamePanel.getGame().getPlaying().KeyReleased(e);
-				gamePanel.changeYDelta(-5);
-				break;
-			case KeyEvent.VK_A:
-				gamePanel.changeXDelta(-5);
-				 break;
-			case KeyEvent.VK_S:
-				gamePanel.changeYDelta(5);
-				 break;
-			case KeyEvent.VK_D:
-				gamePanel.changeXDelta(5);
-				break;
-			}
+//			switch (e.getKeyCode()) {
+//			case KeyEvent.VK_W:
+//				gamePanel.getGame().getPlaying().KeyReleased(e);
+//				gamePanel.setDirection(UP);
+//				break;
+//			case KeyEvent.VK_A:
+//				gamePanel.setDirection(LEFT);
+//				 break;
+//			case KeyEvent.VK_S:
+//				gamePanel.setDirection(DOWN);
+//				 break;
+//			case KeyEvent.VK_D:
+//				gamePanel.setDirection(RIGHT);
+//				break;
+//			}
 			break;
 		default:
 			break;
 			
+		}
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+			gamePanel.getGame().getPlaying().KeyReleased(e);
+			gamePanel.setDirection(UP);
+			break;
+		case KeyEvent.VK_A:
+			gamePanel.setDirection(LEFT);
+			 break;
+		case KeyEvent.VK_S:
+			gamePanel.setDirection(DOWN);
+			 break;
+		case KeyEvent.VK_D:
+			gamePanel.setDirection(RIGHT);
+			break;
 		}
 	}
 
@@ -69,6 +85,14 @@ public class KeyboardInputs implements KeyListener {
 		default:
 			break;
 			
+		}
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+		case KeyEvent.VK_A:
+		case KeyEvent.VK_S:
+		case KeyEvent.VK_D:
+			gamePanel.setMoving(false);
+			break;
 		}
 		
 		
