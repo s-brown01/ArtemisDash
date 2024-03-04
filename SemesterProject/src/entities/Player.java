@@ -22,13 +22,13 @@ public class Player extends Entity {
 	}
 
 	@Override
-	protected void update() {
+	public void update() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void draw(Graphics g) {
+	public void draw(Graphics g) {
 		drawHitbox(g, 0);
 	}
 	

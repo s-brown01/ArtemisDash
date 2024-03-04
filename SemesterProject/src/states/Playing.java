@@ -25,7 +25,7 @@ public class Playing extends State implements StateMethods {
 	private void initClasses() {
 		// create all classes here
 		// player
-		player = new Player();
+		player = new Player(100, 100, 50, 100);
 		
 	}
 	
@@ -41,6 +41,7 @@ public class Playing extends State implements StateMethods {
 	}
 
 	public void draw(Graphics g, BufferedImage img) {
+		player.draw(g);
 		draw(g);
 		final BufferedImage temp = img.getSubimage(100, 70, 64, 60);
 		g.drawImage(temp, Game.GAME_WIDTH/2 - temp.getWidth()/2, Game.GAME_HEIGHT/2 - temp.getHeight()/2, 120,120, null);
@@ -50,7 +51,7 @@ public class Playing extends State implements StateMethods {
 	public void draw(Graphics g) {
 		// draw everything
 		// background - tiles - player/enemies
-		g.setColor(new Color(0, 0, 0, 200));
+		g.setColor(new Color(150, 150, 150, 150));
 		g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
 		g.setColor(Color.white);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
