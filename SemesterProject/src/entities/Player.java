@@ -36,8 +36,8 @@ public class Player extends Entity {
 	public void update() {
 		// TODO Auto-generated method stub
 		updateAniTick();
-		setAnimation();
 		updatePos();
+		setAnimation();
 		
 	}
 
@@ -90,15 +90,12 @@ public class Player extends Entity {
 	private void updatePos() {
 		moving = false;
 		
-		
 		// if holding down left+right...
 		if (left && right) {
 			// if  holding down just L+R or all 4 keys, don't move
 			if ((up && down) || (!up && !down))
 				return;
-		}
-
-		
+		}		
 		
 		if (left) {
 			xDelta -= 5;
@@ -123,13 +120,25 @@ public class Player extends Entity {
 	}
 	
 	private void setAnimation() {
+		int start_state = player_action;
+		
 		if (moving) {
 			player_action = RUNNING;
 		}else {
 			player_action = IDLE;
 		}
+		
+		// checking if the state has changed
+		// if it has changed, we need to restart animation
+		if (start_state != player_action)
+			resetAni();
 	}
 	
+	private void resetAni() {
+		aniIndex = 0;
+		aniTick = 0;
+	}
+
 	private void updateAniTick() {
 		aniTick ++;
 		if (aniTick >= aniSpeed) {
