@@ -36,8 +36,10 @@ public class Playing extends State implements StateMethods {
 	
 	@Override
 	public void update() {
-		game.getGamePanel().updateGame();
-		game.getGamePanel().setDrawPlayer(true);
+		player.update();
+//		game.getGamePanel().updateGame();
+//		game.getGamePanel().setDrawPlayer(true);
+		
 		if (paused)
 			// update pause menu or pause overlay
 			return;
@@ -63,6 +65,9 @@ public class Playing extends State implements StateMethods {
 		g.setColor(Color.white);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		g.drawString("PLAYING SCREEN", Game.GAME_WIDTH / 2 - 30, 100);
+		
+		player.draw(g);
+		
 		if (paused)
 			// draw the pause menu/overlay here
 			// overlays should be after everything else
@@ -112,17 +117,24 @@ public class Playing extends State implements StateMethods {
 		
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-//			game.getGamePanel().getGame().getPlaying().KeyReleased(e);
-			game.getGamePanel().setDirection(UP);
+			player.setDirection(UP);
+			player.setUp(true);
+//			game.getGamePanel().setDirection(UP);
 			break;
 		case KeyEvent.VK_A:
-			game.getGamePanel().setDirection(LEFT);
-			 break;
+			player.setDirection(LEFT);
+			player.setLeft(true);
+//			game.getGamePanel().setDirection(LEFT);
+			break;
 		case KeyEvent.VK_S:
-			game.getGamePanel().setDirection(DOWN);
-			 break;
+			player.setDirection(DOWN);
+			player.setDown(true);
+//			game.getGamePanel().setDirection(DOWN);
+			break;
 		case KeyEvent.VK_D:
-			game.getGamePanel().setDirection(RIGHT);
+			player.setDirection(RIGHT);
+			player.setRight(true);
+//			game.getGamePanel().setDirection(RIGHT);
 			break;
 		case KeyEvent.VK_ESCAPE:
 		case KeyEvent.VK_P:
@@ -145,13 +157,21 @@ public class Playing extends State implements StateMethods {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		game.getGamePanel().setMoving(false);
+		player.setMoving(false);
 		// LATER TO DO: add setting the direction booleans to false
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
+			player.setUp(false);
+			break;
 		case KeyEvent.VK_A:
+			player.setLeft(false);
+			break;			
 		case KeyEvent.VK_S:
+			player.setDown(false);
+			break;
 		case KeyEvent.VK_D:
+			player.setRight(false);
+			break;
 		default:
 			break;
 		}

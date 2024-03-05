@@ -50,8 +50,8 @@ public class GamePanel extends JPanel{
 		mouseInputs = new MouseInputs(this);//Forwards all mouse listener events to input class
 		addKeyListener(new KeyboardInputs(this));//Forwards all key listener events to input class
 		
-		importImg();
-		loadAnimations(); 
+//		importImg();
+//		loadAnimations(); 
 		
 		setPanelSize();
 		addMouseListener(mouseInputs);
@@ -122,15 +122,17 @@ public class GamePanel extends JPanel{
 	}
 	
 	public void updateGame() {
-		updateAniTick();
-		setAnimation();
-		updatePos();
+		game.update();
+//		updateAniTick();
+//		setAnimation();
+//		updatePos();
 	}
+	
 	//Magic method called when game starts 
 	//graphics allows us to draw and redraw inside panel
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);//Uses JPanel's own paint method
-		updateAniTick();
+//		updateAniTick();
 		game.render(g);
 //		g.drawImage(img.getSubimage(100, 70, 64, 60), 0, 0, 120,120, null);
 
@@ -138,8 +140,8 @@ public class GamePanel extends JPanel{
 		//100 px offset from top left corner, 70px offset from top
 		//Width is ~64, Height ~60
 		//Doubled X and Y size 
-		if (drawPlayer)
-			g.drawImage(animations[player_action][aniIndex], (int)xDelta, (int)yDelta, 420,420, null);
+//		if (drawPlayer)
+//			g.drawImage(animations[player_action][aniIndex], (int)xDelta, (int)yDelta, 420,420, null);
 			// g.drawImage(img.getSubimage(720, 0, 60, 45), 0, 0, 220,220, null);	//draws one image
 	}
 

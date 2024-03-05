@@ -5,6 +5,7 @@ import states.Playing;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import entities.Player;
 import states.GameStates;
 import states.Menu;
 import states.Overworld;
@@ -26,6 +27,7 @@ public class Game implements Runnable {
 	private Playing playing;
 	private Menu menu;
 	private Overworld overworld;
+//	private Player player;
 	
 	// Main Game Constructor
 	public Game() {
@@ -42,6 +44,7 @@ public class Game implements Runnable {
 		menu = new Menu(this);
 		playing = new Playing(this);
 		overworld = new Overworld(this);
+		
 	}
 	
 	
