@@ -36,15 +36,13 @@ public class Playing extends State implements StateMethods {
 	
 	@Override
 	public void update() {
-		player.update();
-//		game.getGamePanel().updateGame();
-//		game.getGamePanel().setDrawPlayer(true);
-		
 		if (paused)
 			// update pause menu or pause overlay
 			return;
+
 		// if !paused, this code will run
 		// update everything else on screen
+		player.update();
 		return;
 		
 	}
@@ -62,16 +60,24 @@ public class Playing extends State implements StateMethods {
 		// background - tiles - player/enemies
 		g.setColor(new Color(150, 150, 150, 150));
 		g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-		g.setColor(Color.white);
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
-		g.drawString("PLAYING SCREEN", Game.GAME_WIDTH / 2 - 30, 100);
-		
 		player.draw(g);
-		
-		if (paused)
+
+		if (paused) {
+			g.setColor(new Color(225, 225, 225, 200));
+			g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+			g.setColor(Color.CYAN);
+			g.fillRect(Game.GAME_WIDTH / 2 - 300, Game.GAME_HEIGHT / 2 - 300, 600, 600);
+			g.setColor(Color.BLACK);
+			g.drawString("PAUSED", Game.GAME_WIDTH / 2- 20, Game.GAME_HEIGHT / 2);
+
 			// draw the pause menu/overlay here
 			// overlays should be after everything else
 			return;
+		}
+		
+		g.setColor(Color.white);
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+		g.drawString("PLAYING SCREEN", Game.GAME_WIDTH / 2 - 30, 100);
 	}
 
 	@Override
