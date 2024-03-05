@@ -28,6 +28,9 @@ public class GamePanel extends JPanel{
 	private int player_direction = -1;
 	private boolean moving = false;
 	
+	// THIS IS A TEMPORARY VARIABLE, ONLY USING TO HIDE OR SHOW THE PLAYER
+	private boolean drawPlayer = false;
+	
 	public GamePanel(Game game) {
 		// adding a Game to the constructor allows us to access the GameState from the gamePanel
 		/*
@@ -135,8 +138,9 @@ public class GamePanel extends JPanel{
 		//100 px offset from top left corner, 70px offset from top
 		//Width is ~64, Height ~60
 		//Doubled X and Y size 
-		g.drawImage(animations[player_action][aniIndex], (int)xDelta, (int)yDelta, 420,420, null);
-//		g.drawImage(img.getSubimage(720, 0, 60, 45), 0, 0, 220,220, null);	//draws one image
+		if (drawPlayer)
+			g.drawImage(animations[player_action][aniIndex], (int)xDelta, (int)yDelta, 420,420, null);
+			// g.drawImage(img.getSubimage(720, 0, 60, 45), 0, 0, 220,220, null);	//draws one image
 	}
 
 	private void updatePos() {
@@ -181,5 +185,9 @@ public class GamePanel extends JPanel{
 	
 	public Game getGame() {
 		return game;
+	}
+	
+	public void setDrawPlayer(boolean draw) {
+		drawPlayer = draw;
 	}
 }

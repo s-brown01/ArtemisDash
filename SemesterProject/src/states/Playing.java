@@ -37,6 +37,7 @@ public class Playing extends State implements StateMethods {
 	@Override
 	public void update() {
 		game.getGamePanel().updateGame();
+		game.getGamePanel().setDrawPlayer(true);
 		if (paused)
 			// update pause menu or pause overlay
 			return;
