@@ -87,15 +87,33 @@ public class Player extends Entity {
 	}
 	
 	private void updatePos() {
-		if (moving) {
-			if (left)
-				xDelta -= 5;
-			if (right)
-				xDelta += 5;
-			if (up)
-				yDelta -= 5;
-			if (down)
-				yDelta += 5;
+		moving = false;
+		
+		
+		// if holding down left+right...
+		if (left && right) {
+			// if  holding down just L+R or all 4 keys, don't move
+			if ((up && down) || (!up && !down))
+				return;
+		}
+
+		
+		
+		if (left) {
+			xDelta -= 5;
+			moving = true;
+		}
+		if (right) {
+			xDelta += 5;
+			moving = true;
+		}
+		if (up) {
+			yDelta -= 5;
+			moving = true;
+		}
+		if (down) {
+			yDelta += 5;
+			moving = true;
 		}
 //		if(moving) {
 //			switch(player_direction) {

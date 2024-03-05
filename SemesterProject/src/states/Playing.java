@@ -117,22 +117,22 @@ public class Playing extends State implements StateMethods {
 		
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			player.setDirection(UP);
+//			player.setDirection(UP);
 			player.setUp(true);
 //			game.getGamePanel().setDirection(UP);
 			break;
 		case KeyEvent.VK_A:
-			player.setDirection(LEFT);
+//			player.setDirection(LEFT);
 			player.setLeft(true);
 //			game.getGamePanel().setDirection(LEFT);
 			break;
 		case KeyEvent.VK_S:
-			player.setDirection(DOWN);
+//			player.setDirection(DOWN);
 			player.setDown(true);
 //			game.getGamePanel().setDirection(DOWN);
 			break;
 		case KeyEvent.VK_D:
-			player.setDirection(RIGHT);
+//			player.setDirection(RIGHT);
 			player.setRight(true);
 //			game.getGamePanel().setDirection(RIGHT);
 			break;
@@ -157,7 +157,7 @@ public class Playing extends State implements StateMethods {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		player.setMoving(false);
+//		player.setMoving(false);
 		// LATER TO DO: add setting the direction booleans to false
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
