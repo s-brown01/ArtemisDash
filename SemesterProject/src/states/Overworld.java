@@ -18,7 +18,6 @@ public class Overworld extends State implements StateMethods {
 
 	@Override
 	public void update() {
-		game.getGamePanel().setDrawPlayer(false);
 		// TODO Auto-generated method stub
 		
 	}

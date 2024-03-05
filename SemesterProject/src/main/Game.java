@@ -27,7 +27,6 @@ public class Game implements Runnable {
 	private Playing playing;
 	private Menu menu;
 	private Overworld overworld;
-//	private Player player;
 	
 	// Main Game Constructor
 	public Game() {

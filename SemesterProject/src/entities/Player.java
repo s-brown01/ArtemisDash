@@ -15,9 +15,8 @@ public class Player extends Entity {
 	private BufferedImage[][] animations;
 	private int aniIndex, aniTick;
 	private float xDelta = 100, yDelta = 100;
-	private int aniSpeed = 120 / 10; // 120 frames per second / 10 animations per second
+	private int aniSpeed = 120 / 8; // 120 frames per second / 10 animations per second
 	private int player_action = IDLE;
-	private int player_direction = -1;
 	private boolean left, right, up, down, moving = false;
 	private BufferedImage img;
 	
@@ -46,6 +45,9 @@ public class Player extends Entity {
 	@Override
 	public void draw(Graphics g) {
 		drawHitbox(g, 0);
+		//100 px offset from top left corner, 70px offset from top
+		//Width is ~64, Height ~60
+		//Doubled X and Y size 
 		g.drawImage(animations[player_action][aniIndex], (int)xDelta, (int)yDelta, 420,420, null);
 	}
 	
@@ -115,29 +117,6 @@ public class Player extends Entity {
 			yDelta += 5;
 			moving = true;
 		}
-//		if(moving) {
-//			switch(player_direction) {
-//			case LEFT:
-//				xDelta -= 5;
-//				break;
-//			case UP:
-//				yDelta -= 5;
-//				break;
-//			case RIGHT:
-//				xDelta += 5;
-//				break;
-//			case DOWN:
-//				yDelta += 5;
-//				break;
-//			default:
-//				break;
-//			}
-//		}
-	}
-	
-	public void setDirection(int direction) {
-		this.player_direction = direction;
-		moving = true;
 	}
 	
 	public void setMoving(boolean moving) {

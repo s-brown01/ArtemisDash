@@ -45,7 +45,6 @@ public class Menu extends State implements StateMethods {
 
 	@Override
 	public void update() {
-		game.getGamePanel().setDrawPlayer(true);
 		// update buttons and any other graphics in the menu
 		for (MenuButton mb : buttons) {
 			// mb.update()

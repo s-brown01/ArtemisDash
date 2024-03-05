@@ -117,24 +117,16 @@ public class Playing extends State implements StateMethods {
 		
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-//			player.setDirection(UP);
 			player.setUp(true);
-//			game.getGamePanel().setDirection(UP);
 			break;
 		case KeyEvent.VK_A:
-//			player.setDirection(LEFT);
 			player.setLeft(true);
-//			game.getGamePanel().setDirection(LEFT);
 			break;
 		case KeyEvent.VK_S:
-//			player.setDirection(DOWN);
 			player.setDown(true);
-//			game.getGamePanel().setDirection(DOWN);
 			break;
 		case KeyEvent.VK_D:
-//			player.setDirection(RIGHT);
 			player.setRight(true);
-//			game.getGamePanel().setDirection(RIGHT);
 			break;
 		case KeyEvent.VK_ESCAPE:
 		case KeyEvent.VK_P:
