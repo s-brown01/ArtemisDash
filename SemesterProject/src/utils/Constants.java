@@ -3,12 +3,6 @@ package utils;
 import main.Game;
 
 public class Constants {
-	
-	public static class EntityConstants {
-		// multiplying these by SCALE means it will remain proportionally the same
-		public static float GRAVITY = 1.5f * Game.SCALE;
-		public static float WALK_SPEED = 1.5f * Game.SCALE;
-	}
 
 	public static class Directions{
 		public static final int LEFT = 0;
@@ -16,7 +10,6 @@ public class Constants {
 		public static final int RIGHT= 2;
 		public static final int DOWN= 3;
 	}
-	
 	
 	public static class PlayerConstants {
 		public static final int IDLE =0;
@@ -33,7 +26,6 @@ public class Constants {
         public static final int SLIDE = 12;
 		
 		public static int getAnimationLength(int player_action) {
-			
 			switch(player_action) {
 			case IDLE:
 				return 12;
@@ -61,7 +53,6 @@ public class Constants {
 				return 11;
 			default:
 				return 1;
-			
 			}
 		}
 	}	

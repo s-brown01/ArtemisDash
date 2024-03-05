@@ -4,7 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
+import main.Game;
+
 abstract class Entity {
+	// multiplying these by SCALE means it will remain proportionally the same
+	protected float gravity = 0.004f * Game.SCALE;
+	protected float walk_speed = 1.5f * Game.SCALE;
+	protected int aniSpeed = 25;
 	protected float x, y, width, height;
 	protected final Rectangle2D.Float hitbox;
 	

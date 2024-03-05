@@ -1,16 +1,10 @@
 package states;
 
-import static utils.Constants.Directions.DOWN;
-import static utils.Constants.Directions.LEFT;
-import static utils.Constants.Directions.RIGHT;
-import static utils.Constants.Directions.UP;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
 import entities.Player;
 import main.Game;
@@ -46,13 +40,6 @@ public class Playing extends State implements StateMethods {
 		return;
 		
 	}
-
-//	public void draw(Graphics g, BufferedImage img) {
-//		player.draw(g);
-//		draw(g);
-//		final BufferedImage temp = img.getSubimage(100, 70, 64, 60);
-//		g.drawImage(temp, Game.GAME_WIDTH/2 - temp.getWidth()/2, Game.GAME_HEIGHT/2 - temp.getHeight()/2, 120,120, null);
-//	}
 	
 	@Override
 	public void draw(Graphics g) {
@@ -62,6 +49,7 @@ public class Playing extends State implements StateMethods {
 		g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
 		player.draw(g);
 
+		// PAUSE SCREEN
 		if (paused) {
 			g.setColor(new Color(225, 225, 225, 200));
 			g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
@@ -74,7 +62,7 @@ public class Playing extends State implements StateMethods {
 			// overlays should be after everything else
 			return;
 		}
-		
+		// NOT PAUSED
 		g.setColor(Color.white);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		g.drawString("PLAYING SCREEN", Game.GAME_WIDTH / 2 - 30, 100);
