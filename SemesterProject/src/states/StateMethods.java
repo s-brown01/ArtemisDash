@@ -11,15 +11,15 @@ public interface StateMethods {
 	public void draw(Graphics g);
 	
 	// handling mouse events
-	public void MouseDragged(MouseEvent e);
-	public void MousePressed(MouseEvent e);
-	public void MouseClicked(MouseEvent e);
-	public void MouseReleased(MouseEvent e);
-	public void MouseMoved(MouseEvent e);
+	public void mouseDragged(MouseEvent e);
+	public void mousePressed(MouseEvent e);
+	public void mouseClicked(MouseEvent e);
+	public void mouseReleased(MouseEvent e);
+	public void mouseMoved(MouseEvent e);
 	
 	// handling keyboard events and inputs
-	public void KeyPressed(KeyEvent e);
-	public void KeyReleased(KeyEvent e);
+	public void keyPressed(KeyEvent e);
+	public void keyReleased(KeyEvent e);
 	
 	
 	
