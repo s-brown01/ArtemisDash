@@ -66,19 +66,19 @@ public class Menu extends State implements StateMethods {
 		}
 
 	@Override
-	public void MouseDragged(MouseEvent e) {
+	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void MouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void MousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		// see where the mouse is and if it an in any menu button
 		// THIS IS JUST EXAMPLE CODE
 		// PLEASE CHANGE
@@ -88,7 +88,7 @@ public class Menu extends State implements StateMethods {
 
 	@Override
 	// activated when we release the mouse from clicking
-	public void MouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) {
 		// following code from youTube tutorial
 		// if it is within a button and we have clicked on that button then use the button
 //		for (MenuButton mb : buttons) {
@@ -102,7 +102,7 @@ public class Menu extends State implements StateMethods {
 	}
 
 	@Override
-	public void MouseMoved(MouseEvent e) {
+	public void mouseMoved(MouseEvent e) {
 		// when we move the mouse reset mouseOver
 		for (MenuButton mb : buttons) {
 			// tell the mb button mouse isn't on it
@@ -117,17 +117,17 @@ public class Menu extends State implements StateMethods {
 	}
 
 	@Override
-	public void KeyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		// decide what to do with keyboard inputs here
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			System.out.println("SWITCH FROM MENU TO PLAYING");
-			GameStates.state = GameStates.PLAYING;
+			System.out.println("SWITCH FROM MENU TO OVERWORLD");
+			GameStates.state = GameStates.OVERWORLD;
 		}
 	}
 
 	@Override
-	public void KeyReleased(KeyEvent e) {
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		// what to do if the key is released
 	}

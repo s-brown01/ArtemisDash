@@ -29,47 +29,53 @@ public class Overworld extends State implements StateMethods {
 		g.setColor(Color.black);
 		g.drawRect(100, 150, 50, 50); // example square 
 		g.drawString("OVERWORLD", Game.GAME_WIDTH / 2 - 15, 20);
-		g.drawString("Click anywhere to continue to game", Game.GAME_WIDTH - 100, Game.GAME_HEIGHT / 2);
+		g.drawString("Click anywhere to continue to game", Game.GAME_WIDTH / 2 - 100, Game.GAME_HEIGHT / 2);
 	}
 
 	@Override
-	public void MouseDragged(MouseEvent e) {
+	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void MousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
+		System.out.println("woowoowewa");
+//		if (e.getButton() == MouseEvent.BUTTON1) {
+			System.out.println("SWITCH FROM OVERWORLD TO PLAYING");
+			GameStates.state = GameStates.PLAYING;
+//		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("click");
+
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void MouseClicked(MouseEvent e) {
+	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void MouseReleased(MouseEvent e) {
+	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void MouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void KeyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void KeyReleased(KeyEvent e) {
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -18,6 +18,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 		switch(GameStates.state) {
 		case MENU:
 			break;
+		case OVERWORLD:
+			break;
 		case PLAYING:
 			break;
 		default:
@@ -32,6 +34,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 		switch(GameStates.state) {
 		case MENU:
 			break;
+		case OVERWORLD:
+			break;
 		case PLAYING:
 			break;
 		default:
@@ -45,6 +49,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 		// to be filled in
 		switch(GameStates.state) {
 		case MENU:
+			break;
+		case OVERWORLD:
+			gamePanel.getGame().getOverworld().mouseClicked(e);
 			break;
 		case PLAYING:
 			break;

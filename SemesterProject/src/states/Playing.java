@@ -69,14 +69,14 @@ public class Playing extends State implements StateMethods {
 	}
 
 	@Override
-	public void MouseDragged(MouseEvent e) {
+	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	// mouse pressed is when the mouse is pushed down
-	public void MousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		// shoot when the mouse is pressed?
 		
@@ -84,7 +84,7 @@ public class Playing extends State implements StateMethods {
 
 	@Override
 	// mouse clicked is when it is a press and release
-	public void MouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		// shoot when the mouse is pressed and released?
 		
@@ -92,21 +92,21 @@ public class Playing extends State implements StateMethods {
 	}
 
 	@Override
-	public void MouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		// shoot when mouse is released?
 		
 	}
 
 	@Override
-	public void MouseMoved(MouseEvent e) {
+	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		// if cursor icon changes, updating recticle will be automatic
 		
 	}
 
 	@Override
-	public void KeyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) {
 		// decide what to do with the different key inputs
 		
 		switch (e.getKeyCode()) {
@@ -133,23 +133,24 @@ public class Playing extends State implements StateMethods {
 			// switch the current value of paused
 			paused = !paused;
 			break;
+		case KeyEvent.VK_BACK_SPACE:
+			System.out.println("SWITCHING FROM PLAYING TO OVERWORLD");
+			GameStates.state = GameStates.OVERWORLD;
+			break;
 		default:
 			break;
 		}
 	}
 
 	@Override
-	public void KeyReleased(KeyEvent e) {
+	public void keyReleased(KeyEvent e) {
+		game.getGamePanel().setMoving(false);
 		// LATER TO DO: add setting the direction booleans to false
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			break;
 		case KeyEvent.VK_A:
-			break;
 		case KeyEvent.VK_S:
-			break;
 		case KeyEvent.VK_D:
-			break;
 		default:
 			break;
 		}

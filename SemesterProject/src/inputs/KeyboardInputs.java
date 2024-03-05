@@ -27,10 +27,14 @@ public class KeyboardInputs implements KeyListener {
 		switch(GameStates.state) {
 		// deal with logic in the individual classes
 		case MENU:
-			gamePanel.getGame().getMenu().KeyPressed(e);
+			gamePanel.getGame().getMenu().keyPressed(e);
+			break;
+		case OVERWORLD:
+			gamePanel.getGame().getOverworld().keyPressed(e);
 			break;
 		case PLAYING:
-			gamePanel.getGame().getPlaying().KeyPressed(e);
+			gamePanel.getGame().getPlaying().keyPressed(e);
+			break;
 		default:
 			break;
 		}
@@ -45,22 +49,17 @@ public class KeyboardInputs implements KeyListener {
 		switch(GameStates.state) {
 		// this allows us to deal with case-switch logic per class instead of all at once
 		case MENU:
-			gamePanel.getGame().getMenu().KeyPressed(e);
+			gamePanel.getGame().getMenu().keyReleased(e);
+			break;
+		case OVERWORLD:
+			gamePanel.getGame().getOverworld().keyReleased(e);
 			break;
 		case PLAYING:
-			gamePanel.getGame().getPlaying().KeyReleased(e);
+			gamePanel.getGame().getPlaying().keyReleased(e);
 			break;
 		default:
 			break;
 			
-		}
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_W:
-		case KeyEvent.VK_A:
-		case KeyEvent.VK_S:
-		case KeyEvent.VK_D:
-			gamePanel.setMoving(false);
-			break;
 		}
 		
 		

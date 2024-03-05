@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import states.GameStates;
 import states.Menu;
+import states.Overworld;
 
 public class Game implements Runnable {
 	
@@ -24,6 +25,7 @@ public class Game implements Runnable {
 	
 	private Playing playing;
 	private Menu menu;
+	private Overworld overworld;
 	
 	// Main Game Constructor
 	public Game() {
@@ -39,6 +41,7 @@ public class Game implements Runnable {
 	private void initClasses() {
 		menu = new Menu(this);
 		playing = new Playing(this);
+		overworld = new Overworld(this);
 	}
 	
 	
@@ -53,6 +56,9 @@ public class Game implements Runnable {
 		case MENU:
 			menu.update();
 			break;
+		case OVERWORLD:
+			overworld.update();
+			break;
 		case PLAYING:
 			playing.update();
 			break;
@@ -65,6 +71,9 @@ public class Game implements Runnable {
 		switch(GameStates.state) {
 		case MENU:
 			menu.draw(g);
+			break;
+		case OVERWORLD:
+			overworld.draw(g);
 			break;
 		case PLAYING:
 			playing.draw(g);
@@ -120,8 +129,6 @@ public class Game implements Runnable {
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}
-	
-	
 
 	public Playing getPlaying() {
 		return playing;
@@ -129,5 +136,9 @@ public class Game implements Runnable {
 	
 	public Menu getMenu() {
 		return menu;
+	}
+
+	public Overworld getOverworld() {
+		return overworld;
 	}
 }
