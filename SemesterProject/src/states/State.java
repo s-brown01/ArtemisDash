@@ -1,6 +1,7 @@
 
 package states;
 
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 
 import main.Game;
@@ -10,6 +11,8 @@ public abstract class State {
 
     // protected = private for children
     protected Game game;
+    protected final Font boldFont = new Font(Font.DIALOG, Font.BOLD, 13);
+
 
     public State(Game game) {
         // there should be a game that the state is in

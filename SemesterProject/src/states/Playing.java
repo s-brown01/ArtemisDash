@@ -45,6 +45,7 @@ public class Playing extends State implements StateMethods {
     public void draw(Graphics g) {
         // draw everything
         // background - tiles - player/enemies
+        g.setFont(boldFont);
         g.setColor(new Color(150, 150, 150, 150));
         g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
         player.draw(g);
@@ -64,7 +65,6 @@ public class Playing extends State implements StateMethods {
         }
         // NOT PAUSED
         g.setColor(Color.white);
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
         g.drawString("PLAYING SCREEN", Game.GAME_WIDTH / 2 - 30, 100);
     }
 
