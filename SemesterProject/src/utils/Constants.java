@@ -45,7 +45,7 @@ public class Constants {
             case ATTACK:
                 return 8;
             case ATTACK_END:
-                return 9;
+                return 5;
             case HIT:
                 return 6;
             case FALLING:

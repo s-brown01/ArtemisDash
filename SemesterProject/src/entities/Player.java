@@ -12,13 +12,14 @@ import static utils.Constants.PlayerConstants.*;
 
 public class Player extends Entity {
 
+	/**
+	 * Parameters the player will inherit from the Entity abstract class
+	 */
     private BufferedImage[][] animations;
     private int aniIndex, aniTick;
-    // private float xDelta = 100, yDelta = 100;
-    // private int aniSpeed = 120 / 8; // 120 frames per second / 10 animations per
-    // second
+    // private int aniSpeed = 120 / 8; // 120 frames per second / 10 animations per second
     private int player_action = IDLE;
-    private boolean left, right, up, down, moving = false;
+    private boolean left, right, up, down, moving = false, attacking = false;
     private BufferedImage img;
 
     private int maxHealth = 2;
@@ -26,22 +27,26 @@ public class Player extends Entity {
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
-        // TODO Auto-generated constructor stub
-
         importImg();
         loadAnimations();
 
     }
 
+    /**
+     * Updates the position, animation tick, and row of sprites
+     * (Row will change 
+     */
     @Override
     public void update() {
-        // TODO Auto-generated method stub
         updateAniTick();
         updatePos();
         setAnimation();
 
     }
-
+    
+    /**
+     * Draws the sprite along with it's hitbox to the screen 
+     */
     @Override
     public void draw(Graphics g) {
         drawHitbox(g, 0);
@@ -52,7 +57,9 @@ public class Player extends Entity {
                             (int) width, (int) height, null);
     }
 
-    // READS IN THE SPRITE SHEET TO BE USED AND CUT UP INTO SMALLER FRAMES
+    /**
+     * Reads in sprite sheet to be cut up into smaller animation frames
+     */
     public void importImg() {
         final String image = "Artemis_Finished.png";
         InputStream is = getClass().getClassLoader().getResourceAsStream(image);
@@ -71,7 +78,10 @@ public class Player extends Entity {
         }
     }
 
-    // LOADS IN ANIMATIONS USING A 2D ARRAY OF THE LENGTH OF THE ANIMATIONS THEMSELVES
+    /**
+     * Loads ALL animations from a sprite sheet into a 2D array
+     * The length of this array, will be the length of the longest animation
+     */
     private void loadAnimations() {
         animations = new BufferedImage[12][12]; // 12 is the amount of frames in the idle animation
         for (int j = 0; j < animations.length; j++) {
@@ -85,11 +95,14 @@ public class Player extends Entity {
             // Test Land Animation: img.getSubimage(i*60, 135, 60, 45);Set BufferedImage[3]
             // Test Death Animation: img.getSubimage(i*60, 180, 60, 45);Set BufferedImage[20]
 
-            // img.getSubimage(WIDTH of sprite, Y position, Width of selection, Height of
-            // selection)
+            // img.getSubimage(WIDTH of sprite, Y position, Width of selection, Height of selection)
         }
     }
 
+    /**
+     * Updates position of hitbox as well as player sprite
+     * Handles things such as pressing Left and Right simultaneously
+     */
     private void updatePos() {
         moving = false;
 
@@ -99,7 +112,6 @@ public class Player extends Entity {
             if ((up && down) || (!up && !down))
                 return;
         }
-
         if (left) {
             hitbox.x -= 5;
             moving = true;
@@ -118,30 +130,56 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Keeps track of the player movement by setting a True or False value
+     * Will be used for "Coyote Time", shooting, among other Player related movement options
+     * @param moving
+     */
     public void setMoving(boolean moving) {
-        this.moving = moving;
+    	this.moving = moving;
+        if (moving == false) {
+        	this.setRight(false);
+    		this.setLeft(false);
+    		this.setUp(false);
+    		this.setDown(false);
+        }
     }
 
+	public void setAttack(boolean attacking) {
+	    	this.attacking = attacking;
+	    }
+ 
+    /**
+     * Sets the current animation sprite, based on the player movement
+     */
     private void setAnimation() {
         int start_state = player_action;
-
         if (moving) {
             player_action = RUNNING;
         } else {
             player_action = IDLE;
         }
-
+        if (attacking) {
+        	player_action = ATTACK;
+        }
         // checking if the state has changed
         // if it has changed, we need to restart animation
         if (start_state != player_action)
             resetAni();
     }
 
+    /**
+     * Resets animation timers and indexes to repeat animation 
+     * once end of sprite list has been reached
+     */
     private void resetAni() {
         aniIndex = 0;
         aniTick = 0;
     }
 
+    /**
+     * Updates the animation index to move the animation forward 
+     */
     private void updateAniTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -188,5 +226,6 @@ public class Player extends Entity {
     public void setDown(boolean down) {
         this.down = down;
     }
+    
 
 }

@@ -27,7 +27,10 @@ public class Playing extends State implements StateMethods {
         player = new Player(100, 100, 100, 200);
 
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void update() {
         if (paused)
@@ -173,5 +176,9 @@ public class Playing extends State implements StateMethods {
     public void unpauseGame() {
         paused = false;
     }
+
+	public void resetDirBooleans() {
+		this.player.setMoving(false);
+	}
 
 }

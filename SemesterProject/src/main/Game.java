@@ -28,6 +28,7 @@ public class Game implements Runnable {
     private Playing playing;
     private Menu menu;
     private Overworld overworld;
+    private Player player;
 
     // Main Game Constructor
     public Game() {
@@ -39,20 +40,28 @@ public class Game implements Runnable {
         startGameLoop();
 
     }
-
+    /**
+     * Initializes each game state to be used when called
+     */
     private void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
         overworld = new Overworld(this);
+        player = new Player(100,100,200,200);
 
     }
 
-    // Begins main Loop on a seperate thread
+    /**
+     * Begins the main loop on a seperate thread
+     */
     private void startGameLoop() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
+    /**
+     * Calls for updates based on what state the game is in
+     */
     public void update() {
         switch (GameStates.state) {
         case MENU:
@@ -69,6 +78,11 @@ public class Game implements Runnable {
         }
     }
 
+    /**
+     * Sets the currently drawn screen based on what state 
+     * the game is in
+     * @param g
+     */
     public void render(Graphics g) {
         switch (GameStates.state) {
         case MENU:
@@ -85,6 +99,10 @@ public class Game implements Runnable {
         }
     }
 
+    /**
+     * Handles the logical aspects of the game, such as 
+     * Updates and Frames per second
+     */
     @Override
     public void run() {
         // FPS Counter - [Don't change, will condense this next commit]
@@ -143,4 +161,12 @@ public class Game implements Runnable {
     public Overworld getOverworld() {
         return overworld;
     }
+    public Player getPlayer() {
+        return player;
+    }
+	
+    public void windowFocusLost() {
+    	playing.resetDirBooleans();
+		System.out.println("CLICKED OUT OF WINDOW - windowFocusLost()");
+	}
 }
