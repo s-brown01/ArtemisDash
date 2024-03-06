@@ -13,7 +13,7 @@ public class Player extends Entity {
 	
 	private BufferedImage[][] animations;
 	private int aniIndex, aniTick;
-	private float xDelta = 100, yDelta = 100;
+//	private float xDelta = 100, yDelta = 100;
 //	private int aniSpeed = 120 / 8; // 120 frames per second / 10 animations per second
 	private int player_action = IDLE;
 	private boolean left, right, up, down, moving = false;
@@ -47,7 +47,8 @@ public class Player extends Entity {
 		//100 px offset from top left corner, 70px offset from top
 		//Width is ~64, Height ~60
 		//Doubled X and Y size 
-		g.drawImage(animations[player_action][aniIndex], (int)xDelta, (int)yDelta, 420,420, null);
+		g.drawImage(animations[player_action][aniIndex], (int)hitbox.x, (int)hitbox.y, (int)width, 
+														 (int)height, null);
 	}
 	
 	//READS IN THE SPRITE SHEET TO BE USED AND CUT UP INTO SMALLER FRAMES
@@ -98,19 +99,19 @@ public class Player extends Entity {
 		}		
 		
 		if (left) {
-			xDelta -= 5;
+			hitbox.x -= 5;
 			moving = true;
 		}
 		if (right) {
-			xDelta += 5;
+			hitbox.x += 5;
 			moving = true;
 		}
 		if (up) {
-			yDelta -= 5;
+			hitbox.y -= 5;
 			moving = true;
 		}
 		if (down) {
-			yDelta += 5;
+			hitbox.y += 5;
 			moving = true;
 		}
 	}

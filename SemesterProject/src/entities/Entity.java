@@ -27,17 +27,8 @@ abstract class Entity {
 	abstract protected void draw(Graphics g);
 	
 	protected void drawHitbox(Graphics g, int xlvlOffset) {
-		// drawing the hitbox
-		g.setColor(Color.CYAN);
-		g.drawRect((int)hitbox.x - xlvlOffset, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
-		
-		// for the text
-		g.setColor(Color.BLACK);
-		g.fillRect((int)hitbox.x - xlvlOffset, (int)(hitbox.y+hitbox.height+15), 90, 30);
-		g.setColor(Color.WHITE);
-		g.drawString(" ^ TEMP HITBOX", (int)hitbox.x - xlvlOffset, (int)(hitbox.y+hitbox.height+30));
-		
-		
+		g.setColor(Color.RED);
+		g.drawRect((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
 	}
 	
 	public Rectangle2D  getHitbox() {

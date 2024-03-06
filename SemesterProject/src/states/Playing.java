@@ -24,7 +24,7 @@ public class Playing extends State implements StateMethods {
 	private void initClasses() {
 		// create all classes here
 		// player
-		player = new Player(100, 100, 50, 100);
+		player = new Player(100, 100, 100, 200);
 		
 	}
 	
