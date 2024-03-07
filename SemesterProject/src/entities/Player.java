@@ -88,7 +88,7 @@ public class Player extends Entity {
             for (int i = 0; i < animations.length; i++) {
             	if (j <7)
                 animations[j][i] = img.getSubimage(i * 60, j * 45, 55, 45); // i* sprite WIDTH
-            	else{
+            	else{//Animation #7 is the start of new boxes. Investigate dynamic resizing of bounding box + sprites
             		animations[j][i] = img.getSubimage(i * 55, j*45, 55, 65); // i* sprite WIDTH
             	}
 
