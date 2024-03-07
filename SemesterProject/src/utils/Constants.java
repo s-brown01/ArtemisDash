@@ -20,7 +20,7 @@ public class Constants {
         public static final int DEATH = 4;
         public static final int DASH_START = 5;
         public static final int DASH_END = 6;
-        public static final int ATTACK = 8;
+        public static final int ATTACK = 7;
         public static final int ATTACK_END = 9;
         public static final int HIT = 10;
         public static final int FALLING = 11;

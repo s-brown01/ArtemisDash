@@ -47,7 +47,7 @@ public class Game implements Runnable {
         menu = new Menu(this);
         playing = new Playing(this);
         overworld = new Overworld(this);
-        player = new Player(100,100,200,200);
+        player = new Player(100,100,100,100);
 
     }
 

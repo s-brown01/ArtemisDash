@@ -83,10 +83,14 @@ public class Player extends Entity {
      * The length of this array, will be the length of the longest animation
      */
     private void loadAnimations() {
-        animations = new BufferedImage[12][12]; // 12 is the amount of frames in the idle animation
+        animations = new BufferedImage[13][20]; // 12 is the amount of frames in the idle animation
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations.length; i++) {
-                animations[j][i] = img.getSubimage(i * 60, j * 45, 60, 45); // i* sprite WIDTH
+            	if (j <7)
+                animations[j][i] = img.getSubimage(i * 60, j * 45, 55, 45); // i* sprite WIDTH
+            	else{
+            		animations[j][i] = img.getSubimage(i * 55, j*45, 55, 65); // i* sprite WIDTH
+            	}
 
             }
             // Test Idle Animation: img.getSubimage(i*60, 0, 60, 45); Set BufferedImage[12]
@@ -159,6 +163,7 @@ public class Player extends Entity {
         } else {
             player_action = IDLE;
         }
+        
         if (attacking) {
         	player_action = ATTACK;
         }
@@ -187,6 +192,7 @@ public class Player extends Entity {
             aniIndex++;
             if (aniIndex >= getAnimationLength(player_action)) {
                 aniIndex = 0;
+                attacking = false;
             }
         }
     }

@@ -90,6 +90,10 @@ public class Playing extends State implements StateMethods {
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
         // shoot when the mouse is pressed and released?
+    	if (e.getButton() == MouseEvent.BUTTON1) {
+    		System.out.println("CLICKED MOUSE - ATTACKING");
+    		player.setAttack(true);
+    	}
 
     }
 

@@ -57,8 +57,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     		gamePanel.getGame().getOverworld().mouseClicked(e);
     		break;
     	case PLAYING:
-    		gamePanel.getGame().getPlayer().setAttack(true);
-    		System.out.println("CLICK REGISTERED - ATTACK");
+    		gamePanel.getGame().getPlaying().mouseClicked(e);
     		break;
     	default:
     		break;
