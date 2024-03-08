@@ -1,4 +1,9 @@
-
+/**
+ * CONSTANTS Class
+ * Handles every constant variable that will be used for this game;
+ * As of now, it is mainly used to pilot the animations and direct 
+ * the game to where each animation is, on the sprite sheet
+ */
 package utils;
 
 import main.Game;
@@ -20,7 +25,7 @@ public class Constants {
         public static final int DEATH = 4;
         public static final int DASH_START = 5;
         public static final int DASH_END = 6;
-        public static final int ATTACK = 8;
+        public static final int ATTACK = 7;
         public static final int ATTACK_END = 9;
         public static final int HIT = 10;
         public static final int FALLING = 11;
@@ -45,7 +50,7 @@ public class Constants {
             case ATTACK:
                 return 8;
             case ATTACK_END:
-                return 9;
+                return 5;
             case HIT:
                 return 6;
             case FALLING:

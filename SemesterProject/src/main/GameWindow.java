@@ -13,7 +13,6 @@ public class GameWindow {
     public GameWindow(GamePanel gamePanel) {
         gameFrame = new JFrame();
 
-        // gameFrame.setSize(400,400);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.add(gamePanel);
         gameFrame.pack();
@@ -23,17 +22,15 @@ public class GameWindow {
 
         // if the user clicks onto/away from screen
         gameFrame.addWindowFocusListener(new WindowFocusListener() {
-
             // onto screen
             @Override
             public void windowGainedFocus(WindowEvent e) {
 
             }
-
             // away from screen
             @Override
             public void windowLostFocus(WindowEvent e) {
-                // gamePanel.getGame().windowFocusLost();
+                 gamePanel.getGame().windowFocusLost();
             }
 
         });
