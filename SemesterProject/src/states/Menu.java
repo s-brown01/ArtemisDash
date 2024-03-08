@@ -21,17 +21,19 @@ public class Menu extends State implements StateMethods {
         loadImgs();
         loadButtons();
     }
-
+    /**
+     * Handles loading in of images; In this case, a menu background
+     */
     private void loadImgs() {
-        // this will be where we load any images for the menu, like the background or menu
-        // screen
         backgroundImg = null;
     }
 
+    /**
+     * Will be used to create and load in buttons for the 
+     * Menu options
+     */
     private void loadButtons() {
-        // this is where we create and load MenuButtons
-        /*
-         * THIS IS JUST EXAMPLE CODE
+         /* THIS IS JUST EXAMPLE CODE
          * CHANGE THIS EVENTUALLY
          */
         final int amount_of_buttons = 1;
@@ -39,6 +41,10 @@ public class Menu extends State implements StateMethods {
         buttons[0] = new MenuButton();
     }
 
+    /**
+     * Will be used to reset and monitor states of buttons  
+     * for the Menu options
+     */
     private void resetButtons() {
         for (MenuButton mb : buttons) {
             // mb.reset or mb.resetBools? something similar to this

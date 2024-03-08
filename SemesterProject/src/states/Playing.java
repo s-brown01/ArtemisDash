@@ -21,9 +21,11 @@ public class Playing extends State implements StateMethods {
         initClasses();
     }
 
+    /**
+     * Initialize all classes for a level here
+     * As of now, just player is initialized
+     */
     private void initClasses() {
-        // create all classes here
-        // player
         player = new Player(100, 100, 100, 200);
 
     }

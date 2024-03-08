@@ -1,4 +1,9 @@
-
+/**
+ * CONSTANTS Class
+ * Handles every constant variable that will be used for this game;
+ * As of now, it is mainly used to pilot the animations and direct 
+ * the game to where each animation is, on the sprite sheet
+ */
 package utils;
 
 import main.Game;

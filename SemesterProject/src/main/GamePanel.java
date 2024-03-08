@@ -14,10 +14,12 @@ import inputs.KeyboardInputs;
 import inputs.MouseInputs;
 import static utils.Constants.PlayerConstants.*;
 import static utils.Constants.Directions.*;
+import static main.Game.GAME_HEIGHT;
+import static main.Game.GAME_WIDTH;
 
 public class GamePanel extends JPanel {
 
-    private Game game;
+	private Game game;
 
     private MouseInputs mouseInputs;
     private String image = "Artemis_Finished.png";
@@ -46,7 +48,9 @@ public class GamePanel extends JPanel {
         addMouseMotionListener(mouseInputs);
     }
 
-    // READS IN THE SPRITE SHEET TO BE USED AND CUT UP INTO SMALLER FRAMES
+    /**
+     * READS IN THE SPRITE SHEET TO BE USED AND CUT UP INTO SMALLER FRAMES
+     */
     public void importImg() {
         InputStream is = getClass().getClassLoader().getResourceAsStream(image);
         try {
@@ -64,18 +68,23 @@ public class GamePanel extends JPanel {
         }
     }
 
+    /**
+     * Sets the size of Game Window and subsequently, Game Panel
+     */
     private void setPanelSize() {
-        Dimension size = new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT);// SIZE OF GAME
-                                                                          // WINDOW/PANEL
+        Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
         setPreferredSize(size);
+        System.out.println("CURRENT WIDTH: " + GAME_WIDTH + " CURRENT HEIGHT: " + GAME_HEIGHT);
     }
 
     public void updateGame() {
 
     }
 
-    // Magic method called when game starts
-    // graphics allows us to draw and redraw inside panel
+    
+    /**
+     * Allows us to render each frame of our game
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);// Uses JPanel's own paint method
         game.render(g);

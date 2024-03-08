@@ -8,6 +8,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import utils.LoadSave;
+
 import static utils.Constants.PlayerConstants.*;
 
 public class Player extends Entity {
@@ -34,7 +36,6 @@ public class Player extends Entity {
 
     /**
      * Updates the position, animation tick, and row of sprites
-     * (Row will change 
      */
     @Override
     public void update() {
@@ -83,6 +84,7 @@ public class Player extends Entity {
      * The length of this array, will be the length of the longest animation
      */
     private void loadAnimations() {
+    	BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
         animations = new BufferedImage[13][20]; // 12 is the amount of frames in the idle animation
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations.length; i++) {

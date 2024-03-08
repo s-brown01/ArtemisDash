@@ -42,6 +42,10 @@ public class KeyboardInputs implements KeyListener {
 
     }
 
+    /**
+     * Calls actions specified by each game state, as each state
+     * handles similar button inputs differently
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         /*
