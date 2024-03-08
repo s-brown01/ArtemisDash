@@ -1,4 +1,10 @@
-
+/**
+ * Player.java
+ *
+ * @author - Sean-Paul Brown
+ * @date - 3/8/2024
+ * @desc - This is a singleton 
+ */
 package entities;
 
 import java.awt.Graphics;
@@ -13,6 +19,11 @@ import utils.LoadSave;
 import static utils.Constants.PlayerConstants.*;
 
 public class Player extends Entity {
+    
+    private static int playerCount = 0;
+    private static boolean singletonCheck() {
+        return playerCount <= 1;
+    }
 
 	/**
 	 * Parameters the player will inherit from the Entity abstract class
@@ -30,9 +41,12 @@ public class Player extends Entity {
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
+        if (!singletonCheck())
+            throw new IllegalStateException("Another player has already been created");
+        playerCount++;
+        
         importImg();
         loadAnimations();
-
     }
 
     /**
