@@ -22,14 +22,13 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Initialize all classes for a level here
-     * As of now, just player is initialized
+     * Initialize all classes for a level here As of now, just player is initialized
      */
     private void initClasses() {
         player = new Player(100, 100, 100, 200);
 
     }
-    
+
     /**
      * 
      */
@@ -92,10 +91,10 @@ public class Playing extends State implements StateMethods {
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
         // shoot when the mouse is pressed and released?
-    	if (e.getButton() == MouseEvent.BUTTON1) {
-    		System.out.println("CLICKED MOUSE - ATTACKING");
-    		player.setAttack(true);
-    	}
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            System.out.println("CLICKED MOUSE - ATTACKING");
+            player.setAttack(true);
+        }
 
     }
 
@@ -183,8 +182,8 @@ public class Playing extends State implements StateMethods {
         paused = false;
     }
 
-	public void resetDirBooleans() {
-		this.player.setMoving(false);
-	}
+    public void resetDirBooleans() {
+        this.player.setMoving(false);
+    }
 
 }

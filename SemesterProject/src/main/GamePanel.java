@@ -19,7 +19,7 @@ import static main.Game.GAME_WIDTH;
 
 public class GamePanel extends JPanel {
 
-	private Game game;
+    private Game game;
 
     private MouseInputs mouseInputs;
     private String image = "Artemis_Finished.png";
@@ -29,14 +29,11 @@ public class GamePanel extends JPanel {
         // adding a Game to the constructor allows us to access the GameState from the
         // gamePanel
         /*
-         * How to create a custom cursor, perhaps for a recticle on mouse to show shots?
-         * Toolkit toolkit = Toolkit.getDefaultToolkit();
-         * Image image = toolkit.getImage("icons/handwriting.gif");
-         * Cursor c = toolkit.createCustomCursor(image , new Point(mainPane.getX(),
-         * mainPane.getY()), "img");
-         * mainPane.setCursor (c);
-         * how to restore to default cursor (good for the menu?):
-         * setCursor(Cursor.getDefaultCursor());
+         * How to create a custom cursor, perhaps for a recticle on mouse to show shots? Toolkit
+         * toolkit = Toolkit.getDefaultToolkit(); Image image =
+         * toolkit.getImage("icons/handwriting.gif"); Cursor c = toolkit.createCustomCursor(image
+         * , new Point(mainPane.getX(), mainPane.getY()), "img"); mainPane.setCursor (c); how to
+         * restore to default cursor (good for the menu?): setCursor(Cursor.getDefaultCursor());
          */
 
         this.game = game;
@@ -81,7 +78,6 @@ public class GamePanel extends JPanel {
 
     }
 
-    
     /**
      * Allows us to render each frame of our game
      */

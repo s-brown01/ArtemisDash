@@ -21,6 +21,7 @@ public class Menu extends State implements StateMethods {
         loadImgs();
         loadButtons();
     }
+
     /**
      * Handles loading in of images; In this case, a menu background
      */
@@ -29,12 +30,11 @@ public class Menu extends State implements StateMethods {
     }
 
     /**
-     * Will be used to create and load in buttons for the 
-     * Menu options
+     * Will be used to create and load in buttons for the Menu options
      */
     private void loadButtons() {
-         /* THIS IS JUST EXAMPLE CODE
-         * CHANGE THIS EVENTUALLY
+        /*
+         * THIS IS JUST EXAMPLE CODE CHANGE THIS EVENTUALLY
          */
         final int amount_of_buttons = 1;
         buttons = new MenuButton[amount_of_buttons];
@@ -42,8 +42,7 @@ public class Menu extends State implements StateMethods {
     }
 
     /**
-     * Will be used to reset and monitor states of buttons  
-     * for the Menu options
+     * Will be used to reset and monitor states of buttons for the Menu options
      */
     private void resetButtons() {
         for (MenuButton mb : buttons) {
@@ -67,8 +66,7 @@ public class Menu extends State implements StateMethods {
         g.setColor(new Color(255, 255, 255));
         g.setFont(boldFont);
         g.drawString("MENU", Game.GAME_WIDTH / 2 - 10, Game.GAME_HEIGHT / 2 - 10);
-        g.drawString("Press ENTER to continue", Game.GAME_WIDTH / 2 - 65,
-                            Game.GAME_HEIGHT / 2 + 20);
+        g.drawString("Press ENTER to continue", Game.GAME_WIDTH / 2 - 65, Game.GAME_HEIGHT / 2 + 20);
 
     }
 

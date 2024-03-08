@@ -8,11 +8,11 @@ import java.awt.geom.Rectangle2D;
 import main.Game;
 
 public abstract class Entity {
-	/**
-	 * Parameters that every instance of entity will inherit
-	 * Multiplying these by SCALE means it will remain proportionally the same on screen
-	 * Protected variables mean that only instances of this class can use
-	 */
+    /**
+     * Parameters that every instance of entity will inherit Multiplying these by SCALE means
+     * it will remain proportionally the same on screen Protected variables mean that only
+     * instances of this class can use
+     */
     protected float gravity = 0.004f * Game.SCALE;
     protected float walk_speed = 1.5f * Game.SCALE;
     protected int aniSpeed = 25;
@@ -21,6 +21,7 @@ public abstract class Entity {
 
     /**
      * Constructor class for every entity instance
+     * 
      * @param x
      * @param y
      * @param width
@@ -41,6 +42,7 @@ public abstract class Entity {
 
     /**
      * Draws the hitbox around the player's sprite
+     * 
      * @param g
      * @param xlvlOffset The offset needed for the level collision
      */

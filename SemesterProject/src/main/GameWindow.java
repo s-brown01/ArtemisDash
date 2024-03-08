@@ -27,10 +27,11 @@ public class GameWindow {
             public void windowGainedFocus(WindowEvent e) {
 
             }
+
             // away from screen
             @Override
             public void windowLostFocus(WindowEvent e) {
-                 gamePanel.getGame().windowFocusLost();
+                gamePanel.getGame().windowFocusLost();
             }
 
         });

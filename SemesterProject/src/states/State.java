@@ -13,7 +13,6 @@ public abstract class State {
     protected Game game;
     protected final Font boldFont = new Font(Font.DIALOG, Font.BOLD, 13);
 
-
     public State(Game game) {
         // there should be a game that the state is in
         this.game = game;

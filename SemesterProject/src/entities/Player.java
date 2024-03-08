@@ -19,15 +19,16 @@ import utils.LoadSave;
 import static utils.Constants.PlayerConstants.*;
 
 public class Player extends Entity {
-    
+
     private static int playerCount = 0;
+
     private static boolean singletonCheck() {
         return playerCount <= 1;
     }
 
-	/**
-	 * Parameters the player will inherit from the Entity abstract class
-	 */
+    /**
+     * Parameters the player will inherit from the Entity abstract class
+     */
     private BufferedImage[][] animations;
     private int aniIndex, aniTick;
 
@@ -44,7 +45,7 @@ public class Player extends Entity {
         if (!singletonCheck())
             throw new IllegalStateException("Another player has already been created");
         playerCount++;
-        
+
         importImg();
         loadAnimations();
     }
@@ -59,9 +60,9 @@ public class Player extends Entity {
         setAnimation();
 
     }
-    
+
     /**
-     * Draws the sprite along with it's hitbox to the screen 
+     * Draws the sprite along with it's hitbox to the screen
      */
     @Override
     public void draw(Graphics g) {
@@ -69,8 +70,8 @@ public class Player extends Entity {
         // 100 px offset from top left corner, 70px offset from top
         // Width is ~64, Height ~60
         // Doubled X and Y size
-        g.drawImage(animations[player_action][aniIndex], (int) hitbox.x, (int) hitbox.y,
-                            (int) width, (int) height, null);
+        g.drawImage(animations[player_action][aniIndex], (int) hitbox.x, (int) hitbox.y, (int) width, (int) height,
+                null);
     }
 
     /**
@@ -95,19 +96,20 @@ public class Player extends Entity {
     }
 
     /**
-     * Loads ALL animations from a sprite sheet into a 2D array
-     * The length of this array, will be the length of the longest animation
+     * Loads ALL animations from a sprite sheet into a 2D array The length of this array, will
+     * be the length of the longest animation
      */
     private void loadAnimations() {
-    	BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
+        BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
         animations = new BufferedImage[13][20]; // 12 is the amount of frames in the idle animation
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations.length; i++) {
-            	if (j <7)
-                animations[j][i] = img.getSubimage(i * 60, j * 45, 55, 45); // i* sprite WIDTH
-            	else{//Animation #7 is the start of new boxes. Investigate dynamic resizing of bounding box + sprites
-            		animations[j][i] = img.getSubimage(i * 55, j*45, 55, 65); // i* sprite WIDTH
-            	}
+                if (j < 7)
+                    animations[j][i] = img.getSubimage(i * 60, j * 45, 55, 45); // i* sprite WIDTH
+                else {// Animation #7 is the start of new boxes. Investigate dynamic resizing of bounding box +
+                      // sprites
+                    animations[j][i] = img.getSubimage(i * 55, j * 45, 55, 65); // i* sprite WIDTH
+                }
 
             }
             // Test Idle Animation: img.getSubimage(i*60, 0, 60, 45); Set BufferedImage[12]
@@ -121,8 +123,8 @@ public class Player extends Entity {
     }
 
     /**
-     * Updates position of hitbox as well as player sprite
-     * Handles things such as pressing Left and Right simultaneously
+     * Updates position of hitbox as well as player sprite Handles things such as pressing
+     * Left and Right simultaneously
      */
     private void updatePos() {
         moving = false;
@@ -152,24 +154,25 @@ public class Player extends Entity {
     }
 
     /**
-     * Keeps track of the player movement by setting a True or False value
-     * Will be used for "Coyote Time", shooting, among other Player related movement options
+     * Keeps track of the player movement by setting a True or False value Will be used for
+     * "Coyote Time", shooting, among other Player related movement options
+     * 
      * @param moving
      */
     public void setMoving(boolean moving) {
-    	this.moving = moving;
+        this.moving = moving;
         if (moving == false) {
-        	this.setRight(false);
-    		this.setLeft(false);
-    		this.setUp(false);
-    		this.setDown(false);
+            this.setRight(false);
+            this.setLeft(false);
+            this.setUp(false);
+            this.setDown(false);
         }
     }
 
-	public void setAttack(boolean attacking) {
-	    	this.attacking = attacking;
-	    }
- 
+    public void setAttack(boolean attacking) {
+        this.attacking = attacking;
+    }
+
     /**
      * Sets the current animation sprite, based on the player movement
      */
@@ -180,9 +183,9 @@ public class Player extends Entity {
         } else {
             player_action = IDLE;
         }
-        
+
         if (attacking) {
-        	player_action = ATTACK;
+            player_action = ATTACK;
         }
         // checking if the state has changed
         // if it has changed, we need to restart animation
@@ -191,8 +194,8 @@ public class Player extends Entity {
     }
 
     /**
-     * Resets animation timers and indexes to repeat animation 
-     * once end of sprite list has been reached
+     * Resets animation timers and indexes to repeat animation once end of sprite list has
+     * been reached
      */
     private void resetAni() {
         aniIndex = 0;
@@ -200,7 +203,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Updates the animation index to move the animation forward 
+     * Updates the animation index to move the animation forward
      */
     private void updateAniTick() {
         aniTick++;
@@ -249,6 +252,5 @@ public class Player extends Entity {
     public void setDown(boolean down) {
         this.down = down;
     }
-    
 
 }
