@@ -19,6 +19,7 @@ public class Player extends Entity {
 	 */
     private BufferedImage[][] animations;
     private int aniIndex, aniTick;
+
     // private int aniSpeed = 120 / 8; // 120 frames per second / 10 animations per second
     private int player_action = IDLE;
     private boolean left, right, up, down, moving = false, attacking = false;
