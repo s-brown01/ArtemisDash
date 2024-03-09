@@ -71,11 +71,8 @@ public class Player extends Entity {
 	    for (int i = 0; i < animations.length; i++) {
 		// The first 7 rows have a smaller bounding size as opposed to the next 3
 		// Investigate dynamic resizing of bounding box + sprites
-		if (j < 7)
-		    animations[j][i] = img.getSubimage(i * 60, j * 45, 55, 45); // i* sprite WIDTH
-		else {
-		    animations[j][i] = img.getSubimage(i * 55, j * 45, 55, 65); // i* sprite WIDTH
-		}
+		if (j < 9)
+		    animations[j][i] = img.getSubimage(i * 55, j * 65, 55, 65); // i* sprite WIDTH
 
 	    }
 	    // TESTING: img.getSubimage(WIDTH of sprite, Y position, Width of selection,

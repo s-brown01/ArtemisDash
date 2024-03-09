@@ -12,7 +12,7 @@ import main.Game;
 
 public class LoadSave {
 
-    public static final String PLAYER_ATLAS = "/Artemis_Finished.png";
+    public static final String PLAYER_ATLAS = "/Tester.png";
     public static final String WORLD1_ATLAS = "/Artemis_Finished.png"; // World 1 Levels sprites
     public static final String WORLD2_ATLAS = "/Artemis_Finished.png"; // World 2 Levels sprites
     public static final String WORLD3_ATLAS = "/World3T.png"; // World 3 Levels sprites
