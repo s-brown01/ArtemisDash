@@ -178,21 +178,11 @@ public class Game implements Runnable {
     }
 
     /**
-<<<<<<< HEAD
      * Action to take when the window focus is lost, Be it due to misclick, OS update, or
      * otherwise
      */
     public void windowFocusLost() {
         playing.resetDirBooleans();
         System.out.println("CLICKED OUT OF WINDOW - windowFocusLost()");
-=======
-     * Action to take when the window focus is lost, Be it due to misclick, OS
-     * update, or otherwise
-     */
-
-    public void windowFocusLost() {
-	playing.resetDirBooleans();
-	System.out.println("CLICKED OUT OF WINDOW - windowFocusLost()");
->>>>>>> main
     }
 }
