@@ -6,7 +6,6 @@ import states.Playing;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import entities.Player;
 import levels.LevelManager;
 import states.GameStates;
 import states.Menu;
@@ -31,7 +30,7 @@ public class Game implements Runnable {
     private Playing playing;
     private Menu menu;
     private Overworld overworld;
-    private Player player;
+    // private Player player;
     private LevelManager levelManager;
 
     /**
@@ -54,14 +53,15 @@ public class Game implements Runnable {
         menu = new Menu(this);
         playing = new Playing(this);
         overworld = new Overworld(this);
-        player = new Player(100, 100, 100, 100);
+        // player = new Player(100, 100, 100, 100);
         levelManager = new LevelManager(this);
 
     }
 
     /**
-     * Begins the main loop on a separate thread Done to dedicate a specific thread to free up
-     * logical traffic
+     * <<<<<<< HEAD Begins the main loop on a separate thread Done to dedicate a specific
+     * thread to free up logical traffic ======= Begins the main loop on a separate thread
+     * Done to dedicate a specific thread to free up logical traffic >>>>>>> main
      */
     private void startGameLoop() {
         gameThread = new Thread(this);
@@ -106,8 +106,8 @@ public class Game implements Runnable {
 //TESTING:             levelManager.draw(g);
             break;
         case PLAYING:
-            playing.draw(g);
             levelManager.draw(g);
+            playing.draw(g);
             break;
         default:
             break;
@@ -115,8 +115,9 @@ public class Game implements Runnable {
     }
 
     /**
-     * Handles the update aspects of the game, such as updates to logical processes and frames
-     * per second
+     * <<<<<<< HEAD Handles the update aspects of the game, such as updates to logical
+     * processes and frames per second ======= Handles the update aspects of the game, such as
+     * updates to logical processes and frames per second >>>>>>> main
      */
     @Override
     public void run() {
@@ -129,26 +130,26 @@ public class Game implements Runnable {
         int updates = 0;
         long lastCheck = System.currentTimeMillis();
 
-        double deltaU = 0;
-        double deltaF = 0; // deltaFrames
+        double deltaUpdates = 0;
+        double deltaFrames = 0; // deltaFrames
 
         while (true) {
             long currentTime = System.nanoTime();
 
-            deltaU += (currentTime - previousTime) / timePerUpdate;
-            deltaF += (currentTime - previousTime) / timePerFrame;
+            deltaUpdates += (currentTime - previousTime) / timePerUpdate;
+            deltaFrames += (currentTime - previousTime) / timePerFrame;
             previousTime = currentTime;
 
-            if (deltaU >= 1) {
+            if (deltaUpdates >= 1.0) {
                 update();
                 updates++;
-                deltaU--;
+                deltaUpdates--;
             }
 
-            if (deltaF >= 1) {
+            if (deltaFrames >= 1.0) {
                 gamePanel.repaint();
                 frames++;
-                deltaF--;
+                deltaFrames--;
             }
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
@@ -177,11 +178,21 @@ public class Game implements Runnable {
     }
 
     /**
+<<<<<<< HEAD
      * Action to take when the window focus is lost, Be it due to misclick, OS update, or
      * otherwise
      */
     public void windowFocusLost() {
         playing.resetDirBooleans();
         System.out.println("CLICKED OUT OF WINDOW - windowFocusLost()");
+=======
+     * Action to take when the window focus is lost, Be it due to misclick, OS
+     * update, or otherwise
+     */
+
+    public void windowFocusLost() {
+	playing.resetDirBooleans();
+	System.out.println("CLICKED OUT OF WINDOW - windowFocusLost()");
+>>>>>>> main
     }
 }

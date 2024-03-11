@@ -13,9 +13,9 @@ public abstract class Entity {
      * it will remain proportionally the same on screen Protected variables mean that only
      * instances of this class can use
      */
-    protected float gravity = 0.004f * Game.SCALE;
+    protected final static float GRAVITY = 0.004f * Game.SCALE;
+    protected final static int ANISPEED = 25;
     protected float walk_speed = 1.5f * Game.SCALE;
-    protected int aniSpeed = 25;
     protected float x, y, width, height;
     protected final Rectangle2D.Float hitbox;
 

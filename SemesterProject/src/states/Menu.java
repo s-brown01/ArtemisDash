@@ -95,7 +95,8 @@ public class Menu extends State implements StateMethods {
     // activated when we release the mouse from clicking
     public void mouseReleased(MouseEvent e) {
         // following code from youTube tutorial
-        // if it is within a button and we have clicked on that button then use the button
+        // if it is within a button and we have clicked on that button then use the
+        // button
         // for (MenuButton mb : buttons) {
         // if (isInMB(e, mb)) {
         // if (mb.isMousePressed())

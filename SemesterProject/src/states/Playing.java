@@ -25,7 +25,8 @@ public class Playing extends State implements StateMethods {
      * Initialize all classes for a level here As of now, just player is initialized
      */
     private void initClasses() {
-        player = new Player(100, 100, 100, 200);
+        player = new Player(100, 350, 65, 100);
+        // Player(X-Position on Screen, Y-Position on screen, Width drawn, Height drawn)
 
     }
 
@@ -50,8 +51,6 @@ public class Playing extends State implements StateMethods {
         // draw everything
         // background - tiles - player/enemies
         g.setFont(boldFont);
-        g.setColor(new Color(150, 150, 150, 150));
-        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
         player.draw(g);
 
         // PAUSE SCREEN
