@@ -10,13 +10,13 @@ public class Projectile extends Entity {
     }
 
     @Override
-    protected void update() {
+    public void update() {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    protected void draw(Graphics g) {
+    public void draw(Graphics g) {
         // TODO Auto-generated method stub
 
     }

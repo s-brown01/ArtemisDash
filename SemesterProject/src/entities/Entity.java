@@ -36,9 +36,9 @@ public abstract class Entity {
 
     }
 
-    abstract protected void update();
+    abstract public void update();
 
-    abstract protected void draw(Graphics g);
+    abstract public void draw(Graphics g);
 
     /**
      * Draws the hitbox around the player's sprite
