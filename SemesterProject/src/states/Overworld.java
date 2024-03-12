@@ -25,12 +25,12 @@ public class Overworld extends State implements StateMethods {
 
     @Override
     public void draw(Graphics g) {
-    	g.setColor(new Color(175, 175, 200, 200));
-    	g.setFont(boldFont);
-    	g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-    	g.setColor(Color.black);
-    	g.drawString("OVERWORLD", Game.GAME_WIDTH / 2 - 30, 300);
-    	g.drawString("Click anywhere to continue to game", Game.GAME_WIDTH / 2 - 100, Game.GAME_HEIGHT / 2);
+        g.setColor(new Color(175, 175, 200, 200));
+        g.setFont(boldFont);
+        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+        g.setColor(Color.black);
+        g.drawString("OVERWORLD", Game.GAME_WIDTH / 2 - 30, 300);
+        g.drawString("Click anywhere to continue to game", Game.GAME_WIDTH / 2 - 100, Game.GAME_HEIGHT / 2);
     }
 
     @Override

@@ -36,13 +36,13 @@ public class GamePanel extends JPanel {
          * restore to default cursor (good for the menu?): setCursor(Cursor.getDefaultCursor());
          */
 
-    	this.game = game;
-    	mouseInputs = new MouseInputs(this);// Forwards all mouse listener events to input class
-    	addKeyListener(new KeyboardInputs(this));// Forwards all key listener events to input class
-    
-    	setPanelSize();
-    	addMouseListener(mouseInputs);
-    	addMouseMotionListener(mouseInputs);
+        this.game = game;
+        mouseInputs = new MouseInputs(this);// Forwards all mouse listener events to input class
+        addKeyListener(new KeyboardInputs(this));// Forwards all key listener events to input class
+
+        setPanelSize();
+        addMouseListener(mouseInputs);
+        addMouseMotionListener(mouseInputs);
     }
 
     /**
