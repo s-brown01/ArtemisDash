@@ -35,6 +35,7 @@ public abstract class Enemy extends Entity {
     protected void updateAniTick() {
         // TODO: fill out this method (how each update changes animation)   
     }
+
     
     
 
