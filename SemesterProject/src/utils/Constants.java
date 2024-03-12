@@ -62,4 +62,105 @@ public class Constants {
             }
         }
     }
+    
+    public static class EnemyConstants {
+        // ENEMY TYPES
+        // TODO: MAKE INTS FOR EACH ENEMY TYPE
+        public static final int SKELETON = 0;
+
+        // ACTIONS
+        // each are in the hundreds so hopefully no accidental calls
+        public static final int IDLE = 100;
+        public static final int RUNNING = 101;
+        public static final int ATTACK = 102;
+        public static final int HIT = 103;
+        public static final int DEAD = 104;  
+        
+        // TODO: DELETE LATER -- TEMPORARY VARAIBLE USING YOUTUBE TUTORIAL ENEMY
+        public static final int CRABBY = 1;
+        public static final int CRABBY_WIDTH_DEFAULT = 72;
+        public static final int CRABBY_HEIGHT_DEFAULT = 32;
+
+        public static final int CRABBY_WIDTH = (int) (CRABBY_WIDTH_DEFAULT * Game.SCALE);
+        public static final int CRABBY_HEIGHT = (int) (CRABBY_HEIGHT_DEFAULT * Game.SCALE);
+        
+        // since these will be used for many crabbies they should be here
+        // 26 and 9 is the difference from start of hitbox from actual corners
+        public static final int CRABBY_DRAW_OFFSET_X = (int)(26*Game.SCALE);
+        public static final int CRABBY_DRAW_OFFSET_Y = (int)(9*Game.SCALE);
+        
+        /**
+         * Get how every many sprites a specific action take for a specific enemy. This returns how many frames/sprites that action takes. 
+         * 
+         * @param enemy_type - what class the enemy is, based on the static variables in EnemyConstants
+         * @param enemy_action - what action is happening, based on the static variables in EnemyConstants
+         * @return - the amount of frames that that specific action takes
+         */
+        public static int getSpriteAmount(int enemy_type, int enemy_action) {
+            // each enemy will have different frame counts for each action
+            // first see what enemy it is
+            // then see what action, then return appropriate number
+            switch (enemy_type){
+            case SKELETON:
+                switch (enemy_action) {
+                case IDLE:
+                case RUNNING:
+                case ATTACK:
+                case HIT:
+                case DEAD:
+                default:
+                    return 0;
+                }
+            case CRABBY:
+                switch (enemy_action) {
+                case IDLE:
+                    return 9;
+                case RUNNING:
+                    return 6;
+                case ATTACK:
+                    return 7;
+                case HIT:
+                    return 4;
+                case DEAD:
+                    return 5;
+                }
+            default:
+                return 0;
+            }
+        }
+        
+        /**
+         * This function will return the maximum health points that a specific enemy type has. This function is based on the static variables of EnemyConstants and it uses a case-switch.
+         * 
+         * @param enemy_type - what class the enemy is, based on the static variables in EnemyConstants
+         * @return - return the specific amount of health for that enemy, defaults to 1
+         */
+        public static int getMaxHealth(int enemy_type) {
+            switch(enemy_type) {
+            case SKELETON:
+                return 1;
+            case CRABBY:
+                return 1;
+            default:
+                return 1;
+            }
+        }
+        
+        /**
+         * This function will return the damage per attack for a specific enemy type. This function is based on the static variables of EnemyConstants and it uses a case-switch.
+         * 
+         * @param enemy_type - what class the enemy is, based on the static variables in EnemyConstants
+         * @return - return the specific amount of damage per attack for that enemy, defaults to 0
+         */
+        public static int getAttackDamage(int enemy_type) { 
+            switch(enemy_type) {
+            case SKELETON:
+                return 1;
+            case CRABBY:
+                return 1;
+            default:
+                return 0;
+            }
+        }
+    }
 }
