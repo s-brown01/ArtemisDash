@@ -62,10 +62,6 @@ public class Playing extends State implements StateMethods {
         enemyManager.draw(g);
         player.draw(g);
 
-//        BufferedImage temp = LoadSave.getSpriteAtlas("/skeleton/Skeleton_Walk.png");
-//        BufferedImage temp1 = temp.getSubimage(0, 0, 22, 33);
-//        g.drawImage(temp1, Game.GAME_WIDTH / 2, Game.GAME_HEIGHT / 2, 150, 150, null);
-
         // PAUSE SCREEN
         if (paused) {
             g.setColor(new Color(225, 225, 225, 200));

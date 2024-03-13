@@ -3,6 +3,7 @@ package entities;
 import main.Game;
 import static utils.Constants.Directions.*;
 import static utils.Constants.EnemyConstants.*;
+import static utils.Constants.PlayerConstants.getAnimationLength;
 
 import java.awt.image.BufferedImage;
 
@@ -43,6 +44,16 @@ public abstract class Enemy extends Entity {
 
     protected void updateAniTick() {
         // TODO: fill out this method (how each update changes animation)
+        // this is only filled out for walking
+        aniTick++;
+        if (aniTick >= aniSpeed) {
+            aniTick = 0;
+            aniIndex++;
+            if (aniIndex >= 13) {
+                aniIndex = 0;
+                attacking = false;
+            }
+        }
     }
 
     public void hurt(int damageTaken) {

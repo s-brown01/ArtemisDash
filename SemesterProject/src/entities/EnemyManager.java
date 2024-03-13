@@ -20,7 +20,7 @@ public class EnemyManager {
         this.playing = playing;
         loadImgs();
         // temp code
-        skeletonList.add(new Skeleton(500, 600, 50, 50*33/22));
+        skeletonList.add(new Skeleton(500, 400, 50, 50*33/22));
 
     }
     
@@ -46,14 +46,21 @@ public class EnemyManager {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
-            g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], (int)(s.getHitbox().x), 
+            g.drawImage(skeletonAnis[0][s.getAniIndex()], (int)(s.getHitbox().x), 
                                                                      (int)(s.getHitbox().y),
                                                                      (int)(50 * Game.SCALE),
                                                                      (int)(50f*33/22 * Game.SCALE), null);
+            s.drawHitbox(g);
         }
     }
     
     public void update() {
+        for (Skeleton s : skeletonList) {
+            // if the skeleton isn't active, skip it
+            if (!s.isActive())
+                continue;
+            s.update();
+        }
         
     }
 

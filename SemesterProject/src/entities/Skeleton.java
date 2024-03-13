@@ -7,13 +7,13 @@ public class Skeleton extends Enemy {
 
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);
+        initHitbox(x, y, width, height);
         // TODO Auto-generated constructor stub
     }
     
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-
+        updateAniTick();
     }
 
     @Override
