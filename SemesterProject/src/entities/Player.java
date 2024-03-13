@@ -12,12 +12,6 @@ import utils.LoadSave;
 
 public class Player extends Entity {
 
-    private static int playerCount = 0;
-
-    private static boolean singletonCheck() {
-        return playerCount <= 1;
-    }
-
     /**
      * Parameters the player will inherit from the Entity abstract class
      */
@@ -41,11 +35,9 @@ public class Player extends Entity {
     //Player Constructor
     public Player(float xPosition, float yPosition, int width, int height) {
         super(xPosition, yPosition, width, height);
-        if (!singletonCheck())
-            throw new IllegalStateException("Another player has already been created");
-        playerCount++;
         loadAnimations();
         initHitbox(xPosition, yPosition, 55*Game.SCALE, 65*Game.SCALE);
+
     }
 
     /**
@@ -125,8 +117,10 @@ public class Player extends Entity {
 
         if (jump)
             jump();
-        if (!left && !right && !inAir)
-            return;
+        if(!inAir) {
+            if (!left && !right && !inAir)
+                return;
+        }
 
         float xSpeed = 0;
 
