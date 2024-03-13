@@ -16,7 +16,6 @@ public class Player extends Entity {
      * Parameters the player will inherit from the Entity abstract class
      */
     private BufferedImage[][] animations;
-    private int aniIndex, aniTick, aniSpeed = 25;
     private int player_action = IDLE;
     private boolean left, right, up, down, moving, attacking = false;
     private float playerSpeed = 2.0f;
