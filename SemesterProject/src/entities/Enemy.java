@@ -12,7 +12,6 @@ public abstract class Enemy extends Entity {
     protected boolean active = true; // keeps track of if enemy is "alive" to the program.
     protected boolean firstUpdate = true;
     protected int currentHealth, maxHealth, enemy_type;
-    private BufferedImage[][] animations;
 
     /*
      * These are temporary variables to define how far the enemy can see and how fast the
@@ -52,6 +51,10 @@ public abstract class Enemy extends Entity {
             active = false;
             state = DEAD;
         }
+    }
+    
+    public boolean isActive() {
+        return active;
     }
 
 }

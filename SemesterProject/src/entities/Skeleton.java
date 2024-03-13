@@ -7,9 +7,10 @@ public class Skeleton extends Enemy {
 
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);
+        loadAnimations();
         // TODO Auto-generated constructor stub
     }
-
+    
     @Override
     public void update() {
         // TODO Auto-generated method stub
@@ -21,5 +22,17 @@ public class Skeleton extends Enemy {
         // TODO Auto-generated method stub
 
     }
+
+    private void loadAnimations() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public int getAniIndex() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+
 
 }
