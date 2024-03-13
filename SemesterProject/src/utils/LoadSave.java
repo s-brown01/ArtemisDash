@@ -21,19 +21,12 @@ public class LoadSave {
     //Returns the sprite atlas for use in drawing the correct image to the screen
     public static BufferedImage getSpriteAtlas(String filename) {
         BufferedImage img = null;
-        InputStream is = LoadSave.class.getResourceAsStream(filename);
 
-        try { /// Try with resources to avoid 3 exceptions
+        try (InputStream is = LoadSave.class.getResourceAsStream(filename)) { 
             img = ImageIO.read(is);
         } catch (IOException e) {
             System.out.println("NULL");
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                System.err.println("CLOSE ERROR");
-            }
-        }
+        } 
         return img;
     }
 
