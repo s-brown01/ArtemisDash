@@ -5,7 +5,7 @@ package levels;
 public class Level {
     private int[][] lvlData;
 
-    //Level constructor
+    // Level constructor
     public Level(int[][] lvlData) {
         this.lvlData = lvlData;
     }

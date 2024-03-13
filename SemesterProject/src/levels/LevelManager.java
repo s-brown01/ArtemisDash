@@ -59,12 +59,12 @@ public class LevelManager {
 //		g.drawImage(worldSprite[48], 0, 0, null); //TESTING: Displays a specific sprite value
     }
 
-    //TBD later
+    // TBD later
     public void update() {
 
     }
 
-    //Returns the current level. This is set as levelOne for testing now
+    // Returns the current level. This is set as levelOne for testing now
     public Level getCurrentLevel() {
         return levelOne;
     }

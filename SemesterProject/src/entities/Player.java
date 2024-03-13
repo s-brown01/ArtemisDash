@@ -21,7 +21,7 @@ public class Player extends Entity {
     private boolean left, right, up, down, moving, attacking = false;
     private float playerSpeed = 2.0f;
     private int[][] lvlData;
-    private float xDrawOffset =0;// Change 21?
+    private float xDrawOffset = 0;// Change 21?
     private float yDrawOffset = 4;// Change 4?
 
     // For jumping and gravity
@@ -32,11 +32,11 @@ public class Player extends Entity {
     private boolean inAir = false;
     private boolean jump;
 
-    //Player Constructor
+    // Player Constructor
     public Player(float xPosition, float yPosition, int width, int height) {
         super(xPosition, yPosition, width, height);
         loadAnimations();
-        initHitbox(xPosition, yPosition, 55*Game.SCALE, 65*Game.SCALE);
+        initHitbox(xPosition, yPosition, 55 * Game.SCALE, 65 * Game.SCALE);
 
     }
 
@@ -57,13 +57,12 @@ public class Player extends Entity {
         // 100 px offset from top left corner, 70px offset from top
         // Width is ~64, Height ~60
         // Doubled X and Y size
-        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x), (int) (hitbox.y),
-                width, height, null);
+        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x), (int) (hitbox.y), width, height, null);
         drawHitbox(g);
     }
-    
-    //Updates Animation by progressing to the next frame,
-    //given the player's current action
+
+    // Updates Animation by progressing to the next frame,
+    // given the player's current action
     private void updateAniTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -76,7 +75,7 @@ public class Player extends Entity {
         }
     }
 
-    //Starts the animation based on the player's action
+    // Starts the animation based on the player's action
     private void setAnimation() {
         int start_state = player_action;
         if (moving) {
@@ -101,8 +100,8 @@ public class Player extends Entity {
             resetAni();
     }
 
-    //Resets animation related values back to 0
-    //Called when out of frames, but needs to keep animating
+    // Resets animation related values back to 0
+    // Called when out of frames, but needs to keep animating
     private void resetAni() {
         aniIndex = 0;
         aniTick = 0;
@@ -117,7 +116,7 @@ public class Player extends Entity {
 
         if (jump)
             jump();
-        if(!inAir) {
+        if (!inAir) {
             if (!left && !right && !inAir)
                 return;
         }
@@ -152,8 +151,7 @@ public class Player extends Entity {
         moving = true;
     }
 
-
-    //Jump logic 
+    // Jump logic
     private void jump() {
         if (inAir)
             return;
@@ -162,14 +160,14 @@ public class Player extends Entity {
 
     }
 
-    //Landing logic
+    // Landing logic
     private void resetInAir() {
         inAir = false;
         airSpeed = 0;
 
     }
 
-    //Update the horizontal positioning based on if you are able to move forward
+    // Update the horizontal positioning based on if you are able to move forward
     private void updateXPos(float xSpeed) {
         if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)) {
             hitbox.x += xSpeed;
@@ -200,7 +198,7 @@ public class Player extends Entity {
         }
     }
 
-    //Loads in level data for use with updating X Positioning
+    // Loads in level data for use with updating X Positioning
     public void loadLvlData(int[][] lvlData) {
         this.lvlData = lvlData;
         if (!isOnFloor(hitbox, lvlData))
@@ -208,8 +206,8 @@ public class Player extends Entity {
 
     }
 
-    //Ignores player's inputs setting them all to false
-    //Useful when control has to be taken away from them
+    // Ignores player's inputs setting them all to false
+    // Useful when control has to be taken away from them
     public void resetDirBooleans() {
         left = false;
         right = false;
@@ -217,8 +215,7 @@ public class Player extends Entity {
         down = false;
     }
 
-   
-    //Set attacking stage to properly update animations
+    // Set attacking stage to properly update animations
     public void setAttacking(boolean attacking) {
         this.attacking = attacking;
     }

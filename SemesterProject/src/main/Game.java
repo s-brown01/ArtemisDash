@@ -39,9 +39,9 @@ public class Game implements Runnable {
         initClasses();
 
         gamePanel = new GamePanel(this);
-        gameWindow = new GameWindow(gamePanel);
         gamePanel.setFocusable(true);
         gamePanel.requestFocus();
+        gameWindow = new GameWindow(gamePanel);
 
         startGameLoop();
 
@@ -66,7 +66,7 @@ public class Game implements Runnable {
         gameThread.start();
     }
 
-    //Updates the game logic based on the current game state
+    // Updates the game logic based on the current game state
     public void update() {
         switch (GameStates.state) {
         case MENU:

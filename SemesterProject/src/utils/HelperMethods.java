@@ -6,8 +6,8 @@ import java.awt.geom.Rectangle2D;
 import main.Game;
 
 public class HelperMethods {
-    
-    //Checks to see if the player can move towards their specified destination
+
+    // Checks to see if the player can move towards their specified destination
     public static boolean canMoveHere(float x, float y, float width, float height, int[][] lvlData) {
         if (!isSolid(x, y, lvlData))
             if (!isSolid(x + width, y + height, lvlData))
@@ -17,8 +17,8 @@ public class HelperMethods {
         return false;
     }
 
-    //Checks if the tile that the player is currently standing on
-    //is solid to stand on. Otherwise, pass them through it
+    // Checks if the tile that the player is currently standing on
+    // is solid to stand on. Otherwise, pass them through it
     private static boolean isSolid(float x, float y, int[][] lvlData) {
         if (x < 0 || x >= Game.GAME_WIDTH) {
             return true;
@@ -40,8 +40,8 @@ public class HelperMethods {
             return false;
     }
 
-    //Returns the XPosition to calculate if the player is running toward a wall,
-    //To avoid clipping through said wall
+    // Returns the XPosition to calculate if the player is running toward a wall,
+    // To avoid clipping through said wall
     public static float getXPosWall(Rectangle2D.Float hitbox, float xSpeed) {
         int currentTile = (int) (hitbox.x / Game.TILES_SIZE);
         if (xSpeed > 0) {
@@ -54,8 +54,8 @@ public class HelperMethods {
             return currentTile * Game.TILES_SIZE;
     }
 
-    //Calculates if the player is beneath a ceiling while jumping towards said ceiling
-    //To avoid clipping through it
+    // Calculates if the player is beneath a ceiling while jumping towards said ceiling
+    // To avoid clipping through it
     public static float getYPosRoof(Rectangle2D.Float hitbox, float airSpeed) {
         int currentTile = (int) (hitbox.y / Game.TILES_SIZE);
         if (airSpeed > 0) {
@@ -69,7 +69,7 @@ public class HelperMethods {
 
     }
 
-    //Checks collision to ensure sprite is on the floor
+    // Checks collision to ensure sprite is on the floor
     public static boolean isOnFloor(Rectangle2D.Float hitbox, int[][] lvlData) {
         // Check the pixel below bottomleft and bottomright
         if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))

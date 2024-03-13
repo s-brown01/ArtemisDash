@@ -16,8 +16,7 @@ public abstract class Entity {
     protected float x, y;
     protected int width, height;
     protected Rectangle2D.Float hitbox;
-    protected int state; // this determines what "mode" the entity is in 
-
+    protected int state; // this determines what "mode" the entity is in
 
     /**
      * Constructor class for every entity instance
@@ -39,20 +38,19 @@ public abstract class Entity {
 
     abstract public void draw(Graphics g);
 
-    //Initalize hitbox here
+    // Initalize hitbox here
     protected void initHitbox(float x, float y, float width, float height) {
         hitbox = new Rectangle2D.Float(x, y, width, height);
     }
-    
-    //Updates hitbox by giving it new X + Y
+
+    // Updates hitbox by giving it new X + Y
     protected void updateHitbox() {
         x = (int) x;
         y = (int) y;
     }
 
     /**
-     * Draws the hitbox around the player's sprite. 
-     * This is for debugging the hitbox
+     * Draws the hitbox around the player's sprite. This is for debugging the hitbox
      * 
      * @param g
      * @param xlvlOffset The offset needed for the level collision
@@ -68,7 +66,7 @@ public abstract class Entity {
     public Rectangle2D getHitbox() {
         return hitbox;
     }
-    
+
     /**
      * @return the state that the entity is in
      */

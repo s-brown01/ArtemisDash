@@ -5,7 +5,7 @@ import static utils.Constants.BossConstants.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Boss extends Entity {
-    
+
     protected int maxHealth;
     protected int currentHealth;
     protected int boss_type;
@@ -18,7 +18,5 @@ public abstract class Boss extends Entity {
         maxHealth = getMaxHealth(boss_type);
         this.currentHealth = maxHealth;
     }
-
-    
 
 }
