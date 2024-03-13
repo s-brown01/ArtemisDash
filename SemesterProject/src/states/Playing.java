@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
@@ -19,6 +20,7 @@ public class Playing extends State implements StateMethods {
     private boolean paused = false;
     private Player player;
     private LevelManager levelManager;
+    private EnemyManager enemyManager;
 
     public Playing(Game game) {
         super(game);
@@ -30,6 +32,7 @@ public class Playing extends State implements StateMethods {
      */
     private void initClasses() {
         levelManager = new LevelManager(game);
+        enemyManager = new EnemyManager(this);
         player = new Player(200, 200, (int) (65), (int) 100);
         // Player(X-Position on Screen, Y-Position on screen, Width drawn, Height drawn)
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
@@ -45,6 +48,7 @@ public class Playing extends State implements StateMethods {
         // if !paused, this code will run
         // update everything else on screen
         player.update();
+        enemyManager.update();
         return;
 
     }
@@ -55,6 +59,7 @@ public class Playing extends State implements StateMethods {
         // background - tiles - player/enemies
         g.setFont(boldFont);
         levelManager.draw(g);
+        enemyManager.draw(g);
         player.draw(g);
 
 //        BufferedImage temp = LoadSave.getSpriteAtlas("/skeleton/Skeleton_Walk.png");
