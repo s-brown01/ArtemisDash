@@ -2,13 +2,18 @@ package entities;
 
 import main.Game;
 import static utils.Constants.Directions.*;
+import static utils.Constants.EnemyConstants.*;
+
+import java.awt.image.BufferedImage;
 
 public abstract class Enemy extends Entity {
 
     protected boolean patrolling, attacking; // 
     protected boolean active = true; // keeps track of if enemy is "alive" to the program.
-    protected int enemyType; // keep track of what enemy it is
     protected boolean firstUpdate = true;
+    protected int currentHealth, maxHealth, enemy_type;
+    private BufferedImage[][] animations;
+
     /*
      * These are temporary variables to define how far the enemy can see and how fast the
      * enemy will walk. Both are open to change, just numbers made up by Sean. 
@@ -24,8 +29,12 @@ public abstract class Enemy extends Entity {
     protected float attackDistance = Game.TILES_SIZE;
     protected int walkDirection = LEFT;
 
-    public Enemy(float x, float y, int width, int height) {
+    public Enemy(float x, float y, int width, int height, int enemy_type) {
         super(x, y, width, height);
+        this.enemy_type = enemy_type;
+        this.maxHealth = getMaxHealth(enemy_type);
+        this.currentHealth = maxHealth;
+        this.state = IDLE;
     }
     
     protected void move() {
@@ -34,6 +43,14 @@ public abstract class Enemy extends Entity {
     
     protected void updateAniTick() {
         // TODO: fill out this method (how each update changes animation)   
+    }
+    
+    public void hurt(int damageTaken) {
+        currentHealth -= damageTaken;
+        if (currentHealth <= 0) {
+            active = false;
+            state = DEAD;
+        }
     }
 
     

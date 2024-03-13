@@ -163,4 +163,87 @@ public class Constants {
             }
         }
     }
+    
+    public static class BossConstants {
+        // Boss Types
+        public static final int BOSS1 = 0;
+        public static final int BOSS2 = 1;
+        public static final int BOSS3 = 2;
+        
+        // Actions
+        public static final int IDLE = 100;
+        public static final int RUNNING = 101;
+        // I'm not sure on how many attack each boss has... just example code
+        public static final int ATTACK1 = 1021;
+        public static final int ATTACK2 = 1022;
+        public static final int ATTACK3 = 1023;       
+        public static final int HIT = 103;
+        public static final int DEAD = 104;  
+        
+        /**
+         * Get how every many sprites a specific action take for a specific boss. This returns how many frames/sprites that action takes. 
+         * 
+         * @param boss_type - what class the boss is, based on the static variables in BossConstants
+         * @param boss_action - what action is happening, based on the static variables in BossConstants
+         * @return - the amount of frames that that specific action takes
+         */
+        public static int getSpriteAmount(int boss_type, int boss_action) {
+            // first see what boss it is
+            // then see what action, then return appropriate number
+            switch (boss_type){
+            case BOSS1:
+            case BOSS2:
+            case BOSS3:
+                switch (boss_action) {
+                case IDLE:
+                case RUNNING:
+                case ATTACK1:
+                case ATTACK2:
+                case ATTACK3:
+                case HIT:
+                case DEAD:
+                default:
+                    return 0;
+                }
+            default:
+                return 0;
+            }
+        }
+        
+        /**
+         * This function will return the maximum health points that a specific boss type has. This function is based on the static variables of BossConstants and it uses a case-switch.
+         * 
+         * @param boss_type - what class the enemy is, based on the static variables in BossConstants
+         * @return - return the specific amount of health for that enemy, defaults to 1
+         */
+        public static int getMaxHealth(int boss_type) {
+            switch(boss_type) {
+            case BOSS1:
+            case BOSS2:
+            case BOSS3:
+                return 2;
+            default:
+                return 0;
+            }
+        }
+        
+        /**
+         * This function will return the damage per attack for a specific boss type. This function is based on the static variables of BossConstants and it uses a case-switch.
+         * 
+         * @param boss_type - what class the enemy is, based on the static variables in BossConstants
+         * @return - return the specific amount of damage per attack for that enemy, defaults to 0
+         */
+        public static int getAttackDamage(int boss_type) { 
+            switch(boss_type) {
+            case BOSS1:
+            case BOSS2:
+            case BOSS3:
+                return 2;
+            default:
+                return 0;
+            }
+        }
+        
+        
+    }
 }

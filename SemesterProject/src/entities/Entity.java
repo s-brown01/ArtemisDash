@@ -16,6 +16,8 @@ public abstract class Entity {
     protected float x, y;
     protected int width, height;
     protected Rectangle2D.Float hitbox;
+    protected int state; // this determines what "mode" the entity is in 
+
 
     /**
      * Constructor class for every entity instance
@@ -65,6 +67,13 @@ public abstract class Entity {
      */
     public Rectangle2D getHitbox() {
         return hitbox;
+    }
+    
+    /**
+     * @return the state that the entity is in
+     */
+    public int getState() {
+        return state;
     }
 
 }
