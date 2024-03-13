@@ -20,6 +20,9 @@ public class GameWindow {
     public GameWindow(GamePanel gamePanel) {
         gameFrame = new JFrame();
 
+        // this is how we add a menuBar to our game
+        // so far no Item as any action, clicking them does nothing
+        // easy to implement/remove
         menuBar = new JMenuBar();
         menu = new JMenu("Menu");
         m1 = new JMenuItem("Pause");

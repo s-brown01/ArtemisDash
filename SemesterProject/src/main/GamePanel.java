@@ -41,28 +41,9 @@ public class GamePanel extends JPanel {
         addKeyListener(new KeyboardInputs(this));// Forwards all key listener events to input class
 
         setPanelSize();
+        addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
-    }
-
-    /**
-     * READS IN THE SPRITE SHEET TO BE USED AND CUT UP INTO SMALLER FRAMES
-     */
-    public void importImg() {
-        InputStream is = getClass().getClassLoader().getResourceAsStream(image);
-        try {
-            img = ImageIO.read(is);
-        } catch (IOException e) {
-            System.out.println("NULL");
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                System.out.println("NULL");
-                e.printStackTrace();
-            }
-        }
     }
 
     /**
@@ -71,9 +52,8 @@ public class GamePanel extends JPanel {
     private void setPanelSize() {
         Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
         setPreferredSize(size);
-        System.out.println("CURRENT WIDTH: " + GAME_WIDTH + " CURRENT HEIGHT: " + GAME_HEIGHT);
     }
-
+    //TBD
     public void updateGame() {
 
     }

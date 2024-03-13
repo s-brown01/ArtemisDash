@@ -12,15 +12,17 @@ import main.Game;
 
 public class LoadSave {
 
-    public static final String PLAYER_ATLAS = "/Tester.png";
+    public static final String PLAYER_ATLAS = "/Artemis_Finished.png";
     public static final String WORLD1_ATLAS = "/Artemis_Finished.png"; // World 1 Levels sprites
     public static final String WORLD2_ATLAS = "/Artemis_Finished.png"; // World 2 Levels sprites
     public static final String WORLD3_ATLAS = "/World3T.png"; // World 3 Levels sprites
     public static final String W1S1 = "/level_one_data.png"; // World 3 Levels sprites
 
+    //Returns the sprite atlas for use in drawing the correct image to the screen
     public static BufferedImage getSpriteAtlas(String filename) {
         BufferedImage img = null;
         InputStream is = LoadSave.class.getResourceAsStream(filename);
+
         try { /// Try with resources to avoid 3 exceptions
             img = ImageIO.read(is);
         } catch (IOException e) {
@@ -39,17 +41,16 @@ public class LoadSave {
     public static int[][] getLevelData() {
         int[][] lvlData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
         BufferedImage img = getSpriteAtlas(W1S1);
-        for (int j = 0; j < img.getHeight(); j++) {
+
+        for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {
-                Color color = new Color(img.getRGB(i, j));// Grabs the color of the specified pixel
+                Color color = new Color(img.getRGB(i, j));
                 int value = color.getRed();
-                if (value >= 48) {
+                if (value >= 48)
                     value = 0;
-                }
                 lvlData[j][i] = value;
             }
-        }
         return lvlData;
-    }
 
+    }
 }

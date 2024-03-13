@@ -6,20 +6,13 @@ import states.Playing;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import entities.Player;
 import levels.LevelManager;
 import states.GameStates;
 import states.Menu;
 import states.Overworld;
 
 public class Game implements Runnable {
-
-    public final static int TILES_DEFAULT_SIZE = 45;
-    public final static float SCALE = 1.0f;
-    public final static int TILES_IN_WIDTH = 26;
-    public final static int TILES_IN_HEIGHT = 14;
-    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
-    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
-    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 
     private GameWindow gameWindow;
     private GamePanel gamePanel;
@@ -30,18 +23,26 @@ public class Game implements Runnable {
     private Playing playing;
     private Menu menu;
     private Overworld overworld;
-    // private Player player;
-    private LevelManager levelManager;
+
+    public final static int TILES_DEFAULT_SIZE = 45;
+    public final static float SCALE = 1.0f;
+    public final static int TILES_IN_WIDTH = 26;
+    public final static int TILES_IN_HEIGHT = 14;
+    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 
     /**
      * Main Game Constructor
      */
     public Game() {
         initClasses();
+
         gamePanel = new GamePanel(this);
+        gameWindow = new GameWindow(gamePanel);
         gamePanel.setFocusable(true);
         gamePanel.requestFocus();
-        gameWindow = new GameWindow(gamePanel);
+
         startGameLoop();
 
     }
@@ -50,40 +51,32 @@ public class Game implements Runnable {
      * Initializes each game state to be used when called
      */
     private void initClasses() {
-        menu = new Menu(this);
-        playing = new Playing(this);
-        overworld = new Overworld(this);
-        // player = new Player(100, 100, 100, 100);
-        levelManager = new LevelManager(this);
 
+        menu = new Menu(this);
+        overworld = new Overworld(this);
+        playing = new Playing(this);
     }
 
     /**
-     * <<<<<<< HEAD Begins the main loop on a separate thread Done to dedicate a specific
-     * thread to free up logical traffic ======= Begins the main loop on a separate thread
-     * Done to dedicate a specific thread to free up logical traffic >>>>>>> main
+     * Begins the main loop on a separate thread Done to dedicate a specific thread to free up
+     * logical traffic
      */
     private void startGameLoop() {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
-    /**
-     * Calls for updates based on what state the game is in
-     */
+    //Updates the game logic based on the current game state
     public void update() {
         switch (GameStates.state) {
         case MENU:
             menu.update();
-            levelManager.update();
             break;
         case OVERWORLD:
             overworld.update();
-            levelManager.update();
             break;
         case PLAYING:
             playing.update();
-            levelManager.update();
             break;
         default:
             break;
@@ -99,14 +92,11 @@ public class Game implements Runnable {
         switch (GameStates.state) {
         case MENU:
             menu.draw(g);
-//TESTING:             levelManager.draw(g);
             break;
         case OVERWORLD:
             overworld.draw(g);
-//TESTING:             levelManager.draw(g);
             break;
         case PLAYING:
-            levelManager.draw(g);
             playing.draw(g);
             break;
         default:
@@ -115,13 +105,13 @@ public class Game implements Runnable {
     }
 
     /**
-     * <<<<<<< HEAD Handles the update aspects of the game, such as updates to logical
-     * processes and frames per second ======= Handles the update aspects of the game, such as
-     * updates to logical processes and frames per second >>>>>>> main
+     * Handles the update aspects of the game, such as updates to logical processes and frames
+     * per second
      */
     @Override
     public void run() {
-        double timePerFrame = 1000000000.0 / FPS_SET; // A billion seconds
+
+        double timePerFrame = 1000000000.0 / FPS_SET;
         double timePerUpdate = 1000000000.0 / UPS_SET;
 
         long previousTime = System.nanoTime();
@@ -130,26 +120,26 @@ public class Game implements Runnable {
         int updates = 0;
         long lastCheck = System.currentTimeMillis();
 
-        double deltaUpdates = 0;
-        double deltaFrames = 0; // deltaFrames
+        double deltaU = 0;
+        double deltaF = 0;
 
         while (true) {
             long currentTime = System.nanoTime();
 
-            deltaUpdates += (currentTime - previousTime) / timePerUpdate;
-            deltaFrames += (currentTime - previousTime) / timePerFrame;
+            deltaU += (currentTime - previousTime) / timePerUpdate;
+            deltaF += (currentTime - previousTime) / timePerFrame;
             previousTime = currentTime;
 
-            if (deltaUpdates >= 1.0) {
+            if (deltaU >= 1) {
                 update();
                 updates++;
-                deltaUpdates--;
+                deltaU--;
             }
 
-            if (deltaFrames >= 1.0) {
+            if (deltaF >= 1) {
                 gamePanel.repaint();
                 frames++;
-                deltaFrames--;
+                deltaF--;
             }
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
@@ -157,8 +147,10 @@ public class Game implements Runnable {
                 System.out.println("FPS: " + frames + " | UPS: " + updates);
                 frames = 0;
                 updates = 0;
+
             }
         }
+
     }
 
     public GamePanel getGamePanel() {
@@ -182,7 +174,7 @@ public class Game implements Runnable {
      * otherwise
      */
     public void windowFocusLost() {
-        playing.resetDirBooleans();
-        System.out.println("CLICKED OUT OF WINDOW - windowFocusLost()");
+        if (GameStates.state == GameStates.PLAYING)
+            playing.getPlayer().resetDirBooleans();
     }
 }

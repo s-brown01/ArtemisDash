@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import entities.Player;
+import levels.LevelManager;
 import main.Game;
 
 public class Playing extends State implements StateMethods {
@@ -15,6 +16,7 @@ public class Playing extends State implements StateMethods {
     // will keep track if the pause menu should be up or not
     private boolean paused = false;
     private Player player;
+    private LevelManager levelManager;
 
     public Playing(Game game) {
         super(game);
@@ -25,14 +27,13 @@ public class Playing extends State implements StateMethods {
      * Initialize all classes for a level here As of now, just player is initialized
      */
     private void initClasses() {
-        player = new Player(100, 350, 65, 100);
+        levelManager = new LevelManager(game);
+        player = new Player(200, 200, (int) (65), (int) 100);
         // Player(X-Position on Screen, Y-Position on screen, Width drawn, Height drawn)
+        player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 
     }
 
-    /**
-     * 
-     */
     @Override
     public void update() {
         if (paused)
@@ -51,6 +52,7 @@ public class Playing extends State implements StateMethods {
         // draw everything
         // background - tiles - player/enemies
         g.setFont(boldFont);
+        levelManager.draw(g);
         player.draw(g);
 
         // PAUSE SCREEN
@@ -91,8 +93,7 @@ public class Playing extends State implements StateMethods {
         // TODO Auto-generated method stub
         // shoot when the mouse is pressed and released?
         if (e.getButton() == MouseEvent.BUTTON1) {
-            System.out.println("CLICKED MOUSE - ATTACKING");
-            player.setAttack(true);
+            player.setAttacking(true);
         }
 
     }
@@ -139,8 +140,10 @@ public class Playing extends State implements StateMethods {
             paused = !paused;
             break;
         case KeyEvent.VK_BACK_SPACE:
-            System.out.println("SWITCHING FROM PLAYING TO OVERWORLD");
             GameStates.state = GameStates.OVERWORLD;
+            break;
+        case KeyEvent.VK_SPACE:
+            player.setJump(true);
             break;
         default:
             break;
@@ -164,6 +167,9 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_D:
             player.setRight(false);
             break;
+        case KeyEvent.VK_SPACE:
+            player.setJump(false);
+            break;
         default:
             break;
         }
@@ -181,8 +187,9 @@ public class Playing extends State implements StateMethods {
         paused = false;
     }
 
-    public void resetDirBooleans() {
-        this.player.setMoving(false);
+    //If focus is lost within this window, 
+    //freeze the player inputs and don't move        
+    public void windowFocusLost() {
+        player.resetDirBooleans();
     }
-
 }

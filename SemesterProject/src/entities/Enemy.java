@@ -19,8 +19,8 @@ public abstract class Enemy extends Entity {
      * Attack distance can also change if we want. For now it is just 1 tile.
      * 
      */
-    protected float eyeSight = walk_speed * 5;
-    protected float enemy_speed = walk_speed / 2;
+//    protected float eyeSight = walk_speed * 5;
+//    protected float enemy_speed = walk_speed / 2;
     protected float attackDistance = Game.TILES_SIZE;
     protected int walkDirection = LEFT;
 

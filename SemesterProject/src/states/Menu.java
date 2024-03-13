@@ -22,6 +22,26 @@ public class Menu extends State implements StateMethods {
         loadButtons();
     }
 
+    @Override
+    public void update() {
+        // update buttons and any other graphics in the menu
+        for (MenuButton mb : buttons) {
+            // mb.update()
+        }
+    }
+
+    @Override
+    public void draw(Graphics g) {
+        // draw background/buttons/menu
+        g.setColor(new Color(100, 100, 100, 200));
+        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+        g.setColor(new Color(255, 255, 255));
+        g.setFont(boldFont);
+        g.drawString("MENU", Game.GAME_WIDTH / 2 - 10, Game.GAME_HEIGHT / 2 - 10);
+        g.drawString("Press ENTER to continue", Game.GAME_WIDTH / 2 - 65, Game.GAME_HEIGHT / 2 + 20);
+
+    }
+
     /**
      * Handles loading in of images; In this case, a menu background
      */
@@ -51,26 +71,6 @@ public class Menu extends State implements StateMethods {
     }
 
     @Override
-    public void update() {
-        // update buttons and any other graphics in the menu
-        for (MenuButton mb : buttons) {
-            // mb.update()
-        }
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        // draw background/buttons/menu
-        g.setColor(new Color(100, 100, 100, 200));
-        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-        g.setColor(new Color(255, 255, 255));
-        g.setFont(boldFont);
-        g.drawString("MENU", Game.GAME_WIDTH / 2 - 10, Game.GAME_HEIGHT / 2 - 10);
-        g.drawString("Press ENTER to continue", Game.GAME_WIDTH / 2 - 65, Game.GAME_HEIGHT / 2 + 20);
-
-    }
-
-    @Override
     public void mouseDragged(MouseEvent e) {
         // TODO Auto-generated method stub
 
@@ -87,8 +87,8 @@ public class Menu extends State implements StateMethods {
         // see where the mouse is and if it an in any menu button
         // THIS IS JUST EXAMPLE CODE
         // PLEASE CHANGE
-        if (!isInMB(e, buttons[0]))
-            System.out.println("TEST");
+//        if (!isInMB(e, buttons[0]))
+//            System.out.println("TEST");
     }
 
     @Override

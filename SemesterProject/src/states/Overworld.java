@@ -49,7 +49,6 @@ public class Overworld extends State implements StateMethods {
     public void mouseClicked(MouseEvent e) {
         System.out.println("click");
         if (e.getButton() == MouseEvent.BUTTON1) {
-            System.out.println("SWITCH FROM OVERWORLD TO PLAYING");
             GameStates.state = GameStates.PLAYING;
         }
 

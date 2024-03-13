@@ -13,11 +13,9 @@ public abstract class Entity {
      * it will remain proportionally the same on screen Protected variables mean that only
      * instances of this class can use
      */
-    protected final static float GRAVITY = 0.004f * Game.SCALE;
-    protected final static int ANISPEED = 25;
-    protected float walk_speed = 1.5f * Game.SCALE;
-    protected float x, y, width, height;
-    protected final Rectangle2D.Float hitbox;
+    protected float x, y;
+    protected int width, height;
+    protected Rectangle2D.Float hitbox;
 
     /**
      * Constructor class for every entity instance
@@ -32,7 +30,6 @@ public abstract class Entity {
         this.y = y;
         this.width = width;
         this.height = height;
-        hitbox = new Rectangle2D.Float(x, y, width, height);
 
     }
 
@@ -40,14 +37,26 @@ public abstract class Entity {
 
     abstract public void draw(Graphics g);
 
+    //Initalize hitbox here
+    protected void initHitbox(float x, float y, float width, float height) {
+        hitbox = new Rectangle2D.Float(x, y, width, height);
+    }
+    
+    //Updates hitbox by giving it new X + Y
+    protected void updateHitbox() {
+        x = (int) x;
+        y = (int) y;
+    }
+
     /**
-     * Draws the hitbox around the player's sprite
+     * Draws the hitbox around the player's sprite. 
+     * This is for debugging the hitbox
      * 
      * @param g
      * @param xlvlOffset The offset needed for the level collision
      */
-    protected void drawHitbox(Graphics g, int xlvlOffset) {
-        g.setColor(Color.RED);
+    protected void drawHitbox(Graphics g) {
+        g.setColor(Color.PINK);
         g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
 
