@@ -6,10 +6,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
+import utils.LoadSave;
 
 public class Playing extends State implements StateMethods {
 
@@ -54,6 +56,11 @@ public class Playing extends State implements StateMethods {
         g.setFont(boldFont);
         levelManager.draw(g);
         player.draw(g);
+        
+        
+        BufferedImage temp = LoadSave.getSpriteAtlas("/Skeleton_Walk.png");
+        BufferedImage temp1 = temp.getSubimage(0, 0, 24, 33);
+        g.drawImage(temp1, Game.GAME_WIDTH / 2, Game.GAME_HEIGHT / 2, null);
 
         // PAUSE SCREEN
         if (paused) {
