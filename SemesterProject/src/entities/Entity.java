@@ -65,7 +65,7 @@ public abstract class Entity {
     /**
      * @returns hitbox object for collision detection
      */
-    public Rectangle2D getHitbox() {
+    public Rectangle2D.Float getHitbox() {
         return hitbox;
     }
 

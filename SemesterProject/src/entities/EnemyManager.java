@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import levels.Level;
+import main.Game;
 import states.Playing;
 import utils.LoadSave;
 
@@ -18,6 +19,9 @@ public class EnemyManager {
     public EnemyManager(Playing playing) {
         this.playing = playing;
         loadImgs();
+        // temp code
+        skeletonList.add(new Skeleton(500, 600, 50, 50*33/22));
+
     }
     
     public void loadEnemies(Level level) {
@@ -42,7 +46,10 @@ public class EnemyManager {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
-            g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], 0, 0, 0, 0, null)
+            g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], (int)(s.getHitbox().x), 
+                                                                     (int)(s.getHitbox().y),
+                                                                     (int)(50 * Game.SCALE),
+                                                                     (int)(50f*33/22 * Game.SCALE), null);
         }
     }
     

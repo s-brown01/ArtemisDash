@@ -7,7 +7,6 @@ public class Skeleton extends Enemy {
 
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);
-        loadAnimations();
         // TODO Auto-generated constructor stub
     }
     
@@ -19,18 +18,7 @@ public class Skeleton extends Enemy {
 
     @Override
     public void draw(Graphics g) {
-        // TODO Auto-generated method stub
-
-    }
-
-    private void loadAnimations() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    public int getAniIndex() {
-        // TODO Auto-generated method stub
-        return 0;
+        // Individual enemies should not be able to draw themselves as it is better for the memory to have the enemy manager draw everything
     }
 
 
