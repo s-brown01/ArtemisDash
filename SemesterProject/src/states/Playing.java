@@ -59,8 +59,8 @@ public class Playing extends State implements StateMethods {
         
         
         BufferedImage temp = LoadSave.getSpriteAtlas("/Skeleton_Walk.png");
-        BufferedImage temp1 = temp.getSubimage(0, 0, 24, 33);
-        g.drawImage(temp1, Game.GAME_WIDTH / 2, Game.GAME_HEIGHT / 2, null);
+        BufferedImage temp1 = temp.getSubimage(0, 0, 22, 33);
+        g.drawImage(temp1, Game.GAME_WIDTH / 2, Game.GAME_HEIGHT / 2, 150, 150, null);
 
         // PAUSE SCREEN
         if (paused) {
