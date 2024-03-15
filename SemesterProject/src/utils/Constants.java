@@ -69,25 +69,27 @@ public class Constants {
         public static final int SKELETON = 0;
 
         // ACTIONS
-        // each are in the hundreds so hopefully no accidental calls
-        public static final int IDLE = 100;
-        public static final int RUNNING = 101;
-        public static final int ATTACK = 102;
-        public static final int HIT = 103;
-        public static final int DEAD = 104;
+        public static final int IDLE = 0;
+        public static final int RUNNING = 1;
+        public static final int ATTACK = 2;
+        public static final int HIT = 3;
+        public static final int DEAD = 4;
 
         // TODO: DELETE LATER -- TEMPORARY VARAIBLE USING YOUTUBE TUTORIAL ENEMY
         public static final int CRABBY = 1;
         public static final int CRABBY_WIDTH_DEFAULT = 72;
         public static final int CRABBY_HEIGHT_DEFAULT = 32;
-
         public static final int CRABBY_WIDTH = (int) (CRABBY_WIDTH_DEFAULT * Game.SCALE);
         public static final int CRABBY_HEIGHT = (int) (CRABBY_HEIGHT_DEFAULT * Game.SCALE);
-
         // since these will be used for many crabbies they should be here
         // 26 and 9 is the difference from start of hitbox from actual corners
         public static final int CRABBY_DRAW_OFFSET_X = (int) (26 * Game.SCALE);
         public static final int CRABBY_DRAW_OFFSET_Y = (int) (9 * Game.SCALE);
+
+        public static final int SKELETON_WIDTH_DEFAULT = 22;
+        public static final int SKELETON_HEIGHT_DEFAULT = 33;
+        public static final int SKELETON_WIDTH = (int)(SKELETON_WIDTH_DEFAULT * Game.SCALE);
+        public static final int SKELETON_HEIGHT = (int)(SKELETON_HEIGHT_DEFAULT * Game.SCALE);
 
         /**
          * Get how every many sprites a specific action take for a specific enemy. This returns
