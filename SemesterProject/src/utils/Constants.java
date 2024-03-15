@@ -88,8 +88,8 @@ public class Constants {
 
         public static final int SKELETON_WIDTH_DEFAULT = 22;
         public static final int SKELETON_HEIGHT_DEFAULT = 33;
-        public static final int SKELETON_WIDTH = (int)(SKELETON_WIDTH_DEFAULT * Game.SCALE);
-        public static final int SKELETON_HEIGHT = (int)(SKELETON_HEIGHT_DEFAULT * Game.SCALE);
+        public static final int SKELETON_WIDTH = (int) (SKELETON_WIDTH_DEFAULT * Game.SCALE);
+        public static final int SKELETON_HEIGHT = (int) (SKELETON_HEIGHT_DEFAULT * Game.SCALE);
 
         /**
          * Get how every many sprites a specific action take for a specific enemy. This returns

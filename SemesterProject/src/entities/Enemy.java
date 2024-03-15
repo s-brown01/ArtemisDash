@@ -1,3 +1,12 @@
+/**
+ * Enemy.java
+ * @author: Sean-Paul Brown
+ * @date: 03/15/2024
+ * @desc: 
+ * This is an abstract class that provides the framework for all Enemy objects in the game. 
+ * Individual types of enemies should extend this class, but this should never be a specific enemy. 
+ * This will help all Enemies have the same behavior and make it easier to create/implement the EnemyManager.
+ */
 package entities;
 
 import main.Game;
@@ -38,7 +47,7 @@ public abstract class Enemy extends Entity {
         this.currentHealth = maxHealth;
         this.state = IDLE;
     }
-    
+
     /**
      * This will determine how the enemies move and which direction
      */
@@ -47,7 +56,8 @@ public abstract class Enemy extends Entity {
     }
 
     /**
-     * This will update what tick the enemy is on, and then will change the frame the enemy is on. If the end index has been reached it will restart. 
+     * This will update what tick the enemy is on, and then will change the frame the enemy is
+     * on. If the end index has been reached it will restart.
      */
     protected void updateAniTick() {
         // TODO: fill out this method (how each update changes animation)
@@ -65,7 +75,9 @@ public abstract class Enemy extends Entity {
     }
 
     /**
-     * This function will subtract what ever damage is inputed into this method from the enemies total health. If the enemy reaches 0 health, it will deactivate and die.
+     * This function will subtract what ever damage is inputed into this method from the
+     * enemies total health. If the enemy reaches 0 health, it will deactivate and die.
+     * 
      * @param damageTaken - the amount of damage taken by this enemy
      */
     public void hurt(int damageTaken) {
@@ -75,13 +87,14 @@ public abstract class Enemy extends Entity {
             state = DEAD;
         }
     }
-    
+
     public boolean isActive() {
         return active;
     }
-    
+
     /**
-     * This function will have no purpose. The EnemyManager will draw all Enemies since it is better for memory to have imgs stored there.
+     * This function will have no purpose. The EnemyManager will draw all Enemies since it is
+     * better for memory to have imgs stored there.
      * 
      * USE ENEMY MANAGER DRAW INSTEAD
      */

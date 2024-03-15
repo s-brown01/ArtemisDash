@@ -19,8 +19,6 @@ public class LoadSave {
     public static final String W1S1 = "/level_one_data.png"; // World 3 Levels sprites
     public static final String SKELETON_WALK = "/skeleton/Skeleton_Walk.png";
 
-    
-    
     // Returns the sprite atlas for use in drawing the correct image to the screen
     public static BufferedImage getSpriteAtlas(String filename) {
         BufferedImage img = null;

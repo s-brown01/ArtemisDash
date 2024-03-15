@@ -19,7 +19,6 @@ public abstract class Entity {
     protected int state; // this determines what "mode" the entity is in
     protected int aniIndex, aniTick, aniSpeed = 25;
 
-
     /**
      * Constructor class for every entity instance
      * 
@@ -75,7 +74,7 @@ public abstract class Entity {
     public int getState() {
         return state;
     }
-    
+
     public int getAniIndex() {
         return aniIndex;
     }

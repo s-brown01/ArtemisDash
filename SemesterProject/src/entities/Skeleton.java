@@ -10,15 +10,14 @@ public class Skeleton extends Enemy {
         initHitbox(x, y, width, height);
         // TODO Auto-generated constructor stub
     }
-    
+
     /**
-     * This will update where the Skeleton is, what action they are doing, and their animation.
+     * This will update where the Skeleton is, what action they are doing, and their
+     * animation.
      */
     @Override
     public void update() {
         updateAniTick();
     }
-
-
 
 }

@@ -1,3 +1,8 @@
+/**
+ * Boss.java
+ * @author Sean-Paul Brown
+ * @date 03/15/2024
+ */
 package entities;
 
 import static utils.Constants.BossConstants.*;

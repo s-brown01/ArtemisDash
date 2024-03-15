@@ -1,3 +1,8 @@
+/**
+ * EnemyManager.java
+ * @author Sean-Paul Brown
+ * 
+ */
 package entities;
 
 import java.awt.Graphics;
@@ -12,21 +17,22 @@ import utils.LoadSave;
 import static utils.Constants.EnemyConstants.*;
 
 public class EnemyManager {
-    
+
     private Playing playing;
     private BufferedImage[][] skeletonAnis;
     private List<Skeleton> skeletonList = new ArrayList<>();
-    
+
     public EnemyManager(Playing playing) {
         this.playing = playing;
         loadImgs();
         // temp code
-        skeletonList.add(new Skeleton(500, 400, 50, 50*33/22));
+        skeletonList.add(new Skeleton(500, 400, 50, 50 * 33 / 22));
 
     }
-    
+
     /**
      * Load enemies from a specific level and add them into the appropriate lists
+     * 
      * @param level
      */
     public void loadEnemies(Level level) {
@@ -34,9 +40,10 @@ public class EnemyManager {
     }
 
     /**
-     * Load all images for specific enemies. It is easier to load/save here than individually by Object.
+     * Load all images for specific enemies. It is easier to load/save here than individually
+     * by Object.
      * 
-     * This relies on the LoadSave.getSpriteAtlas to return a BufferedImage of an atlas 
+     * This relies on the LoadSave.getSpriteAtlas to return a BufferedImage of an atlas
      */
     private void loadImgs() {
         // SKELETONS
@@ -50,10 +57,11 @@ public class EnemyManager {
             }
         }
     }
-    
+
     /**
-     * This will draw all of the enemies in each List, this should only be used AFTER LoadEnemies has been used to fill in all of the lists.
-     * If that hasn't been used then errors will happen.
+     * This will draw all of the enemies in each List, this should only be used AFTER
+     * LoadEnemies has been used to fill in all of the lists. If that hasn't been used then
+     * errors will happen.
      * 
      * @param g - the Graphics where to draw
      */
@@ -63,16 +71,15 @@ public class EnemyManager {
             if (!s.isActive())
                 continue;
             // the * 2 is TEMPORARY
-            g.drawImage(skeletonAnis[0][s.getAniIndex()], (int)(s.getHitbox().x), 
-                                                                     (int)(s.getHitbox().y),
-                                                                     (int)(SKELETON_WIDTH * 2),
-                                                                     (int)(SKELETON_HEIGHT * 2), null);
+            g.drawImage(skeletonAnis[0][s.getAniIndex()], (int) (s.getHitbox().x), (int) (s.getHitbox().y),
+                    (int) (SKELETON_WIDTH * 2), (int) (SKELETON_HEIGHT * 2), null);
             s.drawHitbox(g);
         }
     }
-    
+
     /**
-     * This will update all enemies in the lists in a level, this should only be used AFTER LoadEnemies has been used to fill in all of the lists.
+     * This will update all enemies in the lists in a level, this should only be used AFTER
+     * LoadEnemies has been used to fill in all of the lists.
      * 
      * It loops through all enemy Lists and will call update on each individual enemy.
      */
@@ -83,7 +90,7 @@ public class EnemyManager {
                 continue;
             s.update();
         }
-        
+
     }
 
 }
