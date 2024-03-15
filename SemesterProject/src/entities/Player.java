@@ -1,4 +1,12 @@
-
+/**
+ * Player.java
+ * @author Sean-Paul Brown
+ * @date 03/15/2024
+ * @description:
+ * This class will represent the player, and it is a singleton since only 1 player should ever be created.
+ * It will keep track of how the player is moving, what action they are doing.
+ * This class will keep track of all animations since only 1 player is there.
+ */
 package entities;
 
 import static utils.Constants.PlayerConstants.*;
@@ -11,6 +19,11 @@ import utils.HelperMethods;
 import utils.LoadSave;
 
 public class Player extends Entity {
+    // player_count and playerCountCheck will make sure there is only 1 player
+    private static int player_count = 0;
+    private static boolean singletonCheck() {
+        return player_count < 1;
+    }
 
     /**
      * Parameters the player will inherit from the Entity abstract class
@@ -22,6 +35,7 @@ public class Player extends Entity {
     private int[][] lvlData;
     private float xDrawOffset = 0;// Change 21?
     private float yDrawOffset = 4;// Change 4?
+    
 
     // For jumping and gravity
     private float airSpeed = 0f;
@@ -34,6 +48,9 @@ public class Player extends Entity {
     // Player Constructor
     public Player(float xPosition, float yPosition, int width, int height) {
         super(xPosition, yPosition, width, height);
+        // Singleton check
+        if (!Player.singletonCheck())
+            throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAnimations();
         initHitbox(xPosition, yPosition, 55 * Game.SCALE, 65 * Game.SCALE);
 
