@@ -11,14 +11,12 @@ public class Skeleton extends Enemy {
         // TODO Auto-generated constructor stub
     }
     
+    /**
+     * This will update where the Skeleton is, what action they are doing, and their animation.
+     */
     @Override
     public void update() {
         updateAniTick();
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        // Individual enemies should not be able to draw themselves as it is better for the memory to have the enemy manager draw everything
     }
 
 

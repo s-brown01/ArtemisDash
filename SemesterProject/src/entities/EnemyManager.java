@@ -9,6 +9,7 @@ import levels.Level;
 import main.Game;
 import states.Playing;
 import utils.LoadSave;
+import static utils.Constants.EnemyConstants.*;
 
 public class EnemyManager {
     
@@ -24,10 +25,19 @@ public class EnemyManager {
 
     }
     
+    /**
+     * Load enemies from a specific level and add them into the appropriate lists
+     * @param level
+     */
     public void loadEnemies(Level level) {
         // skeletonList = level.getSkeletons();
     }
 
+    /**
+     * Load all images for specific enemies. It is easier to load/save here than individually by Object.
+     * 
+     * This relies on the LoadSave.getSpriteAtlas to return a BufferedImage of an atlas 
+     */
     private void loadImgs() {
         // SKELETONS
         // this is only to test the walking animation right now
@@ -41,19 +51,31 @@ public class EnemyManager {
         }
     }
     
+    /**
+     * This will draw all of the enemies in each List, this should only be used AFTER LoadEnemies has been used to fill in all of the lists.
+     * If that hasn't been used then errors will happen.
+     * 
+     * @param g - the Graphics where to draw
+     */
     public void draw(Graphics g) {
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
+            // the * 2 is TEMPORARY
             g.drawImage(skeletonAnis[0][s.getAniIndex()], (int)(s.getHitbox().x), 
                                                                      (int)(s.getHitbox().y),
-                                                                     (int)(50 * Game.SCALE),
-                                                                     (int)(50f*33/22 * Game.SCALE), null);
+                                                                     (int)(SKELETON_WIDTH * 2),
+                                                                     (int)(SKELETON_HEIGHT * 2), null);
             s.drawHitbox(g);
         }
     }
     
+    /**
+     * This will update all enemies in the lists in a level, this should only be used AFTER LoadEnemies has been used to fill in all of the lists.
+     * 
+     * It loops through all enemy Lists and will call update on each individual enemy.
+     */
     public void update() {
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it

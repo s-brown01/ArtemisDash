@@ -5,6 +5,7 @@ import static utils.Constants.Directions.*;
 import static utils.Constants.EnemyConstants.*;
 import static utils.Constants.PlayerConstants.getAnimationLength;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public abstract class Enemy extends Entity {
@@ -37,11 +38,17 @@ public abstract class Enemy extends Entity {
         this.currentHealth = maxHealth;
         this.state = IDLE;
     }
-
+    
+    /**
+     * This will determine how the enemies move and which direction
+     */
     protected void move() {
         // TODO: fill out this method and how enemies move
     }
 
+    /**
+     * This will update what tick the enemy is on, and then will change the frame the enemy is on. If the end index has been reached it will restart. 
+     */
     protected void updateAniTick() {
         // TODO: fill out this method (how each update changes animation)
         // this is only filled out for walking
@@ -51,11 +58,16 @@ public abstract class Enemy extends Entity {
             aniIndex++;
             if (aniIndex >= 13) {
                 aniIndex = 0;
+                // attacking = false allows us to not let the enemy attack over and over
                 attacking = false;
             }
         }
     }
 
+    /**
+     * This function will subtract what ever damage is inputed into this method from the enemies total health. If the enemy reaches 0 health, it will deactivate and die.
+     * @param damageTaken - the amount of damage taken by this enemy
+     */
     public void hurt(int damageTaken) {
         currentHealth -= damageTaken;
         if (currentHealth <= 0) {
@@ -66,6 +78,17 @@ public abstract class Enemy extends Entity {
     
     public boolean isActive() {
         return active;
+    }
+    
+    /**
+     * This function will have no purpose. The EnemyManager will draw all Enemies since it is better for memory to have imgs stored there.
+     * 
+     * USE ENEMY MANAGER DRAW INSTEAD
+     */
+    @Override
+    public void draw(Graphics g) {
+        // EMPTY FUNCTION
+        // NO ENEMY SHOULD DRAW ITSELF
     }
 
 }
