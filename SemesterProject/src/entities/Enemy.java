@@ -22,7 +22,7 @@ public abstract class Enemy extends Entity {
     protected boolean patrolling, attacking; //
     protected boolean active = true; // keeps track of if enemy is "alive" to the program.
     protected boolean firstUpdate = true;
-    protected int currentHealth, maxHealth, enemy_type;
+    protected int enemy_type;
 
     /*
      * These are temporary variables to define how far the enemy can see and how fast the

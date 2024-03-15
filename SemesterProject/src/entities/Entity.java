@@ -1,4 +1,12 @@
-
+/**
+ * Entity.java
+ * @author Sean-Paul Brown
+ * @date 03/15/2024
+ * @description
+ * This class is an abstract class for all types of moving/interacting objects in the game. 
+ * Players, enemies, and bosses will all be children (of different generations) of this class. 
+ * Each entity will need an x and y coordinate, along with a width and height.
+ */
 package entities;
 
 import java.awt.Color;
@@ -18,6 +26,7 @@ public abstract class Entity {
     protected Rectangle2D.Float hitbox;
     protected int state; // this determines what "mode" the entity is in
     protected int aniIndex, aniTick, aniSpeed = 25;
+    protected int currentHealth, maxHealth;
 
     /**
      * Constructor class for every entity instance
@@ -75,6 +84,9 @@ public abstract class Entity {
         return state;
     }
 
+    /**
+     * @return the animation index
+     */
     public int getAniIndex() {
         return aniIndex;
     }
