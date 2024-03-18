@@ -170,8 +170,12 @@ public class Player extends Entity {
         moving = true;
     }
 
+    /**
+     * Handles what happens when jump is pressed, in the air or on the ground
+     */
     private void jump() {
         if(inAir) {//Edit later for Cyote time
+            
             return;
         }
         
@@ -179,12 +183,19 @@ public class Player extends Entity {
         airSpeed = jumpSpeed;
     }
 
+    /**
+     * Reset the variables that determine jumping
+     */
     private void resetInAir() {
         inAir = false;
         airSpeed = 0;
 
     }
 
+    /**
+     * Updates X-Position of player after hitbox detects collision
+     * @param xSpeed
+     */
     private void updateXPos(float xSpeed) {
         if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
             hitbox.x += xSpeed;
@@ -210,6 +221,11 @@ public class Player extends Entity {
         if (attacking) {
             player_action = DRAW;
         }
+        //Figure out how to loop a few frames for longer jump animation
+        if(jump) {
+            player_action = JUMP;
+        }
+        
         if (startAni != player_action) {
             resetAniTick();
         }

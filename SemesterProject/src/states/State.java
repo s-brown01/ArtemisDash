@@ -1,7 +1,7 @@
 /**
- * State Class
+ * State Abstract Class
  * @author johnbotonakis
- * 
+ * This state class defines how each state should behave when instantiated from this parent class
  */
 package states;
 

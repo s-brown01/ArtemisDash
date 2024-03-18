@@ -1,3 +1,8 @@
+/**
+ * HelperMethods Class
+ * @author johnbotonakis
+ * This class is full of various methods that will be called by more than just one entity, object, or class
+ */
 package utils;
 
 import java.awt.geom.Rectangle2D;
@@ -7,13 +12,14 @@ import main.Game;
 public class HelperMethods {
 
     /**
-     * Checks whether an entity is able to move in a given direction
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     * @param levelData
-     * @return
+     * Checks whether an entity is able to move in a given direction,
+     * by checking every corner of the entities hitbox for a collision with another sprite
+     * @param x - X-Position of caller entity
+     * @param y - Y-Position of caller entity
+     * @param width - Width of the hitbox of caller entity
+     * @param height - Height of the hitbox of caller entity
+     * @param levelData - 2D Array of data that represents the level
+     * @return - True if the entity is able to move, false if it cannot
      */
     public static boolean canMoveHere(float x, float y, float width, float height, int[][] levelData) {
         // check top left and bottom right first in case of arial movement

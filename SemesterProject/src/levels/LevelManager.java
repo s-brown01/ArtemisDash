@@ -1,8 +1,8 @@
 /**
  * Level Manager
  * @author johnbotonakis
- * This class will handle things such as importing level sprites, drawing the level to the screen, 
- * and keep track of the current level played
+ * This class will handle things such as importing level sprites, 
+ * drawing the level to the screen, and keep track of the current level played
  */
 package levels;
 
@@ -19,11 +19,14 @@ public class LevelManager {
     
     public LevelManager(Game game) {
         this.game = game;
-        importOutsideSprites();
+        importLevelSprites();
         levelOne = new Level(LoadSave.getLevelData());
     }
     
-    private void importOutsideSprites() {
+    /**
+     * Imports the sprites to build a level
+     */
+    private void importLevelSprites() {
         BufferedImage img = LoadSave.getSpriteSheet(LoadSave.LEVEL_SPRITES);
         levelSprite = new BufferedImage[48]; //12 sprites wide * 4 sprites tall = 48
         for (int j = 0; j<4;j++) {
@@ -35,6 +38,10 @@ public class LevelManager {
         
     }
 
+    /**
+     * Draws the level to the screen with the provided sprite sheet
+     * @param g
+     */
     public void draw(Graphics g) {
         for (int j = 0;j<Game.TILES_IN_HEIGHT; j ++) {
             for (int i = 0;i <Game.TILES_IN_WIDTH;i++) {

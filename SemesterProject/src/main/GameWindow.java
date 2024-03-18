@@ -1,4 +1,8 @@
-
+/**
+ * Game Window Class
+ * @author johnbotonakis
+ * This class will act as the frame holding the painting
+ */
 package main;
 
 import javax.swing.JFrame;

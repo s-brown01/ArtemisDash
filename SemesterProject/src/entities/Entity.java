@@ -24,7 +24,10 @@ public abstract class Entity {
         this.height = height;
         this.width = width;
     }
-
+    /**
+     * Draws a hitbox around the entity for debugging purposes
+     * @param g
+     */
     protected void drawHitbox(Graphics g) {
         //For debugging hitbox
         g.setColor(Color.RED);
@@ -48,6 +51,10 @@ public abstract class Entity {
 //        hitbox.y = (int)y;
 //    }
     
+    /**
+     * Returns the hitbox of a given entity
+     * @return - hitbox
+     */
     public Rectangle2D getHitbox() {
         return hitbox;
     }

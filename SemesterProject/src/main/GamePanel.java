@@ -1,4 +1,8 @@
-
+/**
+ * Game Panel Class
+ * @author johnbotonakis
+ * This class acts as the painting in the frame
+ */
 package main;
 
 import java.awt.Dimension;

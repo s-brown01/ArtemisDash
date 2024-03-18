@@ -1,8 +1,8 @@
 /**
- * Keyboard Inputs
+ * Game Class
  * @author johnbotonakis
- * This class will convert the key events from the user to actions on the screen, by passing in each event
- * to the proper game state.
+ * This class handle most logic pertaining to the game, 
+ * including updates, FPS, level scale, and tile amount on screen.
  */
 package main;
 
@@ -66,7 +66,6 @@ public class Game implements Runnable{
         playing = new Playing(this);
         overworld = new Overworld(this);
 }
-    
 
     /**
      * Handles the update aspects of the game, such as updates to logical processes and frames
@@ -92,7 +91,7 @@ public class Game implements Runnable{
             previousTime = currentTime;
             
             if(deltaUpdates >=1) {
-                update();
+                updateGameState();
                 updates++;
                 deltaUpdates --;
             }
@@ -134,8 +133,10 @@ public class Game implements Runnable{
         }
 }
 
-    
-    public void update() {
+    /**
+     * Updates the game state
+     */
+    public void updateGameState() {
         switch (GameStates.state) {
         case MENU:
                 menu.update();
@@ -151,12 +152,16 @@ public class Game implements Runnable{
 
         }
 }
-   
-    public Player getPlayer() {
-        return player;
-    }
+    /**
+     * When window focus is lost, stop the player immediately
+     */
     public void windowLost() {
         player.resetDirBools();
+    }
+  
+    //Getters and setters 
+    public Player getPlayer() {
+        return player;
     }
     public Menu getMenu() {
         return menu;

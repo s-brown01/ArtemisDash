@@ -1,3 +1,8 @@
+/**
+ * LoadSave Class
+ * @author johnbotonakis
+ * This class is focused on loading in sprite data, level data, and building levels
+ */
 package utils;
 
 import java.awt.Color;
@@ -15,8 +20,11 @@ public class LoadSave {
     public static String LEVEL_SPRITES = "/World3T.png";
     public static String LEVEL1_DATA = "/level_one_data.png";
     
-    
-  //Returns the sprite atlas for use in drawing the correct image to the screen
+    /**
+     * Returns the specified sprite atlas for use in drawing the correct image to the screen
+     * @param filename - The name of the sprite sheet that is requested
+     * @return - The specified image as a variable
+     */
     public static BufferedImage getSpriteSheet(String filename) {
         BufferedImage img = null;
         InputStream is = LoadSave.class.getResourceAsStream(filename);
@@ -37,7 +45,7 @@ public class LoadSave {
 
     /**
      * Uses RGB values to generate a tiled level
-     * @return a 2D array
+     * @return - A 2D array that is representative of tiles making up the level
      */
     public static int[][] getLevelData() {
         int[][] lvlData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
