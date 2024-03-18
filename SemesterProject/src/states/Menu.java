@@ -1,3 +1,8 @@
+/**
+ * Menu Class
+ * @author johnbotonakis
+ * 
+ */
 
 package states;
 
@@ -85,8 +90,6 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mousePressed(MouseEvent e) {
         // see where the mouse is and if it an in any menu button
-        // THIS IS JUST EXAMPLE CODE
-        // PLEASE CHANGE
 //        if (!isInMB(e, buttons[0]))
 //            System.out.println("TEST");
     }

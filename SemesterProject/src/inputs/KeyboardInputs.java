@@ -1,4 +1,9 @@
-
+/**
+ * Keyboard Inputs
+ * @author johnbotonakis
+ * This class will convert the key events from the user to actions on the screen, by passing in each event
+ * to the proper game state.
+ */
 package inputs;
 
 import java.awt.event.KeyEvent;
@@ -6,7 +11,6 @@ import java.awt.event.KeyListener;
 
 import main.GamePanel;
 import states.GameStates;
-import static utils.Constants.Directions.*;
 
 public class KeyboardInputs implements KeyListener {
 
@@ -48,9 +52,6 @@ public class KeyboardInputs implements KeyListener {
      */
     @Override
     public void keyReleased(KeyEvent e) {
-        /*
-         * case switch inspired by Kaarin Gaming on youtube and his free platformer tutorial
-         */
         switch (GameStates.state) {
         // this allows us to deal with case-switch logic per class instead of all at once
         case MENU:

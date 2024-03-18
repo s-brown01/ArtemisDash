@@ -1,4 +1,8 @@
-
+/**
+ * State Class
+ * @author johnbotonakis
+ * 
+ */
 package states;
 
 import java.awt.Font;

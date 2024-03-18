@@ -1,4 +1,7 @@
-
+/**
+ * StateMethods Interface
+ * @author johnbotonakis
+ */
 package states;
 
 import java.awt.Graphics;

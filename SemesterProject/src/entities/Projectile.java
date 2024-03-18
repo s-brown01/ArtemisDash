@@ -15,10 +15,10 @@ public class Projectile extends Entity {
 
     }
 
-    @Override
-    public void draw(Graphics g) {
-        // TODO Auto-generated method stub
-
-    }
+//    @Override
+//    public void renderPlayer(Graphics g) {
+//        // TODO Auto-generated method stub
+//
+//    }
 
 }

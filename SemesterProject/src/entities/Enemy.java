@@ -34,7 +34,7 @@ public abstract class Enemy extends Entity {
         this.enemy_type = enemy_type;
         this.maxHealth = getMaxHealth(enemy_type);
         this.currentHealth = maxHealth;
-        this.state = IDLE;
+//        this.state = IDLE;
     }
     
     protected void move() {
@@ -49,7 +49,7 @@ public abstract class Enemy extends Entity {
         currentHealth -= damageTaken;
         if (currentHealth <= 0) {
             active = false;
-            state = DEAD;
+//            state = DEAD;
         }
     }
 
