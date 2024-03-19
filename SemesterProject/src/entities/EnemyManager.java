@@ -53,7 +53,7 @@ public class EnemyManager {
         // SKELETONS
         // this is only to test the walking animation right now
         skeletonAnis = new BufferedImage[1][13];
-        final BufferedImage img = LoadSave.getSpriteAtlas(LoadSave.SKELETON_WALK);
+        final BufferedImage img = LoadSave.getSpriteSheet(LoadSave.SKELETON_WALK);
         for (int j = 0; j < skeletonAnis.length; j++) {
             for (int i = 0; i < skeletonAnis[j].length; i++) {
                 // the walking animation are each spaced 22x33 px, tho not all are same size
