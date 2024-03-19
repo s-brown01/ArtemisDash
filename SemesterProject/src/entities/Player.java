@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
  * Player.java
  * @author Sean-Paul Brown
  * @date 03/15/2024
@@ -6,16 +7,28 @@
  * This class will represent the player, and it is a singleton since only 1 player should ever be created.
  * It will keep track of how the player is moving, what action they are doing.
  * This class will keep track of all animations since only 1 player is there.
+=======
+ * Player Class
+ * @author johnbotonakis
+ * This player class will hold every variable and funciton relating to the active player's inputs and outputs. 
+ * 
+>>>>>>> main
  */
 package entities;
 
+import static utils.Constants.Directions.*;
 import static utils.Constants.PlayerConstants.*;
+import static utils.Constants.PlayerConstants.getSpriteAmt;
 import static utils.HelperMethods.*;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
 
 import main.Game;
-import utils.HelperMethods;
 import utils.LoadSave;
 
 public class Player extends Entity {
@@ -25,167 +38,189 @@ public class Player extends Entity {
         return player_count < 1;
     }
 
-    /**
-     * Parameters the player will inherit from the Entity abstract class
-     */
     private BufferedImage[][] animations;
+
+    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
     private int player_action = IDLE;
-    private boolean left, right, up, down, moving, attacking = false;
-    private float playerSpeed = 2.0f;
-    private int[][] lvlData;
-    private float xDrawOffset = 0;// Change 21?
-    private float yDrawOffset = 4;// Change 4?
-    
+    private boolean moving, attacking = false;
+    private boolean left, up, right, down, jump;
+    private float playerSpeed = 1.75f;
+    private int[][] levelData;
+    private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
+    private float yDrawOffset = 20 * Game.SCALE; // Calculated Y - Positional offset for drawing Sprite
+    private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
+    private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
+                                                            // height
+    private float hitboxOffset = 30 * Game.SCALE;//Calculated Y-Positional change offset for jumping/falling
 
-    // For jumping and gravity
-    private float airSpeed = 0f;
-    private float gravity = 0.04f * Game.SCALE;
-    private float jumpSpeed = -2.25f * Game.SCALE;
-    private float fallSpeedAfterCollision = 0.5f * Game.SCALE;
+    /**
+     * Jumping and Gravity variables
+     */
+    private float airSpeed = 0f; // How quickly the player moves in the air
+    private float gravity = 0.04f * Game.SCALE; // How quickly the player falls to earth
+    private float jumpSpeed = -2.25f * Game.SCALE; // How high the player can jump
+    private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
     private boolean inAir = false;
-    private boolean jump;
-
-    // Player Constructor
-    public Player(float xPosition, float yPosition, int width, int height) {
-        super(xPosition, yPosition, width, height);
+    
+    /**
+     * Constructor for the player class
+     * 
+     * @param x      - X-Position on the screen
+     * @param y      - Y-Position on the screen
+     * @param width  - Width of Sprite
+     * @param height - Height of Sprite
+     */
+    public Player(float x, float y, int width, int height) {
+        super(x, y, width, height);
         // Singleton check
         if (!Player.singletonCheck())
             throw new IllegalStateException("Only 1 Player can ever be created at a time");
-        loadAnimations();
-        initHitbox(xPosition, yPosition, 55 * Game.SCALE, 65 * Game.SCALE);
+        loadAni();
+        initHitbox(x, y, hitboxCorrectionWidth, hitboxCorrectionHeight);
 
     }
 
     /**
-     * Updates the position, animation tick, and row of sprites
+     * Handles updates for Position, Animation Tick, and Setting Animations
      */
     public void update() {
         updatePos();
         updateAniTick();
         setAnimation();
+    }
+
+    /**
+     * Renders the player, along with hitbox
+     * 
+     * @param g - Graphics
+     */
+    public void renderPlayer(Graphics g) {
+        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset),
+                width, height, null);
+        drawHitbox(g);
+    }
+    
+    public void draw(Graphics g) {
+        //TODO - naming
+        renderPlayer(g);
+    }
+
+    /**
+     * Creates an animation library to store every animation from the loaded in
+     * sprite sheet
+     */
+    private void loadAni() {
+
+        BufferedImage img = LoadSave.getSpriteSheet(LoadSave.PLAYER_SPRITES);
+
+        animations = new BufferedImage[10][20]; // 10 animations; longest animation is 20 frames long
+
+        for (int j = 0; j < animations.length; j++) {
+            for (int i = 0; i < animations[j].length; i++) {
+                animations[j][i] = img.getSubimage(i * 55, j * 65, 55, 65);
+            }
+        }
 
     }
 
     /**
-     * Draws the sprite along with it's hitbox to the screen
+     * Load in level data as a 2D array to continuously check for collision
+     * 
+     * @param lvlData
      */
-    public void draw(Graphics g) {
-        // 100 px offset from top left corner, 70px offset from top
-        // Width is ~64, Height ~60
-        // Doubled X and Y size
-        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x), (int) (hitbox.y), width, height, null);
-        drawHitbox(g);
+    public void loadLvlData(int[][] lvlData) {
+        this.levelData = lvlData;
     }
 
-    // Updates Animation by progressing to the next frame,
-    // given the player's current action
+    /**
+     * Increments index to simulate animation by drawing the next image in the
+     * sprite sheet
+     */
     private void updateAniTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if (aniIndex >= getAnimationLength(player_action)) {
+            if (aniIndex >= getSpriteAmt(player_action)) {
                 aniIndex = 0;
                 attacking = false;
             }
         }
     }
 
-    // Starts the animation based on the player's action
-    private void setAnimation() {
-        int start_state = player_action;
-        if (moving) {
-            player_action = RUNNING;
-        } else {
-            player_action = IDLE;
-        }
-
-        if (inAir) {
-            if (airSpeed < 0) {
-                player_action = JUMP_START;
-            } else {
-                player_action = FALLING;
-            }
-        }
-        if (attacking) {
-            player_action = ATTACK;
-        }
-        // checking if the state has changed
-        // if it has changed, we need to restart animation
-        if (start_state != player_action)
-            resetAni();
-    }
-
-    // Resets animation related values back to 0
-    // Called when out of frames, but needs to keep animating
-    private void resetAni() {
-        aniIndex = 0;
-        aniTick = 0;
-    }
-
     /**
-     * Updates position of hitbox as well as player sprite Handles things such as pressing
-     * Left and Right simultaneously
+     * Updates player positioning based on the inputs
      */
     private void updatePos() {
-        moving = false;
 
-        if (jump)
+        moving = false;
+        if(jump) {
             jump();
-        if (!inAir) {
-            if (!left && !right && !inAir)
-                return;
+        }
+        if (!left && !right && !inAir) {
+            return;
         }
 
         float xSpeed = 0;
 
-        if (left)
+        if (left) {
             xSpeed -= playerSpeed;
-        if (right)
+        }
+        if (right) {
             xSpeed += playerSpeed;
+        }
 
         if (!inAir)
-            if (!isOnFloor(hitbox, lvlData))
-                inAir = true;
-
+            if (!gravity(hitbox, levelData))
+                    inAir = true;
+        
         if (inAir) {
-            if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
+            if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
                 hitbox.y += airSpeed;
                 airSpeed += gravity;
                 updateXPos(xSpeed);
             } else {
-                hitbox.y = getYPosRoof(hitbox, airSpeed);
+                hitbox.y = getYPosRoof(hitbox, airSpeed,hitboxOffset);
+
                 if (airSpeed > 0)
                     resetInAir();
                 else
-                    airSpeed = fallSpeedAfterCollision;
+                    airSpeed = fallCollisionSpeed;
                 updateXPos(xSpeed);
             }
-
         } else
             updateXPos(xSpeed);
         moving = true;
     }
 
-    // Jump logic
+    /**
+     * Handles what happens when jump is pressed, in the air or on the ground
+     */
     private void jump() {
-        if (inAir)
+        if(inAir) {//Edit later for Cyote time
+            
             return;
+        }
+        
         inAir = true;
         airSpeed = jumpSpeed;
-
     }
 
-    // Landing logic
+    /**
+     * Reset the variables that determine jumping
+     */
     private void resetInAir() {
         inAir = false;
         airSpeed = 0;
 
     }
 
-    // Update the horizontal positioning based on if you are able to move forward
+    /**
+     * Updates X-Position of player after hitbox detects collision
+     * @param xSpeed
+     */
     private void updateXPos(float xSpeed) {
-        if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)) {
+        if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
             hitbox.x += xSpeed;
         } else {
             hitbox.x = getXPosWall(hitbox, xSpeed);
@@ -194,48 +229,56 @@ public class Player extends Entity {
     }
 
     /**
-     * Loads ALL animations from a sprite sheet into a 2D array The length of this array, will
-     * be the length of the longest animation
+     * Sets the animation based on if player is moving
      */
-    private void loadAnimations() {
-        BufferedImage img = LoadSave.getSpriteAtlas(LoadSave.PLAYER_ATLAS);
-        // change 13 and 20 to constants at top of class
-        animations = new BufferedImage[13][20]; // 12 is the amount of frames in the idle animation
-        for (int j = 0; j < animations.length; j++) {
-            for (int i = 0; i < animations.length; i++) {
-                // The first 7 rows have a smaller bounding size as opposed to the next 3
-                // Investigate dynamic resizing of bounding box + sprites
-                if (j < 10)
-                    animations[j][i] = img.getSubimage(i * 55, j * 65, 55, 65); // i* sprite WIDTH
+    private void setAnimation() {
 
-            }
-            // TESTING: img.getSubimage(WIDTH of sprite, Y position, Width of selection,
-            // Height of selection)
+        int startAni = player_action;
+
+        if (moving) {
+            player_action = RUNNING;
+        } else {
+            player_action = IDLE;
         }
+        
+        if (attacking) {
+            player_action = DRAW;
+        }
+        //Figure out how to loop a few frames for longer jump animation
+        if(jump) {
+            player_action = JUMP;
+        }
+        
+        if (startAni != player_action) {
+            resetAniTick();
+        }
+
     }
 
-    // Loads in level data for use with updating X Positioning
-    public void loadLvlData(int[][] lvlData) {
-        this.lvlData = lvlData;
-        if (!isOnFloor(hitbox, lvlData))
-            inAir = true;
+    /**
+     * Resets animation to ensure that the animation is rendered timely
+     */
+    private void resetAniTick() {
+        aniTick = 0;
+        aniIndex = 0;
 
     }
 
-    // Ignores player's inputs setting them all to false
-    // Useful when control has to be taken away from them
-    public void resetDirBooleans() {
+    /**
+     * Resets player inputs in event window looses focus
+     */
+    public void resetDirBools() {
         left = false;
         right = false;
         up = false;
         down = false;
     }
 
-    // Set attacking stage to properly update animations
-    public void setAttacking(boolean attacking) {
-        this.attacking = attacking;
-    }
-
+    /**
+     * Getters and setters
+     * 
+     * @return
+     */
     public boolean isLeft() {
         return left;
     }
@@ -268,8 +311,14 @@ public class Player extends Entity {
         this.down = down;
     }
 
+    public void setAttack(boolean attack) {
+        attacking = attack;
+    }
+
+    public boolean isAttacking() {
+        return attacking;
+    }
     public void setJump(boolean jump) {
         this.jump = jump;
     }
-
 }

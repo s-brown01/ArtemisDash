@@ -1,4 +1,8 @@
-
+/**
+ * StateMethods Interface
+ * @author johnbotonakis
+ * Defines every method that a state should have when instantiated new
+ */
 package states;
 
 import java.awt.Graphics;

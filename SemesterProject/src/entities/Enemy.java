@@ -12,7 +12,6 @@ package entities;
 import main.Game;
 import static utils.Constants.Directions.*;
 import static utils.Constants.EnemyConstants.*;
-import static utils.Constants.PlayerConstants.getAnimationLength;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -45,7 +44,7 @@ public abstract class Enemy extends Entity {
         this.enemy_type = enemy_type;
         this.maxHealth = getMaxHealth(enemy_type);
         this.currentHealth = maxHealth;
-        this.state = IDLE;
+//        this.state = IDLE;
     }
 
     /**
@@ -84,7 +83,7 @@ public abstract class Enemy extends Entity {
         currentHealth -= damageTaken;
         if (currentHealth <= 0) {
             active = false;
-            state = DEAD;
+//            state = DEAD;
         }
     }
 

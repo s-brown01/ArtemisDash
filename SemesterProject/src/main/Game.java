@@ -1,85 +1,115 @@
-
+/**
+ * Game Class
+ * @author johnbotonakis
+ * This class handle most logic pertaining to the game, 
+ * including updates, FPS, level scale, and tile amount on screen.
+ */
 package main;
 
-import states.Playing;
-
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import entities.Player;
+import states.*;
 import levels.LevelManager;
-import states.GameStates;
-import states.Menu;
-import states.Overworld;
 
-public class Game implements Runnable {
-
-    private GameWindow gameWindow;
-    private GamePanel gamePanel;
-    private Thread gameThread;
-    private final int FPS_SET = 120;
-    private final int UPS_SET = 200;
-
+public class Game implements Runnable{
+    //States and Entities
+    private Player player;
+    private LevelManager levelManager;
     private Playing playing;
     private Menu menu;
     private Overworld overworld;
-
-    public final static int TILES_DEFAULT_SIZE = 45;
-    public final static float SCALE = 1.0f;
-    public final static int TILES_IN_WIDTH = 26;
-    public final static int TILES_IN_HEIGHT = 14;
-    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+    
+    //Windows and Panels
+    private GameWindow gameWindow;
+    private GamePanel gamePanel;
+    
+    //Updates and Frame Logic
+    private Thread gameThread;
+    private final int FPS_SET = 120;
+    private final int UPS_SET = 120;
+    
+    //Game Scale and tiles
+    public final static int TILES_DEFAULT_SIZE = 32; //32 x 32 tile size
+    public final static float SCALE = 1.75f; //How much should everything get scaled by? KEEP THIS ROUND
+    public final static int TILES_IN_WIDTH = 26; //How many tiles width-wise should be drawn?
+    public final static int TILES_IN_HEIGHT= 14; //How many tiles height-wise should be drawn?
+    public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE * SCALE);
     public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
     public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
-
+    
     /**
      * Main Game Constructor
      */
     public Game() {
         initClasses();
-
         gamePanel = new GamePanel(this);
         gamePanel.setFocusable(true);
         gamePanel.requestFocus();
         gameWindow = new GameWindow(gamePanel);
-
-        startGameLoop();
-
+        startGame();
     }
-
-    /**
-     * Initializes each game state to be used when called
-     */
-    private void initClasses() {
-
-        menu = new Menu(this);
-        overworld = new Overworld(this);
-        playing = new Playing(this);
-    }
-
+    
     /**
      * Begins the main loop on a separate thread Done to dedicate a specific thread to free up
      * logical traffic
      */
-    private void startGameLoop() {
+    private void startGame() {
         gameThread = new Thread(this);
-        gameThread.start();
+        gameThread.start();//needs to be LAST
+    }
+    
+    /**
+     * Initializes each game state to be used when called
+     */
+    private void initClasses() {
+        menu = new Menu(this);
+        playing = new Playing(this);
+        overworld = new Overworld(this);
     }
 
-    // Updates the game logic based on the current game state
-    public void update() {
-        switch (GameStates.state) {
-        case MENU:
-            menu.update();
-            break;
-        case OVERWORLD:
-            overworld.update();
-            break;
-        case PLAYING:
-            playing.update();
-            break;
-        default:
-            break;
+    /**
+     * Handles the update aspects of the game, such as updates to logical processes and frames
+     * per second
+     */
+    @Override
+    public void run() {
+      //How long each frame will last; 1 billion nano seconds = 1 second
+        double timePerFrame = 1000000000.0/FPS_SET; 
+        double timePerUpdate = 1000000000.0/UPS_SET;
+        long previousTime = System.nanoTime();
+        
+        int frames = 0;
+        int updates = 0;
+        
+        double deltaUpdates = 0;
+        double deltaFrames = 0;
+        long lastCheck = System.currentTimeMillis();
+        while(true) {
+            long currentTime = System.nanoTime();
+            deltaUpdates += (currentTime - previousTime)/timePerUpdate;
+            deltaFrames += (currentTime - previousTime)/timePerFrame;
+            previousTime = currentTime;
+            
+            if(deltaUpdates >=1) {
+                updateGameState();
+                updates++;
+                deltaUpdates --;
+            }
+            
+            
+            if (deltaFrames >= 1) {
+                gamePanel.repaint();
+                frames ++;
+                deltaFrames --;
+            }
+            
+            if (System.currentTimeMillis() - lastCheck >=1000) {
+                lastCheck = System.currentTimeMillis();
+                System.out.println("FPS: " + frames + " | UPDATES: " + updates);
+                frames = 0;
+                updates = 0;
+            }
         }
     }
 
@@ -91,90 +121,59 @@ public class Game implements Runnable {
     public void render(Graphics g) {
         switch (GameStates.state) {
         case MENU:
-            menu.draw(g);
-            break;
+                menu.draw(g);
+                break;
+        case PLAYING:
+                playing.draw(g);
+                break;
         case OVERWORLD:
             overworld.draw(g);
             break;
-        case PLAYING:
-            playing.draw(g);
-            break;
         default:
-            break;
+                break;
         }
-    }
+}
 
     /**
-     * Handles the update aspects of the game, such as updates to logical processes and frames
-     * per second
+     * Updates the game state
      */
-    @Override
-    public void run() {
+    public void updateGameState() {
+        //TODO - change name to update?
+        switch (GameStates.state) {
+        case MENU:
+                menu.update();
+                break;
+        case PLAYING:
+                playing.update();
+                break;
+        case OVERWORLD:
+            overworld.update();
+            break;
+        default:
+                break;
 
-        double timePerFrame = 1000000000.0 / FPS_SET;
-        double timePerUpdate = 1000000000.0 / UPS_SET;
-
-        long previousTime = System.nanoTime();
-
-        int frames = 0;
-        int updates = 0;
-        long lastCheck = System.currentTimeMillis();
-
-        double deltaU = 0;
-        double deltaF = 0;
-
-        while (true) {
-            long currentTime = System.nanoTime();
-
-            deltaU += (currentTime - previousTime) / timePerUpdate;
-            deltaF += (currentTime - previousTime) / timePerFrame;
-            previousTime = currentTime;
-
-            if (deltaU >= 1) {
-                update();
-                updates++;
-                deltaU--;
-            }
-
-            if (deltaF >= 1) {
-                gamePanel.repaint();
-                frames++;
-                deltaF--;
-            }
-
-            if (System.currentTimeMillis() - lastCheck >= 1000) {
-                lastCheck = System.currentTimeMillis();
-                System.out.println("FPS: " + frames + " | UPS: " + updates);
-                frames = 0;
-                updates = 0;
-
-            }
         }
-
+}
+    /**
+     * When window focus is lost, stop the player immediately
+     */
+    public void windowLost() {
+        player.resetDirBools();
     }
-
-    public GamePanel getGamePanel() {
-        return gamePanel;
+  
+    //Getters and setters 
+    public Player getPlayer() {
+        return player;
     }
+    public Menu getMenu() {
+        return menu;
+}
 
     public Playing getPlaying() {
         return playing;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
+}
 
     public Overworld getOverworld() {
         return overworld;
-    }
-
-    /**
-     * Action to take when the window focus is lost, Be it due to misclick, OS update, or
-     * otherwise
-     */
-    public void windowFocusLost() {
-        if (GameStates.state == GameStates.PLAYING)
-            playing.getPlayer().resetDirBooleans();
     }
 }

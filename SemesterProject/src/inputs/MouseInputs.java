@@ -1,4 +1,9 @@
-
+/**
+ * Mouse Inputs
+ * @author johnbotonakis
+ * This class will convert the mouse events from the user to actions on the screen, 
+ * by passing in each event to the proper game state.
+ */
 package inputs;
 
 import java.awt.event.MouseEvent;

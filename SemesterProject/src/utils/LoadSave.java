@@ -1,4 +1,8 @@
-
+/**
+ * LoadSave Class
+ * @author johnbotonakis
+ * This class is focused on loading in sprite data, level data, and building levels
+ */
 package utils;
 
 import java.awt.Color;
@@ -12,15 +16,16 @@ import main.Game;
 
 public class LoadSave {
 
-    public static final String PLAYER_ATLAS = "/Artemis_Finished.png";
-    public static final String WORLD1_ATLAS = "/Artemis_Finished.png"; // World 1 Levels sprites
-    public static final String WORLD2_ATLAS = "/Artemis_Finished.png"; // World 2 Levels sprites
-    public static final String WORLD3_ATLAS = "/World3T.png"; // World 3 Levels sprites
-    public static final String W1S1 = "/level_one_data.png"; // World 3 Levels sprites
-    public static final String SKELETON_WALK = "/skeleton/Skeleton_Walk.png";
-
-    // Returns the sprite atlas for use in drawing the correct image to the screen
-    public static BufferedImage getSpriteAtlas(String filename) {
+    public static final String PLAYER_SPRITES = "/Artemis_Finished.png";
+    public static final String LEVEL_SPRITES = "/World3T.png";
+    public static final String LEVEL1_DATA = "/level_one_data.png";
+    
+    /**
+     * Returns the specified sprite atlas for use in drawing the correct image to the screen
+     * @param filename - The name of the sprite sheet that is requested
+     * @return - The specified image as a variable
+     */
+    public static BufferedImage getSpriteSheet(String filename) {
         BufferedImage img = null;
 
         try (InputStream is = LoadSave.class.getResourceAsStream(filename)) {
@@ -31,10 +36,13 @@ public class LoadSave {
         return img;
     }
 
-    // USES RGB TO BUILD A LEVEL
+    /**
+     * Uses RGB values to generate a tiled level
+     * @return - A 2D array that is representative of tiles making up the level
+     */
     public static int[][] getLevelData() {
         int[][] lvlData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
-        BufferedImage img = getSpriteAtlas(W1S1);
+        BufferedImage img = getSpriteSheet(LEVEL1_DATA);
 
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {

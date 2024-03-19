@@ -1,4 +1,8 @@
-
+/**
+ * HelperMethods Class
+ * @author johnbotonakis
+ * This class is full of various methods that will be called by more than just one entity, object, or class
+ */
 package utils;
 
 import java.awt.geom.Rectangle2D;
@@ -7,22 +11,42 @@ import main.Game;
 
 public class HelperMethods {
 
-    // Checks to see if the player can move towards their specified destination
-    public static boolean canMoveHere(float x, float y, float width, float height, int[][] lvlData) {
-        if (!isSolid(x, y, lvlData))
-            if (!isSolid(x + width, y + height, lvlData))
-                if (!isSolid(x + width, y, lvlData))
-                    if (!isSolid(x, y + height, lvlData))
+    /**
+     * Checks whether an entity is able to move in a given direction,
+     * by checking every corner of the entities hitbox for a collision with another sprite
+     * @param x - X-Position of caller entity
+     * @param y - Y-Position of caller entity
+     * @param width - Width of the hitbox of caller entity
+     * @param height - Height of the hitbox of caller entity
+     * @param levelData - 2D Array of data that represents the level
+     * @return - True if the entity is able to move, false if it cannot
+     */
+    public static boolean canMoveHere(float x, float y, float width, float height, int[][] levelData) {
+        // check top left and bottom right first in case of arial movement
+        if (!isSolid(x, y, levelData)) {// Checks top left
+            if (!isSolid(x + width, y + height, levelData)) {// Checks bottom right
+                if (!isSolid(x + width, y, levelData)) {// checks top right
+                    if (!isSolid(x, y + height, levelData)) {
                         return true;
+                    }
+                }
+            }
+
+        }
         return false;
     }
-
-    // Checks if the tile that the player is currently standing on
-    // is solid to stand on. Otherwise, pass them through it
+    /**
+     * Determines if a tile is solid enough to walk on
+     * @param x - X-Position of the current entity
+     * @param y - Y-Position of the current entity
+     * @param lvlData - Data of the level to be checked against
+     * @return - True if it is able to be walked on, false otherwise
+     */
     private static boolean isSolid(float x, float y, int[][] lvlData) {
         if (x < 0 || x >= Game.GAME_WIDTH) {
             return true;
         }
+
         if (y < 0 || y >= Game.GAME_HEIGHT) {
             return true;
         }
@@ -32,52 +56,67 @@ public class HelperMethods {
 
         int value = lvlData[(int) yIndex][(int) xIndex];
 
-        // 48 represents 48 total sprites in the game screen, 11 is the 11th sprite on the level
-        // sheet that is transparent
+        // 48 Sprites, 11th sprite is transparent
         if (value >= 48 || value < 0 || value != 11) {
             return true;
-        } else
+        } else {
             return false;
+        }
+
     }
 
-    // Returns the XPosition to calculate if the player is running toward a wall,
-    // To avoid clipping through said wall
+    /**
+     * Checks when a hitbox collides with something on the right or left side
+     * @param hitbox - The hitbox calling this collision check
+     * @param xSpeed - The X speed of that hitbox
+     * @return The offset of the hitbox as to not clip through
+     */
     public static float getXPosWall(Rectangle2D.Float hitbox, float xSpeed) {
         int currentTile = (int) (hitbox.x / Game.TILES_SIZE);
         if (xSpeed > 0) {
-            // Right
+            // Collision on the Right Side
             int tileXPos = currentTile * Game.TILES_SIZE;
             int xOffset = (int) (Game.TILES_SIZE - hitbox.width);
             return tileXPos + xOffset - 1;
-        } else
-            // Left
+        } else {
+            // Collision on the Left Side
             return currentTile * Game.TILES_SIZE;
+        }
+
     }
 
-    // Calculates if the player is beneath a ceiling while jumping towards said ceiling
-    // To avoid clipping through it
-    public static float getYPosRoof(Rectangle2D.Float hitbox, float airSpeed) {
+    /**
+     * Checks when a hitbox collides with something on the top or bottom
+     * @param hitbox - The hitbox calling this collision check
+     * @param airSpeed - The Y Speed of that hitbox 
+     * @param hitboxOffset
+     * @return
+     */
+    public static float getYPosRoof(Rectangle2D.Float hitbox, float airSpeed, float hitboxOffset) {
         int currentTile = (int) (hitbox.y / Game.TILES_SIZE);
         if (airSpeed > 0) {
-            // Falling - touching floor
+            // Collision on the Bottom
             int tileYPos = currentTile * Game.TILES_SIZE;
-            int yOffset = (int) (Game.TILES_SIZE - hitbox.height);
-            return tileYPos + yOffset - 1;
-        } else
-            // Jumping
+            int yOffset = (int) ((Game.TILES_SIZE - hitbox.height) + hitboxOffset);
+            return tileYPos + yOffset;
+        } else {
+            // Collision on the top
             return currentTile * Game.TILES_SIZE;
-
+        }
     }
 
-    // Checks collision to ensure sprite is on the floor
-    public static boolean isOnFloor(Rectangle2D.Float hitbox, int[][] lvlData) {
+    /**
+     * Checks to see if the entity is on the floor
+     * @param hitbox - The hitbox of the entity that called this method
+     * @param lvlData - The data of the floor
+     * @return - Returns true if the entity is touching the floor, false if not
+     */
+    public static boolean gravity(Rectangle2D.Float hitbox, int[][] lvlData) {
         // Check the pixel below bottomleft and bottomright
-        if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))
-            if (!isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
-                return false;
+        if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 10, lvlData))
+                if (!isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
+                        return false;
 
         return true;
-
     }
-
 }

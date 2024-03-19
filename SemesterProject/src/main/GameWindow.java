@@ -1,4 +1,8 @@
-
+/**
+ * Game Window Class
+ * @author johnbotonakis
+ * This class will act as the frame holding the painting
+ */
 package main;
 
 import javax.swing.JFrame;
@@ -36,27 +40,27 @@ public class GameWindow {
 
         gameFrame.setJMenuBar(menuBar);
 
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameFrame.add(gamePanel);
-        gameFrame.pack();
-        gameFrame.setResizable(false);
-        gameFrame.setLocationRelativeTo(null);
-        gameFrame.setVisible(true); // Has to be at bottom
-
-        // if the user clicks onto/away from screen
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//When exiting, close program
+        gameFrame.add(gamePanel);//Add in the game Panel
+        gameFrame.pack(); //Fit around the gamePanel
+        gameFrame.setResizable(false); //Do not resize
+        gameFrame.setLocationRelativeTo(null); //Center the frame
+        gameFrame.setVisible(true);
         gameFrame.addWindowFocusListener(new WindowFocusListener() {
-
             @Override
             public void windowGainedFocus(WindowEvent e) {
-                // TODO Auto-generated method stub
-
             }
 
+            //If window loses focus, stop ALL player inputs
             @Override
             public void windowLostFocus(WindowEvent e) {
-                gamePanel.getGame().windowFocusLost();
+                gamePanel.getGame().windowLost();
+                
             }
-
+            
         });
     }
+    
+    
 }
+

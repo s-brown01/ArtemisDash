@@ -1,27 +1,21 @@
 /**
  * Entity.java
- * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description
- * This class is an abstract class for all types of moving/interacting objects in the game. 
- * Players, enemies, and bosses will all be children (of different generations) of this class. 
- * Each entity will need an x and y coordinate, along with a width and height.
+ * Entity Abstract Class
+ * @author johnbotonakis and Sean-Paul Brown
+ * This abstract Entity class shares functionality across all player and enemy objects. Things that can move on either axis, 
+ * attack, and have some degree of "intelligence" start their classes from this blueprint. 
+ * 
  */
 package entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import main.Game;
-
+//Class you cannot create an instance of, ONLY EXTEND
 public abstract class Entity {
-    /**
-     * Parameters that every instance of entity will inherit Multiplying these by SCALE means
-     * it will remain proportionally the same on screen Protected variables mean that only
-     * instances of this class can use
-     */
-    protected float x, y;
+    protected float x,y;
     protected int width, height;
     protected Rectangle2D.Float hitbox;
     protected int state; // this determines what "mode" the entity is in
@@ -36,22 +30,17 @@ public abstract class Entity {
      * @param width
      * @param height
      */
+
     public Entity(float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
-        this.width = width;
         this.height = height;
-
+        this.width = width;
     }
 
     abstract public void update();
 
     abstract public void draw(Graphics g);
-
-    // Initalize hitbox here
-    protected void initHitbox(float x, float y, float width, float height) {
-        hitbox = new Rectangle2D.Float(x, y, width, height);
-    }
 
     // Updates hitbox by giving it new X + Y
     protected void updateHitbox() {
@@ -62,16 +51,36 @@ public abstract class Entity {
     /**
      * Draws the hitbox around the player's sprite. This is for debugging the hitbox
      * 
+    /**
+     * Draws a hitbox around the entity for debugging purposes
      * @param g
-     * @param xlvlOffset The offset needed for the level collision
      */
     protected void drawHitbox(Graphics g) {
-        g.setColor(Color.PINK);
-        g.drawRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
+        //For debugging hitbox
+        g.setColor(Color.RED);
+        g.drawRect((int)hitbox.x, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
     }
-
+    
     /**
-     * @returns hitbox object for collision detection
+     * Initializes the hitbox
+     * @param x - X-Position on screen
+     * @param y - Y-Position on screen
+     * @param width - How wide the box is
+     * @param height - How tall the box is
+     */
+    protected void initHitbox(float x, float y, float width, float height) {
+        hitbox = new Rectangle2D.Float(x,y, width, height);
+        
+    }
+    
+//    protected void updateHitbox() {
+//        hitbox.x = (int) x;
+//        hitbox.y = (int)y;
+//    }
+    
+    /**
+     * Returns the hitbox of a given entity
+     * @return - hitbox
      */
     public Rectangle2D.Float getHitbox() {
         return hitbox;
