@@ -51,10 +51,10 @@ public abstract class Entity {
 //    abstract public void draw(Graphics g);
 
     // Updates hitbox by giving it new X + Y
-    protected void updateHitbox() {
-        x = (int) x;
-        y = (int) y;
-    }
+//    protected void updateHitbox() {
+//        x = (int) x;
+//        y = (int) y;
+//    }
 
     /**
      * Draws the hitbox around the player's sprite. This is for debugging the hitbox

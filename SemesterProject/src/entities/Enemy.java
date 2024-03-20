@@ -12,7 +12,8 @@ package entities;
 import main.Game;
 import static utils.Constants.Directions.*;
 import static utils.Constants.EnemyConstants.*;
-import static utils.HelperMethods.gravity;
+import static utils.Constants.GRAVITY;
+import static utils.HelperMethods.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -23,6 +24,7 @@ public abstract class Enemy extends Entity {
     protected boolean active = true; // keeps track of if enemy is "alive" to the program.
     protected boolean firstUpdate = true;
     protected int enemy_type;
+    protected int tileY;    
 
     /*
      * These are temporary variables to define how far the enemy can see and how fast the
@@ -161,7 +163,16 @@ public abstract class Enemy extends Entity {
      * @param lvlData
      */
     protected void updateInAir(int[][] lvlData) {
-        // TODO Auto-generated method stub
+        // check if can fall
+        if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
+            hitbox.y += GRAVITY;
+            airSpeed += GRAVITY;
+        } else {
+            // if can't fall
+            inAir = false;
+            hitbox.y = getYPosRoof(hitbox, airSpeed, 0);
+            tileY = (int)(hitbox.y / Game.TILES_SIZE);
+        }
         
     }
 

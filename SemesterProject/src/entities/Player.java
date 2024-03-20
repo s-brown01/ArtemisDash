@@ -20,6 +20,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 import main.Game;
+import states.Playing;
 import utils.LoadSave;
 
 public class Player extends Entity {
@@ -29,6 +30,7 @@ public class Player extends Entity {
         return player_count < 1;
     }
 
+    private final Playing playing;
     private BufferedImage[][] animations;
 
     private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
@@ -58,14 +60,17 @@ public class Player extends Entity {
      * @param y      - Y-Position on the screen
      * @param width  - Width of Sprite
      * @param height - Height of Sprite
+     * @param playing - the Playing GameState 
      */
-    public Player(float x, float y, int width, int height) {
+    public Player(float x, float y, int width, int height, Playing playing) {
         super(x, y, width, height);
+        this.playing = playing;
         // Singleton check
         if (!Player.singletonCheck())
             throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAni();
         initHitbox(x, y, hitboxCorrectionWidth, hitboxCorrectionHeight);
+        this.state = IDLE;
 
     }
 
@@ -146,9 +151,10 @@ public class Player extends Entity {
         if(jump) {
             jump();
         }
-        if (!left && !right && !inAir) {
-            return;
-        }
+        // check if holding both left and right or holding neither
+        if (!inAir)
+            if ((!left && ! right) || (right && left))
+                return;
 
         float xSpeed = 0;
 
@@ -169,7 +175,7 @@ public class Player extends Entity {
                 airSpeed += gravity;
                 updateXPos(xSpeed);
             } else {
-                hitbox.y = getYPosRoof(hitbox, airSpeed,hitboxOffset);
+                hitbox.y = getYPosRoof(hitbox, airSpeed, hitboxOffset);
 
                 if (airSpeed > 0)
                     resetInAir();
