@@ -22,6 +22,7 @@ public class Playing extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
 
+
     public Playing(Game game) {
         super(game);
         initClasses();
@@ -83,9 +84,10 @@ public class Playing extends State implements StateMethods {
             break;
         case KeyEvent.VK_SPACE:
             player.setJump(false);
+           
             break;
         }
-
+        
     }
 
     @Override

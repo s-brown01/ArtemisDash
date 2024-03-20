@@ -22,7 +22,7 @@ public class Constants {
        public static class PlayerConstants{
            public static final int IDLE = 0;
            public static final int RUNNING = 1;
-           public static final int JUMP = 2;
+           public static final int JUMPSTART = 2;
            public static final int LAND = 3;
            public static final int DIE = 4;
            public static final int DASH = 5;
@@ -36,7 +36,7 @@ public class Constants {
                    return 12;
                case RUNNING:
                    return 10;
-               case JUMP:
+               case JUMPSTART:
                    return 11;
                case LAND:
                    return 3;

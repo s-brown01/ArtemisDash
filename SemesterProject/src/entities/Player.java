@@ -45,6 +45,7 @@ public class Player extends Entity {
     private float jumpSpeed = -2.25f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
     private boolean inAir = false;
+    
 
     /**
      * Constructor for the player class
@@ -221,9 +222,13 @@ public class Player extends Entity {
         if (attacking) {
             player_action = DRAW;
         }
-        //Figure out how to loop a few frames for longer jump animation
-        if(jump) {
-            player_action = JUMP;
+        
+        if(jump && inAir) {//If spacebar is held and you're in the air, hold the jumping animation
+            player_action = JUMPSTART;
+        }
+        
+        if(!jump && inAir) {//If spacebar is not held and in the air, begin the falling animation
+//            player_action = JUMPFALL;
         }
         
         if (startAni != player_action) {
@@ -298,4 +303,10 @@ public class Player extends Entity {
     public void setJump(boolean jump) {
         this.jump = jump;
     }
+    
+    public boolean getInAir() {
+        return inAir;
+    }
+
+        
 }
