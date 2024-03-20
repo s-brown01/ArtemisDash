@@ -97,7 +97,6 @@ public abstract class Enemy extends Entity {
      * 
      * USE ENEMY MANAGER DRAW INSTEAD
      */
-    @Override
     public void draw(Graphics g) {
         // EMPTY FUNCTION
         // NO ENEMY SHOULD DRAW ITSELF

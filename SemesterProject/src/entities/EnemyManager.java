@@ -76,7 +76,7 @@ public class EnemyManager {
                 continue;
             // the * 2 is TEMPORARY
             g.drawImage(skeletonAnis[0][s.getAniIndex()], (int) (s.getHitbox().x), (int) (s.getHitbox().y),
-                    (int) (SKELETON_WIDTH * 2), (int) (SKELETON_HEIGHT * 2), null);
+                    (int) (SKELETON_WIDTH * Game.SCALE), (int) (SKELETON_HEIGHT * Game.SCALE), null);
             s.drawHitbox(g);
         }
     }
@@ -87,12 +87,12 @@ public class EnemyManager {
      * 
      * It loops through all enemy Lists and will call update on each individual enemy.
      */
-    public void update() {
+    public void update(int[][] lvlData) {
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
-            s.update();
+            s.update(lvlData);
         }
     }
 

@@ -10,7 +10,11 @@
 package entities;
 
 import java.awt.Graphics;
+
+import utils.HelperMethods;
+
 import static utils.Constants.EnemyConstants.*;
+import static utils.HelperMethods.*;
 
 public class Skeleton extends Enemy {
 
@@ -23,10 +27,27 @@ public class Skeleton extends Enemy {
     /**
      * This will update where the Skeleton is, what action they are doing, and their
      * animation.
+     * 
+     * @param lvlData - A 2D int array of all of the data in the level
      */
-    @Override
-    public void update() {
+    public void update(int[][] lvlData) {
+        if (firstUpdate)
+            firstUpdateRun(lvlData);
         updateAniTick();
+    }
+
+    /**
+     * This is the first update, should only run once when it is the first update.
+     * Since enemies can't jump, it checks if they spawned in the air.
+     */
+    private void firstUpdateRun(int[][] lvlData) {
+        // TODO fill this out
+        firstUpdate = false;
+        // check on ground
+        if (!gravity(hitbox, lvlData)) {
+            inAir = true;
+            
+        }
     }
 
 }

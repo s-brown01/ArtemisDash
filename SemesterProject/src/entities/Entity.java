@@ -13,6 +13,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
+import main.Game;
+
 //Class you cannot create an instance of, ONLY EXTEND
 public abstract class Entity {
     protected float x,y;
@@ -21,6 +23,12 @@ public abstract class Entity {
     protected int state; // this determines what "mode" the entity is in
     protected int aniIndex, aniTick, aniSpeed = 25;
     protected int currentHealth, maxHealth;
+    
+    
+    protected boolean inAir;
+    protected float gravity = 0.04f * Game.SCALE; // How quickly the player falls to earth
+    protected float airSpeed = 0f; // How quickly the player moves in the air
+
 
     /**
      * Constructor class for every entity instance
@@ -38,9 +46,9 @@ public abstract class Entity {
         this.width = width;
     }
 
-    abstract public void update();
+//    abstract public void update();
 
-    abstract public void draw(Graphics g);
+//    abstract public void draw(Graphics g);
 
     // Updates hitbox by giving it new X + Y
     protected void updateHitbox() {

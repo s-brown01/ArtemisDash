@@ -1,18 +1,9 @@
 /**
-<<<<<<< HEAD
  * Player.java
- * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description:
- * This class will represent the player, and it is a singleton since only 1 player should ever be created.
- * It will keep track of how the player is moving, what action they are doing.
- * This class will keep track of all animations since only 1 player is there.
-=======
  * Player Class
- * @author johnbotonakis
+ * @author johnbotonakis and Sean-Paul Brown
  * This player class will hold every variable and funciton relating to the active player's inputs and outputs. 
  * 
->>>>>>> main
  */
 package entities;
 
@@ -56,8 +47,6 @@ public class Player extends Entity {
     /**
      * Jumping and Gravity variables
      */
-    private float airSpeed = 0f; // How quickly the player moves in the air
-    private float gravity = 0.04f * Game.SCALE; // How quickly the player falls to earth
     private float jumpSpeed = -2.25f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
     private boolean inAir = false;
@@ -100,10 +89,10 @@ public class Player extends Entity {
         drawHitbox(g);
     }
     
-    public void draw(Graphics g) {
-        //TODO - naming
-        renderPlayer(g);
-    }
+//    public void draw(Graphics g) {
+//        //TODO - naming
+//        renderPlayer(g);
+//    }
 
     /**
      * Creates an animation library to store every animation from the loaded in

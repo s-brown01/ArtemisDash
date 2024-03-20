@@ -17,16 +17,12 @@ public abstract class Projectile extends Entity {
         // TODO Auto-generated constructor stub
     }
 
-    @Override
     public void update() {
-        // TODO Auto-generated method stub
-
+        // TODO Fill in method
     }
-
-//    @Override
-//    public void renderPlayer(Graphics g) {
-//        // TODO Auto-generated method stub
-//
-//    }
+    
+    public void draw(Graphics g) {
+        // TODO Fill in method
+    }
 
 }

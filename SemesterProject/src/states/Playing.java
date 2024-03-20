@@ -41,9 +41,13 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void update() {
+        if (paused) {
+            // update pause overlay
+            return;
+        }
         levelManager.update();
         player.update();
-        enemyManager.update();
+        enemyManager.update(LevelManager.getCurrentLevel().getLevelData());
 
     }
 
@@ -52,6 +56,10 @@ public class Playing extends State implements StateMethods {
         levelManager.draw(g);
         enemyManager.draw(g);
         player.renderPlayer(g);
+        if (paused) {
+            g.setColor(new Color(150, 150, 150, 200));
+            g.drawRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+        }
 
     }
 
@@ -72,6 +80,9 @@ public class Playing extends State implements StateMethods {
             break;
         case KeyEvent.VK_SPACE:
             player.setJump(true);
+            break;
+        case KeyEvent.VK_P:
+            paused = !paused;
             break;
         case KeyEvent.VK_BACK_SPACE:
             GameStates.state = GameStates.MENU;
