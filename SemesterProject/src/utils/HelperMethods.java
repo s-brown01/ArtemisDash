@@ -13,7 +13,9 @@ public class HelperMethods {
 
     /**
      * Checks whether an entity is able to move in a given direction,
-     * by checking every corner of the entities hitbox for a collision with another sprite
+     * by checking every corner of the entities hitbox for a collision with another sprite.
+     * 
+     * The order of checks is: Top left, Bottom right, Top right, Bottom left.
      * @param x - X-Position of caller entity
      * @param y - Y-Position of caller entity
      * @param width - Width of the hitbox of caller entity

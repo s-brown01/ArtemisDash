@@ -45,11 +45,7 @@ public abstract class Entity {
         hitbox = new Rectangle2D.Float(x,y, width, height);
         
     }
-    
-//    protected void updateHitbox() {
-//        hitbox.x = (int) x;
-//        hitbox.y = (int)y;
-//    }
+
     
     /**
      * Returns the hitbox of a given entity
@@ -59,8 +55,4 @@ public abstract class Entity {
         return hitbox;
     }
 
-    public void update() {
-        // TODO Auto-generated method stub
-        
-    }
 }

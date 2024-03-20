@@ -24,12 +24,10 @@ import utils.LoadSave;
 public class Player extends Entity {
 
     private BufferedImage[][] animations;
-    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
     private int player_action = IDLE;
-    private boolean moving, attacking = false;
+    private boolean moving, attacking,killed = false;
     private boolean left, up, right, down, jump;
-    private float playerSpeed = 1.75f;
-    private int[][] levelData;
+    private float playerSpeed = 2.75f;
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
     private float yDrawOffset = 20 * Game.SCALE; // Calculated Y - Positional offset for drawing Sprite
     private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
@@ -41,11 +39,15 @@ public class Player extends Entity {
      * Jumping and Gravity variables
      */
     private float airSpeed = 0f; // How quickly the player moves in the air
-    private float gravity = 0.04f * Game.SCALE; // How quickly the player falls to earth
-    private float jumpSpeed = -2.25f * Game.SCALE; // How high the player can jump
+    private float jumpSpeed = -2.5f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
     private boolean inAir = false;
     
+    private int[][] levelData;
+    
+    private float gravity = 0.04f * Game.SCALE; // Going to be final and moved to CONSTANTS
+    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
+    //aniSpeed will be moved to CONSTANTS
 
     /**
      * Constructor for the player class
@@ -130,8 +132,8 @@ public class Player extends Entity {
      * Updates player positioning based on the inputs
      */
     private void updatePos() {
-
         moving = false;
+        
         if(jump) {
             jump();
         }
@@ -190,6 +192,7 @@ public class Player extends Entity {
     private void resetInAir() {
         inAir = false;
         airSpeed = 0;
+        gravity = 0.04f * Game.SCALE;
 
     }
 
@@ -228,7 +231,11 @@ public class Player extends Entity {
         }
         
         if(!jump && inAir) {//If spacebar is not held and in the air, begin the falling animation
-//            player_action = JUMPFALL;
+            player_action = JUMPEND;
+        }
+        
+        if(killed) {
+            player_action = DIE;
         }
         
         if (startAni != player_action) {
@@ -302,10 +309,22 @@ public class Player extends Entity {
     }
     public void setJump(boolean jump) {
         this.jump = jump;
+        //When jump is released, implement gravity a bit more
+        if (!jump) {
+            gravity = gravity +0.11f;
+        }
     }
     
     public boolean getInAir() {
         return inAir;
+    }
+
+    public void kill() {
+        if (killed)
+        killed = false;
+        else {
+            killed = true;
+        }
     }
 
         
