@@ -12,6 +12,7 @@ package entities;
 import main.Game;
 import static utils.Constants.Directions.*;
 import static utils.Constants.EnemyConstants.*;
+import static utils.HelperMethods.gravity;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -37,6 +38,7 @@ public abstract class Enemy extends Entity {
 //    protected float eyeSight = walk_speed * 5;
 //    protected float enemy_speed = walk_speed / 2;
     protected float attackDistance = Game.TILES_SIZE;
+    protected float eyeSight = attackDistance * 5;
     protected int walkDirection = LEFT;
 
     public Enemy(float x, float y, int width, int height, int enemy_type) {
@@ -72,6 +74,19 @@ public abstract class Enemy extends Entity {
             }
         }
     }
+    
+    /**
+     * This should be used to change the enemy state, instead of assigning it.
+     * This will reset the ticks/index
+     * @param newState
+     */
+    protected void startNewState(int newState) {
+        // TODO - add validity check
+        this.state = newState;
+        aniIndex = 0;
+        aniTick = 0;
+        
+    }
 
     /**
      * This function will subtract what ever damage is inputed into this method from the
@@ -100,6 +115,67 @@ public abstract class Enemy extends Entity {
     public void draw(Graphics g) {
         // EMPTY FUNCTION
         // NO ENEMY SHOULD DRAW ITSELF
+    }
+    
+    
+    /**
+     * @param player
+     */
+    protected void checkHit(Player player) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /**
+     * Check if the player is within attack range
+     * @param player
+     * @return true the player is, either side
+     */
+    protected boolean isInAttackRange(Player player) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /**
+     * Turn the sprite/walking direction
+     * @param player
+     */
+    protected void turnTowardsPlayer(Player player) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /**
+     * Check if the player is within eyesight and clear line of sight
+     * @param lvlData
+     * @param player
+     * @return returns true if there is a clear line of sight to the player and within sight
+     */
+    protected boolean canSeePlayer(int[][] lvlData, Player player) {
+        // enemies cannot see different y-values
+        
+        return false;
+    }
+
+    /**
+     * @param lvlData
+     */
+    protected void updateInAir(int[][] lvlData) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /**
+     * This is the first update, should only run once when it is the first update.
+     * Since enemies can't jump, it checks if they spawned in the air.
+     */
+    protected void firstUpdateCheck(int[][] lvlData) {
+        // TODO fill this out
+        firstUpdate = false;
+        // check on ground
+        if (!gravity(hitbox, lvlData))
+            inAir = true;
+        return;
     }
 
 }

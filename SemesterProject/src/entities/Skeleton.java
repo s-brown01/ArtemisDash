@@ -18,6 +18,8 @@ import static utils.HelperMethods.*;
 
 public class Skeleton extends Enemy {
 
+    protected boolean attackChecked;
+
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);
         initHitbox(x, y, width, height);
@@ -29,25 +31,60 @@ public class Skeleton extends Enemy {
      * animation.
      * 
      * @param lvlData - A 2D int array of all of the data in the level
+     * @param player 
      */
-    public void update(int[][] lvlData) {
-        if (firstUpdate)
-            firstUpdateRun(lvlData);
+    public void update(int[][] lvlData, Player player) {
+        updateBehavior(lvlData, player);
         updateAniTick();
+    }
+    
+    /**
+     * 
+     * @param lvlData
+     * @param player
+     */
+    private void updateBehavior(int[][] lvlData, Player player) {
+        if (firstUpdate)
+            firstUpdateCheck(lvlData);
+        if (inAir)
+            updateInAir(lvlData);
+        else {
+            switch(state) {
+            case(IDLE):
+                startNewState(RUNNING);
+                break;
+            case(RUNNING):
+                // turn, attack, then move 
+                // if can see player
+                if(canSeePlayer(lvlData, player)) {
+                    // turn towards player
+                    turnTowardsPlayer(player);
+                    // if in attack range
+                    if (isInAttackRange(player)) 
+                        startNewState(ATTACK);
+                }
+                break;
+            case (ATTACK):
+                updateAttackbox();
+                // check if first update with attack
+                if (aniIndex == 0) 
+                    attackChecked = false;
+                if (!attackChecked && aniIndex == 3)
+                    checkHit(player);
+                break;
+            case (HIT):
+                break;
+            }
+        }
     }
 
     /**
-     * This is the first update, should only run once when it is the first update.
-     * Since enemies can't jump, it checks if they spawned in the air.
+     * Make sure the attack box is in line with the hitbox/sprite
      */
-    private void firstUpdateRun(int[][] lvlData) {
-        // TODO fill this out
-        firstUpdate = false;
-        // check on ground
-        if (!gravity(hitbox, lvlData)) {
-            inAir = true;
-            
-        }
+    private void updateAttackbox() {
+        // TODO Auto-generated method stub
+        
     }
+
 
 }

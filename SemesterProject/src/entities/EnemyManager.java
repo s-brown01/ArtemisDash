@@ -31,7 +31,7 @@ public class EnemyManager {
         this.playing = playing;
         loadImgs();
         // temp code
-        skeletonList.add(new Skeleton(500, 400, 50, 50 * 33 / 22));
+        skeletonList.add(new Skeleton(500, 300, SKELETON_WIDTH, SKELETON_HEIGHT));
     }
 
     /**
@@ -76,7 +76,7 @@ public class EnemyManager {
                 continue;
             // the * 2 is TEMPORARY
             g.drawImage(skeletonAnis[0][s.getAniIndex()], (int) (s.getHitbox().x), (int) (s.getHitbox().y),
-                    (int) (SKELETON_WIDTH * Game.SCALE), (int) (SKELETON_HEIGHT * Game.SCALE), null);
+                    (int) (SKELETON_WIDTH), (int) (SKELETON_HEIGHT), null);
             s.drawHitbox(g);
         }
     }
@@ -86,13 +86,15 @@ public class EnemyManager {
      * LoadEnemies has been used to fill in all of the lists.
      * 
      * It loops through all enemy Lists and will call update on each individual enemy.
+     * @param lvlData 
+     * @param player 
      */
-    public void update(int[][] lvlData) {
+    public void update(int[][] lvlData, Player player) {
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
-            s.update(lvlData);
+            s.update(lvlData, player);
         }
     }
 

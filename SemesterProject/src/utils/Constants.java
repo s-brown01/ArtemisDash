@@ -11,6 +11,9 @@ import main.Game;
 
 
 public class Constants {
+    
+    public static final float GRAVITY = 0.04f * Game.SCALE;
+    public static final int ANISPEED = 10;
 
     public static class Directions{
         public static final int LEFT = 0;

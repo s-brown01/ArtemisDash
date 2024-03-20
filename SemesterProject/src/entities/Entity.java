@@ -81,11 +81,6 @@ public abstract class Entity {
         
     }
     
-//    protected void updateHitbox() {
-//        hitbox.x = (int) x;
-//        hitbox.y = (int)y;
-//    }
-    
     /**
      * Returns the hitbox of a given entity
      * @return - hitbox

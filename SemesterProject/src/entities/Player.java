@@ -35,7 +35,7 @@ public class Player extends Entity {
     private int player_action = IDLE;
     private boolean moving, attacking = false;
     private boolean left, up, right, down, jump;
-    private float playerSpeed = 1.75f;
+    private float playerSpeed = 2.75f;
     private int[][] levelData;
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
     private float yDrawOffset = 20 * Game.SCALE; // Calculated Y - Positional offset for drawing Sprite
