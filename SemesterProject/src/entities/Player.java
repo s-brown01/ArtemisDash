@@ -89,9 +89,9 @@ public class Player extends Entity {
      * @param g - Graphics
      */
     public void renderPlayer(Graphics g) {
+        drawHitbox(g);
         g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset),
                 width, height, null);
-        drawHitbox(g);
     }
     
 //    public void draw(Graphics g) {
