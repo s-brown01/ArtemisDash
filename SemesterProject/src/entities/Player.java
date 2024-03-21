@@ -322,7 +322,7 @@ public class Player extends Entity {
         this.jump = jump;
         // When jump is released, implement gravity a bit more
         if (!jump) {
-            gravity = gravity + 0.02f;
+            gravity = gravity + 0.01f;
         }
     }
 
