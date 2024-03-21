@@ -24,6 +24,8 @@ public abstract class Enemy extends Entity {
     protected boolean firstUpdate = true;
     protected int enemy_type;
     protected int tileY;
+    protected boolean attackChecked;
+
 
     /*
      * These are temporary variables to define how far the enemy can see and how fast the
@@ -97,15 +99,14 @@ public abstract class Enemy extends Entity {
 
     /**
      * This function will subtract what ever damage is inputed into this method from the
-     * enemies total health. If the enemy reaches 0 health, it will deactivate and die.
+     * entity total health. If the enemy reaches 0 health, it will deactivate and die.
      * 
-     * @param damageTaken - the amount of damage taken by this enemy
+     * @param damageTaken - the amount of damage taken by this entity
      */
     public void hurt(int damageTaken) {
         currentHealth -= damageTaken;
         if (currentHealth <= 0) {
             active = false;
-//            state = DEAD;
         }
     }
 
@@ -127,20 +128,11 @@ public abstract class Enemy extends Entity {
     /**
      * @param player
      */
-    protected void checkHit(Player player) {
-        // TODO Auto-generated method stub
-
-    }
-
-    /**
-     * Check if the player is within attack range
-     * 
-     * @param player
-     * @return true the player is, either side
-     */
-    protected boolean isInAttackRange(Player player) {
-        // TODO Auto-generated method stub
-        return false;
+    public void checkHit(Player player) {
+        // TODO - one hit should not immediately kill player
+        if (attackbox.intersects(player.getHitbox()))
+            player.kill();
+        attackChecked = true;
     }
 
     /**
@@ -149,36 +141,75 @@ public abstract class Enemy extends Entity {
      * @param player
      */
     protected void turnTowardsPlayer(Player player) {
-        // TODO Auto-generated method stub
+        // if the player's x is less than enemy's, they must be to the left
+        if (player.getHitbox().x < hitbox.x)
+            walkDirection = LEFT;
+        else 
+            // if not left, than right
+            walkDirection = RIGHT;
 
     }
 
     /**
-     * Check if the player is within eyesight and clear line of sight
+     * Check if the player is within eyesight and clear line of sight. Players must be on same tile to be seen.
      * 
-     * @param lvlData
-     * @param player
+     * @param lvlData - the data from the level as a 2D int array
+     * @param player - the main Player
      * @return returns true if there is a clear line of sight to the player and within sight
      */
     protected boolean canSeePlayer(int[][] lvlData, Player player) {
         // enemies cannot see different y-values
-
-        return false;
+        final int playerYTile = (int)(player.getHitbox().y / Game.TILES_SIZE);
+        // check height/y-tile
+        if (playerYTile != tileY)
+            return false;
+        // check that the player is within their eyesight
+        if(!isPlayerInSightRange(player))
+            return false;
+        // check if the line of sight to the player is clear
+        if(!isSightClear(lvlData, hitbox, player.getHitbox(), tileY))
+            return false;
+        // same height & in eyesight & clear l.o.s.
+        // enemy can see player
+        return true;
     }
 
     /**
+     * Check that the absolute value of the distance is within the eyeSight of the enemy.
+     *  
+     * @param player - the Player in the game 
+     * @return true if the player is within the enemy's eyesight
+     */
+    private boolean isPlayerInSightRange(Player player) {
+        // using absolute value means that we don't care which side player is on
+        final int distance = (int)(Math.abs(player.hitbox.x - hitbox.x));
+        return distance <= eyeSight;
+    }
+    
+    /**
+     * Check if the player is within attack range
+     * 
+     * @param player
+     * @return true the player is, either side
+     */
+    protected boolean isInAttackRange(Player player) {
+        // using absolute value means that we don't care which side player is on
+        final int distance = (int)(Math.abs(player.hitbox.x - hitbox.x));
+        return distance <= attackDistance;
+    }
+
+    /**
+     * Update how the enemy will behave in the air/landing
      * @param lvlData
      */
     protected void updateInAir(int[][] lvlData) {
         // check if can fall
         if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
             hitbox.y += airSpeed;
-//            hitbox.x += 1;
             airSpeed += GRAVITY;
         } else {
             // if can't fall
             inAir = false;
-//            airSpeed = 0;
             hitbox.y = getYPosRoof(hitbox, airSpeed, 0) + hitbox.height;
             tileY = (int) (hitbox.y / Game.TILES_SIZE);
         }
@@ -196,6 +227,18 @@ public abstract class Enemy extends Entity {
         if (!gravity(hitbox, lvlData))
             inAir = true;
         return;
+    }
+    
+    /**
+     * This method will switch the walk direction horizontally. If they enemy is moving right, then they will turn left. If left, then turn right
+     */
+    protected void switchWalkDirection() {
+        // if left currently, move right
+        if (walkDirection == LEFT)
+            walkDirection = RIGHT;
+        else 
+            // if they're not going left, they are now
+            walkDirection = LEFT;
     }
 
 }

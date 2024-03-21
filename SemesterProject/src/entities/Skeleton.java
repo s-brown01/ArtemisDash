@@ -13,7 +13,6 @@ import static utils.Constants.EnemyConstants.*;
 
 public class Skeleton extends Enemy {
 
-    protected boolean attackChecked;
 
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);

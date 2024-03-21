@@ -143,4 +143,43 @@ public class HelperMethods {
 
         return true;
     }
+    
+    /**
+     * 
+     * @param levelData
+     * @param firstHitbox
+     * @param secondHitbox
+     * @param yTile
+     * @return true if there is a clear line of sight between both hitboxes
+     */
+    public static boolean isSightClear(int[][] levelData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox, int yTile) {
+        final int firstXTile = (int)(firstHitbox.x / Game.TILES_SIZE);
+        final int secondXTile = (int)(secondHitbox.x / Game.TILES_SIZE);
+        
+        
+        if (firstXTile == secondXTile)
+            return true;
+        
+        return false;
+    }
+    
+    /**
+     * Checking the row that the 
+     * @param xStart - the starting x-coordinate 
+     * @param xEnd - the ending x-coordinate
+     * @param y - the y-position of both entities
+     * @param lvlData
+     * @return
+     */
+    public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {
+        // check the tiles on same level and 1 down
+        for(int i = 0; i < xStart - xEnd; i++) {
+            if(isTileSolid(xStart + i, y, lvlData))
+                return false;
+            
+            if(!isTileSolid(xStart + i, y + 1, lvlData))
+                return false;
+        }
+        return true;
+    }
 }
