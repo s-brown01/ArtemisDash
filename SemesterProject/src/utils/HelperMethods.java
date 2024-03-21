@@ -14,6 +14,7 @@ public class HelperMethods {
     /**
      * Checks whether an entity is able to move in a given direction,
      * by checking every corner of the entities hitbox for a collision with another sprite
+     * 
      * @param x - X-Position of caller entity
      * @param y - Y-Position of caller entity
      * @param width - Width of the hitbox of caller entity
@@ -23,15 +24,18 @@ public class HelperMethods {
      */
     public static boolean canMoveHere(float x, float y, float width, float height, int[][] levelData) {
         // check top left and bottom right first in case of arial movement
-        if (!isSolid(x, y, levelData)) {// Checks top left
-            if (!isSolid(x + width, y + height, levelData)) {// Checks bottom right
-                if (!isSolid(x + width, y, levelData)) {// checks top right
+        if (!isSolid(x, y, levelData)) { // Checks top left
+            if (!isSolid(x + width, y + height, levelData)) { // Checks bottom right
+                if (!isSolid(x + width, y, levelData)) { // checks top right
                     if (!isSolid(x, y + height, levelData)) {
-                        return true;
+                        if(!isSolid(x, y + height / 2, levelData)) {
+                            if (!isSolid(x+width, y + height/2, levelData)) {
+                                return true;
+                            }
+                        }
                     }
                 }
             }
-
         }
         return false;
     }
@@ -54,7 +58,22 @@ public class HelperMethods {
         float xIndex = x / Game.TILES_SIZE;
         float yIndex = y / Game.TILES_SIZE;
 
-        int value = lvlData[(int) yIndex][(int) xIndex];
+        
+        return isTileSolid((int)xIndex, (int)(yIndex), lvlData);
+
+    }
+    
+
+    /**
+     * This method will check a specific index in the levelData passed in. If it is not in the tiles being used or is NOT a transparent tile, it is solid. 
+     * 
+     * @param xIndex
+     * @param yIndex
+     * @param levelData
+     * @return true is the tile is solid
+     */
+    private static boolean isTileSolid(int xIndex, int yIndex, int[][] levelData) {
+        int value = levelData[(int) yIndex][(int) xIndex];
 
         // 48 Sprites, 11th sprite is transparent
         if (value >= 48 || value < 0 || value != 11) {
@@ -62,9 +81,7 @@ public class HelperMethods {
         } else {
             return false;
         }
-
     }
-
     /**
      * Checks when a hitbox collides with something on the right or left side
      * @param hitbox - The hitbox calling this collision check
@@ -113,7 +130,7 @@ public class HelperMethods {
      */
     public static boolean gravity(Rectangle2D.Float hitbox, int[][] lvlData) {
         // Check the pixel below bottomleft and bottomright
-        if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 10, lvlData))
+        if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))
                 if (!isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
                         return false;
 
