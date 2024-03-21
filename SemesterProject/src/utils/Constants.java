@@ -84,8 +84,8 @@ public class Constants {
         public static final int CRABBY_DRAW_OFFSET_X = (int) (26 * Game.SCALE);
         public static final int CRABBY_DRAW_OFFSET_Y = (int) (9 * Game.SCALE);
 
-        public static final int SKELETON_WIDTH_DEFAULT = 22;
-        public static final int SKELETON_HEIGHT_DEFAULT = 33;
+        public static final int SKELETON_WIDTH_DEFAULT = 51;
+        public static final int SKELETON_HEIGHT_DEFAULT = 64;
         public static final int SKELETON_WIDTH = (int) (SKELETON_WIDTH_DEFAULT * Game.SCALE);
         public static final int SKELETON_HEIGHT = (int) (SKELETON_HEIGHT_DEFAULT * Game.SCALE);
 
@@ -107,10 +107,15 @@ public class Constants {
             case SKELETON:
                 switch (enemy_action) {
                 case IDLE:
+                    return 11;
                 case RUNNING:
+                    return 13;
                 case ATTACK:
+                    return 18;
                 case HIT:
+                    return 8;
                 case DEAD:
+                    return 15;
                 default:
                     return 0;
                 }
