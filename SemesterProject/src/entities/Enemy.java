@@ -171,12 +171,12 @@ public abstract class Enemy extends Entity {
         // check if can fall
         if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
             hitbox.y += airSpeed;
-            hitbox.x += 1;
+//            hitbox.x += 1;
             airSpeed += GRAVITY;
         } else {
             // if can't fall
             inAir = false;
-            airSpeed = 0;
+//            airSpeed = 0;
             hitbox.y = getYPosRoof(hitbox, airSpeed, 0) + hitbox.height;
             tileY = (int)(hitbox.y / Game.TILES_SIZE);
         }

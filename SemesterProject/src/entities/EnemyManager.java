@@ -32,7 +32,7 @@ public class EnemyManager {
         this.playing = playing;
         loadImgs();
         // temp code
-        skeletonList.add(new Skeleton(650, 250, SKELETON_WIDTH, SKELETON_HEIGHT));
+        skeletonList.add(new Skeleton(600, 200, SKELETON_WIDTH, SKELETON_HEIGHT));
     }
 
     /**
