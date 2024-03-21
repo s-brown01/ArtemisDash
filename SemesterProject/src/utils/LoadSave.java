@@ -20,8 +20,10 @@ public class LoadSave {
     public static final String LEVEL_SPRITES = "/World3T.png";
     public static final String LEVEL1_DATA = "/level_one_data.png";
     public static final String SKELETON_SPRITES = "/Skeleton.png";
-
+    public static final String OVERWORLD_BG = "/Overworld-Map.png";
+    
     public static final String SKELETON_WALK = "/skeleton/Skeleton_Walk.png";
+
 
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
