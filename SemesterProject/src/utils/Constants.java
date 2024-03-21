@@ -84,10 +84,14 @@ public class Constants {
         public static final int CRABBY_DRAW_OFFSET_X = (int) (26 * Game.SCALE);
         public static final int CRABBY_DRAW_OFFSET_Y = (int) (9 * Game.SCALE);
 
-        public static final int SKELETON_WIDTH_DEFAULT = 51;
+        public static final int SKELETON_WIDTH_DEFAULT = 55;
         public static final int SKELETON_HEIGHT_DEFAULT = 64;
         public static final int SKELETON_WIDTH = (int) (SKELETON_WIDTH_DEFAULT * Game.SCALE);
         public static final int SKELETON_HEIGHT = (int) (SKELETON_HEIGHT_DEFAULT * Game.SCALE);
+        public static final int SKELETON_HITBOX_WIDTH = (int)(23 * Game.SCALE);
+        public static final int SKELETON_HITBOX_HEIGHT = (int)(36 * Game.SCALE);
+        public static final int SKELETON_DRAW_OFFSET_X = (int)(18 * Game.SCALE);
+        public static final int SKELETON_DRAW_OFFSET_Y = (int)(28 * Game.SCALE);
 
         /**
          * Get how every many sprites a specific action take for a specific enemy. This returns

@@ -22,8 +22,8 @@ public class Skeleton extends Enemy {
 
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);
-        initHitbox(x, y, width, height);
-        // TODO Auto-generated constructor stub
+        initHitbox(x, y, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT);
+        startNewState(IDLE);
     }
 
     /**
@@ -51,7 +51,7 @@ public class Skeleton extends Enemy {
         else {
             switch(state) {
             case(IDLE):
-                startNewState(RUNNING);
+//                startNewState(RUNNING);
                 break;
             case(RUNNING):
                 // turn, attack, then move 

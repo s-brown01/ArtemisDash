@@ -63,16 +63,21 @@ public abstract class Enemy extends Entity {
      * on. If the end index has been reached it will restart.
      */
     protected void updateAniTick() {
-        // TODO: fill out this method (how each update changes animation)
         // this is only filled out for walking
         aniTick++;
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if (aniIndex >= 13) {
+            if (aniIndex >= getSpriteAmount(enemy_type, state)) {
                 aniIndex = 0;
                 // attacking = false allows us to not let the enemy attack over and over
                 attacking = false;
+                
+                switch(state){
+                // only do 1 attack at a time & leave attack animation
+                case ATTACK, HIT -> startNewState(IDLE);
+                case DEAD -> active = false;
+                }
             }
         }
     }

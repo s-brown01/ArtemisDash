@@ -10,6 +10,7 @@
  */
 package entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -31,13 +32,13 @@ public class EnemyManager {
         this.playing = playing;
         loadImgs();
         // temp code
-        skeletonList.add(new Skeleton(500, 300, SKELETON_WIDTH, SKELETON_HEIGHT));
+        skeletonList.add(new Skeleton(650, 250, SKELETON_WIDTH, SKELETON_HEIGHT));
     }
 
     /**
      * Load enemies from a specific level and add them into the appropriate lists
      * 
-     * @param level - what ever level to load enemies in from
+     * @param level - what level to load enemies in from
      */
     public void loadEnemies(Level level) {
         // skeletonList = level.getSkeletons();
@@ -51,13 +52,11 @@ public class EnemyManager {
      */
     private void loadImgs() {
         // SKELETONS
-        // this is only to test the walking animation right now
-        skeletonAnis = new BufferedImage[1][13];
-        final BufferedImage img = LoadSave.getSpriteSheet(LoadSave.SKELETON_WALK);
+        skeletonAnis = new BufferedImage[6][18];
+        final BufferedImage img = LoadSave.getSpriteSheet(LoadSave.SKELETON_SPRITES);
         for (int j = 0; j < skeletonAnis.length; j++) {
             for (int i = 0; i < skeletonAnis[j].length; i++) {
-                // the walking animation are each spaced 22x33 px, tho not all are same size
-                skeletonAnis[j][i] = img.getSubimage(i * 22, j * 33, 22, 33);
+                skeletonAnis[j][i] = img.getSubimage(i * SKELETON_WIDTH_DEFAULT, j * SKELETON_HEIGHT_DEFAULT, SKELETON_WIDTH_DEFAULT, SKELETON_HEIGHT_DEFAULT);
             }
         }
     }
@@ -74,10 +73,18 @@ public class EnemyManager {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
-            // the * 2 is TEMPORARY
-            g.drawImage(skeletonAnis[0][s.getAniIndex()], (int) (s.getHitbox().x), (int) (s.getHitbox().y),
-                    (int) (SKELETON_WIDTH), (int) (SKELETON_HEIGHT), null);
             s.drawHitbox(g);
+            g.setColor(Color.RED);
+            g.drawRect((int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X), 
+                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y),
+                    (int) (SKELETON_WIDTH), 
+                    (int) (SKELETON_HEIGHT));
+            
+            g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], 
+                    (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X), 
+                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y),
+                    (int) (SKELETON_WIDTH), 
+                    (int) (SKELETON_HEIGHT), null);
         }
     }
 
