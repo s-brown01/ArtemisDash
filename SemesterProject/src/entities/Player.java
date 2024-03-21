@@ -10,6 +10,7 @@ package entities;
 import static utils.Constants.PlayerConstants.*;
 import static utils.Constants.PlayerConstants.getSpriteAmt;
 import static utils.HelperMethods.*;
+import static utils.Constants.GRAVITY;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -200,7 +201,7 @@ public class Player extends Entity {
     private void resetInAir() {
         inAir = false;
         airSpeed = 0;
-        gravity = 0.04f * Game.SCALE;
+        gravity = GRAVITY;
 
     }
 
@@ -321,7 +322,7 @@ public class Player extends Entity {
         this.jump = jump;
         // When jump is released, implement gravity a bit more
         if (!jump) {
-            gravity = gravity + 0.11f;
+            gravity = gravity + 0.02f;
         }
     }
 

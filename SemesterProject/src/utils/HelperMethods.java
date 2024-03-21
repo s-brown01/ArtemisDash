@@ -137,7 +137,7 @@ public class HelperMethods {
      */
     public static boolean gravity(Rectangle2D.Float hitbox, int[][] lvlData) {
         // Check the pixel below bottomleft and bottomright
-        if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))
+        if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 10, lvlData))
             if (!isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
                 return false;
 
