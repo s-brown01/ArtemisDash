@@ -26,7 +26,7 @@ public class Game implements Runnable{
     //Updates and Frame Logic
     private Thread gameThread;
     private final int FPS_SET = 120;
-    private final int UPS_SET = 120;
+    private final int UPS_SET = 200;
     
     //Game Scale and tiles
     public final static int TILES_DEFAULT_SIZE = 32; //32 x 32 tile size
