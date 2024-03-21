@@ -22,44 +22,43 @@ public class Constants {
         public static final int DOWN = 3;
         
     }
-    
-    public static class PlayerConstants{
-        public static final int IDLE = 0;
-        public static final int RUNNING = 1;
-        public static final int JUMP = 2;
-        public static final int LAND = 3;
-        public static final int DIE = 4;
-        public static final int DASH = 5;
-        public static final int DASHEND = 6;
-        public static final int DRAW = 7;
-        public static final int DAMAGE = 9;
+   public static class PlayerConstants{
+       public static final int IDLE = 0;
+       public static final int RUNNING = 1;
+       public static final int JUMPSTART = 2;
+       public static final int JUMPEND = 9;
+       public static final int DIE = 4;
+       public static final int DASH = 5;
+       public static final int DASHEND = 99;
+       public static final int DRAW = 6;
+       public static final int DAMAGE = 999;
        
-        public static int getSpriteAmt(int player_action) {
-            switch (player_action) {
-                case IDLE:
-                    return 12;
-                case RUNNING:
-                    return 10;
-                case JUMP:
-                    return 11;
-                case LAND:
-                    return 3;
-                case DIE:
-                    return 20;
-                case DASH:
-                    return 10;
-                case DASHEND:
-                    return 3;
-                case DRAW:
-                    return 8;           
-                case DAMAGE: 
-                    return 6;
-                default:
-                    return 1;
-                    }
-            }
-           
-    }
+       public static int getSpriteAmt(int player_action) {
+           switch (player_action) {
+           case IDLE:
+               return 12;
+           case RUNNING:
+               return 10;
+           case JUMPSTART:
+               return 9;
+           case JUMPEND:
+               return 3;
+           case DIE:
+               return 20;
+           case DASH:
+               return 10;
+           case DASHEND:
+               return 3;
+           case DRAW:
+               return 6;
+           case DAMAGE: 
+               return 6;
+           default:
+               return 1;
+           }
+       }
+       
+   }
 
     public static class EnemyConstants {
         // ENEMY TYPES

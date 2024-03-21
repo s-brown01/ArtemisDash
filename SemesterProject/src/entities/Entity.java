@@ -88,7 +88,6 @@ public abstract class Entity {
     public Rectangle2D.Float getHitbox() {
         return hitbox;
     }
-
     /**
      * @return the state that the entity is in
      */
@@ -102,5 +101,4 @@ public abstract class Entity {
     public int getAniIndex() {
         return aniIndex;
     }
-
 }
