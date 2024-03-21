@@ -126,6 +126,7 @@ public abstract class Enemy extends Entity {
     }
 
     /**
+     * This will check if this enemy's attack box intersects with the players hitbox. If it does, the attack connected and player takes damage.
      * @param player
      */
     public void checkHit(Player player) {
