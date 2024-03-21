@@ -137,7 +137,6 @@ public class Game implements Runnable{
      * Updates the game state
      */
     public void updateGameState() {
-        //TODO - change name to update?
         switch (GameStates.state) {
         case MENU:
                 menu.update();
@@ -164,13 +163,14 @@ public class Game implements Runnable{
     public Player getPlayer() {
         return playing.getPlayer();
     }
+    
     public Menu getMenu() {
         return menu;
-}
+    }
 
     public Playing getPlaying() {
         return playing;
-}
+    }
 
     public Overworld getOverworld() {
         return overworld;

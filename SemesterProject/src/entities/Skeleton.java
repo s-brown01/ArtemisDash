@@ -51,7 +51,7 @@ public class Skeleton extends Enemy {
         else {
             switch(state) {
             case(IDLE):
-//                startNewState(RUNNING);
+                startNewState(RUNNING);
                 break;
             case(RUNNING):
                 // turn, attack, then move 

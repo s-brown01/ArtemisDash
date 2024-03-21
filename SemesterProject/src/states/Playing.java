@@ -57,8 +57,11 @@ public class Playing extends State implements StateMethods {
         enemyManager.draw(g);
         player.renderPlayer(g);
         if (paused) {
-            g.setColor(new Color(150, 150, 150, 200));
-            g.drawRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+            g.setFont(boldFont);
+            g.setColor(new Color(150, 150, 150, 150));
+            g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+            g.setColor(Color.cyan);
+            g.drawString("PAUSED", Game.GAME_WIDTH / 2 - 50, Game.GAME_HEIGHT / 2);
         }
 
     }
