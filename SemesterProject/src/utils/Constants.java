@@ -9,56 +9,56 @@ package utils;
 
 import main.Game;
 
-
 public class Constants {
-    
+
     public static final float GRAVITY = 0.04f * Game.SCALE;
     public static final int ANISPEED = 10;
 
-    public static class Directions{
+    public static class Directions {
         public static final int LEFT = 0;
         public static final int UP = 1;
         public static final int RIGHT = 2;
         public static final int DOWN = 3;
-        
+
     }
-   public static class PlayerConstants{
-       public static final int IDLE = 0;
-       public static final int RUNNING = 1;
-       public static final int JUMPSTART = 2;
-       public static final int JUMPEND = 9;
-       public static final int DIE = 4;
-       public static final int DASH = 5;
-       public static final int DASHEND = 99;
-       public static final int DRAW = 6;
-       public static final int DAMAGE = 999;
-       
-       public static int getSpriteAmt(int player_action) {
-           switch (player_action) {
-           case IDLE:
-               return 12;
-           case RUNNING:
-               return 10;
-           case JUMPSTART:
-               return 9;
-           case JUMPEND:
-               return 3;
-           case DIE:
-               return 20;
-           case DASH:
-               return 10;
-           case DASHEND:
-               return 3;
-           case DRAW:
-               return 6;
-           case DAMAGE: 
-               return 6;
-           default:
-               return 1;
-           }
-       }
-       
-   }
+
+    public static class PlayerConstants {
+        public static final int IDLE = 0;
+        public static final int RUNNING = 1;
+        public static final int JUMPSTART = 2;
+        public static final int JUMPEND = 9;
+        public static final int DIE = 4;
+        public static final int DASH = 5;
+        public static final int DASHEND = 99;
+        public static final int DRAW = 6;
+        public static final int DAMAGE = 999;
+
+        public static int getSpriteAmt(int player_action) {
+            switch (player_action) {
+            case IDLE:
+                return 12;
+            case RUNNING:
+                return 10;
+            case JUMPSTART:
+                return 9;
+            case JUMPEND:
+                return 3;
+            case DIE:
+                return 20;
+            case DASH:
+                return 10;
+            case DASHEND:
+                return 3;
+            case DRAW:
+                return 6;
+            case DAMAGE:
+                return 6;
+            default:
+                return 1;
+            }
+        }
+
+    }
 
     public static class EnemyConstants {
         // ENEMY TYPES
@@ -87,10 +87,10 @@ public class Constants {
         public static final int SKELETON_HEIGHT_DEFAULT = 64;
         public static final int SKELETON_WIDTH = (int) (SKELETON_WIDTH_DEFAULT * Game.SCALE);
         public static final int SKELETON_HEIGHT = (int) (SKELETON_HEIGHT_DEFAULT * Game.SCALE);
-        public static final int SKELETON_HITBOX_WIDTH = (int)(23 * Game.SCALE);
-        public static final int SKELETON_HITBOX_HEIGHT = (int)(36 * Game.SCALE);
-        public static final int SKELETON_DRAW_OFFSET_X = (int)(18 * Game.SCALE);
-        public static final int SKELETON_DRAW_OFFSET_Y = (int)(28 * Game.SCALE);
+        public static final int SKELETON_HITBOX_WIDTH = (int) (23 * Game.SCALE);
+        public static final int SKELETON_HITBOX_HEIGHT = (int) (36 * Game.SCALE);
+        public static final int SKELETON_DRAW_OFFSET_X = (int) (18 * Game.SCALE);
+        public static final int SKELETON_DRAW_OFFSET_Y = (int) (28 * Game.SCALE);
 
         /**
          * Get how every many sprites a specific action take for a specific enemy. This returns

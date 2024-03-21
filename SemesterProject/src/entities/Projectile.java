@@ -20,7 +20,7 @@ public abstract class Projectile extends Entity {
     public void update() {
         // TODO Fill in method
     }
-    
+
     public void draw(Graphics g) {
         // TODO Fill in method
     }

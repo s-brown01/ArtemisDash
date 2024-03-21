@@ -12,15 +12,15 @@ import main.Game;
 public class HelperMethods {
 
     /**
-     * Checks whether an entity is able to move in a given direction,
-     * by checking every corner of the entities hitbox for a collision with another sprite.
+     * Checks whether an entity is able to move in a given direction, by checking every corner
+     * of the entities hitbox for a collision with another sprite.
      * 
      * The order of checks is: Top left, Bottom right, Top right, Bottom left.
      * 
-     * @param x - X-Position of caller entity
-     * @param y - Y-Position of caller entity
-     * @param width - Width of the hitbox of caller entity
-     * @param height - Height of the hitbox of caller entity
+     * @param x         - X-Position of caller entity
+     * @param y         - Y-Position of caller entity
+     * @param width     - Width of the hitbox of caller entity
+     * @param height    - Height of the hitbox of caller entity
      * @param levelData - 2D Array of data that represents the level
      * @return - True if the entity is able to move, false if it cannot
      */
@@ -30,8 +30,8 @@ public class HelperMethods {
             if (!isSolid(x + width, y + height, levelData)) { // Checks bottom right
                 if (!isSolid(x + width, y, levelData)) { // checks top right
                     if (!isSolid(x, y + height, levelData)) {
-                        if(!isSolid(x, y + height / 2, levelData)) {
-                            if (!isSolid(x+width, y + height/2, levelData)) {
+                        if (!isSolid(x, y + height / 2, levelData)) {
+                            if (!isSolid(x + width, y + height / 2, levelData)) {
                                 return true;
                             }
                         }
@@ -41,10 +41,12 @@ public class HelperMethods {
         }
         return false;
     }
+
     /**
      * Determines if a tile is solid enough to walk on
-     * @param x - X-Position of the current entity
-     * @param y - Y-Position of the current entity
+     * 
+     * @param x       - X-Position of the current entity
+     * @param y       - Y-Position of the current entity
      * @param lvlData - Data of the level to be checked against
      * @return - True if it is able to be walked on, false otherwise
      */
@@ -60,14 +62,13 @@ public class HelperMethods {
         float xIndex = x / Game.TILES_SIZE;
         float yIndex = y / Game.TILES_SIZE;
 
-        
-        return isTileSolid((int)xIndex, (int)(yIndex), lvlData);
+        return isTileSolid((int) xIndex, (int) (yIndex), lvlData);
 
     }
-    
 
     /**
-     * This method will check a specific index in the levelData passed in. If it is not in the tiles being used or is NOT a transparent tile, it is solid. 
+     * This method will check a specific index in the levelData passed in. If it is not in the
+     * tiles being used or is NOT a transparent tile, it is solid.
      * 
      * @param xIndex
      * @param yIndex
@@ -84,8 +85,10 @@ public class HelperMethods {
             return false;
         }
     }
+
     /**
      * Checks when a hitbox collides with something on the right or left side
+     * 
      * @param hitbox - The hitbox calling this collision check
      * @param xSpeed - The X speed of that hitbox
      * @return The offset of the hitbox as to not clip through
@@ -106,8 +109,9 @@ public class HelperMethods {
 
     /**
      * Checks when a hitbox collides with something on the top or bottom
-     * @param hitbox - The hitbox calling this collision check
-     * @param airSpeed - The Y Speed of that hitbox 
+     * 
+     * @param hitbox       - The hitbox calling this collision check
+     * @param airSpeed     - The Y Speed of that hitbox
      * @param hitboxOffset
      * @return
      */
@@ -126,15 +130,16 @@ public class HelperMethods {
 
     /**
      * Checks to see if the entity is on the floor
-     * @param hitbox - The hitbox of the entity that called this method
+     * 
+     * @param hitbox  - The hitbox of the entity that called this method
      * @param lvlData - The data of the floor
      * @return - Returns true if the entity is touching the floor, false if not
      */
     public static boolean gravity(Rectangle2D.Float hitbox, int[][] lvlData) {
         // Check the pixel below bottomleft and bottomright
         if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData))
-                if (!isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
-                        return false;
+            if (!isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))
+                return false;
 
         return true;
     }

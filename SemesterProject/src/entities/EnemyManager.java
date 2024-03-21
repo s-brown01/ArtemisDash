@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import levels.Level;
-import main.Game;
 import states.Playing;
 import utils.LoadSave;
 import static utils.Constants.EnemyConstants.*;
@@ -56,7 +55,8 @@ public class EnemyManager {
         final BufferedImage img = LoadSave.getSpriteSheet(LoadSave.SKELETON_SPRITES);
         for (int j = 0; j < skeletonAnis.length; j++) {
             for (int i = 0; i < skeletonAnis[j].length; i++) {
-                skeletonAnis[j][i] = img.getSubimage(i * SKELETON_WIDTH_DEFAULT, j * SKELETON_HEIGHT_DEFAULT, SKELETON_WIDTH_DEFAULT, SKELETON_HEIGHT_DEFAULT);
+                skeletonAnis[j][i] = img.getSubimage(i * SKELETON_WIDTH_DEFAULT, j * SKELETON_HEIGHT_DEFAULT,
+                        SKELETON_WIDTH_DEFAULT, SKELETON_HEIGHT_DEFAULT);
             }
         }
     }
@@ -75,16 +75,12 @@ public class EnemyManager {
                 continue;
             s.drawHitbox(g);
             g.setColor(Color.RED);
-            g.drawRect((int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X), 
-                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y),
-                    (int) (SKELETON_WIDTH), 
-                    (int) (SKELETON_HEIGHT));
-            
-            g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], 
-                    (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X), 
-                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y),
-                    (int) (SKELETON_WIDTH), 
-                    (int) (SKELETON_HEIGHT), null);
+            g.drawRect((int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X),
+                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH), (int) (SKELETON_HEIGHT));
+
+            g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X),
+                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH), (int) (SKELETON_HEIGHT),
+                    null);
         }
     }
 
@@ -93,8 +89,9 @@ public class EnemyManager {
      * LoadEnemies has been used to fill in all of the lists.
      * 
      * It loops through all enemy Lists and will call update on each individual enemy.
-     * @param lvlData 
-     * @param player 
+     * 
+     * @param lvlData
+     * @param player
      */
     public void update(int[][] lvlData, Player player) {
         for (Skeleton s : skeletonList) {

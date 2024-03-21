@@ -16,7 +16,6 @@ import static utils.Constants.GRAVITY;
 import static utils.HelperMethods.*;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 public abstract class Enemy extends Entity {
 
@@ -24,7 +23,7 @@ public abstract class Enemy extends Entity {
     protected boolean active = true; // keeps track of if enemy is "alive" to the program.
     protected boolean firstUpdate = true;
     protected int enemy_type;
-    protected int tileY;    
+    protected int tileY;
 
     /*
      * These are temporary variables to define how far the enemy can see and how fast the
@@ -72,8 +71,8 @@ public abstract class Enemy extends Entity {
                 aniIndex = 0;
                 // attacking = false allows us to not let the enemy attack over and over
                 attacking = false;
-                
-                switch(state){
+
+                switch (state) {
                 // only do 1 attack at a time & leave attack animation
                 case ATTACK, HIT -> startNewState(IDLE);
                 case DEAD -> active = false;
@@ -81,10 +80,11 @@ public abstract class Enemy extends Entity {
             }
         }
     }
-    
+
     /**
-     * This should be used to change the enemy state, instead of assigning it.
-     * This will reset the ticks/index
+     * This should be used to change the enemy state, instead of assigning it. This will reset
+     * the ticks/index
+     * 
      * @param newState
      */
     protected void startNewState(int newState) {
@@ -92,7 +92,7 @@ public abstract class Enemy extends Entity {
         this.state = newState;
         aniIndex = 0;
         aniTick = 0;
-        
+
     }
 
     /**
@@ -123,18 +123,18 @@ public abstract class Enemy extends Entity {
         // EMPTY FUNCTION
         // NO ENEMY SHOULD DRAW ITSELF
     }
-    
-    
+
     /**
      * @param player
      */
     protected void checkHit(Player player) {
         // TODO Auto-generated method stub
-        
+
     }
 
     /**
      * Check if the player is within attack range
+     * 
      * @param player
      * @return true the player is, either side
      */
@@ -145,22 +145,24 @@ public abstract class Enemy extends Entity {
 
     /**
      * Turn the sprite/walking direction
+     * 
      * @param player
      */
     protected void turnTowardsPlayer(Player player) {
         // TODO Auto-generated method stub
-        
+
     }
 
     /**
      * Check if the player is within eyesight and clear line of sight
+     * 
      * @param lvlData
      * @param player
      * @return returns true if there is a clear line of sight to the player and within sight
      */
     protected boolean canSeePlayer(int[][] lvlData, Player player) {
         // enemies cannot see different y-values
-        
+
         return false;
     }
 
@@ -178,14 +180,14 @@ public abstract class Enemy extends Entity {
             inAir = false;
 //            airSpeed = 0;
             hitbox.y = getYPosRoof(hitbox, airSpeed, 0) + hitbox.height;
-            tileY = (int)(hitbox.y / Game.TILES_SIZE);
+            tileY = (int) (hitbox.y / Game.TILES_SIZE);
         }
-        
+
     }
 
     /**
-     * This is the first update, should only run once when it is the first update.
-     * Since enemies can't jump, it checks if they spawned in the air.
+     * This is the first update, should only run once when it is the first update. Since
+     * enemies can't jump, it checks if they spawned in the air.
      */
     protected void firstUpdateCheck(int[][] lvlData) {
         // TODO fill this out

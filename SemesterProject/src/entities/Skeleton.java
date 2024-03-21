@@ -9,12 +9,7 @@
  */
 package entities;
 
-import java.awt.Graphics;
-
-import utils.HelperMethods;
-
 import static utils.Constants.EnemyConstants.*;
-import static utils.HelperMethods.*;
 
 public class Skeleton extends Enemy {
 
@@ -31,13 +26,13 @@ public class Skeleton extends Enemy {
      * animation.
      * 
      * @param lvlData - A 2D int array of all of the data in the level
-     * @param player 
+     * @param player
      */
     public void update(int[][] lvlData, Player player) {
         updateBehavior(lvlData, player);
         updateAniTick();
     }
-    
+
     /**
      * 
      * @param lvlData
@@ -49,25 +44,25 @@ public class Skeleton extends Enemy {
         if (inAir)
             updateInAir(lvlData);
         else {
-            switch(state) {
-            case(IDLE):
+            switch (state) {
+            case (IDLE):
                 startNewState(RUNNING);
                 break;
-            case(RUNNING):
-                // turn, attack, then move 
+            case (RUNNING):
+                // turn, attack, then move
                 // if can see player
-                if(canSeePlayer(lvlData, player)) {
+                if (canSeePlayer(lvlData, player)) {
                     // turn towards player
                     turnTowardsPlayer(player);
                     // if in attack range
-                    if (isInAttackRange(player)) 
+                    if (isInAttackRange(player))
                         startNewState(ATTACK);
                 }
                 break;
             case (ATTACK):
                 updateAttackbox();
                 // check if first update with attack
-                if (aniIndex == 0) 
+                if (aniIndex == 0)
                     attackChecked = false;
                 if (!attackChecked && aniIndex == 3)
                     checkHit(player);
@@ -83,8 +78,7 @@ public class Skeleton extends Enemy {
      */
     private void updateAttackbox() {
         // TODO Auto-generated method stub
-        
-    }
 
+    }
 
 }

@@ -6,17 +6,14 @@
 package states;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
 import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
-import utils.LoadSave;
 
 public class Playing extends State implements StateMethods {
 
@@ -25,7 +22,6 @@ public class Playing extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
-
 
     public Playing(Game game) {
         super(game);
@@ -110,7 +106,7 @@ public class Playing extends State implements StateMethods {
             player.kill();
             break;
         }
-        
+
     }
 
     @Override

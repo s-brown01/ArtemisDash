@@ -40,27 +40,25 @@ public class GameWindow {
 
         gameFrame.setJMenuBar(menuBar);
 
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//When exiting, close program
-        gameFrame.add(gamePanel);//Add in the game Panel
-        gameFrame.pack(); //Fit around the gamePanel
-        gameFrame.setResizable(false); //Do not resize
-        gameFrame.setLocationRelativeTo(null); //Center the frame
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// When exiting, close program
+        gameFrame.add(gamePanel);// Add in the game Panel
+        gameFrame.pack(); // Fit around the gamePanel
+        gameFrame.setResizable(false); // Do not resize
+        gameFrame.setLocationRelativeTo(null); // Center the frame
         gameFrame.setVisible(true);
         gameFrame.addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(WindowEvent e) {
             }
 
-            //If window loses focus, stop ALL player inputs
+            // If window loses focus, stop ALL player inputs
             @Override
             public void windowLostFocus(WindowEvent e) {
                 gamePanel.getGame().windowLost();
-                
+
             }
-            
+
         });
     }
-    
-    
-}
 
+}
