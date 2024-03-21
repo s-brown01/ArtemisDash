@@ -14,7 +14,6 @@ import levels.LevelManager;
 
 public class Game implements Runnable{
     //States and Entities
-    private Player player;
     private LevelManager levelManager;
     private Playing playing;
     private Menu menu;
@@ -158,12 +157,12 @@ public class Game implements Runnable{
      * When window focus is lost, stop the player immediately
      */
     public void windowLost() {
-        player.resetDirBools();
+        playing.getPlayer().resetDirBools();
     }
   
     //Getters and setters 
     public Player getPlayer() {
-        return player;
+        return playing.getPlayer();
     }
     public Menu getMenu() {
         return menu;
