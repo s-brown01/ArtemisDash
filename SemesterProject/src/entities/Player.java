@@ -41,7 +41,7 @@ public class Player extends Entity {
     private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
     private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
                                                             // height
-    private float hitboxOffset = 30 * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
+    private float hitboxOffset = (55/1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
 
     /**
      * Jumping and Gravity variables
