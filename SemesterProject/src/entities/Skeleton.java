@@ -51,12 +51,15 @@ public class Skeleton extends Enemy {
                 // turn, attack, then move
                 // if can see player
                 if (canSeePlayer(lvlData, player)) {
+                    System.out.println("SEEING PLAYER");
+
                     // turn towards player
                     turnTowardsPlayer(player);
                     // if in attack range
                     if (isInAttackRange(player))
                         startNewState(ATTACK);
                 }
+                move(lvlData);
                 break;
             case (ATTACK):
                 updateAttackbox();

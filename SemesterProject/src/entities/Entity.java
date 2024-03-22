@@ -46,16 +46,6 @@ public abstract class Entity {
         this.width = width;
     }
 
-//    abstract public void update();
-
-//    abstract public void draw(Graphics g);
-
-    // Updates hitbox by giving it new X + Y
-//    protected void updateHitbox() {
-//        x = (int) x;
-//        y = (int) y;
-//    }
-
     /**
      * Draws the hitbox around the player's sprite. This is for debugging the hitbox
      * 

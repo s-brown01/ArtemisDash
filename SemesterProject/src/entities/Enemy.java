@@ -25,6 +25,7 @@ public abstract class Enemy extends Entity {
     protected int enemy_type;
     protected int tileY;
     protected boolean attackChecked;
+    protected float walkSpeed = 1.00f;
 
 
     /*
@@ -240,6 +241,21 @@ public abstract class Enemy extends Entity {
         else 
             // if they're not going left, they are now
             walkDirection = LEFT;
+    }
+    
+    protected void move(int[][] lvlData) {
+        float xSpeed = 0;
+        if (walkDirection == LEFT) {
+            xSpeed -= walkSpeed;
+        }
+        else {
+            xSpeed += walkSpeed;
+        }
+        
+//        if(!canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData) && 
+//                !isSolid(hitbox.x + xSpeed, hitbox.y+hitbox.height, lvlData)) {
+//            
+//        }
     }
 
 }

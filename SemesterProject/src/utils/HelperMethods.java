@@ -50,7 +50,7 @@ public class HelperMethods {
      * @param lvlData - Data of the level to be checked against
      * @return - True if it is able to be walked on, false otherwise
      */
-    private static boolean isSolid(float x, float y, int[][] lvlData) {
+    public static boolean isSolid(float x, float y, int[][] lvlData) {
         if (x < 0 || x >= Game.GAME_WIDTH) {
             return true;
         }

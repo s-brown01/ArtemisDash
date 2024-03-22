@@ -11,6 +11,7 @@ package entities;
 
 import static utils.Constants.BossConstants.*;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public abstract class Boss extends Entity {
@@ -26,6 +27,14 @@ public abstract class Boss extends Entity {
         this.boss_type = boss_type;
         maxHealth = getMaxHealth(boss_type);
         this.currentHealth = maxHealth;
+    }
+    
+    public void draw(Graphics g) {
+        
+    }
+    
+    public void update() {
+        
     }
 
 }
