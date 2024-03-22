@@ -50,7 +50,7 @@ public class HelperMethods {
      * @param lvlData - Data of the level to be checked against
      * @return - True if it is able to be walked on, false otherwise
      */
-    public static boolean isSolid(float x, float y, int[][] lvlData) {
+    private static boolean isSolid(float x, float y, int[][] lvlData) {
         if (x < 0 || x >= Game.GAME_WIDTH) {
             return true;
         }
@@ -65,7 +65,7 @@ public class HelperMethods {
         return isTileSolid((int) xIndex, (int) (yIndex), lvlData);
 
     }
-
+    
     /**
      * This method will check a specific index in the levelData passed in. If it is not in the
      * tiles being used or is NOT a transparent tile, it is solid.
@@ -164,11 +164,30 @@ public class HelperMethods {
     }
     
     /**
-     * Checking the row that the 
+     * Check if a tile is walkable based on the xSpeed given into the function. 
+     * @param hitbox
+     * @param xSpeed
+     * @param lvlData
+     * @return
+     */
+    public static boolean isTileWalkable(Rectangle2D.Float hitbox, float xSpeed, int[][] lvlData) {
+        if (xSpeed < 0) {
+            // moving left, x = x
+            return isSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
+        } else {
+            // moving right, x = x + width
+            return isSolid(hitbox.x + hitbox.width + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
+        }
+    }
+    
+    
+    /**
+     * Checking the row of tiles so make sure that all are walkable
+     * 
      * @param xStart - the starting x-coordinate 
      * @param xEnd - the ending x-coordinate
      * @param y - the y-position of both entities
-     * @param lvlData
+     * @param lvlData - the data from the current level
      * @return
      */
     public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {
