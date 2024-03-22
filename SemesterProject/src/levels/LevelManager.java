@@ -15,7 +15,7 @@ import utils.LoadSave;
 public class LevelManager {
     private Game game;
     private BufferedImage[] levelSprite;
-    private static Level levelOne;
+    private Level levelOne;
 
     public LevelManager(Game game) {
         this.game = game;
@@ -47,8 +47,10 @@ public class LevelManager {
         for (int j = 0; j < Game.TILES_IN_HEIGHT; j++) {
             for (int i = 0; i < Game.TILES_IN_WIDTH; i++) {
                 int index = levelOne.getSpriteIndex(i, j);
-                g.drawImage(levelSprite[index], i * Game.TILES_SIZE, Game.TILES_SIZE * j, Game.TILES_SIZE,
-                        Game.TILES_SIZE, null);
+                // index 11 is a transparent tile, might as well not draw it
+                if (index !=11)
+                    g.drawImage(levelSprite[index], i * Game.TILES_SIZE, Game.TILES_SIZE * j, Game.TILES_SIZE,
+                            Game.TILES_SIZE, null);
 
             }
 
@@ -59,7 +61,7 @@ public class LevelManager {
 
     }
 
-    public static Level getCurrentLevel() {
+    public Level getCurrentLevel() {
         return levelOne;
     }
 }
