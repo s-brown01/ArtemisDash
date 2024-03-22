@@ -39,13 +39,17 @@ public class HelperMethods {
     }
     
     /**
-     * Determines if a tile is solid enough to walk on
+     * Determines if a tile is solid enough to walk on, by checking
+     * the X-Position and Y-Position is within the game bounds,
+     * Along with checking the sprite ahead of the entity to ensure
+     * it is not transparent, a hazard, or a solid wall or floor
+     * 
      * @param x - X-Position of the current entity
      * @param y - Y-Position of the current entity
      * @param lvlData - Data of the level to be checked against
      * @return - True if it is able to be walked on, false otherwise
      */
-    private static boolean isSolid(float x, float y, int[][] lvlData) {
+    public static boolean isSolid(float x, float y, int[][] lvlData) {
         if (x < 0 || x >= Game.GAME_WIDTH) {
             return true;
         }
@@ -70,6 +74,7 @@ public class HelperMethods {
 
     /**
      * Checks when a hitbox collides with something on the right or left side
+     * 
      * @param hitbox - The hitbox calling this collision check
      * @param xSpeed - The X speed of that hitbox
      * @return The offset of the hitbox as to not clip through
@@ -90,6 +95,7 @@ public class HelperMethods {
 
     /**
      * Checks when a hitbox collides with something on the top or bottom
+     * 
      * @param hitbox - The hitbox calling this collision check
      * @param airSpeed - The Y Speed of that hitbox 
      * @param hitboxOffset
@@ -110,6 +116,7 @@ public class HelperMethods {
     
     /**
      * Checks to see if the entity is on the floor
+     * 
      * @param hitbox - The hitbox of the entity that called this method
      * @param lvlData - The data of the floor
      * @return - Returns true if the entity is touching the floor, false if not
