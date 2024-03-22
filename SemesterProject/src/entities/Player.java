@@ -83,7 +83,7 @@ public class Player extends Entity {
                 width, height, null);
         drawHitbox(g);
     }
-
+//INTERSECT FUNCTION WITH HITBOX!!!!
     /**
      * Creates an animation library to store every animation from the loaded in
      * sprite sheet

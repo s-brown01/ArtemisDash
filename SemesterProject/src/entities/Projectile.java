@@ -8,8 +8,7 @@ public class Projectile extends Entity {
         super(x, y, width, height);
         // TODO Auto-generated constructor stub
     }
-
-    @Override
+    
     public void update() {
         // TODO Auto-generated method stub
 
