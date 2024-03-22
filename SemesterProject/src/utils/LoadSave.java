@@ -17,7 +17,7 @@ import main.Game;
 public class LoadSave {
     
     public static String PLAYER_SPRITES = "/Artemis_Finished.png";
-    public static String LEVEL_SPRITES = "/World3T.png";
+    public static String LEVEL_SPRITES = "/outside.png";
     public static String LEVEL1_DATA = "/level_one_data.png";
     
     /**

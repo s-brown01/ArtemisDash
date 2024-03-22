@@ -39,7 +39,7 @@ public class Constants {
                case JUMPSTART:
                    return 9;
                case JUMPEND:
-                   return 3;
+                   return 5;
                case DIE:
                    return 20;
                case DASH:
