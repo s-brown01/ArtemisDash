@@ -34,7 +34,7 @@ public class Overworld extends State implements StateMethods {
         g.drawImage(background, 5, 5, Game.GAME_WIDTH-10, Game.GAME_HEIGHT-10, null);
         g.setColor(new Color(175, 175, 200, 100));
         g.setFont(boldFont);
-        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+//        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
         g.setColor(Color.black);
         g.drawString("OVERWORLD", Game.GAME_WIDTH / 2 - 30, 200);
         g.drawString("Click anywhere to continue to game", Game.GAME_WIDTH / 2 - 100, 300);
