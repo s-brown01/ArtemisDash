@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import levels.Level;
+import main.Game;
 import states.Playing;
 import utils.LoadSave;
 import static utils.Constants.EnemyConstants.*;
@@ -31,7 +32,7 @@ public class EnemyManager {
         this.playing = playing;
         loadImgs();
         // temp code
-        skeletonList.add(new Skeleton(600, 200, SKELETON_WIDTH, SKELETON_HEIGHT));
+        skeletonList.add(new Skeleton((600/1.75f)*Game.SCALE, (200/1.75f)*Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
     }
 
     /**

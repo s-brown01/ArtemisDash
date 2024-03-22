@@ -11,6 +11,10 @@ package entities;
 
 import static utils.Constants.EnemyConstants.*;
 
+import java.awt.geom.Rectangle2D;
+
+import main.Game;
+
 public class Skeleton extends Enemy {
 
 
@@ -18,6 +22,7 @@ public class Skeleton extends Enemy {
         super(x, y, width, height, SKELETON);
         initHitbox(x, y, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT);
         startNewState(IDLE);
+        attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT);
     }
 
     /**

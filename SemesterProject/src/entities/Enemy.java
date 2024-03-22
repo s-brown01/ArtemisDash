@@ -26,6 +26,8 @@ public abstract class Enemy extends Entity {
     protected int tileY;
     protected boolean attackChecked;
     protected float walkSpeed = 1.00f;
+    // The offset is 55 when game scale is 1.75, so divide to make it work for all scales
+    protected float hitboxYOffset = (55/1.75f) * Game.SCALE; 
 
 
     /*
@@ -212,7 +214,7 @@ public abstract class Enemy extends Entity {
         } else {
             // if can't fall
             inAir = false;
-            hitbox.y = getYPosRoof(hitbox, airSpeed, 0) + hitbox.height;
+            hitbox.y = getYPosRoof(hitbox, airSpeed, hitboxYOffset);
             tileY = (int) (hitbox.y / Game.TILES_SIZE);
         }
 
@@ -223,12 +225,10 @@ public abstract class Enemy extends Entity {
      * enemies can't jump, it checks if they spawned in the air.
      */
     protected void firstUpdateCheck(int[][] lvlData) {
-        // TODO fill this out
         firstUpdate = false;
         // check on ground
         if (!gravity(hitbox, lvlData))
             inAir = true;
-        return;
     }
     
     /**
@@ -252,10 +252,13 @@ public abstract class Enemy extends Entity {
             xSpeed += walkSpeed;
         }
         
-//        if(!canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData) && 
-//                !isSolid(hitbox.x + xSpeed, hitbox.y+hitbox.height, lvlData)) {
-//            
-//        }
+        if(canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData) && 
+                isTileWalkable(hitbox, xSpeed, lvlData)) {
+            hitbox.x += xSpeed;
+            return;
+        }
+        switchWalkDirection();
+        
     }
 
 }
