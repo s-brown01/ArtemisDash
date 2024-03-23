@@ -90,11 +90,7 @@ public class Player extends Entity {
                 width, height, null);
     }
 
-//    public void draw(Graphics g) {
-//        //TODO - naming
-//        renderPlayer(g);
-//    }
-
+//INTERSECT FUNCTION WITH HITBOX!!!!
     /**
      * Creates an animation library to store every animation from the loaded in sprite sheet
      */
