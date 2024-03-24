@@ -12,13 +12,15 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import main.Game;
+import utils.LoadSave;
 
 public class Overworld extends State implements StateMethods {
 
-    private BufferedImage background;
+    private final BufferedImage background;
 
     public Overworld(Game game) {
         super(game);
+        background = LoadSave.getSpriteSheet(LoadSave.OVERWORLD_BG);
     }
 
     @Override
@@ -29,12 +31,13 @@ public class Overworld extends State implements StateMethods {
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(new Color(175, 175, 200, 200));
+        g.drawImage(background, 5, 5, Game.GAME_WIDTH-10, Game.GAME_HEIGHT-10, null);
+        g.setColor(new Color(175, 175, 200, 100));
         g.setFont(boldFont);
-        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+//        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
         g.setColor(Color.black);
-        g.drawString("OVERWORLD", Game.GAME_WIDTH / 2 - 30, 300);
-        g.drawString("Click anywhere to continue to game", Game.GAME_WIDTH / 2 - 100, Game.GAME_HEIGHT / 2);
+        g.drawString("OVERWORLD", Game.GAME_WIDTH / 2 - 30, 200);
+        g.drawString("Click anywhere to continue to game", Game.GAME_WIDTH / 2 - 100, 300);
     }
 
     @Override

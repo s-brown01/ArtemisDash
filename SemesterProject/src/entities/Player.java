@@ -1,67 +1,79 @@
 /**
+ * Player.java
  * Player Class
- * @author johnbotonakis
+ * @author johnbotonakis and Sean-Paul Brown
  * This player class will hold every variable and funciton relating to the active player's inputs and outputs. 
  * 
  */
 package entities;
 
-import static utils.Constants.Directions.*;
 import static utils.Constants.PlayerConstants.*;
 import static utils.Constants.PlayerConstants.getSpriteAmt;
 import static utils.HelperMethods.*;
+import static utils.Constants.GRAVITY;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 
 import main.Game;
+import states.Playing;
 import utils.LoadSave;
 
 public class Player extends Entity {
+    // player_count and playerCountCheck will make sure there is only 1 player
+    private static int player_count = 0;
 
+    private static boolean singletonCheck() {
+        return player_count < 1;
+    }
+
+    private final Playing playing;
     private BufferedImage[][] animations;
+    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
     private int player_action = IDLE;
+<<<<<<< HEAD
     private boolean moving, attacking,killed,dashing = false;
     private boolean left, up, right, down, jump;
     private float playerSpeed = 2.75f;
     private float xSpeed;
+=======
+    private boolean moving, attacking, killed = false;
+    private boolean left, up, right, down, jump;
+    private float playerSpeed = 2.75f;
+
+    private int[][] levelData;
+>>>>>>> main
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
     private float yDrawOffset = 20 * Game.SCALE; // Calculated Y - Positional offset for drawing Sprite
     private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
     private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
                                                             // height
-    private float hitboxOffset = 30 * Game.SCALE;//Calculated Y-Positional change offset for jumping/falling
+    private float hitboxOffset = (55/1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
 
     /**
      * Jumping and Gravity variables
      */
-    private float airSpeed = 0f; // How quickly the player moves in the air
-    private float jumpSpeed = -2.5f * Game.SCALE; // How high the player can jump
+    private float jumpSpeed = -2.25f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
-    private boolean inAir = false;
-    
-    private int[][] levelData;
-    
-    private float gravity = 0.04f * Game.SCALE; // Going to be final and moved to CONSTANTS
-    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
-    //aniSpeed will be moved to CONSTANTS
 
     /**
      * Constructor for the player class
      * 
-     * @param x      - X-Position on the screen
-     * @param y      - Y-Position on the screen
-     * @param width  - Width of Sprite
-     * @param height - Height of Sprite
+     * @param x       - X-Position on the screen
+     * @param y       - Y-Position on the screen
+     * @param width   - Width of Sprite
+     * @param height  - Height of Sprite
+     * @param playing - the Playing GameState
      */
-    public Player(float x, float y, int width, int height) {
+    public Player(float x, float y, int width, int height, Playing playing) {
         super(x, y, width, height);
+        this.playing = playing;
+        // Singleton check
+        if (!Player.singletonCheck())
+            throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAni();
         initHitbox(x, y, hitboxCorrectionWidth, hitboxCorrectionHeight);
+        this.state = IDLE;
 
     }
 
@@ -80,14 +92,14 @@ public class Player extends Entity {
      * @param g - Graphics
      */
     public void renderPlayer(Graphics g) {
+        drawHitbox(g);
         g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset),
                 width, height, null);
-        drawHitbox(g);
     }
+
 //INTERSECT FUNCTION WITH HITBOX!!!!
     /**
-     * Creates an animation library to store every animation from the loaded in
-     * sprite sheet
+     * Creates an animation library to store every animation from the loaded in sprite sheet
      */
     private void loadAni() {
 
@@ -113,8 +125,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Increments index to simulate animation by drawing the next image in the
-     * sprite sheet
+     * Increments index to simulate animation by drawing the next image in the sprite sheet
      */
     private void updateAniTick() {
         aniTick++;
@@ -126,7 +137,6 @@ public class Player extends Entity {
                 attacking = false;
             }
         }
-
     }
 
     /**
@@ -134,16 +144,26 @@ public class Player extends Entity {
      */
     private void updatePos() {
         moving = false;
-        
-        if(jump) {
+
+        if (jump) {
             jump();
         }
+<<<<<<< HEAD
         if (!left && !right && !inAir) {
             return;
         }
         
         xSpeed = 0;
         
+=======
+        // check if holding both left and right or holding neither
+        if (!inAir)
+            if ((!left && !right) || (right && left))
+                return;
+
+        float xSpeed = 0;
+
+>>>>>>> main
         if (left) {
             xSpeed -= playerSpeed;
         }
@@ -157,15 +177,15 @@ public class Player extends Entity {
 
         if (!inAir)
             if (!gravity(hitbox, levelData))
-                    inAir = true;
-        
+                inAir = true;
+
         if (inAir) {
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
                 hitbox.y += airSpeed;
                 airSpeed += gravity;
                 updateXPos(xSpeed);
             } else {
-                hitbox.y = getYPosRoof(hitbox, airSpeed,hitboxOffset);
+                hitbox.y = getYPosRoof(hitbox, airSpeed, hitboxOffset);
 
                 if (airSpeed > 0)
                     resetInAir();
@@ -189,11 +209,11 @@ public class Player extends Entity {
      * Handles what happens when jump is pressed, in the air or on the ground
      */
     private void jump() {
-        if(inAir) {//Edit later for Cyote time
-            
+        if (inAir) {// Edit later for Cyote time
+
             return;
         }
-        
+
         inAir = true;
         airSpeed = jumpSpeed;
     }
@@ -204,12 +224,13 @@ public class Player extends Entity {
     private void resetInAir() {
         inAir = false;
         airSpeed = 0;
-        gravity = 0.04f * Game.SCALE;
+        gravity = GRAVITY;
 
     }
 
     /**
      * Updates X-Position of player after hitbox detects collision
+     * 
      * @param xSpeed
      */
     private void updateXPos(float xSpeed) {
@@ -237,18 +258,19 @@ public class Player extends Entity {
         if (attacking) {
             player_action = DRAW;
         }
-        
-        if(jump && inAir) {//If spacebar is held and you're in the air, hold the jumping animation
+
+        if (jump && inAir) {// If spacebar is held and you're in the air, hold the jumping animation
             player_action = JUMPSTART;
         }
-        
-        if(!jump && inAir) {//If spacebar is not held and in the air, begin the falling animation
+
+        if (!jump && inAir) {// If spacebar is not held and in the air, begin the falling animation
             player_action = JUMPEND;
         }
-        
-        if(killed) {
+
+        if (killed) {
             player_action = DIE;
         }
+<<<<<<< HEAD
         
         if (dashing) {
             player_action = DASH;
@@ -257,6 +279,9 @@ public class Player extends Entity {
             }
         }
         
+=======
+
+>>>>>>> main
         if (startAni != player_action) {
             resetAniTick();
         }
@@ -326,21 +351,22 @@ public class Player extends Entity {
     public boolean isAttacking() {
         return attacking;
     }
+
     public void setJump(boolean jump) {
         this.jump = jump;
-        //When jump is released, implement gravity a bit more
+        // When jump is released, implement gravity a bit more
         if (!jump) {
-            gravity = gravity +0.11f;
+            gravity = gravity + 0.01f;
         }
     }
-    
+
     public boolean getInAir() {
         return inAir;
     }
 
     public void kill() {
         if (killed)
-        killed = false;
+            killed = false;
         else {
             killed = true;
         }
@@ -350,8 +376,11 @@ public class Player extends Entity {
         dashing = dash;
     }
 
+<<<<<<< HEAD
     public boolean isDashing() {
         return dashing;
     }
         
+=======
+>>>>>>> main
 }

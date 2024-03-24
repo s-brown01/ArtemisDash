@@ -15,36 +15,33 @@ import javax.imageio.ImageIO;
 import main.Game;
 
 public class LoadSave {
-    
-    public static String PLAYER_SPRITES = "/Artemis_Finished.png";
+
+    public static final String PLAYER_SPRITES = "/Artemis_Finished.png";
     public static String LEVEL_SPRITES = "/outside.png";
-    public static String LEVEL1_DATA = "/level_one_data.png";
+    public static final String LEVEL1_DATA = "/level_one_data.png";
+    public static final String SKELETON_SPRITES = "/Skeleton.png";
+    public static final String OVERWORLD_BG = "/Overworld.png";
     
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
+     * 
      * @param filename - The name of the sprite sheet that is requested
      * @return - The specified image as a variable
      */
     public static BufferedImage getSpriteSheet(String filename) {
         BufferedImage img = null;
-        InputStream is = LoadSave.class.getResourceAsStream(filename);
 
-        try { /// Try with resources to avoid 3 exceptions
+        try (InputStream is = LoadSave.class.getResourceAsStream(filename)) {
             img = ImageIO.read(is);
         } catch (IOException e) {
             System.out.println("NULL");
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                System.err.println("CLOSE ERROR");
-            }
         }
         return img;
     }
 
     /**
      * Uses RGB values to generate a tiled level
+     * 
      * @return - A 2D array that is representative of tiles making up the level
      */
     public static int[][] getLevelData() {
