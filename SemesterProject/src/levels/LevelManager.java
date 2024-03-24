@@ -15,7 +15,7 @@ import utils.LoadSave;
 public class LevelManager {
     private Game game;
     private BufferedImage[] levelSprite;
-    private static Level levelOne;
+    private  Level levelOne;
     
     public LevelManager(Game game) {
         this.game = game;
@@ -57,7 +57,7 @@ public class LevelManager {
         
     }
 
-    public static Level getCurrentLevel() {
+    public  Level getCurrentLevel() {
         return levelOne;
     }
 }

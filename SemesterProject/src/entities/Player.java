@@ -25,9 +25,10 @@ public class Player extends Entity {
 
     private BufferedImage[][] animations;
     private int player_action = IDLE;
-    private boolean moving, attacking,killed = false;
+    private boolean moving, attacking,killed,dashing = false;
     private boolean left, up, right, down, jump;
     private float playerSpeed = 2.75f;
+    private float xSpeed;
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
     private float yDrawOffset = 20 * Game.SCALE; // Calculated Y - Positional offset for drawing Sprite
     private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
@@ -140,14 +141,18 @@ public class Player extends Entity {
         if (!left && !right && !inAir) {
             return;
         }
-
-        float xSpeed = 0;
-
+        
+        xSpeed = 0;
+        
         if (left) {
             xSpeed -= playerSpeed;
         }
         if (right) {
             xSpeed += playerSpeed;
+        }
+        
+        if(dashing) {
+            dash();
         }
 
         if (!inAir)
@@ -171,6 +176,13 @@ public class Player extends Entity {
         } else
             updateXPos(xSpeed);
         moving = true;
+    }
+
+    private void dash() {
+        if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
+            hitbox.x += 15;
+            player_action = IDLE;
+        }
     }
 
     /**
@@ -236,6 +248,13 @@ public class Player extends Entity {
         
         if(killed) {
             player_action = DIE;
+        }
+        
+        if (dashing) {
+            player_action = DASH;
+            if((!canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData))) {//double check this
+                player_action = IDLE;
+            }
         }
         
         if (startAni != player_action) {
@@ -326,6 +345,13 @@ public class Player extends Entity {
             killed = true;
         }
     }
+    
+    public void setDash(boolean dash) {
+        dashing = dash;
+    }
 
+    public boolean isDashing() {
+        return dashing;
+    }
         
 }

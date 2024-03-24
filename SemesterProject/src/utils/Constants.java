@@ -26,7 +26,6 @@ public class Constants {
            public static final int JUMPEND = 9;
            public static final int DIE = 4;
            public static final int DASH = 5;
-           public static final int DASHEND = 99;
            public static final int DRAW = 6;
            public static final int DAMAGE = 999;
            
@@ -44,8 +43,6 @@ public class Constants {
                    return 20;
                case DASH:
                    return 10;
-               case DASHEND:
-                   return 3;
                case DRAW:
                    return 6;
                case DAMAGE: 
