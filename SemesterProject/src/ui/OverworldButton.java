@@ -2,34 +2,62 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class OverworldButton {
     // this class will keep track of...
     private final String levelName;
     private final int worldNumber, stageNumber;
-    private boolean completed = false;
-    private boolean hidden = true;
-    private int x, y;
-
-    public OverworldButton(int x, int y) {
-        this.x = x;
-        this.y = y;
-        levelName = "Level Name";
-        worldNumber = 1; // specific worlds
-        stageNumber = 2; // this will be incremented for all levels
+    private boolean completed = false, mouseOver = false, mousePressed = false, hidden = true;
+    private Color color;
+    private Color[][] colors = new Color[][] {{new Color(0,0,0)}, {new Color(0, 0, 100), new Color(0, 0, 150), new Color(0,0,200)}, {new Color(0,100,0), new Color(0,150,0), new Color(0,200,0)}};
+    private Rectangle bounds;
+    
+    public OverworldButton(int x, int y, String levelName, int worldNumber, int stageNumber) {
+        this.bounds = new Rectangle(x, y, 25, 25);
+        this.levelName = levelName;
+        this.worldNumber = worldNumber; // specific worlds
+        this.stageNumber = stageNumber; // this will be incremented for all levels
+    }
+    
+    public OverworldButton(int x, int y){
+        this.bounds = new Rectangle(x, y, 25, 25);
+        this.levelName = "Level Name";
+        this.worldNumber = 1; // specific worlds
+        this.stageNumber = 1; // this will be incremented for all levels
+    }
+    
+    /**
+     * 
+     */
+    public void update() {
+        if (hidden) {
+            color = colors[0][0];
+        }
+        else if (completed) {
+            color = colors[1][0];
+            if (mouseOver)
+                color = colors[1][1];
+            if (mousePressed)
+                color = colors[1][2];
+        } else {
+            color = colors[2][0];
+            if (mouseOver)
+                color = colors[2][1];
+            if (mousePressed)
+                color = colors[2][2];     
+        }
     }
 
+    /**
+     * 
+     * @param g
+     */
     public void draw(Graphics g) {
-        if (hidden) {
-            g.setColor(Color.BLACK);
-            g.fillRect(x, y, 25, 25);
-        } else if (completed) {
-            g.setColor(Color.YELLOW);
-            g.fillRect(x, y, 25, 25);
-        } else {
-            g.setColor(Color.RED);
-            g.fillRect(x, y, 25, 25);
-        }
+        // TODO - work on this logic
+        g.setColor(color);
+        
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
     /**
@@ -59,5 +87,51 @@ public class OverworldButton {
     public boolean isCompleted() {
         return completed;
     }
+    
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+    
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+    
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    /**
+     * @param mouseOver 
+     */
+    public void setMouseOver(boolean mouseOver) {        
+        this.mouseOver = mouseOver;
+    }
+    
+    public void setMousePressed(boolean mousePressed) {
+        this.mousePressed = mousePressed;
+    }
+    
+    /**
+     * Reset every boolean, including hidden/completed
+     */
+    public void resetBools() {
+        completed = false;
+        hidden = true;
+        mouseOver = false;
+        mousePressed = false;
+    }
+
+    /**
+     * @return
+     */
+    public boolean isMousePressed() {
+        return mousePressed;
+    }
+    
+    public boolean isMouseOver() {
+        return mouseOver;
+    }
+
+
 
 }
