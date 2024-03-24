@@ -13,16 +13,21 @@ import javax.swing.JMenuItem;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-public class GameWindow {
+public class GameWindow extends JFrame{
 
-    private JFrame gameFrame;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    
+    
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem m1, m2, m3;
 
     // Game Window Constructor
     public GameWindow(GamePanel gamePanel) {
-        gameFrame = new JFrame();
+        super();
 
         // this is how we add a menuBar to our game
         // so far no Item as any action, clicking them does nothing
@@ -38,15 +43,15 @@ public class GameWindow {
         menu.add(m3);
         menuBar.add(menu);
 
-        gameFrame.setJMenuBar(menuBar);
+        this.setJMenuBar(menuBar);
 
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// When exiting, close program
-        gameFrame.add(gamePanel);// Add in the game Panel
-        gameFrame.pack(); // Fit around the gamePanel
-        gameFrame.setResizable(false); // Do not resize
-        gameFrame.setLocationRelativeTo(null); // Center the frame
-        gameFrame.setVisible(true);
-        gameFrame.addWindowFocusListener(new WindowFocusListener() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// When exiting, close program
+        this.add(gamePanel);// Add in the game Panel
+        this.pack(); // Fit around the gamePanel
+        this.setResizable(false); // Do not resize
+        this.setLocationRelativeTo(null); // Center the frame
+        this.setVisible(true);
+        this.addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(WindowEvent e) {
             }
