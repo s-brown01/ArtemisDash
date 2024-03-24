@@ -17,7 +17,7 @@ import ui.MenuButton;
 
 public class Menu extends State implements StateMethods {
 
-    private MenuButton[] buttons;
+    private MenuButton[] buttons = new MenuButton[3];
     private BufferedImage backgroundImg;
 
     public Menu(Game game) {
@@ -26,24 +26,24 @@ public class Menu extends State implements StateMethods {
         loadButtons();
     }
 
+    /**
+     * Given the input of the user, this function helps update the button appearance
+     */
     @Override
     public void update() {
-        // update buttons and any other graphics in the menu
         for (MenuButton mb : buttons) {
-            // mb.update()
+             mb.update();
         }
     }
 
+    /**
+     * Draw the menu buttons onto the screen
+     */
     @Override
     public void draw(Graphics g) {
-        // draw background/buttons/menu
-        g.setColor(new Color(100, 100, 100, 200));
-        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-        g.setColor(new Color(255, 255, 255));
-        g.setFont(boldFont);
-        g.drawString("MENU", Game.GAME_WIDTH / 2 - 10, Game.GAME_HEIGHT / 2 - 10);
-        g.drawString("Press ENTER to continue", Game.GAME_WIDTH / 2 - 65, Game.GAME_HEIGHT / 2 + 20);
-
+        for (MenuButton mb : buttons) {
+            mb.draw(g);
+        }
     }
 
     /**
@@ -54,85 +54,85 @@ public class Menu extends State implements StateMethods {
     }
 
     /**
-     * Will be used to create and load in buttons for the Menu options
+     * Loads in the buttons into the "buttons" array to be passed off to render.
+     * Links the game state to the button function
      */
     private void loadButtons() {
-        /*
-         * THIS IS JUST EXAMPLE CODE CHANGE THIS EVENTUALLY
-         */
-        final int amount_of_buttons = 1;
-        buttons = new MenuButton[amount_of_buttons];
-        buttons[0] = new MenuButton();
+        buttons[0] = new MenuButton(Game.GAME_WIDTH/2, (int)(150 * Game.SCALE), 0, GameStates.OVERWORLD);
+        buttons[1] = new MenuButton(Game.GAME_WIDTH/2, (int)(220 * Game.SCALE), 1, GameStates.OPTIONS);
+        buttons[2] = new MenuButton(Game.GAME_WIDTH/2, (int)(290 * Game.SCALE), 2, GameStates.QUIT);
+//        buttons[3] = new MenuButton(Game.GAME_WIDTH/2, (int)(150 * Game.SCALE), 0, GameStates.OVERWORLD);
     }
 
     /**
-     * Will be used to reset and monitor states of buttons for the Menu options
+     * Handles resetting button behavior back to originally defined parameters
      */
     private void resetButtons() {
         for (MenuButton mb : buttons) {
-            // mb.reset or mb.resetBools? something similar to this
+             mb.resetButtons();
         }
     }
 
+    /**
+     * Goes unused as there is no functionality for mouse dragging in the Menu
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
-
     }
 
+    /**
+     * Goes unused as the "click" encompasses both the press and release of the button, 
+     * which we have separate functions for each.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-
     }
 
+    /**
+     * Sets behavior of mouse buttons when Mouse 1 is pressed
+     */
     @Override
     public void mousePressed(MouseEvent e) {
-        // see where the mouse is and if it an in any menu button
-//        if (!isInMB(e, buttons[0]))
-//            System.out.println("TEST");
+        for (MenuButton mb : buttons) {
+            if(hoverOverButton(e,mb)){
+                mb.setMousePressed(true);
+                break;
+            }
+        }
     }
 
+    /**
+     * Sets behavior of mouse buttons when Mouse 1 is released
+     */
     @Override
-    // activated when we release the mouse from clicking
     public void mouseReleased(MouseEvent e) {
-        // following code from youTube tutorial
-        // if it is within a button and we have clicked on that button then use the
-        // button
-        // for (MenuButton mb : buttons) {
-        // if (isInMB(e, mb)) {
-        // if (mb.isMousePressed())
-        // mb.applyGamestate();
-        // break;
-        // }
-        // }
+         for (MenuButton mb : buttons) {
+             if (hoverOverButton(e, mb)) {
+                 if (mb.isMousePressed()) {
+                     mb.applyGamestate();
+                     break;
+                 }
+             }
+         }
         resetButtons();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        // when we move the mouse reset mouseOver
         for (MenuButton mb : buttons) {
-            // tell the mb button mouse isn't on it
-            // this prevents click, drag off button, and release counting as a click on the
-            // button
-        }
-        // now check if the mouse is on any button
-        for (MenuButton mb : buttons) {
-            if (isInMB(e, mb)) {
-                // set mb mouseOver to true
+            if (hoverOverButton(e, mb)) {
+                mb.setMouseOver(true);
+                break;
+            }else {
+                
+                mb.setMouseOver(false);
             }
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-        // decide what to do with keyboard inputs here
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.out.println("SWITCH FROM MENU TO OVERWORLD");
-            GameStates.state = GameStates.OVERWORLD;
-        }
+       
     }
 
     @Override

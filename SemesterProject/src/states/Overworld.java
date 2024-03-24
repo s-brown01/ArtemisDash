@@ -34,48 +34,43 @@ public class Overworld extends State implements StateMethods {
         g.drawImage(background, 5, 5, Game.GAME_WIDTH-10, Game.GAME_HEIGHT-10, null);
         g.setColor(new Color(175, 175, 200, 100));
         g.setFont(boldFont);
-//        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-        g.setColor(Color.black);
-        g.drawString("OVERWORLD", Game.GAME_WIDTH / 2 - 30, 200);
-        g.drawString("Click anywhere to continue to game", Game.GAME_WIDTH / 2 - 100, 300);
+        g.setColor(Color.red);
+        g.drawString("Hit ENTER to continue to game", Game.GAME_WIDTH / 2 - 100, 300);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            GameStates.state = GameStates.PLAYING;
-        }
+
 
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_ENTER:
+            GameStates.state = GameStates.PLAYING;
+            break;
+        }
     }
 
     @Override

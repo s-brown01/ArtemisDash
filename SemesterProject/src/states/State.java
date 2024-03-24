@@ -22,10 +22,8 @@ public abstract class State {
         this.game = game;
     }
 
-    public boolean isInMB(MouseEvent e, MenuButton mb) {
-        // TODO CHANGE THIS COMMAND, implement once we have MenuButtons
-        // check if the given MenuButton contains the MouseEvent coordinates
-        return false;
+    public boolean hoverOverButton(MouseEvent e, MenuButton mb) {
+        return mb.getBounds().contains(e.getX(),e.getY());
     }
 
     public Game getGame() {

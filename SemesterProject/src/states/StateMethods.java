@@ -11,12 +11,17 @@ import java.awt.event.MouseEvent;
 
 public interface StateMethods {
 
-    // every State should update and draw itself
+    /**
+     * Allows updates for children of caller object, mainly for animations but can be used for more complex things.
+     */
     public void update();
 
+    /**
+     * Displays the caller object to the screen
+     * @param g
+     */
     public void draw(Graphics g);
 
-    // handling mouse events
     public void mouseDragged(MouseEvent e);
 
     public void mousePressed(MouseEvent e);
@@ -27,7 +32,6 @@ public interface StateMethods {
 
     public void mouseMoved(MouseEvent e);
 
-    // handling keyboard events and inputs
     public void keyPressed(KeyEvent e);
 
     public void keyReleased(KeyEvent e);
