@@ -30,12 +30,12 @@ public class Game implements Runnable {
 
     // Game Scale and tiles
     public final static int TILES_DEFAULT_SIZE = 32; // 32 x 32 tile size
-    public final static float SCALE = 1.75f; // How much should everything get scaled by? KEEP THIS ROUND
+    public final static float SCALE = 1.8f; // How much should everything get scaled by? KEEP THIS ROUND
     public final static int TILES_IN_WIDTH = 26; // How many tiles width-wise should be drawn?
     public final static int TILES_IN_HEIGHT = 14; // How many tiles height-wise should be drawn?
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
-    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
-    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH; //32* 1.75 = 56
+    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT; //32 * 14 = 448
 
     /**
      * Main Game Constructor
@@ -84,6 +84,7 @@ public class Game implements Runnable {
         double deltaUpdates = 0;
         double deltaFrames = 0;
         long lastCheck = System.currentTimeMillis();
+        
         while (true) {
             long currentTime = System.nanoTime();
             deltaUpdates += (currentTime - previousTime) / timePerUpdate;

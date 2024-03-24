@@ -19,6 +19,13 @@ public class MenuButton{
     private boolean mouseOver,mousePressed;
     private Rectangle bounds;
     
+    /**
+     * Generates a menu button object
+     * @param xpos - X-Position on the Screen
+     * @param ypos - Y-Position on the screen
+     * @param rowIndex - Row index to determine which button to draw
+     * @param state - Determines what state of the game the button is linked to. Once hit, this game state will load in.
+     */
     public MenuButton(int xpos, int ypos, int rowIndex, GameStates state) {
         this.xpos = xpos;
         this.ypos = ypos;
@@ -28,11 +35,17 @@ public class MenuButton{
         initBounds();
     }
 
+    /**
+     * Initializes a rectangle around the button to determine if mouse is intersecting within.
+     */
     private void initBounds() {
         bounds = new Rectangle(xpos - XOffsetCenter,ypos, Buttons.B_WIDTH, Buttons.B_HEIGHT);
         
     }
 
+    /**
+     * Loads in image to represent the button from a specified sprite sheet
+     */
     private void loadImgs() {
         imgs = new BufferedImage[3];
         BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.MENU_BUTTONS);
@@ -40,9 +53,18 @@ public class MenuButton{
             imgs[i] = temp.getSubimage(i* Buttons.B_WIDTH_DEFAULT, rowIndex * Buttons.B_HEIGHT_DEFAULT, Buttons.B_WIDTH_DEFAULT, Buttons.B_HEIGHT_DEFAULT);
         }
     }
+    
+    /**
+     * Draws the button to the screen with the specified parameters
+     * @param g
+     */
     public void draw(Graphics g) {
         g.drawImage(imgs[index], xpos-XOffsetCenter, ypos, Buttons.B_WIDTH,Buttons.B_HEIGHT, null);
     }
+    
+    /**
+     * Sets behavior when this instance of the button is interacted with, be it mouse or keyboard input.
+     */
     public void update() {
         index = 0;
         if (mouseOver) {
@@ -81,7 +103,7 @@ public class MenuButton{
         this.mousePressed = mousePressed;
     }
 
-    public Rectangle getBounds() {
+    public Rectangle getBounds() { //Returns rectangle around menu button
         return bounds;
     }
 }

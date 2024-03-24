@@ -29,11 +29,11 @@ public class Player extends Entity {
 
     private final Playing playing;
     private BufferedImage[][] animations;
-    private int aniTick, aniIndex, aniSpeed = 22; // 120 framespersecond / 12 idle frames = 10
+    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
     private int player_action = IDLE;
     private boolean moving, attacking, killed = false;
     private boolean left, up, right, down, jump;
-    private float playerSpeed = 2.75f;
+    private float playerSpeed = 1.25f *Game.SCALE;
 
     private int[][] levelData;
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
@@ -65,7 +65,7 @@ public class Player extends Entity {
         if (!Player.singletonCheck())
             throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAni();
-        initHitbox(x, y, hitboxCorrectionWidth, hitboxCorrectionHeight);
+        initHitbox((int)x, (int)y, (int)(hitboxCorrectionWidth), (int)(hitboxCorrectionHeight));
         this.state = IDLE;
 
     }

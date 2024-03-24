@@ -67,7 +67,7 @@ public abstract class Entity {
      * @param width  - How wide the box is
      * @param height - How tall the box is
      */
-    protected void initHitbox(float x, float y, float width, float height) {
+    protected void initHitbox(float x, float y, int width, int height) {
         hitbox = new Rectangle2D.Float(x, y, width, height);
 
     }
