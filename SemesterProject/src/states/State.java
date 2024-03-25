@@ -23,7 +23,7 @@ public abstract class State {
     }
 
     public boolean hoverOverButton(MouseEvent e, MenuButton mb) {
-        return mb.getBounds().contains(e.getX(),e.getY());
+        return mb.getBounds().contains(e.getX(), e.getY());
     }
 
     public Game getGame() {

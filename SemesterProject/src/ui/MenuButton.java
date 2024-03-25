@@ -11,20 +11,22 @@ import states.GameStates;
 import utils.LoadSave;
 import utils.Constants.UI.Buttons;
 
-public class MenuButton{
-    private int xpos,ypos,rowIndex,index;
-    private int XOffsetCenter = Buttons.B_WIDTH /2;
+public class MenuButton {
+    private int xpos, ypos, rowIndex, index;
+    private int XOffsetCenter = Buttons.B_WIDTH / 2;
     private GameStates state;
     private BufferedImage[] imgs;
-    private boolean mouseOver,mousePressed;
+    private boolean mouseOver, mousePressed;
     private Rectangle bounds;
-    
+
     /**
      * Generates a menu button object
-     * @param xpos - X-Position on the Screen
-     * @param ypos - Y-Position on the screen
+     * 
+     * @param xpos     - X-Position on the Screen
+     * @param ypos     - Y-Position on the screen
      * @param rowIndex - Row index to determine which button to draw
-     * @param state - Determines what state of the game the button is linked to. Once hit, this game state will load in.
+     * @param state    - Determines what state of the game the button is linked to. Once hit,
+     *                 this game state will load in.
      */
     public MenuButton(int xpos, int ypos, int rowIndex, GameStates state) {
         this.xpos = xpos;
@@ -39,8 +41,8 @@ public class MenuButton{
      * Initializes a rectangle around the button to determine if mouse is intersecting within.
      */
     private void initBounds() {
-        bounds = new Rectangle(xpos - XOffsetCenter,ypos, Buttons.B_WIDTH, Buttons.B_HEIGHT);
-        
+        bounds = new Rectangle(xpos - XOffsetCenter, ypos, Buttons.B_WIDTH, Buttons.B_HEIGHT);
+
     }
 
     /**
@@ -50,20 +52,23 @@ public class MenuButton{
         imgs = new BufferedImage[3];
         BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.MENU_BUTTONS);
         for (int i = 0; i < imgs.length; i++) {
-            imgs[i] = temp.getSubimage(i* Buttons.B_WIDTH_DEFAULT, rowIndex * Buttons.B_HEIGHT_DEFAULT, Buttons.B_WIDTH_DEFAULT, Buttons.B_HEIGHT_DEFAULT);
+            imgs[i] = temp.getSubimage(i * Buttons.B_WIDTH_DEFAULT, rowIndex * Buttons.B_HEIGHT_DEFAULT,
+                    Buttons.B_WIDTH_DEFAULT, Buttons.B_HEIGHT_DEFAULT);
         }
     }
-    
+
     /**
      * Draws the button to the screen with the specified parameters
+     * 
      * @param g
      */
     public void draw(Graphics g) {
-        g.drawImage(imgs[index], xpos-XOffsetCenter, ypos, Buttons.B_WIDTH,Buttons.B_HEIGHT, null);
+        g.drawImage(imgs[index], xpos - XOffsetCenter, ypos, Buttons.B_WIDTH, Buttons.B_HEIGHT, null);
     }
-    
+
     /**
-     * Sets behavior when this instance of the button is interacted with, be it mouse or keyboard input.
+     * Sets behavior when this instance of the button is interacted with, be it mouse or
+     * keyboard input.
      */
     public void update() {
         index = 0;
@@ -79,14 +84,16 @@ public class MenuButton{
         mouseOver = false;
         mousePressed = false;
     }
-    
+
     public void applyGamestate() {
         GameStates.state = state;
     }
-/**
- * Getters and Setters
- * @return
- */
+
+    /**
+     * Getters and Setters
+     * 
+     * @return
+     */
     public boolean isMouseOver() {
         return mouseOver;
     }
@@ -103,7 +110,7 @@ public class MenuButton{
         this.mousePressed = mousePressed;
     }
 
-    public Rectangle getBounds() { //Returns rectangle around menu button
+    public Rectangle getBounds() { // Returns rectangle around menu button
         return bounds;
     }
 }

@@ -35,7 +35,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void update() {
         for (MenuButton mb : buttons) {
-             mb.update();
+            mb.update();
         }
     }
 
@@ -56,20 +56,21 @@ public class Menu extends State implements StateMethods {
      */
     private void loadBackground() {
         backgroundImg = LoadSave.getSpriteSheet(LoadSave.MENU_SCREEN);
-        menuWidth = (int)(backgroundImg.getWidth() - 50);
-        menuHeight = (int)(backgroundImg.getHeight() / Game.SCALE  + 100);
-        menuX = Game.GAME_WIDTH/2 - menuWidth/2;
-        menuY =0;
+        menuWidth = (int) (backgroundImg.getWidth() - 50);
+        menuHeight = (int) (backgroundImg.getHeight() / Game.SCALE + 100);
+        menuX = Game.GAME_WIDTH / 2 - menuWidth / 2;
+        menuY = 0;
     }
 
     /**
-     * Loads in the buttons into the "buttons" array to be passed off to render.
-     * Links the game state to the button function
+     * Loads in the buttons into the "buttons" array to be passed off to render. Links the
+     * game state to the button function
      */
     private void loadButtons() {
         buttons[0] = new MenuButton(Game.GAME_WIDTH/6, (int)(200 * Game.SCALE), 0, GameStates.OVERWORLD);
         buttons[1] = new MenuButton(Game.GAME_WIDTH/6, (int)(270 * Game.SCALE), 1, GameStates.OPTIONS);
         buttons[2] = new MenuButton(Game.GAME_WIDTH/6, (int)(340 * Game.SCALE), 2, GameStates.QUIT);
+
 //        buttons[3] = new MenuButton(Game.GAME_WIDTH/2, (int)(150 * Game.SCALE), 0, GameStates.OVERWORLD);
     }
 
@@ -78,7 +79,7 @@ public class Menu extends State implements StateMethods {
      */
     private void resetButtons() {
         for (MenuButton mb : buttons) {
-             mb.resetButtons();
+            mb.resetButtons();
         }
     }
 
@@ -90,8 +91,8 @@ public class Menu extends State implements StateMethods {
     }
 
     /**
-     * Goes unused as the "click" encompasses both the press and release of the button, 
-     * which we have separate functions for each.
+     * Goes unused as the "click" encompasses both the press and release of the button, which
+     * we have separate functions for each.
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -103,7 +104,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mousePressed(MouseEvent e) {
         for (MenuButton mb : buttons) {
-            if(hoverOverButton(e,mb)){
+            if (hoverOverButton(e, mb)) {
                 mb.setMousePressed(true);
                 break;
             }
@@ -115,14 +116,14 @@ public class Menu extends State implements StateMethods {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-         for (MenuButton mb : buttons) {
-             if (hoverOverButton(e, mb)) {
-                 if (mb.isMousePressed()) {
-                     mb.applyGamestate();
-                     break;
-                 }
-             }
-         }
+        for (MenuButton mb : buttons) {
+            if (hoverOverButton(e, mb)) {
+                if (mb.isMousePressed()) {
+                    mb.applyGamestate();
+                    break;
+                }
+            }
+        }
         resetButtons();
     }
 
@@ -132,8 +133,8 @@ public class Menu extends State implements StateMethods {
             if (hoverOverButton(e, mb)) {
                 mb.setMouseOver(true);
                 break;
-            }else {
-                
+            } else {
+
                 mb.setMouseOver(false);
             }
         }
@@ -141,7 +142,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-       
+
     }
 
     @Override

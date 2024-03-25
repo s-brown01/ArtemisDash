@@ -28,13 +28,13 @@ public abstract class Boss extends Entity {
         maxHealth = getMaxHealth(boss_type);
         this.currentHealth = maxHealth;
     }
-    
+
     public void draw(Graphics g) {
-        
+
     }
-    
+
     public void update() {
-        
+
     }
 
 }

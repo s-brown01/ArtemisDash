@@ -1,35 +1,71 @@
 package ui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
+import static utils.Constants.OverworldButtonConstants.*;
 
 public class OverworldButton {
     // this class will keep track of...
     private final String levelName;
     private final int worldNumber, stageNumber;
-    private boolean completed = false;
-    private boolean hidden = true;
-    private int x, y;
-
-    public OverworldButton(int x, int y) {
-        this.x = x;
-        this.y = y;
-        levelName = "Level Name";
-        worldNumber = 1; // specific worlds
-        stageNumber = 2; // this will be incremented for all levels
+    private boolean completed = false, mouseOver = false, mousePressed = false, hidden = true;
+    private Color color;
+//    private Color[][] colors = new Color[][] {{new Color(0,0,0)}, {new Color(0, 0, 100), new Color(0, 0, 150), new Color(0,0,200)}, {new Color(0,100,0), new Color(0,150,0), new Color(0,200,0)}};
+    private Rectangle bounds;
+    
+    public OverworldButton(int x, int y, String levelName, int worldNumber, int stageNumber) {
+        this.bounds = new Rectangle(x, y, 25, 25);
+        this.levelName = levelName;
+        this.worldNumber = worldNumber; // specific worlds
+        this.stageNumber = stageNumber; // this will be incremented for all levels
+    }
+    
+    public OverworldButton(int x, int y){
+        this.bounds = new Rectangle(x, y, BUTTON_SIZE, BUTTON_SIZE);
+        this.levelName = "Level Name";
+        this.worldNumber = 1; // specific worlds
+        this.stageNumber = 1; // this will be incremented for all levels
+    }
+    
+    /**
+     * 
+     */
+    public void update() {
+        if (hidden) {
+            color = HIDDEN;
+            if (mouseOver)
+                color = HIDDEN_HIGHLIGHT;
+        }
+        else if (completed) {
+            color = COMPLETED;
+            if (mouseOver)
+                color = COMPLETED_HIGHLIGHT;
+            if (mousePressed)
+                color = COMPLETED_CLICKED;
+        } else {
+            color = DEFAULT;
+            if (mouseOver)
+                color = DEFAULT_HIGHLIGHT;
+            if (mousePressed)
+                color = DEFAULT_CLICKED;
+        }
     }
 
+    /**
+     * 
+     * @param g
+     */
     public void draw(Graphics g) {
-        if (hidden) {
-            g.setColor(Color.BLACK);
-            g.fillRect(x, y, 25, 25);
-        } else if (completed) {
-            g.setColor(Color.YELLOW);
-            g.fillRect(x, y, 25, 25);
-        } else {
-            g.setColor(Color.RED);
-            g.fillRect(x, y, 25, 25);
-        }
+        Graphics2D g2d = (Graphics2D) g;
+        g.setColor(color);
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        g.setColor(OUTLINE);
+        g2d.setStroke(new BasicStroke(2.0f));
+        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
     /**
@@ -59,5 +95,73 @@ public class OverworldButton {
     public boolean isCompleted() {
         return completed;
     }
+    
+    /**
+     * Setter for hidden
+     * @param hidden
+     */
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+    
+    /**
+     * setter for completed
+     * @param completed
+     */
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+    
+    /**
+     * return the button's bounds/hitbox
+     * @return      the button's rectangle
+     */
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    /**
+     * setter for mouseOver
+     * @param mouseOver 
+     */
+    public void setMouseOver(boolean mouseOver) {        
+        this.mouseOver = mouseOver;
+    }
+    
+    /**
+     * setter for mousePressed
+     * @param mousePressed
+     */
+    public void setMousePressed(boolean mousePressed) {
+        this.mousePressed = mousePressed;
+    }
+    
+    /**
+     * Reset every boolean, including hidden/completed
+     */
+    public void resetBools() {
+        completed = false;
+        hidden = true;
+        mouseOver = false;
+        mousePressed = false;
+    }
+
+    /**
+     * getter for mousePressed
+     * @return
+     */
+    public boolean isMousePressed() {
+        return mousePressed;
+    }
+    
+    /**
+     * getter for mouseOver
+     * @return
+     */
+    public boolean isMouseOver() {
+        return mouseOver;
+    }
+
+
 
 }
