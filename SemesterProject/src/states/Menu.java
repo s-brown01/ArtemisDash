@@ -7,6 +7,7 @@
 package states;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -66,9 +67,9 @@ public class Menu extends State implements StateMethods {
      * Links the game state to the button function
      */
     private void loadButtons() {
-        buttons[0] = new MenuButton(Game.GAME_WIDTH/5, (int)(160 * Game.SCALE), 0, GameStates.OVERWORLD);
-        buttons[1] = new MenuButton(Game.GAME_WIDTH/5, (int)(230 * Game.SCALE), 1, GameStates.OPTIONS);
-        buttons[2] = new MenuButton(Game.GAME_WIDTH/5, (int)(300 * Game.SCALE), 2, GameStates.QUIT);
+        buttons[0] = new MenuButton(Game.GAME_WIDTH/4, (int)(200 * Game.SCALE), 0, GameStates.OVERWORLD);
+        buttons[1] = new MenuButton(Game.GAME_WIDTH/4, (int)(270 * Game.SCALE), 1, GameStates.OPTIONS);
+        buttons[2] = new MenuButton(Game.GAME_WIDTH/4, (int)(340 * Game.SCALE), 2, GameStates.QUIT);
 //        buttons[3] = new MenuButton(Game.GAME_WIDTH/2, (int)(150 * Game.SCALE), 0, GameStates.OVERWORLD);
     }
 
