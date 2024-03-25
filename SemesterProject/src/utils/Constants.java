@@ -7,12 +7,50 @@
  */
 package utils;
 
+import java.awt.Color;
+import java.awt.Point;
+
 import main.Game;
 
 public class Constants {
 
     public static final float GRAVITY = 0.04f * Game.SCALE;
     public static final int ANISPEED = 10;
+    
+    public static class OverworldButtonConstants {
+        public static final int BUTTON_SIZE = (int)(25/1.75f * Game.SCALE);
+        
+        // the colors to be used for overworld buttons
+        public static final Color HIDDEN = new Color(0,0,0);
+        public static final Color COMPLETED = new Color(0,0,100);
+        public static final Color COMPLETED_HIGHLIGHT = new Color(0,0,150);
+        public static final Color COMPLETED_CLICKED = new Color(0,0,200);
+        public static final Color DEFAULT = new Color(0,100,0);
+        public static final Color DEFAULT_HIGHLIGHT = new Color(0,150,0);
+        public static final Color DEFAULT_CLICKED = new Color(0,200,0);
+        
+        /*
+         *  all points were calculated on paper
+         *  divide by 1.75f because that is the default scale, then multiple by scale
+         */
+        public static final Point POINT_1 = new Point((int)(660/1.75f * Game.SCALE), (int)(190/1.75f * Game.SCALE));
+        // TODO finalize points
+        public static final Point POINT_2 = new Point((int)(680/1.75f * Game.SCALE), (int)(220/1.75f * Game.SCALE));
+        public static final Point POINT_3 = new Point((int)(720/1.75f * Game.SCALE), (int)(250/1.75f * Game.SCALE));
+        public static final Point POINT_4 = new Point((int)(680/1.75f * Game.SCALE), (int)(280/1.75f * Game.SCALE));
+        public static final Point POINT_5 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_6 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_7 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_8 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_9 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_10 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_11 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_12 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_13 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_14 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+        public static final Point POINT_15 = new Point((int)(660/1.75f * Game.SCALE), (int)(200/1.75f * Game.SCALE));
+
+    }
 
     public static class Directions {
         public static final int LEFT = 0;

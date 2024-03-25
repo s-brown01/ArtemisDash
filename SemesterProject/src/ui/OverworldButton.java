@@ -4,13 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import static utils.Constants.OverworldButtonConstants.*;
+
 public class OverworldButton {
     // this class will keep track of...
     private final String levelName;
     private final int worldNumber, stageNumber;
     private boolean completed = false, mouseOver = false, mousePressed = false, hidden = true;
     private Color color;
-    private Color[][] colors = new Color[][] {{new Color(0,0,0)}, {new Color(0, 0, 100), new Color(0, 0, 150), new Color(0,0,200)}, {new Color(0,100,0), new Color(0,150,0), new Color(0,200,0)}};
+//    private Color[][] colors = new Color[][] {{new Color(0,0,0)}, {new Color(0, 0, 100), new Color(0, 0, 150), new Color(0,0,200)}, {new Color(0,100,0), new Color(0,150,0), new Color(0,200,0)}};
     private Rectangle bounds;
     
     public OverworldButton(int x, int y, String levelName, int worldNumber, int stageNumber) {
@@ -21,7 +23,7 @@ public class OverworldButton {
     }
     
     public OverworldButton(int x, int y){
-        this.bounds = new Rectangle(x, y, 25, 25);
+        this.bounds = new Rectangle(x, y, BUTTON_SIZE, BUTTON_SIZE);
         this.levelName = "Level Name";
         this.worldNumber = 1; // specific worlds
         this.stageNumber = 1; // this will be incremented for all levels
@@ -32,20 +34,20 @@ public class OverworldButton {
      */
     public void update() {
         if (hidden) {
-            color = colors[0][0];
+            color = HIDDEN;
         }
         else if (completed) {
-            color = colors[1][0];
+            color = COMPLETED;
             if (mouseOver)
-                color = colors[1][1];
+                color = COMPLETED_HIGHLIGHT;
             if (mousePressed)
-                color = colors[1][2];
+                color = COMPLETED_CLICKED;
         } else {
-            color = colors[2][0];
+            color = DEFAULT;
             if (mouseOver)
-                color = colors[2][1];
+                color = DEFAULT_HIGHLIGHT;
             if (mousePressed)
-                color = colors[2][2];     
+                color = DEFAULT_CLICKED;
         }
     }
 
