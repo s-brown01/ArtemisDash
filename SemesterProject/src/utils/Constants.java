@@ -15,14 +15,14 @@ import main.Game;
 public class Constants {
 
     public static final float GRAVITY = 0.04f * Game.SCALE;
-    public static final int ANISPEED = 10;
+    public static final int ANISPEED = 18;
     
     public static class OverworldButtonConstants {
         public static final int BUTTON_SIZE = (int)(25/1.75f * Game.SCALE);
         
         // the colors to be used for overworld buttons
-//        public static final Color HIDDEN = new Color(0,0,0);
-        public static final Color HIDDEN = new Color(255, 255, 255);
+        public static final Color HIDDEN = new Color(0, 0, 0);
+        public static final Color HIDDEN_HIGHLIGHT = new Color(50, 50, 50);
         public static final Color COMPLETED = new Color(0,0,100);
         public static final Color COMPLETED_HIGHLIGHT = new Color(0,0,150);
         public static final Color COMPLETED_CLICKED = new Color(0,0,200);

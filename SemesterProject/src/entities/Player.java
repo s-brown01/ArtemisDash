@@ -29,7 +29,7 @@ public class Player extends Entity {
 
     private final Playing playing;
     private BufferedImage[][] animations;
-    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
+//    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
     private int player_action = IDLE;
     private boolean moving, attacking, killed = false;
     private boolean left, up, right, down, jump;

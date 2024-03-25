@@ -22,7 +22,7 @@ public abstract class Entity {
     protected Rectangle2D.Float attackbox;
 
     protected int state; // this determines what "mode" the entity is in
-    protected int aniIndex, aniTick, aniSpeed = 25;
+    protected int aniIndex, aniTick, aniSpeed = utils.Constants.ANISPEED;
     protected int currentHealth, maxHealth;
 
     protected boolean inAir;
