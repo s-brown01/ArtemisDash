@@ -25,7 +25,7 @@ public abstract class Enemy extends Entity {
     protected int enemy_type;
     protected int tileY;
     protected boolean attackChecked;
-    protected float walkSpeed = 1.00f;
+    protected float walkSpeed = 0.80f;
     // The offset is 55 when game scale is 1.75, so divide to make it work for all scales
     protected float hitboxYOffset = (55 / 1.75f) * Game.SCALE;
 
@@ -40,10 +40,8 @@ public abstract class Enemy extends Entity {
      * Attack distance can also change if we want. For now it is just 1 tile.
      * 
      */
-//    protected float eyeSight = walk_speed * 5;
-//    protected float enemy_speed = walk_speed / 2;
-    protected float attackDistance = Game.TILES_SIZE;
-    protected float eyeSight = walkSpeed * 5;
+    protected float attackDistance;
+    protected float eyeSight;
     protected int walkDirection = LEFT;
 
     public Enemy(float x, float y, int width, int height, int enemy_type) {
@@ -51,7 +49,7 @@ public abstract class Enemy extends Entity {
         this.enemy_type = enemy_type;
         this.maxHealth = getMaxHealth(enemy_type);
         this.currentHealth = maxHealth;
-//        this.state = IDLE;
+
     }
 
     /**

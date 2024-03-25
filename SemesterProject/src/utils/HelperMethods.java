@@ -159,8 +159,15 @@ public class HelperMethods {
 
         if (firstXTile == secondXTile)
             return true;
-
-        return false;
+        
+        // make sure that all of the tiles are walkable between both points
+        if (firstXTile < secondXTile) {
+            // if the first hitbox is on the left, that is the start
+            return isAllTilesWalkable(firstXTile, secondXTile, yTile, levelData);
+        } else {
+            // if the second hitbox is on the left, that is the start
+            return isAllTilesWalkable(secondXTile, firstXTile, yTile, levelData);
+        }
     }
 
     /**
@@ -190,7 +197,7 @@ public class HelperMethods {
      * @param lvlData - the data from the current level
      * @return
      */
-    public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {
+    public static boolean isAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {
         // check the tiles on same level and 1 down
         for (int i = 0; i < xStart - xEnd; i++) {
             if (isTileSolid(xStart + i, y, lvlData))

@@ -21,6 +21,8 @@ public class Skeleton extends Enemy {
         startNewState(IDLE);
         // attack box will be a long rectangle that extends out from the hitbox of the Skeleton
         attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_HITBOX_WIDTH*3, SKELETON_HITBOX_HEIGHT);
+        attackDistance = hitbox.width;
+        eyeSight = attackDistance * 5;
     }
 
     /**
@@ -70,7 +72,7 @@ public class Skeleton extends Enemy {
                 // check if first update with attack
                 if (aniIndex == 0)
                     attackChecked = false;
-                if (!attackChecked && aniIndex == 3)
+                if (!attackChecked && aniIndex == 8)
                     checkHit(player);
                 break;
             case (HIT):
