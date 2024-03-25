@@ -87,7 +87,6 @@ public class Player extends Entity {
      * @see java.awt.Graphics @
      */
     public void renderPlayer(Graphics g) {
-//        drawHitbox(g);
         g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset),
                 width, height, null);
     }
@@ -146,6 +145,10 @@ public class Player extends Entity {
         if (!inAir)
             if ((!left && !right) || (right && left))
                 return;
+        
+        if (hitbox.y + hitbox.height >= Game.GAME_HEIGHT - Game.GAME_BUFFER) {
+            kill();
+        }
 
         float xSpeed = 0;
 
