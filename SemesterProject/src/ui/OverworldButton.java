@@ -1,7 +1,9 @@
 package ui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import static utils.Constants.OverworldButtonConstants.*;
@@ -56,10 +58,13 @@ public class OverworldButton {
      * @param g
      */
     public void draw(Graphics g) {
-        // TODO - work on this logic
+        Graphics2D g2d = (Graphics2D) g;
         g.setColor(color);
-        
         g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        g.setColor(OUTLINE);
+        g2d.setStroke(new BasicStroke(2.0f));
+//        g.draw3DRect(bounds.x, bounds.y, bounds.width, bounds.height, true);
+        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
     /**
