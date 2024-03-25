@@ -48,7 +48,7 @@ public class LevelManager {
             for (int i = 0; i < Game.TILES_IN_WIDTH; i++) {
                 int index = levelOne.getSpriteIndex(i, j);
                 // index 11 is a transparent tile, might as well not draw it
-                if (index !=11)
+                if (index != 11)
                     g.drawImage(levelSprite[index], i * Game.TILES_SIZE, Game.TILES_SIZE * j, Game.TILES_SIZE,
                             Game.TILES_SIZE, null);
 

@@ -65,7 +65,7 @@ public class HelperMethods {
         return isTileSolid((int) xIndex, (int) (yIndex), lvlData);
 
     }
-    
+
     /**
      * This method will check a specific index in the levelData passed in. If it is not in the
      * tiles being used or is NOT a transparent tile, it is solid.
@@ -143,7 +143,7 @@ public class HelperMethods {
 
         return true;
     }
-    
+
     /**
      * 
      * @param levelData
@@ -152,19 +152,20 @@ public class HelperMethods {
      * @param yTile
      * @return true if there is a clear line of sight between both hitboxes
      */
-    public static boolean isSightClear(int[][] levelData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox, int yTile) {
-        final int firstXTile = (int)(firstHitbox.x / Game.TILES_SIZE);
-        final int secondXTile = (int)(secondHitbox.x / Game.TILES_SIZE);
-        
-        
+    public static boolean isSightClear(int[][] levelData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox,
+            int yTile) {
+        final int firstXTile = (int) (firstHitbox.x / Game.TILES_SIZE);
+        final int secondXTile = (int) (secondHitbox.x / Game.TILES_SIZE);
+
         if (firstXTile == secondXTile)
             return true;
-        
+
         return false;
     }
-    
+
     /**
-     * Check if a tile is walkable based on the xSpeed given into the function. 
+     * Check if a tile is walkable based on the xSpeed given into the function.
+     * 
      * @param hitbox
      * @param xSpeed
      * @param lvlData
@@ -179,24 +180,23 @@ public class HelperMethods {
             return isSolid(hitbox.x + hitbox.width + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
         }
     }
-    
-    
+
     /**
      * Checking the row of tiles so make sure that all are walkable
      * 
-     * @param xStart - the starting x-coordinate 
-     * @param xEnd - the ending x-coordinate
-     * @param y - the y-position of both entities
+     * @param xStart  - the starting x-coordinate
+     * @param xEnd    - the ending x-coordinate
+     * @param y       - the y-position of both entities
      * @param lvlData - the data from the current level
      * @return
      */
     public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {
         // check the tiles on same level and 1 down
-        for(int i = 0; i < xStart - xEnd; i++) {
-            if(isTileSolid(xStart + i, y, lvlData))
+        for (int i = 0; i < xStart - xEnd; i++) {
+            if (isTileSolid(xStart + i, y, lvlData))
                 return false;
-            
-            if(!isTileSolid(xStart + i, y + 1, lvlData))
+
+            if (!isTileSolid(xStart + i, y + 1, lvlData))
                 return false;
         }
         return true;

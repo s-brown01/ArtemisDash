@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 
 import main.Game;
 import states.Playing;
+import utils.Constants;
 import utils.LoadSave;
 
 public class Player extends Entity {
@@ -33,7 +34,7 @@ public class Player extends Entity {
     private int player_action = IDLE;
     private boolean moving, attacking, killed = false;
     private boolean left, up, right, down, jump;
-    private float playerSpeed = 2.75f;
+    private float playerSpeed = 1.25f * Game.SCALE;
 
     private int[][] levelData;
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
@@ -41,12 +42,12 @@ public class Player extends Entity {
     private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
     private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
                                                             // height
-    private float hitboxOffset = (55/1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
+    private float hitboxOffset = (55 / 1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
 
     /**
      * Jumping and Gravity variables
      */
-    private float jumpSpeed = -2.25f * Game.SCALE; // How high the player can jump
+    private float jumpSpeed = -2.75f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
 
     /**
@@ -65,7 +66,7 @@ public class Player extends Entity {
         if (!Player.singletonCheck())
             throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAni();
-        initHitbox(x, y, hitboxCorrectionWidth, hitboxCorrectionHeight);
+        initHitbox((int) x, (int) y, (int) (hitboxCorrectionWidth), (int) (hitboxCorrectionHeight));
         this.state = IDLE;
 
     }
@@ -83,14 +84,14 @@ public class Player extends Entity {
      * Renders the player, along with hitbox
      * 
      * @param g - Graphics
+     * @see java.awt.Graphics @
      */
     public void renderPlayer(Graphics g) {
-        drawHitbox(g);
+//        drawHitbox(g);
         g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset),
                 width, height, null);
     }
 
-//INTERSECT FUNCTION WITH HITBOX!!!!
     /**
      * Creates an animation library to store every animation from the loaded in sprite sheet
      */
@@ -122,7 +123,7 @@ public class Player extends Entity {
      */
     private void updateAniTick() {
         aniTick++;
-        if (aniTick >= aniSpeed) {
+        if (aniTick >= Constants.ANISPEED) {
             aniTick = 0;
             aniIndex++;
             if (aniIndex >= getSpriteAmt(player_action)) {

@@ -28,7 +28,6 @@ public abstract class Entity {
     protected boolean inAir;
     protected float gravity = 0.04f * Game.SCALE; // How quickly the player falls to earth
     protected float airSpeed = 0f; // How quickly the player moves in the air
-    
 
     /**
      * Constructor class for every entity instance
@@ -67,7 +66,7 @@ public abstract class Entity {
      * @param width  - How wide the box is
      * @param height - How tall the box is
      */
-    protected void initHitbox(float x, float y, float width, float height) {
+    protected void initHitbox(float x, float y, int width, int height) {
         hitbox = new Rectangle2D.Float(x, y, width, height);
 
     }

@@ -91,7 +91,6 @@ public class Overworld extends State implements StateMethods {
                 ob.setMousePressed(true);
             }
         }
-
     }
 
     @Override
@@ -127,13 +126,15 @@ public class Overworld extends State implements StateMethods {
                 selectedLvl = ob;
             }
         }
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
-
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_ENTER:
+            GameStates.state = GameStates.PLAYING;
+            break;
+        }
     }
 
     @Override

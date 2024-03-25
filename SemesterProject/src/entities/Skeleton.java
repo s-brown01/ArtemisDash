@@ -17,7 +17,6 @@ import main.Game;
 
 public class Skeleton extends Enemy {
 
-
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);
         initHitbox(x, y, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT);
