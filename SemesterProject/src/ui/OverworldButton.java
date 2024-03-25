@@ -37,6 +37,8 @@ public class OverworldButton {
     public void update() {
         if (hidden) {
             color = HIDDEN;
+            if (mouseOver)
+                color = HIDDEN_HIGHLIGHT;
         }
         else if (completed) {
             color = COMPLETED;
@@ -63,7 +65,6 @@ public class OverworldButton {
         g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
         g.setColor(OUTLINE);
         g2d.setStroke(new BasicStroke(2.0f));
-//        g.draw3DRect(bounds.x, bounds.y, bounds.width, bounds.height, true);
         g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
 
@@ -95,25 +96,42 @@ public class OverworldButton {
         return completed;
     }
     
+    /**
+     * Setter for hidden
+     * @param hidden
+     */
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
     }
     
+    /**
+     * setter for completed
+     * @param completed
+     */
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
     
+    /**
+     * return the button's bounds/hitbox
+     * @return      the button's rectangle
+     */
     public Rectangle getBounds() {
         return bounds;
     }
 
     /**
+     * setter for mouseOver
      * @param mouseOver 
      */
     public void setMouseOver(boolean mouseOver) {        
         this.mouseOver = mouseOver;
     }
     
+    /**
+     * setter for mousePressed
+     * @param mousePressed
+     */
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
     }
@@ -129,12 +147,17 @@ public class OverworldButton {
     }
 
     /**
+     * getter for mousePressed
      * @return
      */
     public boolean isMousePressed() {
         return mousePressed;
     }
     
+    /**
+     * getter for mouseOver
+     * @return
+     */
     public boolean isMouseOver() {
         return mouseOver;
     }

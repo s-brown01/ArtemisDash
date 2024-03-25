@@ -21,8 +21,8 @@ import utils.LoadSave;
 public class Overworld extends State implements StateMethods {
 
     private final BufferedImage background;
-    private OverworldButton[] buttonArr = new OverworldButton[15]; // there will be 15 levels
     private final Point[] btnLocations = BUTTON_POINT_ARRAY;
+    private OverworldButton[] buttonArr = new OverworldButton[btnLocations.length];
     private OverworldButton selectedLvl = null;
 
     public Overworld(Game game) {
@@ -32,14 +32,22 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This is where we load each of buttons.
+     * This is where we load each of buttons. It uses a for loop that runs for the length of buttonArr.length to generate new buttons at the locations of matching indexes in btnLocations
      */
     private void initButtons() {
         for (int i = 0; i < buttonArr.length; i++) {
             buttonArr[i] = new OverworldButton(btnLocations[i].x, btnLocations[i].y, "Level Name", 1, i+1);
         }
+        // this is just to see how the levels look at different stages
+        // should be removed by game starting
+        buttonArr[0].setHidden(false);
+        buttonArr[0].setCompleted(true);
+        buttonArr[1].setHidden(false);
     }
 
+    /**
+     * This update will make sure that the page can respond to the user's inputs and other events on screen
+     */
     @Override
     public void update() {
         for (OverworldButton ob : buttonArr) {
@@ -47,6 +55,10 @@ public class Overworld extends State implements StateMethods {
         }
     }
 
+    /**
+     * This method will draw the overworld to the Graphics g inputted into the function. It utilizes the OverworldButton's draw function.
+     * @param g     The graphics where to draw the Overworld
+     */
     @Override
     public void draw(Graphics g) {
         // background
@@ -69,8 +81,7 @@ public class Overworld extends State implements StateMethods {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
-
+        // NOT TO BE USED
     }
 
     @Override
@@ -86,7 +97,6 @@ public class Overworld extends State implements StateMethods {
     @Override
     public void mouseClicked(MouseEvent e) {
         // disregard this function, using mousePressed/mouseReleased instead
-
     }
 
     @Override
@@ -95,7 +105,6 @@ public class Overworld extends State implements StateMethods {
             // check if the mouse is in the bounds of the button
             // if the mouse is inbounds AND was pressed on that button, move to that level
             if (isInOB(e, ob) && ob.isMousePressed()) {
-//                selectedLvl = ob;
                  GameStates.state = GameStates.PLAYING;
             }
         }
@@ -110,6 +119,7 @@ public class Overworld extends State implements StateMethods {
     public void mouseMoved(MouseEvent e) {
         for (OverworldButton ob : buttonArr) {
             ob.setMouseOver(false);
+            selectedLvl = null;
         }
         for (OverworldButton ob : buttonArr) {
             if (isInOB(e, ob)) {
