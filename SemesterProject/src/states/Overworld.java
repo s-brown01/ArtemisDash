@@ -31,7 +31,7 @@ public class Overworld extends State implements StateMethods {
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(background, 5, 5, Game.GAME_WIDTH-10, Game.GAME_HEIGHT-10, null);
+        g.drawImage(background, 5, 5, Game.GAME_WIDTH - 10, Game.GAME_HEIGHT - 10, null);
         g.setColor(new Color(175, 175, 200, 100));
         g.setFont(boldFont);
         g.setColor(Color.red);
@@ -50,7 +50,6 @@ public class Overworld extends State implements StateMethods {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
 
     }
 

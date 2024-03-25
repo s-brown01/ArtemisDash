@@ -22,13 +22,12 @@ public abstract class Entity {
     protected Rectangle2D.Float attackbox;
 
     protected int state; // this determines what "mode" the entity is in
-    protected int aniIndex, aniTick, aniSpeed = 25;
+    protected int aniIndex, aniTick, aniSpeed = 18;
     protected int currentHealth, maxHealth;
 
     protected boolean inAir;
     protected float gravity = 0.04f * Game.SCALE; // How quickly the player falls to earth
     protected float airSpeed = 0f; // How quickly the player moves in the air
-    
 
     /**
      * Constructor class for every entity instance

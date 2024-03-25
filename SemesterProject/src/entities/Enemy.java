@@ -27,8 +27,7 @@ public abstract class Enemy extends Entity {
     protected boolean attackChecked;
     protected float walkSpeed = 1.00f;
     // The offset is 55 when game scale is 1.75, so divide to make it work for all scales
-    protected float hitboxYOffset = (55/1.75f) * Game.SCALE; 
-
+    protected float hitboxYOffset = (55 / 1.75f) * Game.SCALE;
 
     /*
      * These are temporary variables to define how far the enemy can see and how fast the
@@ -129,7 +128,9 @@ public abstract class Enemy extends Entity {
     }
 
     /**
-     * This will check if this enemy's attack box intersects with the players hitbox. If it does, the attack connected and player takes damage.
+     * This will check if this enemy's attack box intersects with the players hitbox. If it
+     * does, the attack connected and player takes damage.
+     * 
      * @param player
      */
     public void checkHit(Player player) {
@@ -148,30 +149,31 @@ public abstract class Enemy extends Entity {
         // if the player's x is less than enemy's, they must be to the left
         if (player.getHitbox().x < hitbox.x)
             walkDirection = LEFT;
-        else 
+        else
             // if not left, than right
             walkDirection = RIGHT;
 
     }
 
     /**
-     * Check if the player is within eyesight and clear line of sight. Players must be on same tile to be seen.
+     * Check if the player is within eyesight and clear line of sight. Players must be on same
+     * tile to be seen.
      * 
      * @param lvlData - the data from the level as a 2D int array
-     * @param player - the main Player
+     * @param player  - the main Player
      * @return returns true if there is a clear line of sight to the player and within sight
      */
     protected boolean canSeePlayer(int[][] lvlData, Player player) {
         // enemies cannot see different y-values
-        final int playerYTile = (int)(player.getHitbox().y / Game.TILES_SIZE);
+        final int playerYTile = (int) (player.getHitbox().y / Game.TILES_SIZE);
         // check height/y-tile
         if (playerYTile != tileY)
             return false;
         // check that the player is within their eyesight
-        if(!isPlayerInSightRange(player))
+        if (!isPlayerInSightRange(player))
             return false;
         // check if the line of sight to the player is clear
-        if(!isSightClear(lvlData, hitbox, player.getHitbox(), tileY))
+        if (!isSightClear(lvlData, hitbox, player.getHitbox(), tileY))
             return false;
         // same height & in eyesight & clear l.o.s.
         // enemy can see player
@@ -180,16 +182,16 @@ public abstract class Enemy extends Entity {
 
     /**
      * Check that the absolute value of the distance is within the eyeSight of the enemy.
-     *  
-     * @param player - the Player in the game 
+     * 
+     * @param player - the Player in the game
      * @return true if the player is within the enemy's eyesight
      */
     private boolean isPlayerInSightRange(Player player) {
         // using absolute value means that we don't care which side player is on
-        final int distance = (int)(Math.abs(player.hitbox.x - hitbox.x));
+        final int distance = (int) (Math.abs(player.hitbox.x - hitbox.x));
         return distance <= eyeSight;
     }
-    
+
     /**
      * Check if the player is within attack range
      * 
@@ -198,12 +200,13 @@ public abstract class Enemy extends Entity {
      */
     protected boolean isInAttackRange(Player player) {
         // using absolute value means that we don't care which side player is on
-        final int distance = (int)(Math.abs(player.hitbox.x - hitbox.x));
+        final int distance = (int) (Math.abs(player.hitbox.x - hitbox.x));
         return distance <= attackDistance;
     }
 
     /**
      * Update how the enemy will behave in the air/landing
+     * 
      * @param lvlData
      */
     protected void updateInAir(int[][] lvlData) {
@@ -230,35 +233,35 @@ public abstract class Enemy extends Entity {
         if (!gravity(hitbox, lvlData))
             inAir = true;
     }
-    
+
     /**
-     * This method will switch the walk direction horizontally. If they enemy is moving right, then they will turn left. If left, then turn right
+     * This method will switch the walk direction horizontally. If they enemy is moving right,
+     * then they will turn left. If left, then turn right
      */
     protected void switchWalkDirection() {
         // if left currently, move right
         if (walkDirection == LEFT)
             walkDirection = RIGHT;
-        else 
+        else
             // if they're not going left, they are now
             walkDirection = LEFT;
     }
-    
+
     protected void move(int[][] lvlData) {
         float xSpeed = 0;
         if (walkDirection == LEFT) {
             xSpeed -= walkSpeed;
-        }
-        else {
+        } else {
             xSpeed += walkSpeed;
         }
-        
-        if(canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData) && 
-                isTileWalkable(hitbox, xSpeed, lvlData)) {
+
+        if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)
+                && isTileWalkable(hitbox, xSpeed, lvlData)) {
             hitbox.x += xSpeed;
             return;
         }
         switchWalkDirection();
-        
+
     }
 
 }
