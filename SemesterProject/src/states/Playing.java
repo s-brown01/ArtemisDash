@@ -31,7 +31,7 @@ public class Playing extends State implements StateMethods {
     private void initClasses() {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
-        player = new Player(200, 200, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
+        player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 
     }

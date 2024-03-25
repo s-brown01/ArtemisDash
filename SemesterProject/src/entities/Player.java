@@ -30,7 +30,6 @@ public class Player extends Entity {
 
     private final Playing playing;
     private BufferedImage[][] animations;
-//    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
     private int player_action = IDLE;
     private boolean moving, attacking, killed = false;
     private boolean left, up, right, down, jump;
@@ -49,6 +48,7 @@ public class Player extends Entity {
      */
     private float jumpSpeed = -2.75f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
+    private boolean doubleJump = true;
 
     /**
      * Constructor for the player class
@@ -183,8 +183,9 @@ public class Player extends Entity {
      * Handles what happens when jump is pressed, in the air or on the ground
      */
     private void jump() {
+        System.out.println("Double jump is: " + doubleJump);
         if (inAir) {// Edit later for Cyote time
-
+            
             return;
         }
 
@@ -199,6 +200,7 @@ public class Player extends Entity {
         inAir = false;
         airSpeed = 0;
         gravity = GRAVITY;
+        
 
     }
 
