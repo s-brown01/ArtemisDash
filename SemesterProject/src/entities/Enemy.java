@@ -43,7 +43,7 @@ public abstract class Enemy extends Entity {
 //    protected float eyeSight = walk_speed * 5;
 //    protected float enemy_speed = walk_speed / 2;
     protected float attackDistance = Game.TILES_SIZE;
-    protected float eyeSight = attackDistance * 5;
+    protected float eyeSight = walkSpeed * 5;
     protected int walkDirection = LEFT;
 
     public Enemy(float x, float y, int width, int height, int enemy_type) {

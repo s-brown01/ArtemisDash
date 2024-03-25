@@ -13,15 +13,14 @@ import static utils.Constants.EnemyConstants.*;
 
 import java.awt.geom.Rectangle2D;
 
-import main.Game;
-
 public class Skeleton extends Enemy {
 
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);
         initHitbox(x, y, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT);
         startNewState(IDLE);
-        attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT);
+        // attack box will be a long rectangle that extends out from the hitbox of the Skeleton
+        attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_HITBOX_WIDTH*3, SKELETON_HITBOX_HEIGHT);
     }
 
     /**
@@ -34,6 +33,7 @@ public class Skeleton extends Enemy {
     public void update(int[][] lvlData, Player player) {
         updateBehavior(lvlData, player);
         updateAniTick();
+        updateAttackbox();
     }
 
     /**
@@ -83,8 +83,8 @@ public class Skeleton extends Enemy {
      * Make sure the attack box is in line with the hitbox/sprite
      */
     private void updateAttackbox() {
-        // TODO Auto-generated method stub
-
+        attackbox.x = hitbox.x - hitbox.width;
+        attackbox.y = hitbox.y;
     }
 
 }

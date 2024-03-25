@@ -10,7 +10,6 @@
  */
 package entities;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -76,9 +75,7 @@ public class EnemyManager {
             if (!s.isActive())
                 continue;
             s.drawHitbox(g);
-            g.setColor(Color.RED);
-            g.drawRect((int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X),
-                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH), (int) (SKELETON_HEIGHT));
+            s.drawAttackbox(g);
 
             g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X),
                     (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH), (int) (SKELETON_HEIGHT),
