@@ -46,6 +46,7 @@ public class Skeleton extends Enemy {
     private void updateBehavior(int[][] lvlData, Player player) {
         if (firstUpdate)
             firstUpdateCheck(lvlData);
+        
         if (inAir)
             updateInAir(lvlData);
         else {
@@ -57,8 +58,7 @@ public class Skeleton extends Enemy {
                 // turn, attack, then move
                 // if can see player
                 if (canSeePlayer(lvlData, player)) {
-                    System.out.println("SEEING PLAYER");
-
+                    
                     // turn towards player
                     turnTowardsPlayer(player);
                     // if in attack range
