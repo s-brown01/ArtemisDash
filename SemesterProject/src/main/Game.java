@@ -129,7 +129,10 @@ public class Game implements Runnable {
         case OVERWORLD:
             overworld.draw(g);
             break;
-        default:
+        case OPTIONS:
+            break;
+        case QUIT:
+            System.exit(-1);
             break;
         }
     }
@@ -148,8 +151,10 @@ public class Game implements Runnable {
         case OVERWORLD:
             overworld.update();
             break;
-        default:
+        case OPTIONS:
             break;
+        case QUIT:
+            System.exit(-1);
 
         }
     }
