@@ -146,6 +146,7 @@ public class Player extends Entity {
             if ((!left && !right) || (right && left))
                 return;
         
+        // checking that the player isn't too far on the bottom of the screen
         if (hitbox.y + hitbox.height >= Game.GAME_HEIGHT - Game.GAME_BUFFER) {
             kill();
         }

@@ -28,7 +28,7 @@ public abstract class Entity {
     protected boolean inAir;
     protected float gravity = 0.04f * Game.SCALE; // How quickly the player falls to earth
     protected float airSpeed = 0f; // How quickly the player moves in the air
-
+    
     /**
      * Constructor class for every entity instance
      * 

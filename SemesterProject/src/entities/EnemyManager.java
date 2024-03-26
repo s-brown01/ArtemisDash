@@ -82,8 +82,8 @@ public class EnemyManager {
             g.setColor(Color.CYAN);
             g.drawLine((int)s.getHitbox().x, (int)s.getHitbox().y, (int)(s.getHitbox().x+s.eyeSight), (int)s.getHitbox().y);
 
-            g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X),
-                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH), (int) (SKELETON_HEIGHT),
+            g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()], (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X + s.xFlipped()),
+                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH * s.widthFlipped()), (int) (SKELETON_HEIGHT),
                     null);
         }
     }
