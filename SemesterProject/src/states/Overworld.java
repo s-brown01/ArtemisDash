@@ -32,11 +32,13 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This is where we load each of buttons. It uses a for loop that runs for the length of buttonArr.length to generate new buttons at the locations of matching indexes in btnLocations
+     * This is where we load each of buttons. It uses a for loop that runs for the length of
+     * buttonArr.length to generate new buttons at the locations of matching indexes in
+     * btnLocations
      */
     private void initButtons() {
         for (int i = 0; i < buttonArr.length; i++) {
-            buttonArr[i] = new OverworldButton(btnLocations[i].x, btnLocations[i].y, "Level Name", 1, i+1);
+            buttonArr[i] = new OverworldButton(btnLocations[i].x, btnLocations[i].y, "Level Name", 1, i + 1);
         }
         // this is just to see how the levels look at different stages
         // should be removed by game starting
@@ -46,7 +48,8 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This update will make sure that the page can respond to the user's inputs and other events on screen
+     * This update will make sure that the page can respond to the user's inputs and other
+     * events on screen
      */
     @Override
     public void update() {
@@ -56,14 +59,16 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This method will draw the overworld to the Graphics g inputted into the function. It utilizes the OverworldButton's draw function.
-     * @param g     The graphics where to draw the Overworld
+     * This method will draw the overworld to the Graphics g inputted into the function. It
+     * utilizes the OverworldButton's draw function.
+     * 
+     * @param g The graphics where to draw the Overworld
      */
     @Override
     public void draw(Graphics g) {
         // background
         g.drawImage(background, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
-        
+
         // set font and color
         g.setFont(boldFont);
         g.setColor(Color.WHITE);
@@ -73,7 +78,7 @@ public class Overworld extends State implements StateMethods {
         // selected level, make sure its not null
         if (selectedLvl != null)
             g.drawString(selectedLvl.toString(), Game.GAME_WIDTH / 2 - 150, 25);
-        
+
         for (OverworldButton ob : buttonArr) {
             ob.draw(g);
         }
@@ -104,10 +109,10 @@ public class Overworld extends State implements StateMethods {
             // check if the mouse is in the bounds of the button
             // if the mouse is inbounds AND was pressed on that button, move to that level
             if (isInOB(e, ob) && ob.isMousePressed()) {
-                 GameStates.state = GameStates.PLAYING;
+                GameStates.state = GameStates.PLAYING;
             }
         }
-        for (OverworldButton ob :buttonArr) {
+        for (OverworldButton ob : buttonArr) {
             ob.setMouseOver(false);
             ob.setMousePressed(false);
         }
@@ -142,11 +147,13 @@ public class Overworld extends State implements StateMethods {
         // TODO Auto-generated method stub
 
     }
-    
+
     /**
-     * This function will determine if the cursor of the mouse is inside the bounds of a button.
-     * @param e     - the mouseEvent
-     * @param ob    - the OverworldButton to look at
+     * This function will determine if the cursor of the mouse is inside the bounds of a
+     * button.
+     * 
+     * @param e  - the mouseEvent
+     * @param ob - the OverworldButton to look at
      * @return true if the MouseEvent's x and y are within the buttons bounds
      */
     private boolean isInOB(MouseEvent e, OverworldButton ob) {

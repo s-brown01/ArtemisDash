@@ -24,7 +24,7 @@ public class Playing extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
-    
+
     private ArrayList<Arrow> arrowList = new ArrayList<>();
 
     public Playing(Game game) {
@@ -154,14 +154,14 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * @param x 
-     * @param y 
-     * @param slope 
+     * @param x
+     * @param y
+     * @param slope
      * 
      */
     public void addPlayerArrow(float x, float y, float slope) {
         System.out.println("ADDING NEW ARROW");
-        arrowList.add(new Arrow((int)x, (int)y, (int)slope));
+        arrowList.add(new Arrow((int) x, (int) y, (int) slope));
     }
 
 }

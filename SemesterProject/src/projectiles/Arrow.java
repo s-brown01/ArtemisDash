@@ -38,12 +38,12 @@ public class Arrow extends Projectile {
     private void updateMovement() {
         // TODO this logic
         // check if colliding with a wall or Entity
-        
+
     }
 
     public void draw(Graphics g) {
         g.setColor(Color.cyan);
-        g.drawRect((int)hitbox.x, (int)hitbox.y, (int)(hitbox.width), (int)(hitbox.height));
+        g.drawRect((int) hitbox.x, (int) hitbox.y, (int) (hitbox.width), (int) (hitbox.height));
     }
 
 }

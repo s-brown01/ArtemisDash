@@ -11,7 +11,7 @@ public class Level {
     private int[][] lvlData;
     private Boolean completed = false;
     private Boolean hidden = true;
-    
+
     public Level(int[][] lvlData) {
         this.lvlData = lvlData;
     }
@@ -23,7 +23,7 @@ public class Level {
     public int[][] getLevelData() {
         return lvlData;
     }
-    
+
     public Boolean getCompleted() {
         return completed;
     }

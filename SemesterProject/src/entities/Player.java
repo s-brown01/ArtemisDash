@@ -44,8 +44,9 @@ public class Player extends Entity {
     private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
                                                             // height
     private float hitboxOffset = (55 / 1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
-    
-    private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack doesn't count as multiple
+
+    private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
+                                           // doesn't count as multiple
 
     /**
      * Jumping and Gravity variables
@@ -121,7 +122,7 @@ public class Player extends Entity {
     public void loadLvlData(int[][] lvlData) {
         this.levelData = lvlData;
     }
-    
+
     /**
      * Check if the Players attack. If the attack has already been checked, don't check it
      */
@@ -142,7 +143,8 @@ public class Player extends Entity {
         attackChecked = true;
         final float xDiff = e.getX() - hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X;
         final float yDiff = e.getY() - hitbox.y + utils.Constants.PlayerConstants.SHOT_OFFSET_Y;
-        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X, hitbox.y + + utils.Constants.PlayerConstants.SHOT_OFFSET_Y, xDiff/yDiff);
+        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X,
+                hitbox.y + +utils.Constants.PlayerConstants.SHOT_OFFSET_Y, xDiff / yDiff);
     }
 
     /**
@@ -182,7 +184,7 @@ public class Player extends Entity {
         if (!inAir)
             if ((!left && !right) || (right && left))
                 return;
-        
+
         // checking that the player isn't too far on the bottom of the screen
         if (hitbox.y + hitbox.height >= Game.GAME_HEIGHT - Game.GAME_BUFFER) {
             kill();
@@ -248,10 +250,10 @@ public class Player extends Entity {
                 break;
             }
             if (!canMoveHere(hitbox.x, hitbox.y, hitbox.width + 5, hitbox.height, levelData)) {
-                for (int i =0; i <5; i ++) {//idea is to have a parabola but going backwards? hard to make
-                    hitbox.x -=i*2;
-                    hitbox.y -=i*i;
-                    
+                for (int i = 0; i < 5; i++) {// idea is to have a parabola but going backwards? hard to make
+                    hitbox.x -= i * 2;
+                    hitbox.y -= i * i;
+
                 }
 //                if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
                 inAir = true;
