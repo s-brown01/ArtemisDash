@@ -22,7 +22,7 @@ public class HelperMethods {
      * @param width     - Width of the hitbox of caller entity
      * @param height    - Height of the hitbox of caller entity
      * @param levelData - 2D Array of data that represents the level
-     * @return - True if the entity is able to move, false if it cannot
+     * @return - True if the entity is able to move, false if it cannot 
      */
     public static boolean canMoveHere(float x, float y, float width, float height, int[][] levelData) {
         // check top left and bottom right first in case of arial movement
@@ -174,9 +174,9 @@ public class HelperMethods {
     /**
      * Check if a tile is walkable based on the xSpeed given into the function.
      * 
-     * @param hitbox
-     * @param xSpeed
-     * @param lvlData
+     * @param hitbox  - The hitbox of the caller entity
+     * @param xSpeed  - The current X-Speed of the caller entity
+     * @param lvlData - The data that makes up the current level
      * @return
      */
     public static boolean isTileWalkable(Rectangle2D.Float hitbox, float xSpeed, int[][] lvlData) {
@@ -192,10 +192,10 @@ public class HelperMethods {
     /**
      * Checking the row of tiles so make sure that all are walkable
      * 
-     * @param xStart  - the starting x-coordinate
-     * @param xEnd    - the ending x-coordinate
-     * @param y       - the y-position of both entities
-     * @param lvlData - the data from the current level
+     * @param xStart  - The starting X-Coordinate
+     * @param xEnd    - The ending X-Coordinate
+     * @param y       - The Y-Position of both entities
+     * @param lvlData - The data that makes up the current level
      * @return
      */
     public static boolean isAllTilesWalkable(int xStart, int xEnd, int y, int[][] lvlData) {

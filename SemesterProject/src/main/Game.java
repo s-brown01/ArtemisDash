@@ -1,7 +1,7 @@
 /**
  * Game Class
  * @author johnbotonakis
- * This class handle most logic pertaining to the game, 
+ * This class handles most logic pertaining to the running of the game, 
  * including updates, FPS, level scale, and tile amount on screen.
  */
 package main;
