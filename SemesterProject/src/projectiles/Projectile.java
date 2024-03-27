@@ -36,10 +36,9 @@ public abstract class Projectile {
      * 
      * @param x         - the X-coordinate of the Projectile
      * @param y         - the Y-coordinate of the Projectile
-     * @param projectileType       - the type of the Projectile (should be using the ProjectileConstants values)
      * @param slope     - the slope of the Projectile, what path it will follow
      */
-    public Projectile(float x, float y, int projectileType, int slope) {
+    public Projectile(float x, float y, int slope) {
         // get the specific height and width depending on the type given
 //        super(x, y, getProjWidth(projectileType), getProjHeight(projectileType));
         hitbox = new Rectangle2D.Float(x, y, ARROW_HITBOX_WIDTH, ARROW_HITBOX_HEIGHT);

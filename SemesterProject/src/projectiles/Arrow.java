@@ -6,6 +6,7 @@
  */
 package projectiles;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import entities.Player;
@@ -21,8 +22,8 @@ public class Arrow extends Projectile {
      * @param projectileType
      * @param slope
      */
-    public Arrow(float x, float y, int projectileType, int slope) {
-        super(x, y, projectileType, slope);
+    public Arrow(float x, float y, int slope) {
+        super(x, y, slope);
         // TODO Auto-generated constructor stub
     }
 
@@ -41,7 +42,8 @@ public class Arrow extends Projectile {
     }
 
     public void draw(Graphics g) {
-        // TODO Fill in method
+        g.setColor(Color.cyan);
+        g.drawRect((int)hitbox.x, (int)hitbox.y, (int)(hitbox.width), (int)(hitbox.height));
     }
 
 }
