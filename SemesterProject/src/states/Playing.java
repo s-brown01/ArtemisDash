@@ -24,22 +24,33 @@ public class Playing extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
-    
+//    private int score;
     private ArrayList<Arrow> arrowList = new ArrayList<>();
 
+    /**
+     * 
+     * @param game
+     */
     public Playing(Game game) {
         super(game);
         initClasses();
     }
-
+    
+    /**
+     * 
+     */
     private void initClasses() {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
+//        this.score = 0;
 
     }
 
+    /**
+     * 
+     */
     @Override
     public void update() {
         if (paused) {
@@ -51,7 +62,10 @@ public class Playing extends State implements StateMethods {
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
 
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void draw(Graphics g) {
         levelManager.draw(g);
@@ -69,6 +83,9 @@ public class Playing extends State implements StateMethods {
 
     }
 
+    /**
+     * 
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         player.checkAttack(this, e); // THIS IS BAD, NOT WORK CORRECT
@@ -77,6 +94,9 @@ public class Playing extends State implements StateMethods {
             player.setAttack(true);
     }
 
+    /**
+     * 
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -101,6 +121,9 @@ public class Playing extends State implements StateMethods {
         }
     }
 
+    /**
+     * 
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -121,37 +144,24 @@ public class Playing extends State implements StateMethods {
 
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
+ 
+    /**
+     * When window focus is lost for whatever reason, this resets the player input,
+     * to allow the player to pick up where they were before interruption.
+     */
     public void windowFocusLost() {
         player.resetDirBools();
     }
 
+    /**
+     * Getter for player entity
+     * @return - Returns the current "player" entity
+     */
     public Player getPlayer() {
         return player;
     }
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
 
-    }
 
     /**
      * @param x 
@@ -162,6 +172,27 @@ public class Playing extends State implements StateMethods {
     public void addPlayerArrow(float x, float y, float slope) {
         System.out.println("ADDING NEW ARROW");
         arrowList.add(new Arrow((int)x, (int)y, (int)slope));
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void mousePressed(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        // TODO Auto-generated method stub
+
     }
 
 }

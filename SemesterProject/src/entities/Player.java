@@ -196,10 +196,13 @@ public class Player extends Entity {
         if (right) {
             xSpeed += playerSpeed;
         }
-
-        if (!inAir) // Checks if the player wanted to be in the air
-            if (!floorCheck(hitbox, levelData))// And if he is not supposed to be, and there is no gravity
-                inAir = true; // He is now considered in the air. (i.e walking off a ledge)
+        
+        // Checks if the player wanted to be in the air
+        if (!inAir) 
+            // And if he is not supposed to be, and there is no gravity Player is now considered in the air. (i.e walking off a ledge)
+            // 
+            if (!floorCheck(hitbox, levelData))
+                inAir = true; 
 
         if (inAir) {
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
@@ -215,8 +218,9 @@ public class Player extends Entity {
                     airSpeed = fallCollisionSpeed;
                 updateXPos(xSpeed);
             }
-        } else
+        } else {
             updateXPos(xSpeed);
+        }
         moving = true;
     }
 
@@ -224,9 +228,11 @@ public class Player extends Entity {
      * Handles event where the jump button, Space bar, is pressed
      */
     private void jump() {
+        //Explain Jump Offset
+        final float JUMP_OFFSET = 0.01f;
         if (jump && jumps <= 1) {
             inAir = true;
-            airSpeed = jumpSpeed + 0.01f;
+            airSpeed = jumpSpeed + JUMP_OFFSET; 
             if (hitbox.y < 170) {
                 System.out.println("Hit ceiling, too high");
             }
