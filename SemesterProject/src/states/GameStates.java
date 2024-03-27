@@ -1,3 +1,5 @@
+package states;
+
 /**
  * Game States Enum
  * @author johnbotonakis
@@ -5,8 +7,6 @@
  * A "state" is defined as a part of the game where the standard controls
  * can be remapped to different functions depending on the current part that you are in
  */
-package states;
-
 public enum GameStates {
 
     PLAYING, MENU, OVERWORLD, OPTIONS, QUIT;

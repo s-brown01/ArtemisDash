@@ -1,9 +1,3 @@
-/**
- * Arrow.java
- * @author
- * @date Mar 26, 2024
- * @description
- */
 package projectiles;
 
 import java.awt.Color;
@@ -12,7 +6,10 @@ import java.awt.Graphics;
 import entities.Player;
 
 /**
- *
+ * Arrow.java
+ * @author
+ * @date Mar 26, 2024
+ * @description
  */
 public class Arrow extends Projectile {
 

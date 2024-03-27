@@ -1,10 +1,3 @@
-/**
- * Player.java
- * Player Class
- * @author johnbotonakis and Sean-Paul Brown
- * This player class will hold every variable and funciton relating to the active player's inputs and outputs. 
- * 
- */
 package entities;
 
 import static utils.Constants.PlayerConstants.*;
@@ -21,6 +14,12 @@ import states.Playing;
 import utils.Constants;
 import utils.LoadSave;
 
+/**
+ * Player.java
+ * Player Class
+ * @author johnbotonakis and Sean-Paul Brown
+ * This player class will hold every variable and funciton relating to the active player's inputs and outputs. 
+ */
 public class Player extends Entity {
     // player_count and playerCountCheck will make sure there is only 1 player
     private static int player_count = 0;

@@ -1,6 +1,4 @@
-/**
- * Menu Button Class
- */
+
 package ui;
 
 import java.awt.Graphics;
@@ -11,6 +9,9 @@ import states.GameStates;
 import utils.LoadSave;
 import utils.Constants.UI.Buttons;
 
+/**
+ * Menu Button Class
+ */
 public class MenuButton {
     private int xpos, ypos, rowIndex, index;
     private int XOffsetCenter = Buttons.B_WIDTH / 2;

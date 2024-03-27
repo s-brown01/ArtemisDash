@@ -1,8 +1,3 @@
-/**
- * LoadSave Class
- * @author johnbotonakis
- * This class is focused on loading in sprite data, level data, and building levels
- */
 package utils;
 
 import java.awt.Color;
@@ -14,6 +9,11 @@ import javax.imageio.ImageIO;
 
 import main.Game;
 
+/**
+ * LoadSave Class
+ * @author johnbotonakis
+ * This class is focused on loading in sprite data, level data, and building levels
+ */
 public class LoadSave {
 
     public static final String PLAYER_SPRITES = "/Artemis_Finished.png";

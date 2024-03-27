@@ -1,8 +1,3 @@
-/**
- * Playing Class
- * @author johnbotonakis
- * This class handles the core game loop of completing levels
- */
 package states;
 
 import java.awt.Color;
@@ -17,6 +12,11 @@ import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
 
+/**
+ * Playing Class
+ * @author johnbotonakis
+ * This class handles the core game loop of completing levels
+ */
 public class Playing extends State implements StateMethods {
 
     // will keep track if the pause menu should be up or not

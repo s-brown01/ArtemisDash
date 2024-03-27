@@ -1,11 +1,3 @@
-/**
- * Player.java
- * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description:
- * This class will provide the framework for how all Projectiles in the game move. 
- * Projectile extends the Entity abstract class. 
- */
 package projectiles;
 
 import java.awt.Graphics;
@@ -14,6 +6,14 @@ import java.awt.image.BufferedImage;
 
 import static utils.Constants.ProjectileConstants.*;
 
+/**
+ * Player.java
+ * @author Sean-Paul Brown
+ * @date 03/15/2024
+ * @description:
+ * This class will provide the framework for how all Projectiles in the game move. 
+ * Projectile extends the Entity abstract class. 
+ */
 public abstract class Projectile {
     /**
      * the movement equation of every projectile is based on the general linear form: mx + b =

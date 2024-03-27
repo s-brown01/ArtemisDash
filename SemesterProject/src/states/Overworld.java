@@ -1,8 +1,3 @@
-/**
- * Overworld Class 
- * @author johnbotonakis
- * 
- */
 package states;
 
 import java.awt.Color;
@@ -18,6 +13,11 @@ import main.Game;
 import ui.OverworldButton;
 import utils.LoadSave;
 
+/**
+ * Overworld Class 
+ * @author johnbotonakis
+ * 
+ */
 public class Overworld extends State implements StateMethods {
 
     private final BufferedImage background;

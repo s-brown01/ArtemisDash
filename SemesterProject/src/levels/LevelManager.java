@@ -1,9 +1,3 @@
-/**
- * Level Manager
- * @author johnbotonakis
- * This class will handle things such as importing level sprites, 
- * drawing the level to the screen, and keep track of the current level played
- */
 package levels;
 
 import java.awt.Graphics;
@@ -12,6 +6,12 @@ import java.awt.image.BufferedImage;
 import main.Game;
 import utils.LoadSave;
 
+/**
+ * Level Manager
+ * @author johnbotonakis
+ * This class will handle things such as importing level sprites, 
+ * drawing the level to the screen, and keep track of the current level played
+ */
 public class LevelManager {
     private Game game;
     private BufferedImage[] levelSprite;
