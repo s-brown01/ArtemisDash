@@ -27,7 +27,7 @@ public class LevelManager {
      * Imports the sprites to build a level
      */
     private void importLevelSprites() {
-        BufferedImage img = LoadSave.getSpriteSheet(LoadSave.LEVEL_SPRITES);
+        BufferedImage img = LoadSave.getSpriteSheet(LoadSave.WORLD1_SPRITES);
         levelSprite = new BufferedImage[48]; // 12 sprites wide * 4 sprites tall = 48
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 12; i++) {

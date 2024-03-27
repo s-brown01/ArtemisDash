@@ -31,11 +31,11 @@ public class Player extends Entity {
 
     private final Playing playing;
     private BufferedImage[][] animations;
-//    private int aniTick, aniIndex, aniSpeed = 10; // 120 framespersecond / 12 idle frames = 10
     private int player_action = IDLE;
-    private boolean moving, attacking, killed = false;
+    private boolean moving, attacking, killed, dashing = false;
     private boolean left, up, right, down, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
+    private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
 
     private int[][] levelData;
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
@@ -146,7 +146,8 @@ public class Player extends Entity {
     }
 
     /**
-     * Increments index to simulate animation by drawing the next image in the sprite sheet
+     * Increments an animation index to simulate fluid movement by drawing the next image in
+     * the sprite sheet
      */
     private void updateAniTick() {
         aniTick++;
@@ -162,13 +163,20 @@ public class Player extends Entity {
     }
 
     /**
-     * Updates player positioning based on the inputs
+     * This is a multi-faceted function, allowing the position of the player to be updated
+     * whenever an input is passed through. Standard key inputs are A,D, and Spacebar
+     * controlling left, right, and jump movement respectively. Further in, this funciton also
+     * calculates what happens when coming down from a jump, falling off a ledge, or any other
+     * movement.
      */
     private void updatePos() {
         moving = false;
-
         if (jump) {
             jump();
+        }
+
+        if (dashing) {
+            dash();
         }
         // check if holding both left and right or holding neither
         if (!inAir)
@@ -189,9 +197,9 @@ public class Player extends Entity {
             xSpeed += playerSpeed;
         }
 
-        if (!inAir)
-            if (!gravity(hitbox, levelData))
-                inAir = true;
+        if (!inAir) // Checks if the player wanted to be in the air
+            if (!gravity(hitbox, levelData))// And if he is not supposed to be, and there is no gravity
+                inAir = true; // He is now considered in the air. (i.e walking off a ledge)
 
         if (inAir) {
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
@@ -213,26 +221,57 @@ public class Player extends Entity {
     }
 
     /**
-     * Handles what happens when jump is pressed, in the air or on the ground
+     * Handles event where the jump button, Space bar, is pressed
      */
     private void jump() {
-        if (inAir) {// Edit later for Cyote time
+        if (jump && jumps <= 1) {
+            inAir = true;
+            airSpeed = jumpSpeed + 0.01f;
+            if (hitbox.y < 170) {
+                System.out.println("Hit ceiling, too high");
+            }
+        }
 
+        if (jumps > 2) {
             return;
         }
 
-        inAir = true;
-        airSpeed = jumpSpeed;
     }
 
     /**
-     * Reset the variables that determine jumping
+     * Handles event where the dash button (Shift) is pressed
+     */
+    private void dash() {
+        if (dashing) {
+            while (canMoveHere(hitbox.x, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+                hitbox.x += playerSpeed + 2f;
+                break;
+            }
+            if (!canMoveHere(hitbox.x, hitbox.y, hitbox.width + 5, hitbox.height, levelData)) {
+                for (int i =0; i <5; i ++) {//idea is to have a parabola but going backwards? hard to make
+                    hitbox.x -=i*2;
+                    hitbox.y -=i*i;
+                    
+                }
+//                if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
+                inAir = true;
+                airSpeed = 0;
+                gravity = GRAVITY;
+                dashing = false;
+
+            }
+        }
+    }
+
+    /**
+     * Reset the variables that determine ability to jump
      */
     private void resetInAir() {
         inAir = false;
         airSpeed = 0;
         gravity = GRAVITY;
-
+        setJump(false);
+        jumps = 0;
     }
 
     /**
@@ -245,6 +284,9 @@ public class Player extends Entity {
             hitbox.x += xSpeed;
         } else {
             hitbox.x = getXPosWall(hitbox, xSpeed);
+            if (player_action == DASH) {
+
+            }
         }
 
     }
@@ -277,6 +319,9 @@ public class Player extends Entity {
         if (killed) {
             player_action = DIE;
         }
+        if (dashing) {
+            player_action = DASH;
+        }
 
         if (startAni != player_action) {
             resetAniTick();
@@ -301,6 +346,18 @@ public class Player extends Entity {
         right = false;
         up = false;
         down = false;
+    }
+
+    /**
+     * Mainly for testing, this function assigns a "kill" state if the player's health is too
+     * low, OR kill was evoked via key binds
+     */
+    public void kill() {
+        if (killed)
+            killed = false;
+        else {
+            killed = true;
+        }
     }
 
     /**
@@ -354,18 +411,19 @@ public class Player extends Entity {
         if (!jump) {
             gravity = gravity + 0.01f;
         }
+
     }
 
     public boolean getInAir() {
         return inAir;
     }
 
-    public void kill() {
-        if (killed)
-            killed = false;
-        else {
-            killed = true;
-        }
+    public void setDash(boolean dashing) {
+        this.dashing = dashing;
+    }
+
+    public void setJumps() {
+        this.jumps++;// Set this to only increment ONCE
     }
 
 }

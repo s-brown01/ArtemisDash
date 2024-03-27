@@ -20,12 +20,11 @@ import utils.LoadSave;
 public class Menu extends State implements StateMethods {
 
     private MenuButton[] buttons = new MenuButton[3];
-    private BufferedImage backgroundImg;
-    private int menuX, menuY, menuWidth, menuHeight;
+    private final BufferedImage backgroundImg;
 
     public Menu(Game game) {
         super(game);
-        loadBackground();
+        backgroundImg = LoadSave.getSpriteSheet(LoadSave.MENU_SCREEN);
         loadButtons();
     }
 
@@ -45,32 +44,21 @@ public class Menu extends State implements StateMethods {
     @Override
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
-//        g.drawImage(backgroundImg, menuX, menuY, menuWidth, menuHeight, null);
         for (MenuButton mb : buttons) {
             mb.draw(g);
         }
     }
 
-    /**
-     * Handles loading in of images; In this case, a menu background
-     */
-    private void loadBackground() {
-        backgroundImg = LoadSave.getSpriteSheet(LoadSave.MENU_SCREEN);
-        menuWidth = (int) (backgroundImg.getWidth() - 50);
-        menuHeight = (int) (backgroundImg.getHeight() / Game.SCALE + 100);
-        menuX = Game.GAME_WIDTH / 2 - menuWidth / 2;
-        menuY = 0;
-    }
+
 
     /**
      * Loads in the buttons into the "buttons" array to be passed off to render. Links the
      * game state to the button function
      */
     private void loadButtons() {
-        buttons[0] = new MenuButton(Game.GAME_WIDTH / 4, (int) (200 * Game.SCALE), 0, GameStates.OVERWORLD);
-        buttons[1] = new MenuButton(Game.GAME_WIDTH / 4, (int) (270 * Game.SCALE), 1, GameStates.OPTIONS);
-        buttons[2] = new MenuButton(Game.GAME_WIDTH / 4, (int) (340 * Game.SCALE), 2, GameStates.QUIT);
-//        buttons[3] = new MenuButton(Game.GAME_WIDTH/2, (int)(150 * Game.SCALE), 0, GameStates.OVERWORLD);
+        buttons[0] = new MenuButton(Game.GAME_WIDTH/6, (int)(200 * Game.SCALE), 0, GameStates.OVERWORLD);
+        buttons[1] = new MenuButton(Game.GAME_WIDTH/6, (int)(270 * Game.SCALE), 1, GameStates.OPTIONS);
+        buttons[2] = new MenuButton(Game.GAME_WIDTH/6, (int)(340 * Game.SCALE), 2, GameStates.QUIT);
     }
 
     /**
