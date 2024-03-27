@@ -81,6 +81,10 @@ public class Constants {
         public static final int DASHEND = 99;
         public static final int DRAW = 6;
         public static final int DAMAGE = 999;
+        
+        /** Both shot offsets were calculated from the artwork and how far the box is from the top left of the hitbox */
+        public static final int SHOT_OFFSET_X = 34;
+        public static final int SHOT_OFFSET_Y = 11;
 
         public static int getSpriteAmt(int player_action) {
             switch (player_action) {
@@ -299,8 +303,8 @@ public class Constants {
         public static final int ARROW_WIDTH = (int) (ARROW_WIDTH_DEFAULT * Game.SCALE);
         public static final int ARROW_HEIGHT = (int) (ARROW_HEIGHT_DEFAULT * Game.SCALE);
         /** how wide and tall the hitbox will be and the offset's based off the original image*/
-        public static final int ARROW_HITBOX_WIDTH = (int) (0 * Game.SCALE);
-        public static final int ARROW_HITBOX_HEIGHT = (int) (0 * Game.SCALE);
+        public static final int ARROW_HITBOX_WIDTH = (int) (50 * Game.SCALE);
+        public static final int ARROW_HITBOX_HEIGHT = (int) (25 * Game.SCALE);
         public static final int ARROW_DRAW_OFFSET_X = (int) (0 * Game.SCALE);
         public static final int ARROW_DRAW_OFFSET_Y = (int) (0 * Game.SCALE);        
         public static int getProjHeight(int projType) {

@@ -13,6 +13,7 @@ import static utils.HelperMethods.*;
 import static utils.Constants.GRAVITY;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import main.Game;
@@ -43,6 +44,8 @@ public class Player extends Entity {
     private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
                                                             // height
     private float hitboxOffset = (55 / 1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
+    
+    private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack doesn't count as multiple
 
     /**
      * Jumping and Gravity variables
@@ -77,6 +80,8 @@ public class Player extends Entity {
     public void update() {
         updatePos();
         updateAniTick();
+//        if (attacking)
+//            checkAttack();
         setAnimation();
     }
 
@@ -116,6 +121,29 @@ public class Player extends Entity {
     public void loadLvlData(int[][] lvlData) {
         this.levelData = lvlData;
     }
+    
+    /**
+     * Check if the Players attack. If the attack has already been checked, don't check it
+     */
+    public void checkAttack(Playing p, MouseEvent e) {
+        // PLEASE
+        // REWORK THIS
+        // ITS SO BAD
+        // the attack should only be checked once on 6th frame (index 5)
+        if (attackChecked) {
+            System.out.println("NO SHOT - attackChecked");
+            return;
+        }
+        if (aniIndex != 5) {
+            System.out.println("NO SHOT - aniIndex");
+            return;
+        }
+        System.out.println("SHOT");
+        attackChecked = true;
+        final float xDiff = e.getX() - hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X;
+        final float yDiff = e.getY() - hitbox.y + utils.Constants.PlayerConstants.SHOT_OFFSET_Y;
+        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X, hitbox.y + + utils.Constants.PlayerConstants.SHOT_OFFSET_Y, xDiff/yDiff);
+    }
 
     /**
      * Increments index to simulate animation by drawing the next image in the sprite sheet
@@ -128,6 +156,7 @@ public class Player extends Entity {
             if (aniIndex >= getSpriteAmt(player_action)) {
                 aniIndex = 0;
                 attacking = false;
+                attackChecked = false;
             }
         }
     }

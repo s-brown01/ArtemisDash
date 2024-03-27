@@ -9,11 +9,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
+import projectiles.Arrow;
 
 public class Playing extends State implements StateMethods {
 
@@ -22,6 +24,8 @@ public class Playing extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
+    
+    private ArrayList<Arrow> arrowList = new ArrayList<>();
 
     public Playing(Game game) {
         super(game);
@@ -53,6 +57,8 @@ public class Playing extends State implements StateMethods {
         levelManager.draw(g);
         enemyManager.draw(g);
         player.renderPlayer(g);
+        for (Arrow a : arrowList)
+            a.draw(g);
         if (paused) {
             g.setFont(boldFont);
             g.setColor(new Color(150, 150, 150, 150));
@@ -65,6 +71,8 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        player.checkAttack(this, e); // THIS IS BAD, NOT WORK CORRECT
+        // user has to click on 6th frame to shoot
         if (e.getButton() == MouseEvent.BUTTON1)
             player.setAttack(true);
     }
@@ -139,6 +147,17 @@ public class Playing extends State implements StateMethods {
     public void mouseDragged(MouseEvent e) {
         // TODO Auto-generated method stub
 
+    }
+
+    /**
+     * @param x 
+     * @param y 
+     * @param slope 
+     * 
+     */
+    public void addPlayerArrow(float x, float y, float slope) {
+        System.out.println("ADDING NEW ARROW");
+        arrowList.add(new Arrow((int)x, (int)y, (int)slope));
     }
 
 }
