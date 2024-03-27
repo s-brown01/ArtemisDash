@@ -110,8 +110,7 @@ public class Constants {
     }
 
     public static class EnemyConstants {
-        // ENEMY TYPES
-        // TODO: MAKE INTS FOR EACH ENEMY TYPE
+        /** All possible types of Enemies in game*/
         public static final int SKELETON = 0;
 
         // ACTIONS
@@ -120,17 +119,6 @@ public class Constants {
         public static final int ATTACK = 2;
         public static final int HIT = 3;
         public static final int DEAD = 4;
-
-        // TODO: DELETE LATER -- TEMPORARY VARAIBLE USING YOUTUBE TUTORIAL ENEMY
-        public static final int CRABBY = 1;
-        public static final int CRABBY_WIDTH_DEFAULT = 72;
-        public static final int CRABBY_HEIGHT_DEFAULT = 32;
-        public static final int CRABBY_WIDTH = (int) (CRABBY_WIDTH_DEFAULT * Game.SCALE);
-        public static final int CRABBY_HEIGHT = (int) (CRABBY_HEIGHT_DEFAULT * Game.SCALE);
-        // since these will be used for many crabbies they should be here
-        // 26 and 9 is the difference from start of hitbox from actual corners
-        public static final int CRABBY_DRAW_OFFSET_X = (int) (26 * Game.SCALE);
-        public static final int CRABBY_DRAW_OFFSET_Y = (int) (9 * Game.SCALE);
 
         public static final int SKELETON_WIDTH_DEFAULT = 55;
         public static final int SKELETON_HEIGHT_DEFAULT = 64;
@@ -171,19 +159,6 @@ public class Constants {
                 default:
                     return 0;
                 }
-            case CRABBY:
-                switch (enemy_action) {
-                case IDLE:
-                    return 9;
-                case RUNNING:
-                    return 6;
-                case ATTACK:
-                    return 7;
-                case HIT:
-                    return 4;
-                case DEAD:
-                    return 5;
-                }
             default:
                 return 0;
             }
@@ -202,8 +177,6 @@ public class Constants {
             switch (enemy_type) {
             case SKELETON:
                 return 1;
-            case CRABBY:
-                return 1;
             default:
                 return 1;
             }
@@ -221,8 +194,6 @@ public class Constants {
             switch (enemy_type) {
             case SKELETON:
                 return 1;
-            case CRABBY:
-                return 1;
             default:
                 return 0;
             }
@@ -230,20 +201,20 @@ public class Constants {
     }
 
     public static class BossConstants {
-        // Boss Types
+        /** All possible types of Bosses in game*/
         public static final int BOSS1 = 0;
         public static final int BOSS2 = 1;
         public static final int BOSS3 = 2;
 
         // Actions
-        public static final int IDLE = 100;
-        public static final int RUNNING = 101;
+        public static final int IDLE = 0;
+        public static final int RUNNING = 1;
         // I'm not sure on how many attack each boss has... just example code
-        public static final int ATTACK1 = 1021;
-        public static final int ATTACK2 = 1022;
-        public static final int ATTACK3 = 1023;
-        public static final int HIT = 103;
-        public static final int DEAD = 104;
+        public static final int ATTACK1 = 2;
+        public static final int ATTACK2 = 3;
+        public static final int ATTACK3 = 4;
+        public static final int HIT = 5;
+        public static final int DEAD = 6;
 
         /**
          * Get how every many sprites a specific action take for a specific boss. This returns how
@@ -315,6 +286,49 @@ public class Constants {
                 return 0;
             }
         }
-
+    }
+    
+    public static class ProjectileConstants {
+        /** All possible types of projectiles in game*/
+        public static final int ARROW = 0;
+        
+        /** the width and height of the ARROW's img */
+        public static final int ARROW_WIDTH_DEFAULT = 0;
+        public static final int ARROW_HEIGHT_DEFAULT = 0;
+        /** the width and height adjusted for the game's scale */
+        public static final int ARROW_WIDTH = (int) (ARROW_WIDTH_DEFAULT * Game.SCALE);
+        public static final int ARROW_HEIGHT = (int) (ARROW_HEIGHT_DEFAULT * Game.SCALE);
+        /** how wide and tall the hitbox will be and the offset's based off the original image*/
+        public static final int ARROW_HITBOX_WIDTH = (int) (0 * Game.SCALE);
+        public static final int ARROW_HITBOX_HEIGHT = (int) (0 * Game.SCALE);
+        public static final int ARROW_DRAW_OFFSET_X = (int) (0 * Game.SCALE);
+        public static final int ARROW_DRAW_OFFSET_Y = (int) (0 * Game.SCALE);        
+        public static int getProjHeight(int projType) {
+            switch (projType) {
+            case ARROW: 
+                return ARROW_HEIGHT_DEFAULT;
+            default:
+                return 30;
+            }
+        }
+        
+        public static int getProjWidth(int projType) {
+            switch (projType) {
+            case ARROW:
+                return 50;
+            default:
+                return 60;
+            }
+        }
+        
+        public static float getProjSpeed(int projType) {
+            switch (projType) {
+            case ARROW:
+                return 2.0f * Game.SCALE;
+            default:
+                return 2.0f * Game.SCALE;
+            }
+        }
+        
     }
 }

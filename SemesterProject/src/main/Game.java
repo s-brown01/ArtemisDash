@@ -155,10 +155,9 @@ public class Game implements Runnable {
             break;
         case QUIT:
             System.exit(-1);
-
         }
     }
-
+    
     /**
      * When window focus is lost, stop the player immediately
      */
