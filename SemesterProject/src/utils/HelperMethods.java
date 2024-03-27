@@ -112,7 +112,7 @@ public class HelperMethods {
      * 
      * @param hitbox       - The hitbox calling this collision check
      * @param airSpeed     - The Y Speed of that hitbox
-     * @param hitboxOffset
+     * @param hitboxOffset - How much the sprite is drawn off center from the hitbox
      * @return
      */
     public static float getYPosRoof(Rectangle2D.Float hitbox, float airSpeed, float hitboxOffset) {

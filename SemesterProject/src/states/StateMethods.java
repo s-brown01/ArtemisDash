@@ -37,5 +37,6 @@ public interface StateMethods {
     public void keyPressed(KeyEvent e);
 
     public void keyReleased(KeyEvent e);
+    
 
 }

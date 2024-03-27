@@ -84,6 +84,9 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_P:
             paused = !paused;
             break;
+        case KeyEvent.VK_SHIFT:
+            player.setDash(true);
+            break;
         case KeyEvent.VK_BACK_SPACE:
             GameStates.state = GameStates.MENU;
             break;
@@ -101,6 +104,7 @@ public class Playing extends State implements StateMethods {
             break;
         case KeyEvent.VK_SPACE:
             player.setJump(false);
+            player.setJumps();
             break;
         case KeyEvent.VK_K:
             player.kill();
