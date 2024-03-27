@@ -228,7 +228,7 @@ public abstract class Enemy extends Entity {
     protected void firstUpdateCheck(int[][] lvlData) {
         firstUpdate = false;
         // check on ground
-        if (!gravity(hitbox, lvlData))
+        if (!floorCheck(hitbox, lvlData))
             inAir = true;
     }
 

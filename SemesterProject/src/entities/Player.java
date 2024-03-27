@@ -198,7 +198,7 @@ public class Player extends Entity {
         }
 
         if (!inAir) // Checks if the player wanted to be in the air
-            if (!gravity(hitbox, levelData))// And if he is not supposed to be, and there is no gravity
+            if (!floorCheck(hitbox, levelData))// And if he is not supposed to be, and there is no gravity
                 inAir = true; // He is now considered in the air. (i.e walking off a ledge)
 
         if (inAir) {
