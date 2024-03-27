@@ -13,14 +13,13 @@ import javax.swing.JMenuItem;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-public class GameWindow extends JFrame{
+public class GameWindow extends JFrame {
 
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
-    
-    
+
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem m1, m2, m3;

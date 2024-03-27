@@ -20,7 +20,7 @@ public class Skeleton extends Enemy {
         initHitbox(x, y, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT);
         startNewState(IDLE);
         // attack box will be a long rectangle that extends out from the hitbox of the Skeleton
-        attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_HITBOX_WIDTH*3, SKELETON_HITBOX_HEIGHT);
+        attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_HITBOX_WIDTH * 3, SKELETON_HITBOX_HEIGHT);
         attackDistance = hitbox.width;
         eyeSight = attackDistance * 5;
     }
@@ -46,7 +46,7 @@ public class Skeleton extends Enemy {
     private void updateBehavior(int[][] lvlData, Player player) {
         if (firstUpdate)
             firstUpdateCheck(lvlData);
-        
+
         if (inAir)
             updateInAir(lvlData);
         else {
@@ -58,7 +58,7 @@ public class Skeleton extends Enemy {
                 // turn, attack, then move
                 // if can see player
                 if (canSeePlayer(lvlData, player)) {
-                    
+
                     // turn towards player
                     turnTowardsPlayer(player);
                     // if in attack range

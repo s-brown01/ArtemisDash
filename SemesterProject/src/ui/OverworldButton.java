@@ -16,21 +16,21 @@ public class OverworldButton {
     private Color color;
 //    private Color[][] colors = new Color[][] {{new Color(0,0,0)}, {new Color(0, 0, 100), new Color(0, 0, 150), new Color(0,0,200)}, {new Color(0,100,0), new Color(0,150,0), new Color(0,200,0)}};
     private Rectangle bounds;
-    
+
     public OverworldButton(int x, int y, String levelName, int worldNumber, int stageNumber) {
         this.bounds = new Rectangle(x, y, 25, 25);
         this.levelName = levelName;
         this.worldNumber = worldNumber; // specific worlds
         this.stageNumber = stageNumber; // this will be incremented for all levels
     }
-    
-    public OverworldButton(int x, int y){
+
+    public OverworldButton(int x, int y) {
         this.bounds = new Rectangle(x, y, BUTTON_SIZE, BUTTON_SIZE);
         this.levelName = "Level Name";
         this.worldNumber = 1; // specific worlds
         this.stageNumber = 1; // this will be incremented for all levels
     }
-    
+
     /**
      * 
      */
@@ -39,8 +39,7 @@ public class OverworldButton {
             color = HIDDEN;
             if (mouseOver)
                 color = HIDDEN_HIGHLIGHT;
-        }
-        else if (completed) {
+        } else if (completed) {
             color = COMPLETED;
             if (mouseOver)
                 color = COMPLETED_HIGHLIGHT;
@@ -95,26 +94,29 @@ public class OverworldButton {
     public boolean isCompleted() {
         return completed;
     }
-    
+
     /**
      * Setter for hidden
+     * 
      * @param hidden
      */
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
     }
-    
+
     /**
      * setter for completed
+     * 
      * @param completed
      */
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
-    
+
     /**
      * return the button's bounds/hitbox
-     * @return      the button's rectangle
+     * 
+     * @return the button's rectangle
      */
     public Rectangle getBounds() {
         return bounds;
@@ -122,20 +124,22 @@ public class OverworldButton {
 
     /**
      * setter for mouseOver
-     * @param mouseOver 
+     * 
+     * @param mouseOver
      */
-    public void setMouseOver(boolean mouseOver) {        
+    public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
     }
-    
+
     /**
      * setter for mousePressed
+     * 
      * @param mousePressed
      */
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
     }
-    
+
     /**
      * Reset every boolean, including hidden/completed
      */
@@ -148,20 +152,20 @@ public class OverworldButton {
 
     /**
      * getter for mousePressed
+     * 
      * @return
      */
     public boolean isMousePressed() {
         return mousePressed;
     }
-    
+
     /**
      * getter for mouseOver
+     * 
      * @return
      */
     public boolean isMouseOver() {
         return mouseOver;
     }
-
-
 
 }

@@ -160,7 +160,7 @@ public class HelperMethods {
 
         if (firstXTile == secondXTile)
             return true;
-        
+
         // make sure that all of the tiles are walkable between both points
         if (firstXTile < secondXTile) {
             // if the first hitbox is on the left, that is the start

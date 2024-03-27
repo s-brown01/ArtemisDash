@@ -261,9 +261,11 @@ public abstract class Enemy extends Entity {
         switchWalkDirection();
 
     }
-    
+
     /**
-     * This function will return the X-position of the entity based on which direction it is facing. This will allow the Enemies to be drawn facing both directions.
+     * This function will return the X-position of the entity based on which direction it is
+     * facing. This will allow the Enemies to be drawn facing both directions.
+     * 
      * @return width of the Enemy if walking left, 0 if facing right;
      */
     public int xFlipped() {
@@ -273,9 +275,12 @@ public abstract class Enemy extends Entity {
             return 0;
         }
     }
-    
+
     /**
-     * This method will return a scalar value to multiply the drawn width by, which depends on which direction the Enemy is facing. This allows the Enemy to be drawn correctly either direction.
+     * This method will return a scalar value to multiply the drawn width by, which depends on
+     * which direction the Enemy is facing. This allows the Enemy to be drawn correctly either
+     * direction.
+     * 
      * @return -1 if facing left, 1 if facing right
      */
     public int widthFlipped() {

@@ -24,7 +24,7 @@ public abstract class Entity {
     protected boolean inAir;
     protected float gravity = utils.Constants.GRAVITY; // How quickly the entity falls to earth
     protected float airSpeed = 0f; // How quickly the player moves in the air
-    
+
     /**
      * Constructor class for every entity instance
      * 
@@ -53,10 +53,10 @@ public abstract class Entity {
         g.setColor(Color.PINK);
         g.fillRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
-    
+
     protected void drawAttackbox(Graphics g) {
         g.setColor(Color.RED);
-        g.drawRect((int)attackbox.x, (int)attackbox.y, (int)attackbox.width, (int)attackbox.height);
+        g.drawRect((int) attackbox.x, (int) attackbox.y, (int) attackbox.width, (int) attackbox.height);
     }
 
     /**
