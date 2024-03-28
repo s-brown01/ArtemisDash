@@ -42,8 +42,9 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void update() {
+        // if this is paused, don't update all the paused stuff but not the rest
         if (paused) {
-            // update pause overlay
+            // update pause overlay here
             return;
         }
         levelManager.update();
@@ -59,10 +60,14 @@ public class Playing extends State implements StateMethods {
         player.renderPlayer(g);
         for (Arrow a : arrowList)
             a.draw(g);
+        // draw the pause screen only if it is paused. 
+        // this is last because it should be "on top" of the rest of the screen
         if (paused) {
             g.setFont(boldFont);
             g.setColor(new Color(150, 150, 150, 150));
             g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+            g.setColor(Color.BLACK);
+            g.fillRect(Game.GAME_WIDTH / 3, Game.GAME_HEIGHT /3, Game.GAME_WIDTH / 3, Game.GAME_HEIGHT / 2);
             g.setColor(Color.cyan);
             g.drawString("PAUSED", Game.GAME_WIDTH / 2 - 50, Game.GAME_HEIGHT / 2);
         }
