@@ -47,6 +47,8 @@ public class Playing extends State implements StateMethods {
             // update pause overlay here
             return;
         }
+        for (Arrow a : arrowList)
+            a.update(levelManager.getCurrentLevel().getLevelData(), player);
         levelManager.update();
         player.update();
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);

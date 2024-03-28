@@ -49,7 +49,6 @@ public abstract class Enemy extends Entity {
         this.enemy_type = enemy_type;
         this.maxHealth = getMaxHealth(enemy_type);
         this.currentHealth = maxHealth;
-
     }
 
     /**
@@ -289,6 +288,10 @@ public abstract class Enemy extends Entity {
         } else {
             return 1;
         }
+    }
+    
+    public int getCurrentHealth() {
+        return currentHealth;
     }
 
 }

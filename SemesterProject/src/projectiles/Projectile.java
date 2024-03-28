@@ -19,7 +19,7 @@ public abstract class Projectile {
      * the movement equation of every projectile is based on the general linear form: mx + b =
      * y, where b is y(0)
      */
-    private final float slope;
+    protected final float slope;
     protected float x, y;
     protected int width, height;
     protected Rectangle2D.Float hitbox;

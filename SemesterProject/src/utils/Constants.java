@@ -325,6 +325,9 @@ public class Constants {
         public static final int ARROW_HITBOX_HEIGHT = (int) (25 * Game.SCALE);
         public static final int ARROW_DRAW_OFFSET_X = (int) (0 * Game.SCALE);
         public static final int ARROW_DRAW_OFFSET_Y = (int) (0 * Game.SCALE);
+        
+        /** the horizontal speed of the arrow*/
+        public static final float ARROW_SPEED = 1.0f;
 
         public static int getProjHeight(int projType) {
             switch (projType) {

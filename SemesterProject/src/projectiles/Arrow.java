@@ -5,6 +5,8 @@ import java.awt.Graphics;
 
 import entities.Player;
 
+import static utils.Constants.ProjectileConstants.ARROW_SPEED;
+
 /**
  * Arrow.java
  * @author
@@ -34,7 +36,8 @@ public class Arrow extends Projectile {
      */
     private void updateMovement() {
         // TODO this logic
-        // check if colliding with a wall or Entity
+        this.hitbox.x += ARROW_SPEED;
+        this.hitbox.y += ARROW_SPEED * -0.5f;
 
     }
 
