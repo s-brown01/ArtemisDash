@@ -11,6 +11,7 @@ import entities.Player;
 import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
+import projectiles.ProjectileManager;
 
 /**
  * Playing Class
@@ -20,12 +21,13 @@ import projectiles.Arrow;
 public class Playing extends State implements StateMethods {
 
     // will keep track if the pause menu should be up or not
-    private boolean paused = false;
+    private boolean paused = false, levelComplete = false;
     private Player player;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
+    private ProjectileManager projManager;
 
-    private ArrayList<Arrow> arrowList = new ArrayList<>();
+//    private ArrayList<Arrow> arrowList = new ArrayList<>();
 
     public Playing(Game game) {
         super(game);
@@ -35,6 +37,7 @@ public class Playing extends State implements StateMethods {
     private void initClasses() {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
+        projManager = new ProjectileManager(this);
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 
@@ -42,26 +45,31 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void update() {
+        // if the level is complete, don't update anything
+        if (levelComplete) {
+            // here is where we do anything when the level is completed
+            GameStates.state = GameStates.OVERWORLD;
+            return;
+        }
+        
         // if this is paused, don't update all the paused stuff but not the rest
         if (paused) {
             // update pause overlay here
             return;
         }
-        for (Arrow a : arrowList)
-            a.update(levelManager.getCurrentLevel().getLevelData(), player);
         levelManager.update();
         player.update();
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
-
+        projManager.update();
+        
     }
 
     @Override
     public void draw(Graphics g) {
         levelManager.draw(g);
         enemyManager.draw(g);
+        projManager.draw(g);
         player.renderPlayer(g);
-        for (Arrow a : arrowList)
-            a.draw(g);
         // draw the pause screen only if it is paused. 
         // this is last because it should be "on top" of the rest of the screen
         if (paused) {
@@ -153,6 +161,10 @@ public class Playing extends State implements StateMethods {
     public Player getPlayer() {
         return player;
     }
+    
+    public ProjectileManager getProjectileManager() {
+        return projManager;
+    }
 
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -168,7 +180,11 @@ public class Playing extends State implements StateMethods {
      */
     public void addPlayerArrow(float x, float y, float slope) {
         System.out.println("ADDING NEW ARROW");
-        arrowList.add(new Arrow((int) x, (int) y, (int) slope));
+        projManager.newArrow(x, y, slope);
+    }
+    
+    public void levelCompleted() {
+        this.levelComplete = true;
     }
 
 }

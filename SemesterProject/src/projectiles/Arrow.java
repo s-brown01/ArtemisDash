@@ -26,7 +26,8 @@ public class Arrow extends Projectile {
         // TODO Auto-generated constructor stub
     }
 
-    public void update(int[][] lvlData, Player player) {
+    public void update() {
+//        int[][] lvlData, Player player
         // TODO Fill in method
         updateMovement();
     }

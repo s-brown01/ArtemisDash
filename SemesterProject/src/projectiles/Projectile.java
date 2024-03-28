@@ -45,5 +45,9 @@ public abstract class Projectile {
         this.slope = slope;
 
     }
+    
+    public Rectangle2D getHitbox() {
+        return hitbox;
+    }
 
 }

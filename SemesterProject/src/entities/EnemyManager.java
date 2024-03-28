@@ -103,12 +103,25 @@ public class EnemyManager {
      * @param player
      */
     public void update(int[][] lvlData, Player player) {
+        // this boolean will keep track of if every enemy has died, defaulted to true;
+        boolean allEnemiesKilled = true;
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
+            
+            // if the skeleton is active, all enemies have not been killed.
+            // this if statement only sets the allEnemiesKilled boolean once: short circuit
+            if (allEnemiesKilled) {
+                allEnemiesKilled = false;
+            }
             s.update(lvlData, player);
+            playing.getProjectileManager().checkEnemyHit(s);
+        }
+        
+        // if every enemy is dead/inactive, the level is complete
+        if (allEnemiesKilled) {
+            playing.levelCompleted();
         }
     }
-
 }

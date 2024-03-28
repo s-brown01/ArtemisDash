@@ -328,6 +328,8 @@ public class Constants {
         
         /** the horizontal speed of the arrow*/
         public static final float ARROW_SPEED = 1.0f;
+        /** how much damage an entity will take if hit with an ARROW*/
+        public static final int ARROW_DAMAGE = 1;
 
         public static int getProjHeight(int projType) {
             switch (projType) {
