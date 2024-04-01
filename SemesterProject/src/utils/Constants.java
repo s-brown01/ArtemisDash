@@ -86,7 +86,7 @@ public class Constants {
         public static final int IDLE = 0;
         public static final int RUNNING = 1;
         public static final int JUMPSTART = 2;
-        public static final int JUMPEND = 9;
+        public static final int FALL = 9;
         public static final int DIE = 4;
         public static final int DASH = 5;
         public static final int DASHEND = 99;
@@ -108,7 +108,7 @@ public class Constants {
                 return 10;
             case JUMPSTART:
                 return 9;
-            case JUMPEND:
+            case FALL:
                 return 3;
             case DIE:
                 return 20;

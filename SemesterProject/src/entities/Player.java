@@ -243,7 +243,7 @@ public class Player extends Entity {
         if (jumps > 2) {
             return;
         }
-
+        jump = false;
     }
 
     /**
@@ -321,7 +321,7 @@ public class Player extends Entity {
         }
 
         if (!jump && inAir) {// If spacebar is not held and in the air, begin the falling animation
-            player_action = JUMPEND;
+            player_action = FALL;
         }
 
         if (killed) {
@@ -421,7 +421,6 @@ public class Player extends Entity {
         }
 
     }
-
     public boolean getInAir() {
         return inAir;
     }

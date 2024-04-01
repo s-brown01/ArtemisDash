@@ -1,5 +1,6 @@
 /**
  * Menu Button Class
+ * @author johnbotonakis
  */
 package ui;
 
@@ -84,7 +85,7 @@ public class MenuButton {
         mouseOver = false;
         mousePressed = false;
     }
-
+    
     public void applyGamestate() {
         GameStates.state = state;
     }
