@@ -86,10 +86,10 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        player.checkAttack(this, e); // THIS IS BAD, NOT WORK CORRECT
-        // user has to click on 6th frame to shoot
-        if (e.getButton() == MouseEvent.BUTTON1)
-            player.setAttack(true);
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            player.shoot(e);
+        }
+
     }
 
     @Override

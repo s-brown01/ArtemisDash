@@ -19,7 +19,7 @@ public class Arrow extends Projectile {
      * @param x
      * @param y
      * @param projectileType
-     * @param slope
+     * @param slope              A negative slope will make the projectile rise, positive will make it fallz
      */
     public Arrow(float x, float y, int slope) {
         super(x, y, slope);
@@ -38,7 +38,7 @@ public class Arrow extends Projectile {
     private void updateMovement() {
         // TODO this logic
         this.hitbox.x += ARROW_SPEED;
-        this.hitbox.y += ARROW_SPEED * -0.5f;
+        this.hitbox.y += ARROW_SPEED * slope;
 
     }
 

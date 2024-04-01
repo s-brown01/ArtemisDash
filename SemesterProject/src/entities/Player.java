@@ -123,30 +123,6 @@ public class Player extends Entity {
     }
 
     /**
-     * Check if the Players attack. If the attack has already been checked, don't check it
-     */
-    public void checkAttack(Playing p, MouseEvent e) {
-        // PLEASE
-        // REWORK THIS
-        // ITS SO BAD
-        // the attack should only be checked once on 6th frame (index 5)
-        if (attackChecked) {
-            System.out.println("NO SHOT - attackChecked");
-            return;
-        }
-        if (aniIndex != 5) {
-            System.out.println("NO SHOT - aniIndex");
-            return;
-        }
-        System.out.println("SHOT");
-        attackChecked = true;
-        final float xDiff = e.getX() - hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X;
-        final float yDiff = e.getY() - hitbox.y + utils.Constants.PlayerConstants.SHOT_OFFSET_Y;
-        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X,
-                hitbox.y + +utils.Constants.PlayerConstants.SHOT_OFFSET_Y, xDiff / yDiff);
-    }
-
-    /**
      * Increments an animation index to simulate fluid movement by drawing the next image in
      * the sprite sheet
      */
@@ -254,7 +230,7 @@ public class Player extends Entity {
                     hitbox.y -= i * i;
 
                 }
-//                if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
+                // if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
                 inAir = true;
                 airSpeed = 0;
                 gravity = GRAVITY;
@@ -262,6 +238,38 @@ public class Player extends Entity {
 
             }
         }
+    }
+    
+
+    /**
+     * Check if the Players attack. If the attack has already been checked, don't check it
+     */
+    private void checkAttack(MouseEvent e) {
+        if (attackChecked) {
+            System.out.println("NO SHOT - attackChecked");
+            return;
+        }
+        // the attack should only be checked once on 6th frame (index 5)
+        if (aniIndex != 5) {
+            System.out.println("NO SHOT - aniIndex");
+            return;
+        }
+        System.out.println("SHOT");
+        attackChecked = true;
+        final float xDiff = e.getX() - hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X;
+        final float yDiff = e.getY() - hitbox.y + utils.Constants.PlayerConstants.SHOT_OFFSET_Y;
+//        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X,
+//                hitbox.y + +utils.Constants.PlayerConstants.SHOT_OFFSET_Y, xDiff / yDiff);
+    }
+    
+    public void shoot(MouseEvent e) {
+        // checking validation
+        if (attacking || killed) {
+            // dont attack again while attacking
+            return;
+        }
+        // if they aren't already attacking, they are now
+        attacking = true;
     }
 
     /**
@@ -326,6 +334,11 @@ public class Player extends Entity {
 
         if (startAni != player_action) {
             resetAniTick();
+            // this makes it so that when the player is attacking it starts on the 2nd frame. 
+            // starting on the second frame makes the animation a little quicker/smoother.
+            if (attacking) {
+                aniIndex = 1;
+            }
         }
 
     }
@@ -336,7 +349,6 @@ public class Player extends Entity {
     private void resetAniTick() {
         aniTick = 0;
         aniIndex = 0;
-
     }
 
     /**
