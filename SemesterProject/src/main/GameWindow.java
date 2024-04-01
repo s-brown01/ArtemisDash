@@ -24,7 +24,11 @@ public class GameWindow extends JFrame {
     private JMenu menu;
     private JMenuItem m1, m2, m3;
 
-    // Game Window Constructor
+    /**
+     * Initializes the window with which the gamePanel will sit
+     * 
+     * @param gamePanel - The current game Panel to be displayed
+     */
     public GameWindow(GamePanel gamePanel) {
         super();
 

@@ -21,12 +21,10 @@ public class KeyboardInputs implements KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
-    }
-
+    /**
+     * Calls actions specified by each game state, as each state handles similar button inputs
+     * differently
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (GameStates.state) {
@@ -67,6 +65,12 @@ public class KeyboardInputs implements KeyListener {
             break;
 
         }
+
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
 
     }
 

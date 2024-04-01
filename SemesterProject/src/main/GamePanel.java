@@ -19,6 +19,10 @@ public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
     private Game game;
 
+    /**
+     * Creates a new panel to which the game will be drawn onto
+     * @param game - The Game instance to which the game will be drawn to
+     */
     public GamePanel(Game game) {
         mouseInputs = new MouseInputs(this);
         this.game = game;
@@ -54,6 +58,10 @@ public class GamePanel extends JPanel {
         game.render(g);
     }
 
+    /**
+     * Returns the current game object
+     * @return - Current Game object
+     */
     public Game getGame() {
         return game;
     }

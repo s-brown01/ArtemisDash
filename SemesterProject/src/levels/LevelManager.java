@@ -17,6 +17,10 @@ public class LevelManager {
     private BufferedImage[] levelSprite;
     private Level levelOne;
 
+    /**
+     * Instantiates a manager for created level objects
+     * @param game - The Game object to which the level will be drawn onto
+     */
     public LevelManager(Game game) {
         this.game = game;
         importLevelSprites();
@@ -62,6 +66,10 @@ public class LevelManager {
 
     }
 
+    /**
+     * Returns the current level
+     * @return - The currently played level
+     */
     public Level getCurrentLevel() {
         return levelOne;
     }
