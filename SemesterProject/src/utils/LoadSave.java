@@ -20,6 +20,8 @@ public class LoadSave {
     public static final String SKELETON_SPRITES = "/Skeleton.png";
 
     public static final String OVERWORLD_BG = "/overworld1.png";
+    
+    public static final String PAUSE_MENU = "/pause_menu.png";
 
     public static final String MENU_BUTTONS = "/button_atlas1.png";
     public static final String MENU_SCREEN = "/TitleScreen1.png";

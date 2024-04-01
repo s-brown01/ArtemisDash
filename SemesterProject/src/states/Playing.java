@@ -18,6 +18,7 @@ import entities.Player;
 import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
+import ui.PauseOverlay;
 import utils.Constants.*;
 import utils.LoadSave;
 
@@ -26,6 +27,7 @@ public class Playing extends State implements StateMethods {
     // will keep track if the pause menu should be up or not
     private boolean paused = false;
     private Player player;
+    private PauseOverlay pauseOverlay;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
     private ArrayList<Arrow> arrowList = new ArrayList<>();
@@ -80,6 +82,7 @@ public class Playing extends State implements StateMethods {
         enemyManager = new EnemyManager(this);
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
+        pauseOverlay = new PauseOverlay();
 //        this.score = 0;
 
     }
@@ -101,7 +104,7 @@ public class Playing extends State implements StateMethods {
     @Override
     public void update() {
         if (paused) {
-            // update pause overlay
+            
             return;
         }
         levelManager.update();
@@ -164,7 +167,8 @@ public class Playing extends State implements StateMethods {
             g.setColor(new Color(150, 150, 150, 150));
             g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
             g.setColor(Color.cyan);
-            g.drawString("PAUSED", Game.GAME_WIDTH / 2 - 50, Game.GAME_HEIGHT / 2);
+            pauseOverlay.draw(g);
+//            g.drawString("PAUSED", Game.GAME_WIDTH / 2 - 50, Game.GAME_HEIGHT / 2);
         }
 
     }
@@ -264,8 +268,6 @@ public class Playing extends State implements StateMethods {
     public Player getPlayer() {
         return player;
     }
-
-
 
     /**
      * @param x
