@@ -52,6 +52,7 @@ public class HelperMethods {
      */
     private static boolean isSolid(float x, float y, int[][] lvlData) {
         int maxWidth = lvlData[0].length * Game.TILES_SIZE;
+//        int maxHeight = lvlData[0].length * Game.TILES_SIZE; //Figure out how to make max HEIGHT for longer levels
         if (x < 0 || x >= maxWidth) {
             return true;
         }

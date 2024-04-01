@@ -27,12 +27,25 @@ public class Playing extends State implements StateMethods {
     private EnemyManager enemyManager;
     private ArrayList<Arrow> arrowList = new ArrayList<>();
     
-    private int xLevelOffset;
-    private int borderLeft = (int)(0.5 * Game.GAME_WIDTH);//20% of the screen
-    private int borderRight = (int)(0.5 * Game.GAME_WIDTH);//80% of the screen
-    private int levelTilesWide = LoadSave.getLevelData()[0].length; // 
+    //Level Expansion vars
+    private int xLevelOffset;//X-Offset being added to and subtracted from to render the level itself
+    
+    private int borderLeft = (int)(0.5 * Game.GAME_WIDTH);//50% of the screen is rendered
+    private int borderRight = (int)(0.5 * Game.GAME_WIDTH);//50% of the screen is hidden
+    
+    
+    private int levelTilesWide = LoadSave.getLevelData()[0].length; //
     private int maxTileOffset = levelTilesWide - Game.TILES_IN_WIDTH; //
     private int maxXOffset = maxTileOffset * Game.TILES_SIZE; //
+    
+      //Y Expansion Vars for longer levels
+//    private int yLevelOffset;//Y-Offset being added to and subtracted from to render the level itself
+//    private int borderTop = (int)(0.5 * Game.GAME_HEIGHT);//50% of the screen is rendered
+//    private int borderBottom = (int)(0.5 * Game.GAME_HEIGHT);//50% of the screen is hidden
+//    private int levelTilesHigh = LoadSave.getLevelData()[0].length; //
+//    private int maxYTileOffset = levelTilesHigh - Game.TILES_IN_HEIGHT; //
+//    private int maxYOffset = maxYTileOffset * Game.TILES_SIZE; //
+    
     
     
     /**
@@ -74,11 +87,13 @@ public class Playing extends State implements StateMethods {
     
     private void checkBorder() {
         int playerX = (int)player.getHitbox().x;
-        int diff = playerX - xLevelOffset;
-        if(diff > borderRight) {
-            xLevelOffset +=diff - borderRight;
-        } else if (diff < borderLeft) {
-            xLevelOffset += diff - borderLeft;
+        int diffX = playerX - xLevelOffset;
+
+        
+        if(diffX > borderRight) {
+            xLevelOffset +=diffX - borderRight;
+        } else if (diffX < borderLeft) {
+            xLevelOffset += diffX - borderLeft;
         }
         
         if(xLevelOffset > maxXOffset) {
@@ -86,6 +101,22 @@ public class Playing extends State implements StateMethods {
         }else if (xLevelOffset < 0) {
             xLevelOffset = 0;
         }
+        
+        //Y-Position Vars
+//        int playerY = (int)player.getHitbox().y;
+//        int diffY = playerY - yLevelOffset;
+//        if(diffY > borderTop) {
+//            yLevelOffset +=diffY - borderTop;
+//        } else if (diffY < borderBottom) {
+//            yLevelOffset += diffY - borderBottom;
+//        }
+//        
+//        if(yLevelOffset > maxYOffset) {
+//            yLevelOffset = maxYOffset;
+//        }else if (yLevelOffset < 0) {
+//            yLevelOffset = 0;
+//        }
+        
     }
 
     /**
