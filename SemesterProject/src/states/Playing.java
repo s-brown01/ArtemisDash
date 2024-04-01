@@ -19,7 +19,7 @@ import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
 import ui.PauseOverlay;
-import utils.Constants.*;
+import static utils.Constants.*;
 import utils.LoadSave;
 
 public class Playing extends State implements StateMethods {
@@ -104,7 +104,7 @@ public class Playing extends State implements StateMethods {
     @Override
     public void update() {
         if (paused) {
-            
+            pauseOverlay.update();
             return;
         }
         levelManager.update();
@@ -282,22 +282,30 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // TODO Auto-generated method stub
+        if(paused) {
+            pauseOverlay.mouseDragged(e);
+        }
 
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
+        if(paused) {
+            pauseOverlay.mousePressed(e);
+        }
 
     }
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
+        if(paused) {
+            pauseOverlay.mouseReleased(e);
+        }
 
     }
     @Override
     public void mouseMoved(MouseEvent e) {
-        // TODO Auto-generated method stub
+        if(paused) {
+            pauseOverlay.mouseMoved(e);
+        }
 
     }
 

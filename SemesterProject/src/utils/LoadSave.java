@@ -22,6 +22,8 @@ public class LoadSave {
     public static final String OVERWORLD_BG = "/overworld1.png";
     
     public static final String PAUSE_MENU = "/pause_menu.png";
+    public static final String PAUSE_SOUND_BUTTONS = "/pause_sound_buttons.png";
+    public static final String PAUSE_BUTTONS = "/pause_buttons.png";
 
     public static final String MENU_BUTTONS = "/button_atlas1.png";
     public static final String MENU_SCREEN = "/TitleScreen1.png";
