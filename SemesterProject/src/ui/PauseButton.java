@@ -1,3 +1,8 @@
+/**
+ * Pause Button Class
+ * @author johnbotonakis
+ * This class is responsible for handling the creation of, and interaction with, buttons bound within the Pause Overlay
+ */
 package ui;
 
 import java.awt.Rectangle;
@@ -9,8 +14,8 @@ public class PauseButton {
     
     /**
      * Creates a button for use ONLY in the pause menu
-     * @param x - X-Position of 
-     * @param y - Y-Position of 
+     * @param x - X-Position placement of the created button
+     * @param y - Y-Position placement of the created button 
      * @param width - Width of the sprite
      * @param height - Height of the sprite
      */
@@ -28,7 +33,14 @@ public class PauseButton {
     private void createBounds() {
         bounds = new Rectangle(x,y,width,height);
     }
-
+    
+    
+    
+    /**
+     * Getters and setters
+     * 
+     * @return
+     */
     public int getX() {
         return x;
     }

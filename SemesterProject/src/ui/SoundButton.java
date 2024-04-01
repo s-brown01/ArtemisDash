@@ -1,10 +1,15 @@
+/**
+ * SoundButton Class
+ * @author johnbotonakis
+ * This class is responsible for handling the creation of, and interactions with, the Sound button bound within the Pause Overlay
+ */
 package ui;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import utils.LoadSave;
-import static utils.Constants.*;
+import static utils.Constants.ButtonStates.*;
 
 public class SoundButton extends PauseButton{
     
@@ -14,6 +19,7 @@ private boolean muted;
 private int rowIndex, colIndex;
 
     /**
+     * Creates a button for use ONLY in the pause menu
      * 
      * @param x - X-Position of the sprite
      * @param y - Y-Position of 
@@ -27,6 +33,7 @@ private int rowIndex, colIndex;
 
     /**
      * Loads in the images to build the buttons from
+     * Uses utils.Constants.ButtonStates to populate size variables
      */
     private void loadSoundImages() {
         BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.PAUSE_SOUND_BUTTONS);
@@ -39,6 +46,10 @@ private int rowIndex, colIndex;
         
     }
     
+    /**
+     * Handles any updates that are to be processed by the sound button object,
+     * such as changing its appearance when hovered over or clicked
+     */
     public void update() {
         if (muted) {
             rowIndex = 1;
@@ -57,9 +68,22 @@ private int rowIndex, colIndex;
         }
     }
     
+    /**
+     * Draws everything to the screen using Graphics
+     * 
+     * @param g - Graphics
+     */
     public void draw(Graphics g) {
         g.drawImage(soundimgs[rowIndex][colIndex],x,y,width,height,null);
     }
+    /**
+     * Resets all boolean values associated with this Sound button object
+     */
+    public void resetBools() {
+        mouseOver = false;
+        mousePressed = false;
+    }
+
 
     public boolean isMouseOver() {
         return mouseOver;
@@ -84,10 +108,4 @@ private int rowIndex, colIndex;
     public void setMuted(boolean muted) {
         this.muted = muted;
     }
-    
-    public void resetBools() {
-        mouseOver = false;
-        mousePressed = false;
-    }
-
 }

@@ -59,7 +59,7 @@ public class Playing extends State implements StateMethods {
     /**
      * Runs the logic once the game state has switched to PLAYING
      * Loads in the enemies, backgrounds, and player
-     * @param game
+     * @param game - Game 
      */
     public Playing(Game game) {
         super(game);
@@ -96,6 +96,7 @@ public class Playing extends State implements StateMethods {
         background_myst_img = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_MYST);
         background_rocks= LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_ROCKS);
     }
+    
     /**
      * Every tick, this function updates the game by invoking the similarly named update command
      * on each entity either directly with player.update, or through a manager such as enemyManager.update
@@ -153,6 +154,8 @@ public class Playing extends State implements StateMethods {
 
     /**
      * Draws everything that is intended to be visible, to the screen
+     * 
+     * @param g -
      */
     @Override
     public void draw(Graphics g) {
@@ -175,7 +178,7 @@ public class Playing extends State implements StateMethods {
 
     /**
      * Draws all assets for the background, including adding paralax affect to entities
-     * @param g
+     * @param g - Graphics
      */
     private void drawBackground(Graphics g) {
         g.drawImage(backgroundimg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);

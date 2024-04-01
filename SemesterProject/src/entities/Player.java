@@ -118,7 +118,7 @@ public class Player extends Entity {
     /**
      * Load in level data as a 2D array to continuously check for collision
      * 
-     * @param lvlData
+     * @param lvlData - The data that 
      */
     public void loadLvlData(int[][] lvlData) {
         this.levelData = lvlData;

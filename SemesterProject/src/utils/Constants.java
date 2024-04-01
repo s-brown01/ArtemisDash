@@ -14,7 +14,14 @@ import main.Game;
 
 public class Constants {
     
-    //Background Parallax Assets (i.e. mist, rocks, etc)
+    /**
+     * Certain constants are within static Classes. This is, in part, an effort to organize and categorize
+     * the constants under one descriptive umbrella. (i.e All button variables will be in the ButtonStates class)
+     */
+    
+    /**
+     * Background Parallax Assets (i.e. mist, rocks, etc)
+     */
     public static class BackgroundStates{
         public static final int BGMYST_WIDTH_DEFAULT = 450;
         public static final int BGMYST_HEIGHT_DEFAULT = 101;
@@ -29,18 +36,27 @@ public class Constants {
     }
     
     
-    //Menu Button / Pause Button Vars
-    public static final int B_WIDTH_DEFAULT = 140;
-    public static final int B_HEIGHT_DEFAULT = 56;
-    public static final int B_WIDTH = (int) (B_WIDTH_DEFAULT * Game.SCALE);
-    public static final int B_HEIGHT = (int) (B_HEIGHT_DEFAULT * Game.SCALE);
-    public static final int SOUNDSIZE_DEFAULT = 42;
-    public static final int SOUNDSIZE = (int)(SOUNDSIZE_DEFAULT * Game.SCALE)-5;
+    /**
+     * Menu Button / Pause Button Vars and Constants
+     */
+    public static class ButtonStates{
+        public static final int B_WIDTH_DEFAULT = 140;
+        public static final int B_HEIGHT_DEFAULT = 56;
+        public static final int B_WIDTH = (int) (B_WIDTH_DEFAULT * Game.SCALE);
+        public static final int B_HEIGHT = (int) (B_HEIGHT_DEFAULT * Game.SCALE);
+        public static final int SOUNDSIZE_DEFAULT = 42;
+        public static final int SOUNDSIZE = (int)(SOUNDSIZE_DEFAULT * Game.SCALE);
+    }
 
-    //Entity Vars
+    /**
+     * Entity Vars and Constants
+     */
     public static final float GRAVITY = 0.04f * Game.SCALE;
     public static final int ANISPEED = 18;
 
+    /**
+     * Overworld Vars and Constants
+     */
     public static class OverworldButtonConstants {
         public static final int BUTTON_SIZE = (int) (25 / 1.75f * Game.SCALE);
 
@@ -105,7 +121,7 @@ public class Constants {
     }
 
     /**
-     * Player Animation States
+     * Player Animation States and Constants
      */
     public static class PlayerStates {
         public static final int IDLE = 0;
@@ -154,7 +170,7 @@ public class Constants {
     }
 
     /**
-     * Enemy Animation States
+     * Enemy Animation States and Constants
      */
     public static class EnemyConstants {
         public static final int SKELETON = 0;
@@ -247,7 +263,7 @@ public class Constants {
     }
 
     /**
-     * Boss Animation States
+     * Boss Animation States and Constants
      */
     public static class BossConstants {
         public static final int BOSS1 = 0;
@@ -337,7 +353,7 @@ public class Constants {
     }
     
     /**
-     * Projectile Animation States
+     * Projectile Animation States and Constants
      */
     public static class ProjectileConstants {
         public static final int ARROW = 0;
