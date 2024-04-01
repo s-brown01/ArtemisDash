@@ -44,6 +44,14 @@ public abstract class Enemy extends Entity {
     protected float eyeSight;
     protected int walkDirection = LEFT;
 
+    /**
+     * Initializes an Enemy instance
+     * @param x - 
+     * @param y - 
+     * @param width - 
+     * @param height - 
+     * @param enemy_type - 
+     */
     public Enemy(float x, float y, int width, int height, int enemy_type) {
         super(x, y, width, height);
         this.enemy_type = enemy_type;
@@ -245,6 +253,10 @@ public abstract class Enemy extends Entity {
             walkDirection = LEFT;
     }
 
+    /**
+     * 
+     * @param lvlData
+     */
     protected void move(int[][] lvlData) {
         float xSpeed = 0;
         if (walkDirection == LEFT) {

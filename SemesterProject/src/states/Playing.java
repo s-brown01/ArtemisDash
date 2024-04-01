@@ -55,7 +55,8 @@ public class Playing extends State implements StateMethods {
     
     
     /**
-     * 
+     * Runs the logic once the game state has switched to PLAYING
+     * Loads in the enemies, backgrounds, and player
      * @param game
      */
     public Playing(Game game) {
@@ -71,7 +72,8 @@ public class Playing extends State implements StateMethods {
     }
     
     /**
-     * 
+     * Initializes the classes as a function instead of calling upon them individually
+     * Level Manager, Enemy Manager, and Player entity are all loaded here
      */
     private void initClasses() {
         levelManager = new LevelManager(game);
@@ -82,13 +84,19 @@ public class Playing extends State implements StateMethods {
 
     }
 
+    /**
+     * Initialize the assets that compose the background for the given level
+     * Will dynamically switch to another set of assets depending on the world
+     */
     private void initBackgroundAssets() {
         backgroundimg = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG);
         background_myst_img = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_MYST);
         background_rocks= LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_ROCKS);
     }
     /**
-     * 
+     * Every tick, this function updates the game by invoking the similarly named update command
+     * on each entity either directly with player.update, or through a manager such as enemyManager.update
+     * This function also controls the screen scroller
      */
     @Override
     public void update() {
@@ -104,7 +112,7 @@ public class Playing extends State implements StateMethods {
     }
     
     /**
-     * 
+     * Pushes the screen once the player entity gets beyond a certain percentage of the currently drawn screen
      */
     private void screenScroller() {
         int playerX = (int)player.getHitbox().x;
@@ -141,7 +149,7 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * 
+     * Draws everything that is intended to be visible, to the screen
      */
     @Override
     public void draw(Graphics g) {
@@ -179,7 +187,7 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * 
+     * If the user clicks the mouse button, the Player entity will shoot an arrow
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -190,7 +198,8 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * 
+     * Depending on the key pressed, the Player entity will react in
+     * different ways.
      */
     @Override
     public void keyPressed(KeyEvent e) {
@@ -217,7 +226,7 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * 
+     * Once a key is released, the Player entity will react in different ways
      */
     @Override
     public void keyReleased(KeyEvent e) {
