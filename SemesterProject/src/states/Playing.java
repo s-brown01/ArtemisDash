@@ -9,13 +9,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
 
 import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
+import utils.Constants.*;
 import utils.LoadSave;
 
 public class Playing extends State implements StateMethods {
@@ -46,6 +49,9 @@ public class Playing extends State implements StateMethods {
 //    private int maxYTileOffset = levelTilesHigh - Game.TILES_IN_HEIGHT; //
 //    private int maxYOffset = maxYTileOffset * Game.TILES_SIZE; //
     
+    private BufferedImage backgroundimg,background_myst_img,background_rocks;
+    private int[] mystPos;//Position of myst background asset
+    private Random rnd = new Random();
     
     
     /**
@@ -55,6 +61,13 @@ public class Playing extends State implements StateMethods {
     public Playing(Game game) {
         super(game);
         initClasses();
+        initBackgroundAssets();
+        
+        
+        mystPos = new int[8];
+        for(int i =0; i < mystPos.length;i ++) {
+            mystPos[i] = (int)(70*Game.SCALE) + rnd.nextInt((int)(150 * Game.SCALE));
+        }
     }
     
     /**
@@ -69,6 +82,11 @@ public class Playing extends State implements StateMethods {
 
     }
 
+    private void initBackgroundAssets() {
+        backgroundimg = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG);
+        background_myst_img = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_MYST);
+        background_rocks= LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_ROCKS);
+    }
     /**
      * 
      */
@@ -81,11 +99,14 @@ public class Playing extends State implements StateMethods {
         levelManager.update();
         player.update();
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
-        checkBorder();
+        screenScroller();
 
     }
     
-    private void checkBorder() {
+    /**
+     * 
+     */
+    private void screenScroller() {
         int playerX = (int)player.getHitbox().x;
         int diffX = playerX - xLevelOffset;
 
@@ -124,6 +145,7 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void draw(Graphics g) {
+        drawBackground(g);
         levelManager.draw(g,xLevelOffset);
         enemyManager.draw(g);
         player.renderPlayer(g,xLevelOffset);
@@ -137,6 +159,23 @@ public class Playing extends State implements StateMethods {
             g.drawString("PAUSED", Game.GAME_WIDTH / 2 - 50, Game.GAME_HEIGHT / 2);
         }
 
+    }
+
+    /**
+     * Draws all assets for the background, including adding paralax affect to entities
+     * @param g
+     */
+    private void drawBackground(Graphics g) {
+        g.drawImage(backgroundimg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
+        for (int i = 0; i <mystPos.length; i ++) {
+            g.drawImage(background_myst_img, BackgroundStates.BGMYST_WIDTH  * i-(int)(xLevelOffset*0.7), mystPos[i], BackgroundStates.BGMYST_WIDTH, BackgroundStates.BGMYST_HEIGHT, null);
+        }
+        for (int i = 0; i < 4; i ++) {
+            g.drawImage(background_rocks, i *BackgroundStates.BGROCKS_WIDTH, 0, Game.GAME_WIDTH-(int)(xLevelOffset * 0.3), Game.GAME_HEIGHT, null);
+            
+        }
+        
+        
     }
 
     /**

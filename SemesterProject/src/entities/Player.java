@@ -7,8 +7,8 @@
  */
 package entities;
 
-import static utils.Constants.PlayerConstants.*;
-import static utils.Constants.PlayerConstants.getSpriteAmt;
+import static utils.Constants.PlayerStates.*;
+import static utils.Constants.PlayerStates.getSpriteAmt;
 import static utils.HelperMethods.*;
 import static utils.Constants.GRAVITY;
 
@@ -93,7 +93,7 @@ public class Player extends Entity {
      * @param xLevelOffset 
      * @see java.awt.Graphics @
      */
-    public void renderPlayer(Graphics g, int xLevelOffset) {
+    public void renderPlayer(Graphics g, int xLevelOffset) { //Add int yLevelOffset to input vars and to YHitbox
         g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset, (int) (hitbox.y - yDrawOffset),
                 width, height, null);
     }
@@ -142,10 +142,10 @@ public class Player extends Entity {
         }
         System.out.println("SHOT");
         attackChecked = true;
-        final float xDiff = e.getX() - hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X;
-        final float yDiff = e.getY() - hitbox.y + utils.Constants.PlayerConstants.SHOT_OFFSET_Y;
-        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X,
-                hitbox.y + +utils.Constants.PlayerConstants.SHOT_OFFSET_Y, xDiff / yDiff);
+        final float xDiff = e.getX() - hitbox.x + utils.Constants.PlayerStates.SHOT_OFFSET_X;
+        final float yDiff = e.getY() - hitbox.y + utils.Constants.PlayerStates.SHOT_OFFSET_Y;
+        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerStates.SHOT_OFFSET_X,
+                hitbox.y + +utils.Constants.PlayerStates.SHOT_OFFSET_Y, xDiff / yDiff);
     }
 
     /**

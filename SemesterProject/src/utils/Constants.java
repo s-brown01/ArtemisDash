@@ -13,12 +13,29 @@ import java.awt.Point;
 import main.Game;
 
 public class Constants {
-
+    
+    //Background Parallax Assets (i.e. mist, rocks, etc)
+    public static class BackgroundStates{
+        public static final int BGMYST_WIDTH_DEFAULT = 450;
+        public static final int BGMYST_HEIGHT_DEFAULT = 101;
+        public static final int BGROCKS_WIDTH_DEFAULT = 448;
+        public static final int BGROCKS_HEIGHT_DEFAULT = 101;
+        
+        public static final int BGMYST_WIDTH = (int)(BGMYST_WIDTH_DEFAULT * Game.SCALE);
+        public static final int BGMYST_HEIGHT = (int)(BGMYST_HEIGHT_DEFAULT * Game.SCALE);
+        
+        public static final int BGROCKS_WIDTH = (int)(BGROCKS_WIDTH_DEFAULT * Game.SCALE);
+        public static final int BGROCKS_HEIGHT = (int)(BGROCKS_HEIGHT_DEFAULT * Game.SCALE);
+    }
+    
+    
+    //Menu Button / Pause Button Vars
     public static final int B_WIDTH_DEFAULT = 140;
     public static final int B_HEIGHT_DEFAULT = 56;
     public static final int B_WIDTH = (int) (B_WIDTH_DEFAULT * Game.SCALE);
     public static final int B_HEIGHT = (int) (B_HEIGHT_DEFAULT * Game.SCALE);
 
+    //Entity Vars
     public static final float GRAVITY = 0.04f * Game.SCALE;
     public static final int ANISPEED = 18;
 
@@ -75,6 +92,9 @@ public class Constants {
 
     }
 
+    /**
+     * Direction Variables
+     */
     public static class Directions {
         public static final int LEFT = 0;
         public static final int UP = 1;
@@ -82,7 +102,10 @@ public class Constants {
         public static final int DOWN = 3;
     }
 
-    public static class PlayerConstants {
+    /**
+     * Player Animation States
+     */
+    public static class PlayerStates {
         public static final int IDLE = 0;
         public static final int RUNNING = 1;
         public static final int JUMPSTART = 2;
@@ -100,6 +123,7 @@ public class Constants {
         public static final int SHOT_OFFSET_X = 34;
         public static final int SHOT_OFFSET_Y = 11;
 
+        
         public static int getSpriteAmt(int player_action) {
             switch (player_action) {
             case IDLE:
@@ -127,8 +151,10 @@ public class Constants {
 
     }
 
+    /**
+     * Enemy Animation States
+     */
     public static class EnemyConstants {
-        /** All possible types of Enemies in game */
         public static final int SKELETON = 0;
 
         // ACTIONS
@@ -218,8 +244,10 @@ public class Constants {
         }
     }
 
+    /**
+     * Boss Animation States
+     */
     public static class BossConstants {
-        /** All possible types of Bosses in game */
         public static final int BOSS1 = 0;
         public static final int BOSS2 = 1;
         public static final int BOSS3 = 2;
@@ -305,9 +333,11 @@ public class Constants {
             }
         }
     }
-
+    
+    /**
+     * Projectile Animation States
+     */
     public static class ProjectileConstants {
-        /** All possible types of projectiles in game */
         public static final int ARROW = 0;
 
         /** the width and height of the ARROW's img */
