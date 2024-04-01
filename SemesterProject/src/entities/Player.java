@@ -90,10 +90,11 @@ public class Player extends Entity {
      * Renders the player, along with hitbox
      * 
      * @param g - Graphics
+     * @param xLevelOffset 
      * @see java.awt.Graphics @
      */
-    public void renderPlayer(Graphics g) {
-        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset),
+    public void renderPlayer(Graphics g, int xLevelOffset) {
+        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset, (int) (hitbox.y - yDrawOffset),
                 width, height, null);
     }
 

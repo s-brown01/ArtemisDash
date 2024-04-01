@@ -51,7 +51,8 @@ public class HelperMethods {
      * @return        - True if it is able to be walked on, false otherwise
      */
     private static boolean isSolid(float x, float y, int[][] lvlData) {
-        if (x < 0 || x >= Game.GAME_WIDTH) {
+        int maxWidth = lvlData[0].length * Game.TILES_SIZE;
+        if (x < 0 || x >= maxWidth) {
             return true;
         }
 

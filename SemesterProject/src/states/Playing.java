@@ -16,6 +16,7 @@ import entities.Player;
 import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
+import utils.LoadSave;
 
 public class Playing extends State implements StateMethods {
 
@@ -25,7 +26,15 @@ public class Playing extends State implements StateMethods {
     private LevelManager levelManager;
     private EnemyManager enemyManager;
     private ArrayList<Arrow> arrowList = new ArrayList<>();
-
+    
+    private int xLevelOffset;
+    private int borderLeft = (int)(0.5 * Game.GAME_WIDTH);//20% of the screen
+    private int borderRight = (int)(0.5 * Game.GAME_WIDTH);//80% of the screen
+    private int levelTilesWide = LoadSave.getLevelData()[0].length; // 
+    private int maxTileOffset = levelTilesWide - Game.TILES_IN_WIDTH; //
+    private int maxXOffset = maxTileOffset * Game.TILES_SIZE; //
+    
+    
     /**
      * 
      * @param game
@@ -59,17 +68,34 @@ public class Playing extends State implements StateMethods {
         levelManager.update();
         player.update();
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
+        checkBorder();
 
     }
     
+    private void checkBorder() {
+        int playerX = (int)player.getHitbox().x;
+        int diff = playerX - xLevelOffset;
+        if(diff > borderRight) {
+            xLevelOffset +=diff - borderRight;
+        } else if (diff < borderLeft) {
+            xLevelOffset += diff - borderLeft;
+        }
+        
+        if(xLevelOffset > maxXOffset) {
+            xLevelOffset = maxXOffset;
+        }else if (xLevelOffset < 0) {
+            xLevelOffset = 0;
+        }
+    }
+
     /**
      * 
      */
     @Override
     public void draw(Graphics g) {
-        levelManager.draw(g);
+        levelManager.draw(g,xLevelOffset);
         enemyManager.draw(g);
-        player.renderPlayer(g);
+        player.renderPlayer(g,xLevelOffset);
         for (Arrow a : arrowList)
             a.draw(g);
         if (paused) {

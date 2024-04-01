@@ -28,7 +28,8 @@ public class LoadSave {
     public static final String WORLD2_SPRITES = "/World2Sprites.png";
     public static final String WORLD3_SPRITES = "/World3Sprites.png";
 
-    public static final String LEVEL1_DATA = "/level_one_data.png";
+//    public static final String LEVEL1_DATA = "/level_one_data.png";
+    public static final String LEVEL1_DATA = "/level_one_data_long.png";
 
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
@@ -53,9 +54,8 @@ public class LoadSave {
      * @return - A 2D array that is representative of tiles making up the level
      */
     public static int[][] getLevelData() {
-        int[][] lvlData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
         BufferedImage img = getSpriteSheet(LEVEL1_DATA);
-
+        int[][] lvlData = new int[img.getHeight()][img.getWidth()];
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {
                 Color color = new Color(img.getRGB(i, j));
