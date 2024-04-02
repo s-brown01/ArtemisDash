@@ -19,22 +19,32 @@ public class LoadSave {
     public static final String PLAYER_SPRITES = "/Artemis_Finished.png";
     public static final String SKELETON_SPRITES = "/Skeleton.png";
 
-    public static final String OVERWORLD_BG = "/Overworld.png";
+    public static final String OVERWORLD_BG = "/overworld1.png";
+    
+    public static final String PAUSE_MENU = "/pause_menu.png";
+    public static final String PAUSE_SOUND_BUTTONS = "/pause_sound_buttons.png";
+    public static final String PAUSE_BUTTONS = "/pause_buttons.png";
 
     public static final String MENU_BUTTONS = "/button_atlas1.png";
-    public static final String MENU_SCREEN = "/TitleScreen.png";
+    public static final String MENU_SCREEN = "/TitleScreen1.png";
 
     public static final String WORLD1_SPRITES = "/World1Sprites.png";
+    public static final String WORLD1_BG = "/World1bg.png";
+    public static final String WORLD1_BG_MYST = "/World1bg_myst.png";
+    public static final String WORLD1_BG_ROCKS = "/World1_rocks.png";
+    
+    
+    
     public static final String WORLD2_SPRITES = "/World2Sprites.png";
     public static final String WORLD3_SPRITES = "/World3Sprites.png";
 
-    public static final String LEVEL1_DATA = "/level_one_data.png";
+    public static final String LEVEL1_DATA = "/level_one_data_long.png";
 
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
      * 
-     * @param filename - The name of the sprite sheet that is requested
-     * @return - The specified image as a variable
+     * @param filename  - The name of the sprite sheet that is requested
+     * @return          - The specified image as a variable
      */
     public static BufferedImage getSpriteSheet(String filename) {
         BufferedImage img = null;
@@ -48,14 +58,13 @@ public class LoadSave {
     }
 
     /**
-     * Uses RGB values to generate a tiled level
+     * Uses RGB values to generate a tiled level.
      * 
      * @return - A 2D array that is representative of tiles making up the level
      */
     public static int[][] getLevelData() {
-        int[][] lvlData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
         BufferedImage img = getSpriteSheet(LEVEL1_DATA);
-
+        int[][] lvlData = new int[img.getHeight()][img.getWidth()];
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {
                 Color color = new Color(img.getRGB(i, j));

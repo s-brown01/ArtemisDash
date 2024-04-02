@@ -28,10 +28,10 @@ public abstract class Entity {
     /**
      * Constructor class for every entity instance
      * 
-     * @param x
-     * @param y
-     * @param width
-     * @param height
+     * @param x  - X-Position to be placed within the game world
+     * @param y - Y-Position to be placed within the game world
+     * @param width - The width of the entity sprite
+     * @param height - The height of the entity sprite
      */
 
     public Entity(float x, float y, int width, int height) {
@@ -42,11 +42,9 @@ public abstract class Entity {
     }
 
     /**
-     * Draws the hitbox around the player's sprite. This is for debugging the hitbox
+     * Draws the hitbox around the caller entities sprite. This is for debugging the hitbox
      * 
-     * /** Draws a hitbox around the entity for debugging purposes
-     * 
-     * @param g
+     * @param g - Graphics to be called and drawn from
      */
     protected void drawHitbox(Graphics g) {
         // For debugging hitbox
@@ -54,6 +52,11 @@ public abstract class Entity {
         g.fillRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
 
+    /**
+     * Draws the attack hitbox around the caller entity. This is for debugging attacks
+     * 
+     * @param g - Graphics to be called and drawn from
+     */
     protected void drawAttackbox(Graphics g) {
         g.setColor(Color.RED);
         g.drawRect((int) attackbox.x, (int) attackbox.y, (int) attackbox.width, (int) attackbox.height);

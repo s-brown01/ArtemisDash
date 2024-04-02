@@ -29,6 +29,11 @@ public class EnemyManager {
     private BufferedImage[][] skeletonAnis;
     private List<Skeleton> skeletonList = new ArrayList<>();
 
+    /**
+     * This class manages every entity instance that is currently loaded into the game
+     * 
+     * @param playing - The game state to which the entities will be loaded onto
+     */
     public EnemyManager(Playing playing) {
         this.playing = playing;
         loadImgs();

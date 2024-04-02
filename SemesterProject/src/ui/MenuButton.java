@@ -1,4 +1,3 @@
-
 package ui;
 
 import java.awt.Graphics;
@@ -7,14 +6,15 @@ import java.awt.image.BufferedImage;
 
 import states.GameStates;
 import utils.LoadSave;
-import utils.Constants.UI.Buttons;
+import static utils.Constants.ButtonStates.*;
 
 /**
  * Menu Button Class
+ * @author johnbotonakis
  */
 public class MenuButton {
     private int xpos, ypos, rowIndex, index;
-    private int XOffsetCenter = Buttons.B_WIDTH / 2;
+    private int XOffsetCenter = B_WIDTH / 2;
     private GameStates state;
     private BufferedImage[] imgs;
     private boolean mouseOver, mousePressed;
@@ -42,7 +42,7 @@ public class MenuButton {
      * Initializes a rectangle around the button to determine if mouse is intersecting within.
      */
     private void initBounds() {
-        bounds = new Rectangle(xpos - XOffsetCenter, ypos, Buttons.B_WIDTH, Buttons.B_HEIGHT);
+        bounds = new Rectangle(xpos - XOffsetCenter, ypos, B_WIDTH, B_HEIGHT);
 
     }
 
@@ -53,8 +53,8 @@ public class MenuButton {
         imgs = new BufferedImage[3];
         BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.MENU_BUTTONS);
         for (int i = 0; i < imgs.length; i++) {
-            imgs[i] = temp.getSubimage(i * Buttons.B_WIDTH_DEFAULT, rowIndex * Buttons.B_HEIGHT_DEFAULT,
-                    Buttons.B_WIDTH_DEFAULT, Buttons.B_HEIGHT_DEFAULT);
+            imgs[i] = temp.getSubimage(i * B_WIDTH_DEFAULT, rowIndex * B_HEIGHT_DEFAULT,
+                    B_WIDTH_DEFAULT, B_HEIGHT_DEFAULT);
         }
     }
 
@@ -64,7 +64,7 @@ public class MenuButton {
      * @param g
      */
     public void draw(Graphics g) {
-        g.drawImage(imgs[index], xpos - XOffsetCenter, ypos, Buttons.B_WIDTH, Buttons.B_HEIGHT, null);
+        g.drawImage(imgs[index], xpos - XOffsetCenter, ypos, B_WIDTH, B_HEIGHT, null);
     }
 
     /**
@@ -85,7 +85,7 @@ public class MenuButton {
         mouseOver = false;
         mousePressed = false;
     }
-
+    
     public void applyGamestate() {
         GameStates.state = state;
     }

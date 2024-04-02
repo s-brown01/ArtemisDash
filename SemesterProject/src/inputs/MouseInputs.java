@@ -16,10 +16,18 @@ import states.GameStates;
 public class MouseInputs implements MouseListener, MouseMotionListener {
     private GamePanel gamePanel;
 
+    /**
+     * 
+     * @param gamePanel
+     */
     public MouseInputs(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
+    /**
+     * Calls actions specified by each game state, as each state handles similar mouse drag inputs
+     * differently
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         switch (GameStates.state) {
@@ -38,6 +46,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         }
     }
 
+    /**
+     * Calls actions specified by each game state, as each state handles similar mouse moved inputs
+     * differently
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         switch (GameStates.state) {
@@ -55,7 +67,11 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
         }
     }
-
+    
+    /**
+     * Calls actions specified by each game state, as each state handles similar mouse clicked inputs
+     * differently
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         switch (GameStates.state) {
@@ -73,6 +89,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         }
     }
 
+    /**
+     * Calls actions specified by each game state, as each state handles similar mouse pressed inputs
+     * differently
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         switch (GameStates.state) {
@@ -91,6 +111,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         }
     }
 
+    /**
+     * Calls actions specified by each game state, as each state handles similar mouse released inputs
+     * differently
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         // to be filled in

@@ -1,7 +1,7 @@
 package entities;
 
-import static utils.Constants.PlayerConstants.*;
-import static utils.Constants.PlayerConstants.getSpriteAmt;
+import static utils.Constants.PlayerStates.*;
+import static utils.Constants.PlayerStates.getSpriteAmt;
 import static utils.HelperMethods.*;
 import static utils.Constants.GRAVITY;
 
@@ -97,10 +97,11 @@ public class Player extends Entity {
      * Renders the player, along with hitbox
      * 
      * @param g - Graphics
+     * @param xLevelOffset 
      * @see java.awt.Graphics @
      */
-    public void renderPlayer(Graphics g) {
-        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset),
+    public void renderPlayer(Graphics g, int xLevelOffset) { //Add int yLevelOffset to input vars and to YHitbox
+        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset, (int) (hitbox.y - yDrawOffset),
                 width, height, null);
     }
 
@@ -124,7 +125,7 @@ public class Player extends Entity {
     /**
      * Load in level data as a 2D array to continuously check for collision
      * 
-     * @param lvlData
+     * @param lvlData - The data that 
      */
     public void loadLvlData(int[][] lvlData) {
         this.levelData = lvlData;
@@ -181,10 +182,13 @@ public class Player extends Entity {
         if (right) {
             xSpeed += playerSpeed;
         }
-
-        if (!inAir) // Checks if the player wanted to be in the air
-            if (!gravity(hitbox, levelData))// And if he is not supposed to be, and there is no gravity
-                inAir = true; // He is now considered in the air. (i.e walking off a ledge)
+        
+        // Checks if the player wanted to be in the air
+        if (!inAir) 
+            // And if he is not supposed to be, and there is no gravity Player is now considered in the air. (i.e walking off a ledge)
+            // 
+            if (!floorCheck(hitbox, levelData))
+                inAir = true; 
 
         if (inAir) {
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
@@ -200,8 +204,9 @@ public class Player extends Entity {
                     airSpeed = fallCollisionSpeed;
                 updateXPos(xSpeed);
             }
-        } else
+        } else {
             updateXPos(xSpeed);
+        }
         moving = true;
     }
 
@@ -209,9 +214,11 @@ public class Player extends Entity {
      * Handles event where the jump button, Space bar, is pressed
      */
     private void jump() {
+        //Explain Jump Offset
+        final float JUMP_OFFSET = 0.01f;
         if (jump && jumps <= 1) {
             inAir = true;
-            airSpeed = jumpSpeed + 0.01f;
+            airSpeed = jumpSpeed + JUMP_OFFSET; 
             if (hitbox.y < 170) {
                 System.out.println("Hit ceiling, too high");
             }
@@ -220,7 +227,7 @@ public class Player extends Entity {
         if (jumps > 2) {
             return;
         }
-
+        jump = false;
     }
 
     /**
@@ -271,11 +278,11 @@ public class Player extends Entity {
             return;
         }
         attackChecked = true;
-        final float xDiff = (float) (nextAttack.getX() - (hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X));
-        final float yDiff = (float) (nextAttack.getY() - (hitbox.y + utils.Constants.PlayerConstants.SHOT_OFFSET_Y));
+        final float xDiff = (float) (nextAttack.getX() - (hitbox.x + SHOT_OFFSET_X));
+        final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
         final float slope = yDiff / xDiff;
-        playing.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X,
-                hitbox.y + +utils.Constants.PlayerConstants.SHOT_OFFSET_Y, slope);
+        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X,
+                hitbox.y + SHOT_OFFSET_Y, slope);
     }
     
     /**
@@ -328,7 +335,7 @@ public class Player extends Entity {
         }
 
         if (!jump && inAir) {// If spacebar is not held and in the air, begin the falling animation
-            player_action = JUMPEND;
+            player_action = FALL;
         }
 
         if (killed) {
@@ -432,7 +439,6 @@ public class Player extends Entity {
         }
 
     }
-
     public boolean getInAir() {
         return inAir;
     }
