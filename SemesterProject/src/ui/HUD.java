@@ -15,44 +15,45 @@ import main.Game;
 import states.Playing;
 import utils.LoadSave;
 
-
 public class HUD {
-    private BufferedImage portrait;
-    private final int xPos, yPos;
-    private final int width, height;
-    private final int scoreYPos, livesXPos;
+    private BufferedImage portrait, hudbg, hearts, charge;
+    private final int xPos = 100;
+    private final int yPos = 15;
+    private final int width = 80;
+    private final int height = 80;
     private Playing playing;
     private int playerHealth, playerScore, playerLives;
     private Font hudFont;
 
     public HUD(Playing playing) {
-        this.xPos = 100;
-        this.yPos = 25;
-        this.width = 80;
-        this.height = 80;
-        this.scoreYPos = yPos * 2;
-        this.livesXPos = xPos * 5;
-
         this.playing = playing;
         this.playerScore = playing.getScore();
         this.playerLives = playing.getPlayer().getLives();
-        loadPortrait();
+        loadAssets();
+    }
+
+    /**
+     * Loads in the image assets for the HUD entity
+     */
+    private void loadAssets() {
+        portrait = LoadSave.getSpriteSheet(LoadSave.PLAYER_PORTRAIT);
+        hudbg = LoadSave.getSpriteSheet(LoadSave.HUDBG);
+//        hearts = LoadSave.getSpriteSheet(LoadSave.HUDBG); //Get assets for hearts
+//        charge = LoadSave.getSpriteSheet(LoadSave.HUDBG); //Get assets for Dash charge
+
+        // Font Initialization
         this.hudFont = LoadSave.loadFont(LoadSave.FONT, 25);
     }
 
     /**
-     * Loads in the Portrait for the player entity
+     * Handles any functionality that requires an update, such as lives, score count, and
+     * health
      */
-    private void loadPortrait() {
-        portrait = LoadSave.getSpriteSheet(LoadSave.PLAYER_PORTRAIT);
-    }
-
-    /**
-     * Handles any functionality that requires an update, such as lives, score count, and health
-     */
-    public void update() {
+    public void updateHUD() {
+        // Check to ensure that Playing is active.
+        // Letting it run once without it active will simply return nothing,
+        // while running it while active, will have the intended behavior
         if (this.playing == null) {
-            System.out.println("Playing is null RIP");
             return;
         } else {
             updateHealth();
@@ -62,20 +63,36 @@ public class HUD {
     }
 
     public void draw(Graphics g) {
-        g.setColor(new Color(150, 150, 150, 150));
-        g.fillRect(0, 20, Game.GAME_WIDTH, Game.GAME_HEIGHT / 9);
+        // Score Positioning Vars
+        int scoreXPos = xPos - 50;
+        int scoreYPos = yPos * 3;
+        int playerScoreX = xPos - 30;
+        int playerScoreY = yPos + 75;
+
+        // Lives Positioning Vars
+        int livesXPos = xPos * 5;
+        int livesYPos = yPos * 3;
+        int playerLivesX = xPos * 5;
+        int playerLivesY = yPos + 75;
+
+        g.drawImage(hudbg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
         g.drawImage(portrait, Game.GAME_WIDTH - xPos, yPos, width, height, null);
 
-        g.setColor(Color.BLUE);
+        g.setColor(Color.BLACK);
         g.setFont(hudFont);
-        g.drawString("Score ", xPos, scoreYPos);
-        g.drawString(String.valueOf(playerScore), xPos + 20, yPos * 4);
-        g.drawString("Lives ", livesXPos, scoreYPos);
-        g.drawString(String.valueOf(playerLives), xPos * 5, yPos * 4);
+
+        g.drawString("Score ", scoreXPos, scoreYPos);
+        g.drawString(String.valueOf(playerScore), playerScoreX, playerScoreY);
+
+        g.drawString("Lives ", livesXPos, livesYPos);
+        g.drawString(String.valueOf(playerLives), playerLivesX, playerLivesY);
+
+        g.drawString("Charge", livesXPos + 400, livesYPos);
     }
-    
+
     /**
-     * Function to continuously check that the health is up to date with what the actual value is
+     * Function to continuously check that the health is up to date with what the actual value
+     * is
      */
     public void updateHealth() {
         this.playerHealth = playing.getPlayer().getHealth();
@@ -96,24 +113,27 @@ public class HUD {
     public void updateLives() {
         this.playerLives = playing.getPlayer().getLives();
     }
-    
-    //For use later with "cut scenes"
-    public void delay(String s, long delay, Graphics g) {
-        for ( int i= 0; i < s.length(); i++) { 
-              // for loop delays individual String characters
 
-            System.out.print(s.charAt(i));
-            g.setColor(Color.CYAN);
-            g.setFont(hudFont);
-            g.drawChars(s.toCharArray(), 0, 10, xPos + 20, yPos * 4);
-            try {
-                Thread.sleep(delay);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } //time is in milliseconds
-        }
-        System.out.println(""); // this is the space in between lines
+    public void updateCharge() {
+
     }
 
+    // For use later with "cut scenes"
+//    public void delay(String s, long delay, Graphics g) {
+//        for ( int i= 0; i < s.length(); i++) { 
+//              // for loop delays individual String characters
+//
+//            System.out.print(s.charAt(i));
+//            g.setColor(Color.CYAN);
+//            g.setFont(hudFont);
+//            g.drawChars(s.toCharArray(), 0, 10, xPos + 20, yPos * 4);
+//            try {
+//                Thread.sleep(delay);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } //time is in milliseconds
+//        }
+//        System.out.println(""); // this is the space in between lines
+//    }
 
 }

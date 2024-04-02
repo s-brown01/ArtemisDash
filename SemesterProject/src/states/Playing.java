@@ -117,7 +117,7 @@ public class Playing extends State implements StateMethods {
         player.update();
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
         screenScroller();
-        hud.update();
+        hud.updateHUD();
 
     }
 

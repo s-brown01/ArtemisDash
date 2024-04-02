@@ -20,6 +20,7 @@ import main.Game;
 public class LoadSave {
 
     public static final String FONT = "./res/HudFont.ttf"; //Mercy Christole
+    public static final String HUDBG = "/HUDbg.png";
     public static final String PLAYER_SPRITES = "/Artemis_Finished.png";
     public static final String PLAYER_PORTRAIT = "/temp_artemis.png";
     public static final String SKELETON_SPRITES = "/Skeleton.png";
