@@ -174,7 +174,6 @@ public class Playing extends State implements StateMethods {
             g.setFont(boldFont);
             g.setColor(new Color(150, 150, 150, 150));
             g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-            g.setColor(Color.cyan);
             pauseOverlay.draw(g);
         }
 
@@ -236,6 +235,7 @@ public class Playing extends State implements StateMethods {
             break;
         case KeyEvent.VK_9:
             updateScore(9);
+            
         }
     }
 

@@ -430,7 +430,14 @@ public class Player extends Entity {
     }
 
     public void setDash(boolean dashing) {
-        this.dashing = dashing;
+        //If already dashing and you press the button again,
+        //stop dashing
+        if (this.dashing == true && dashing == true) {
+            this.dashing = false;
+        }
+        else {
+            this.dashing = dashing;
+        }
     }
 
     public void setJumps() {
