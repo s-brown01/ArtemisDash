@@ -28,8 +28,8 @@ public class HUD {
     public HUD(Playing playing) {
         this.xPos = 100;
         this.yPos = 25;
-        this.width = 64;
-        this.height = 64;
+        this.width = 80;
+        this.height = 80;
         this.scoreYPos = yPos * 2;
         this.livesXPos = xPos * 5;
 
@@ -73,7 +73,10 @@ public class HUD {
         g.drawString("Lives ", livesXPos, scoreYPos);
         g.drawString(String.valueOf(playerLives), xPos * 5, yPos * 4);
     }
-
+    
+    /**
+     * Function to continuously check that the health is up to date with what the actual value is
+     */
     public void updateHealth() {
         this.playerHealth = playing.getPlayer().getHealth();
         if (playerHealth == 2) {
