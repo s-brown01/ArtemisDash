@@ -13,39 +13,39 @@ import java.awt.Point;
 import main.Game;
 
 public class Constants {
-    
+
     /**
-     * Certain constants are within static Classes. This is, in part, an effort to organize and categorize
-     * the constants under one descriptive umbrella. (i.e All button variables will be in the ButtonStates class)
+     * Certain constants are within static Classes. This is, in part, an effort to organize
+     * and categorize the constants under one descriptive umbrella. (i.e All button variables
+     * will be in the ButtonStates class)
      */
-    
+
     /**
      * Background Parallax Assets (i.e. mist, rocks, etc)
      */
-    public static class BackgroundStates{
+    public static class BackgroundStates {
         public static final int BGMYST_WIDTH_DEFAULT = 450;
         public static final int BGMYST_HEIGHT_DEFAULT = 101;
         public static final int BGROCKS_WIDTH_DEFAULT = 448;
         public static final int BGROCKS_HEIGHT_DEFAULT = 101;
-        
-        public static final int BGMYST_WIDTH = (int)(BGMYST_WIDTH_DEFAULT * Game.SCALE);
-        public static final int BGMYST_HEIGHT = (int)(BGMYST_HEIGHT_DEFAULT * Game.SCALE);
-        
-        public static final int BGROCKS_WIDTH = (int)(BGROCKS_WIDTH_DEFAULT * Game.SCALE);
-        public static final int BGROCKS_HEIGHT = (int)(BGROCKS_HEIGHT_DEFAULT * Game.SCALE);
+
+        public static final int BGMYST_WIDTH = (int) (BGMYST_WIDTH_DEFAULT * Game.SCALE);
+        public static final int BGMYST_HEIGHT = (int) (BGMYST_HEIGHT_DEFAULT * Game.SCALE);
+
+        public static final int BGROCKS_WIDTH = (int) (BGROCKS_WIDTH_DEFAULT * Game.SCALE);
+        public static final int BGROCKS_HEIGHT = (int) (BGROCKS_HEIGHT_DEFAULT * Game.SCALE);
     }
-    
-    
+
     /**
      * Menu Button / Pause Button Vars and Constants
      */
-    public static class ButtonStates{
+    public static class ButtonStates {
         public static final int B_WIDTH_DEFAULT = 140;
         public static final int B_HEIGHT_DEFAULT = 56;
         public static final int B_WIDTH = (int) (B_WIDTH_DEFAULT * Game.SCALE);
         public static final int B_HEIGHT = (int) (B_HEIGHT_DEFAULT * Game.SCALE);
         public static final int SOUNDSIZE_DEFAULT = 42;
-        public static final int SOUNDSIZE = (int)(SOUNDSIZE_DEFAULT * Game.SCALE);
+        public static final int SOUNDSIZE = (int) (SOUNDSIZE_DEFAULT * Game.SCALE);
     }
 
     /**
@@ -141,7 +141,6 @@ public class Constants {
         public static final int SHOT_OFFSET_X = 34;
         public static final int SHOT_OFFSET_Y = 11;
 
-        
         public static int getSpriteAmt(int player_action) {
             switch (player_action) {
             case IDLE:
@@ -351,7 +350,7 @@ public class Constants {
             }
         }
     }
-    
+
     /**
      * Projectile Animation States and Constants
      */

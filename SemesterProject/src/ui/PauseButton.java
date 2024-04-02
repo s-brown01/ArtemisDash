@@ -8,15 +8,15 @@ package ui;
 import java.awt.Rectangle;
 
 public class PauseButton {
-    protected int x,y,width,height;
+    protected int x, y, width, height;
     protected Rectangle bounds;
-    
-    
+
     /**
      * Creates a button for use ONLY in the pause menu
-     * @param x - X-Position placement of the created button
-     * @param y - Y-Position placement of the created button 
-     * @param width - Width of the sprite
+     * 
+     * @param x      - X-Position placement of the created button
+     * @param y      - Y-Position placement of the created button
+     * @param width  - Width of the sprite
      * @param height - Height of the sprite
      */
     public PauseButton(int x, int y, int width, int height) {
@@ -26,16 +26,14 @@ public class PauseButton {
         this.height = height;
         createBounds();
     }
-    
+
     /**
      * Generates clickable bounds to allow the button to be interacted with
      */
     private void createBounds() {
-        bounds = new Rectangle(x,y,width,height);
+        bounds = new Rectangle(x, y, width, height);
     }
-    
-    
-    
+
     /**
      * Getters and setters
      * 

@@ -25,8 +25,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     }
 
     /**
-     * Calls actions specified by each game state, as each state handles similar mouse drag inputs
-     * differently
+     * Calls actions specified by each game state, as each state handles similar mouse drag
+     * inputs differently
      */
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -47,8 +47,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     }
 
     /**
-     * Calls actions specified by each game state, as each state handles similar mouse moved inputs
-     * differently
+     * Calls actions specified by each game state, as each state handles similar mouse moved
+     * inputs differently
      */
     @Override
     public void mouseMoved(MouseEvent e) {
@@ -67,10 +67,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
         }
     }
-    
+
     /**
-     * Calls actions specified by each game state, as each state handles similar mouse clicked inputs
-     * differently
+     * Calls actions specified by each game state, as each state handles similar mouse clicked
+     * inputs differently
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -90,8 +90,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     }
 
     /**
-     * Calls actions specified by each game state, as each state handles similar mouse pressed inputs
-     * differently
+     * Calls actions specified by each game state, as each state handles similar mouse pressed
+     * inputs differently
      */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -112,8 +112,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     }
 
     /**
-     * Calls actions specified by each game state, as each state handles similar mouse released inputs
-     * differently
+     * Calls actions specified by each game state, as each state handles similar mouse
+     * released inputs differently
      */
     @Override
     public void mouseReleased(MouseEvent e) {

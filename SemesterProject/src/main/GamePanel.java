@@ -21,6 +21,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Creates a new panel to which the game will be drawn onto
+     * 
      * @param game - The Game instance to which the game will be drawn to
      */
     public GamePanel(Game game) {
@@ -60,6 +61,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Returns the current game object
+     * 
      * @return - Current Game object
      */
     public Game getGame() {

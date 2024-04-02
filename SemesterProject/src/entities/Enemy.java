@@ -46,11 +46,12 @@ public abstract class Enemy extends Entity {
 
     /**
      * Initializes an Enemy instance
-     * @param x - 
-     * @param y - 
-     * @param width - 
-     * @param height - 
-     * @param enemy_type - 
+     * 
+     * @param x          -
+     * @param y          -
+     * @param width      -
+     * @param height     -
+     * @param enemy_type -
      */
     public Enemy(float x, float y, int width, int height, int enemy_type) {
         super(x, y, width, height);

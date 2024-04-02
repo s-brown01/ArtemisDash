@@ -19,6 +19,7 @@ public class LevelManager {
 
     /**
      * Instantiates a manager for created level objects
+     * 
      * @param game - The Game object to which the level will be drawn onto
      */
     public LevelManager(Game game) {
@@ -46,7 +47,7 @@ public class LevelManager {
      * Draws the level to the screen with the provided sprite sheet
      * 
      * @param g
-     * @param xLevelOffset 
+     * @param xLevelOffset
      */
     public void draw(Graphics g, int xLevelOffset) {
         for (int j = 0; j < Game.TILES_IN_HEIGHT; j++) {
@@ -54,8 +55,8 @@ public class LevelManager {
                 int index = levelOne.getSpriteIndex(i, j);
                 // index 11 is a transparent tile, might as well not draw it
                 if (index != 11)
-                    g.drawImage(levelSprite[index], i * Game.TILES_SIZE - xLevelOffset, Game.TILES_SIZE * j, Game.TILES_SIZE,
-                            Game.TILES_SIZE, null);
+                    g.drawImage(levelSprite[index], i * Game.TILES_SIZE - xLevelOffset, Game.TILES_SIZE * j,
+                            Game.TILES_SIZE, Game.TILES_SIZE, null);
 
             }
 
@@ -68,6 +69,7 @@ public class LevelManager {
 
     /**
      * Returns the current level
+     * 
      * @return - The currently played level
      */
     public Level getCurrentLevel() {

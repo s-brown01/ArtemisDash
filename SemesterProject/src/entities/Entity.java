@@ -5,11 +5,12 @@ import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 /**
- * Entity.java
- * Entity Abstract Class
- * @author johnbotonakis and Sean-Paul Brown
- * This abstract Entity class shares functionality across all player and enemy objects. Things that can move on either axis, 
- * attack, and have some degree of "intelligence" start their classes from this blueprint. 
+ * Entity.java Entity Abstract Class
+ * 
+ * @author johnbotonakis and Sean-Paul Brown This abstract Entity class shares
+ *         functionality across all player and enemy objects. Things that can move on
+ *         either axis, attack, and have some degree of "intelligence" start their classes
+ *         from this blueprint.
  */
 public abstract class Entity {
     protected float x, y;
@@ -28,9 +29,9 @@ public abstract class Entity {
     /**
      * Constructor class for every entity instance
      * 
-     * @param x  - X-Position to be placed within the game world
-     * @param y - Y-Position to be placed within the game world
-     * @param width - The width of the entity sprite
+     * @param x      - X-Position to be placed within the game world
+     * @param y      - Y-Position to be placed within the game world
+     * @param width  - The width of the entity sprite
      * @param height - The height of the entity sprite
      */
 

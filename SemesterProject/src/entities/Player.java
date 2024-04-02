@@ -23,36 +23,38 @@ import utils.LoadSave;
 
 public class Player extends Entity {
     // player_count and playerCountCheck will make sure there is only 1 player
-    private static int player_count = 0;
-
-    private static boolean singletonCheck() {
-        return player_count < 1;
-    }
+//    private static int player_count = 0;
+//
+//    private static boolean singletonCheck() {
+//        return player_count < 1;
+//    }
 
     private final Playing playing;
     private BufferedImage[][] animations;
+    private int[][] levelData;
+
+    // Player Actions
     private int player_action = IDLE;
     private boolean moving, attacking, killed, dashing = false;
     private boolean left, up, right, down, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
-    private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
+    private int playerHealth = 3;
+    private int playerLives = 3;
 
-    private int[][] levelData;
+    // Hitbox Vars
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
     private float yDrawOffset = 20 * Game.SCALE; // Calculated Y - Positional offset for drawing Sprite
     private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
     private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
-                                                            // height
     private float hitboxOffset = (55 / 1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
 
     private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
                                            // doesn't count as multiple
 
-    /**
-     * Jumping and Gravity variables
-     */
+    // Jumping and Gravity variables
     private float jumpSpeed = -2.75f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
+    private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
 
     /**
      * Constructor for the player class
@@ -67,8 +69,8 @@ public class Player extends Entity {
         super(x, y, width, height);
         this.playing = playing;
         // Singleton check
-        if (!Player.singletonCheck())
-            throw new IllegalStateException("Only 1 Player can ever be created at a time");
+//        if (!Player.singletonCheck())
+//            throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAni();
         initHitbox((int) x, (int) y, (int) (hitboxCorrectionWidth), (int) (hitboxCorrectionHeight));
         this.state = IDLE;
@@ -89,13 +91,13 @@ public class Player extends Entity {
     /**
      * Renders the player, along with hitbox
      * 
-     * @param g - Graphics
-     * @param xLevelOffset 
+     * @param g            - Graphics
+     * @param xLevelOffset
      * @see java.awt.Graphics @
      */
-    public void renderPlayer(Graphics g, int xLevelOffset) { //Add int yLevelOffset to input vars and to YHitbox
-        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset, (int) (hitbox.y - yDrawOffset),
-                width, height, null);
+    public void renderPlayer(Graphics g, int xLevelOffset) { // Add int yLevelOffset to input vars and to YHitbox
+        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset,
+                (int) (hitbox.y - yDrawOffset), width, height, null);
     }
 
     /**
@@ -118,7 +120,7 @@ public class Player extends Entity {
     /**
      * Load in level data as a 2D array to continuously check for collision
      * 
-     * @param lvlData - The data that 
+     * @param lvlData - The data that
      */
     public void loadLvlData(int[][] lvlData) {
         this.levelData = lvlData;
@@ -199,13 +201,14 @@ public class Player extends Entity {
         if (right) {
             xSpeed += playerSpeed;
         }
-        
+
         // Checks if the player wanted to be in the air
-        if (!inAir) 
-            // And if he is not supposed to be, and there is no gravity Player is now considered in the air. (i.e walking off a ledge)
-            // 
+        if (!inAir)
+            // And if he is not supposed to be, and there is no gravity Player is now considered in
+            // the air. (i.e walking off a ledge)
+            //
             if (!floorCheck(hitbox, levelData))
-                inAir = true; 
+                inAir = true;
 
         if (inAir) {
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
@@ -231,11 +234,11 @@ public class Player extends Entity {
      * Handles event where the jump button, Space bar, is pressed
      */
     private void jump() {
-        //Explain Jump Offset
+        // Explain Jump Offset
         final float JUMP_OFFSET = 0.01f;
         if (jump && jumps <= 1) {
             inAir = true;
-            airSpeed = jumpSpeed + JUMP_OFFSET; 
+            airSpeed = jumpSpeed + JUMP_OFFSET;
             if (hitbox.y < 170) {
                 System.out.println("Hit ceiling, too high");
             }
@@ -420,8 +423,8 @@ public class Player extends Entity {
         if (!jump) {
             gravity = gravity + 0.01f;
         }
-
     }
+
     public boolean getInAir() {
         return inAir;
     }
@@ -434,4 +437,19 @@ public class Player extends Entity {
         this.jumps++;// Set this to only increment ONCE
     }
 
+    public int getHealth() {
+        return playerHealth;
+    }
+
+    public void setHealth(int health) {
+        this.playerHealth = health;
+    }
+
+    public int getLives() {
+        return playerLives;
+    }
+    
+    public void setLives(int lives) {
+        this.playerLives = lives;
+    }
 }
