@@ -21,7 +21,7 @@ public class Arrow extends Projectile {
      * @param projectileType
      * @param slope              A negative slope will make the projectile rise, positive will make it fallz
      */
-    public Arrow(float x, float y, int slope) {
+    public Arrow(float x, float y, float slope) {
         super(x, y, slope);
         // TODO Auto-generated constructor stub
     }

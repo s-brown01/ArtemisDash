@@ -120,7 +120,7 @@ public class ProjectileManager {
      * @param slope
      */
     public void newArrow(float x, float y, float slope) {
-        arrowList.add(new Arrow((int)x, (int)y, (int)slope));
+        arrowList.add(new Arrow(x, y, slope));
     }
 
 }
