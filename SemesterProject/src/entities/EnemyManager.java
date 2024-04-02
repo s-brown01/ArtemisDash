@@ -32,11 +32,6 @@ public class EnemyManager {
     public EnemyManager(Playing playing) {
         this.playing = playing;
         loadImgs();
-        // temp code
-        skeletonList.add(
-                new Skeleton((600 / 1.75f) * Game.SCALE, (200 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
-        skeletonList.add(
-                new Skeleton((1300 / 1.75f) * Game.SCALE, (200 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
     }
 
     /**
@@ -45,7 +40,7 @@ public class EnemyManager {
      * @param level - what level to load enemies in from
      */
     public void loadEnemies(Level level) {
-        // skeletonList = level.getSkeletons();
+         skeletonList = level.getSkeletons();
     }
 
     /**
@@ -78,8 +73,6 @@ public class EnemyManager {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
-            s.drawHitbox(g);
-            s.drawAttackbox(g);
             g.setColor(Color.black);
             g.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
             g.drawString("" + s.getCurrentHealth(), (int)(s.getHitbox().x-15), (int)(s.getHitbox().y-15));
