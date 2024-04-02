@@ -57,6 +57,8 @@ public class Playing extends State implements StateMethods {
     private int[] mystPos;// Position of myst background asset
     private Random rnd = new Random();
 
+    
+//    public boolean draw; //Testing Text-Based Cutscenes
     /**
      * Runs the logic once the game state has switched to PLAYING Loads in the enemies,
      * backgrounds, and player
@@ -176,7 +178,6 @@ public class Playing extends State implements StateMethods {
             g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
             pauseOverlay.draw(g);
         }
-
     }
 
     /**
@@ -235,6 +236,11 @@ public class Playing extends State implements StateMethods {
             break;
         case KeyEvent.VK_9:
             updateScore(9);
+            break;
+          //Testing text-based cutscenes
+//        case KeyEvent.VK_0:
+//            draw = true;
+//            break;
             
         }
     }
