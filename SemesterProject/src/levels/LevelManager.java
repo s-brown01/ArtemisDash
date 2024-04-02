@@ -29,6 +29,9 @@ public class LevelManager {
         loadLevels();
     }
 
+    /**
+     * Load in the levels array
+     */
     private void loadLevels() {
         for (int i = 0; i < levels.length; i++) {
             levels[i] = new Level(LoadSave.getLevelData());

@@ -72,21 +72,19 @@ public class EnemyManager {
      * LoadEnemies has been used to fill in all of the lists. If that hasn't been used then
      * errors will happen.
      * 
-     * @param g - the Graphics where to draw
+     * @param g            - the Graphics where to draw
      * @param xLevelOffset - the horizontal offset from screen scrolling
      */
     public void draw(Graphics g, int xLevelOffset) {
+        // go through every enemy in the Lists
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
-            g.setColor(Color.black);
-            g.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
-            g.drawString("" + s.getCurrentHealth(), (int) (s.getHitbox().x - xLevelOffset - 15), (int) (s.getHitbox().y - 15));
+            // this draws the current skeleton with their state and animation at the skeleton hitbox
             g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()],
                     (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X - xLevelOffset + s.xFlipped()),
-                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), 
-                    (int) (SKELETON_WIDTH * s.widthFlipped()),
+                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH * s.widthFlipped()),
                     (int) (SKELETON_HEIGHT), null);
         }
     }
@@ -97,11 +95,11 @@ public class EnemyManager {
      * 
      * It loops through all enemy Lists and will call update on each individual enemy.
      * 
-     * @param lvlData
-     * @param player
+     * @param lvlData - the current level's data, stored as a 2D int array
+     * @param player  - the current Player that the user is using
      */
     public void update(int[][] lvlData, Player player) {
-        // this boolean will keep track of if every enemy has died, defaulted to true;
+        // this boolean will keep track of if every enemy has died, defaulted to true
         boolean allEnemiesKilled = true;
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it

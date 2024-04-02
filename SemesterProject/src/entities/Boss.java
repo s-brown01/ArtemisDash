@@ -23,6 +23,15 @@ public abstract class Boss extends Entity {
     protected int[] phases; // just a possible way we could set up phases (if we want those)
     private BufferedImage[][] animations;
 
+    /**
+     * This is the constructor for a Boss Entity
+     * 
+     * @param x         - the horizontal coordinate, on the left side of the hitbox
+     * @param y         - the vertical coordinate, on the top of the hitbox
+     * @param width     - the width of the hitbox
+     * @param height    - the height of the hitbox
+     * @param boss_type - the type of boss that it will be
+     */
     public Boss(float x, float y, int width, int height, int boss_type) {
         super(x, y, width, height);
         this.boss_type = boss_type;

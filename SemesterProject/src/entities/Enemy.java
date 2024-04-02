@@ -48,24 +48,17 @@ public abstract class Enemy extends Entity {
     /**
      * Initializes an Enemy instance
      * 
-     * @param x          -
-     * @param y          -
-     * @param width      -
-     * @param height     -
-     * @param enemy_type -
+     * @param x          - the x-coordinate of the Enemy, will be left side of hitbox
+     * @param y          - the y-coorindate of the Enemy, will be the top side of hitboc
+     * @param width      - the width of the hitbox
+     * @param height     - the height of the hitbox
+     * @param enemy_type - the type of enemy, based of utils.Constants.EnemyConstants
      */
     public Enemy(float x, float y, int width, int height, int enemy_type) {
         super(x, y, width, height);
         this.enemy_type = enemy_type;
         this.maxHealth = getMaxHealth(enemy_type);
         this.currentHealth = maxHealth;
-    }
-
-    /**
-     * This will determine how the enemies move and which direction
-     */
-    protected void move() {
-        // TODO: fill out this method and how enemies move
     }
 
     /**
@@ -255,22 +248,31 @@ public abstract class Enemy extends Entity {
     }
 
     /**
+     * This method determines how the Enemy will move and how fast they will.
      * 
-     * @param lvlData
+     * @param lvlData - the current Level's data as a 2D int array
      */
     protected void move(int[][] lvlData) {
+        // xSpeed will store where the enemy is moving and how fast
         float xSpeed = 0;
+        // left is a negative number, right is a positive number
         if (walkDirection == LEFT) {
             xSpeed -= walkSpeed;
         } else {
             xSpeed += walkSpeed;
         }
 
+        // if the Enemy can move to the tile that is xSpeed away AND they can walk on that tile,
+        // move there.
         if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)
                 && isTileWalkable(hitbox, xSpeed, lvlData)) {
+            // moving the hitbox will move the enemy
             hitbox.x += xSpeed;
+            // return after this so it doesn't switch direction
             return;
         }
+
+        // if the enemy can't move to the next tile OR it isn't walkable, switch their direction.
         switchWalkDirection();
 
     }

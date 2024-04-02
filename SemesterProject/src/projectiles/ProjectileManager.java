@@ -96,8 +96,8 @@ public class ProjectileManager {
     /**
      * This method will draw every projectile on screen.
      * 
-     * @param g                 - the Graphics of where to draw the arrows 
-     * @param xLevelOffset      - the offset from the screenscrolling horizontally
+     * @param g            - the Graphics of where to draw the arrows
+     * @param xLevelOffset - the offset from the screenscrolling horizontally
      */
     public void draw(Graphics g, int xLevelOffset) {
         // draw all arrows
@@ -106,6 +106,12 @@ public class ProjectileManager {
         }
     }
 
+    /**
+     * Check if a certain Enemy (doesn't matter the type) collides with any projectile in the
+     * ProjectileMnager.
+     * 
+     * @param e - the specific Enemy to check.
+     */
     public void checkEnemyHit(Enemy e) {
         // check every Arrow on the screen
         for (Arrow a : arrowList) {
@@ -124,9 +130,9 @@ public class ProjectileManager {
     /**
      * This will create a new arrow in the arrowList here, so it can the arrow can be managed
      * 
-     * @param x
-     * @param y
-     * @param slope
+     * @param x     - the x coordinate of the new Arrow, will be left-bounds of hitbox
+     * @param y     - the y coordinate of the new Arrow, will be top-bounds of hitbox
+     * @param slope - the slope/path that the arrow will take
      */
     public void newArrow(float x, float y, float slope) {
         arrowList.add(new Arrow(x, y, slope));

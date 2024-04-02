@@ -187,7 +187,7 @@ public class Playing extends State implements StateMethods {
         enemyManager.draw(g, xLevelOffset);
         projManager.draw(g, xLevelOffset);
         player.renderPlayer(g, xLevelOffset);
-        
+
         // draw the pause screen only if it is paused.
         // this is last because it should be "on top" of the rest of the screen
         if (paused) {
@@ -309,10 +309,11 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * create a new arrow at a specific point in the screen, along with the slope that the arrow will take 
+     * create a new arrow at a specific point in the screen, along with the slope that the
+     * arrow will take
      * 
-     * @param x - the x coordinate
-     * @param y - the y coordinate
+     * @param x     - the x coordinate
+     * @param y     - the y coordinate
      * @param slope - the slope/path that the arrow will take
      * 
      */
@@ -326,7 +327,7 @@ public class Playing extends State implements StateMethods {
     public void completeLevel() {
         this.levelComplete = true;
     }
-    
+
     @Override
     public void mouseDragged(MouseEvent e) {
         if (paused) {
