@@ -30,7 +30,9 @@ public class LevelManager {
     }
 
     private void loadLevels() {
-        levels[0] = new Level(LoadSave.getLevelData());
+        for (int i = 0; i < levels.length; i++) {
+            levels[i] = new Level(LoadSave.getLevelData());
+        }
     }
 
     /**
