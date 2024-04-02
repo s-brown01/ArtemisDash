@@ -6,6 +6,7 @@ import static utils.HelperMethods.*;
 import static utils.Constants.GRAVITY;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
@@ -46,6 +47,12 @@ public class Player extends Entity {
 
     private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
                                            // doesn't count as multiple
+    
+    
+    /**
+     * this keeps track of where the next attack will go so that specific angles can be done
+     */
+    private Point nextAttack;
 
     /**
      * Jumping and Gravity variables
@@ -80,8 +87,9 @@ public class Player extends Entity {
     public void update() {
         updatePos();
         updateAniTick();
-//        if (attacking)
-//            checkAttack();
+        if (attacking) {
+            checkAttack();
+        }
         setAnimation();
     }
 
@@ -240,28 +248,6 @@ public class Player extends Entity {
         }
     }
     
-
-    /**
-     * Check if the Players attack. If the attack has already been checked, don't check it
-     */
-    private void checkAttack(MouseEvent e) {
-        if (attackChecked) {
-            System.out.println("NO SHOT - attackChecked");
-            return;
-        }
-        // the attack should only be checked once on 6th frame (index 5)
-        if (aniIndex != 5) {
-            System.out.println("NO SHOT - aniIndex");
-            return;
-        }
-        System.out.println("SHOT");
-        attackChecked = true;
-        final float xDiff = e.getX() - hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X;
-        final float yDiff = e.getY() - hitbox.y + utils.Constants.PlayerConstants.SHOT_OFFSET_Y;
-//        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X,
-//                hitbox.y + +utils.Constants.PlayerConstants.SHOT_OFFSET_Y, xDiff / yDiff);
-    }
-    
     public void shoot(MouseEvent e) {
         // checking validation
         if (attacking || killed) {
@@ -269,9 +255,29 @@ public class Player extends Entity {
             return;
         }
         // if they aren't already attacking, they are now
+        nextAttack = e.getPoint();
         attacking = true;
     }
-
+    
+    /**
+     * Check if the Players attack. If the attack has already been checked, don't check it
+     */
+    private void checkAttack() {
+        if (attackChecked) {
+            return;
+        }
+        // the attack should only be checked once on 6th frame (index 5)
+        if (aniIndex != 5) {
+            return;
+        }
+        attackChecked = true;
+        final float xDiff = (float) (nextAttack.getX() - (hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X));
+        final float yDiff = (float) (nextAttack.getY() - (hitbox.y + utils.Constants.PlayerConstants.SHOT_OFFSET_Y));
+        final float slope = yDiff / xDiff;
+        playing.addPlayerArrow(hitbox.x + utils.Constants.PlayerConstants.SHOT_OFFSET_X,
+                hitbox.y + +utils.Constants.PlayerConstants.SHOT_OFFSET_Y, slope);
+    }
+    
     /**
      * Reset the variables that determine ability to jump
      */
