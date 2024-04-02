@@ -96,19 +96,20 @@ public class ProjectileManager {
     /**
      * This method will draw every projectile on screen.
      * 
-     * @param g
+     * @param g                 - the Graphics of where to draw the arrows 
+     * @param xLevelOffset      - the offset from the screenscrolling horizontally
      */
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int xLevelOffset) {
         // draw all arrows
         for (Arrow a : arrowList) {
-            a.draw(g);
+            a.draw(g, xLevelOffset);
         }
     }
 
     public void checkEnemyHit(Enemy e) {
         // check every Arrow on the screen
         for (Arrow a : arrowList) {
-            // checl if the Enemy intersects with the Arrow's hitbox
+            // check if the Enemy intersects with the Arrow's hitbox
             if (e.getHitbox().intersects(a.getHitbox())) {
                 // if it does intersect, hurt them
                 e.hurt(ARROW_DAMAGE);

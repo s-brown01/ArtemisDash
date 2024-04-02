@@ -175,17 +175,19 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Draws everything that is intended to be visible, to the screen
+     * Draws everything that is intended to be visible while in a level/playing the game
      * 
-     * @param g -
+     * @param g - the Graphics where to draw the screen
      */
     @Override
     public void draw(Graphics g) {
+        // draw background first so everything else sits on it
         drawBackground(g);
         levelManager.draw(g, xLevelOffset);
-        enemyManager.draw(g);
-        projManager.draw(g);
+        enemyManager.draw(g, xLevelOffset);
+        projManager.draw(g, xLevelOffset);
         player.renderPlayer(g, xLevelOffset);
+        
         // draw the pause screen only if it is paused.
         // this is last because it should be "on top" of the rest of the screen
         if (paused) {
@@ -196,7 +198,6 @@ public class Playing extends State implements StateMethods {
             g.fillRect(Game.GAME_WIDTH / 3, Game.GAME_HEIGHT / 3, Game.GAME_WIDTH / 3, Game.GAME_HEIGHT / 2);
             g.setColor(Color.cyan);
             pauseOverlay.draw(g);
-//            g.drawString("PAUSED", Game.GAME_WIDTH / 2 - 50, Game.GAME_HEIGHT / 2);
         }
 
     }
@@ -221,7 +222,7 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * If the user clicks the mouse button, the Player entity will shoot an arrow
+     * If the user clicks the mouse button, the Player Entity will try to shoot an arrow
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -232,7 +233,7 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Depending on the key pressed, the Player entity will react in different ways.
+     * Depending on the key pressed, the Player Entity will react in different ways.
      */
     @Override
     public void keyPressed(KeyEvent e) {
@@ -259,7 +260,7 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Once a key is released, the Player entity will react in different ways
+     * Once a key is released, the Player Entity will react in different ways
      */
     @Override
     public void keyReleased(KeyEvent e) {
@@ -298,24 +299,34 @@ public class Playing extends State implements StateMethods {
         return player;
     }
 
+    /**
+     * Getter for the ProjectileManager
+     * 
+     * @return - the ProjectileManager for the game
+     */
     public ProjectileManager getProjectileManager() {
         return projManager;
     }
 
     /**
-     * @param x
-     * @param y
-     * @param slope
+     * create a new arrow at a specific point in the screen, along with the slope that the arrow will take 
+     * 
+     * @param x - the x coordinate
+     * @param y - the y coordinate
+     * @param slope - the slope/path that the arrow will take
      * 
      */
     public void addPlayerArrow(float x, float y, float slope) {
         projManager.newArrow(x, y, slope);
     }
 
-    public void levelCompleted() {
+    /**
+     * Sets the levelComplete to true
+     */
+    public void completeLevel() {
         this.levelComplete = true;
     }
-
+    
     @Override
     public void mouseDragged(MouseEvent e) {
         if (paused) {

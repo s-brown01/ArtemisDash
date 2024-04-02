@@ -44,9 +44,9 @@ public class Arrow extends Projectile {
 
     }
 
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int xLevelOffset) {
         g.setColor(Color.cyan);
-        g.drawRect((int) hitbox.x, (int) hitbox.y, (int) (hitbox.width), (int) (hitbox.height));
+        g.drawRect((int) (hitbox.x - xLevelOffset), (int) hitbox.y, (int) (hitbox.width), (int) (hitbox.height));
     }
 
 }

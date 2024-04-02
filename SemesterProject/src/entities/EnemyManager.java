@@ -73,18 +73,20 @@ public class EnemyManager {
      * errors will happen.
      * 
      * @param g - the Graphics where to draw
+     * @param xLevelOffset - the horizontal offset from screen scrolling
      */
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int xLevelOffset) {
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
             g.setColor(Color.black);
             g.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
-            g.drawString("" + s.getCurrentHealth(), (int) (s.getHitbox().x - 15), (int) (s.getHitbox().y - 15));
+            g.drawString("" + s.getCurrentHealth(), (int) (s.getHitbox().x - xLevelOffset - 15), (int) (s.getHitbox().y - 15));
             g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()],
-                    (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X + s.xFlipped()),
-                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH * s.widthFlipped()),
+                    (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X - xLevelOffset + s.xFlipped()),
+                    (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), 
+                    (int) (SKELETON_WIDTH * s.widthFlipped()),
                     (int) (SKELETON_HEIGHT), null);
         }
     }
@@ -117,7 +119,7 @@ public class EnemyManager {
 
         // if every enemy is dead/inactive, the level is complete
         if (allEnemiesKilled) {
-            playing.levelCompleted();
+            playing.completeLevel();
         }
     }
 }
