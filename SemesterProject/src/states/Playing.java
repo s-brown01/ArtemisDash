@@ -38,9 +38,15 @@ public class Playing extends State implements StateMethods {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
         projManager = new ProjectileManager(this);
+//        player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
+//        player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
+        
+    }
+    
+    public void loadLevel() {
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
-
+        enemyManager.loadEnemies(levelManager.getCurrentLevel());
     }
 
     @Override
@@ -179,7 +185,6 @@ public class Playing extends State implements StateMethods {
      * 
      */
     public void addPlayerArrow(float x, float y, float slope) {
-        System.out.println("ADDING NEW ARROW");
         projManager.newArrow(x, y, slope);
     }
     
