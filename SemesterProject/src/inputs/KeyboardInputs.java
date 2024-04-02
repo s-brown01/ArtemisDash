@@ -8,9 +8,9 @@ import states.GameStates;
 
 /**
  * Keyboard Inputs
- * @author johnbotonakis
- * This class will convert the key events from the user to actions on the screen, 
- * by passing in each event to the proper game state.
+ * 
+ * @author johnbotonakis This class will convert the key events from the user to actions
+ *         on the screen, by passing in each event to the proper game state.
  */
 public class KeyboardInputs implements KeyListener {
 
@@ -67,7 +67,7 @@ public class KeyboardInputs implements KeyListener {
         }
 
     }
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub

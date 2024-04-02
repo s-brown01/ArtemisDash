@@ -11,8 +11,9 @@ import main.Game;
 
 /**
  * LoadSave Class
- * @author johnbotonakis
- * This class is focused on loading in sprite data, level data, and building levels
+ * 
+ * @author johnbotonakis This class is focused on loading in sprite data, level data, and
+ *         building levels
  */
 public class LoadSave {
 
@@ -20,7 +21,7 @@ public class LoadSave {
     public static final String SKELETON_SPRITES = "/Skeleton.png";
 
     public static final String OVERWORLD_BG = "/overworld1.png";
-    
+
     public static final String PAUSE_MENU = "/pause_menu.png";
     public static final String PAUSE_SOUND_BUTTONS = "/pause_sound_buttons.png";
     public static final String PAUSE_BUTTONS = "/pause_buttons.png";
@@ -32,9 +33,7 @@ public class LoadSave {
     public static final String WORLD1_BG = "/World1bg.png";
     public static final String WORLD1_BG_MYST = "/World1bg_myst.png";
     public static final String WORLD1_BG_ROCKS = "/World1_rocks.png";
-    
-    
-    
+
     public static final String WORLD2_SPRITES = "/World2Sprites.png";
     public static final String WORLD3_SPRITES = "/World3Sprites.png";
 
@@ -43,8 +42,8 @@ public class LoadSave {
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
      * 
-     * @param filename  - The name of the sprite sheet that is requested
-     * @return          - The specified image as a variable
+     * @param filename - The name of the sprite sheet that is requested
+     * @return - The specified image as a variable
      */
     public static BufferedImage getSpriteSheet(String filename) {
         BufferedImage img = null;

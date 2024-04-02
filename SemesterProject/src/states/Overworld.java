@@ -14,7 +14,8 @@ import ui.OverworldButton;
 import utils.LoadSave;
 
 /**
- * Overworld Class 
+ * Overworld Class
+ * 
  * @author johnbotonakis
  * 
  */
@@ -155,7 +156,7 @@ public class Overworld extends State implements StateMethods {
     private boolean isInOB(MouseEvent e, OverworldButton ob) {
         return ob.getBounds().contains(e.getPoint());
     }
-    
+
     private void applyState(OverworldButton ob) {
         game.getPlaying().nextLevel(ob.getStageNumber());
         GameStates.state = GameStates.PLAYING;

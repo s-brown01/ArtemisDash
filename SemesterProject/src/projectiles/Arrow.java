@@ -9,6 +9,7 @@ import static utils.Constants.ProjectileConstants.ARROW_SPEED;
 
 /**
  * Arrow.java
+ * 
  * @author
  * @date Mar 26, 2024
  * @description
@@ -19,7 +20,8 @@ public class Arrow extends Projectile {
      * @param x
      * @param y
      * @param projectileType
-     * @param slope              A negative slope will make the projectile rise, positive will make it fallz
+     * @param slope          A negative slope will make the projectile rise, positive will
+     *                       make it fallz
      */
     public Arrow(float x, float y, float slope) {
         super(x, y, slope);

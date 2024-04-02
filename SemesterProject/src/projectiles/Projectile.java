@@ -8,11 +8,11 @@ import static utils.Constants.ProjectileConstants.*;
 
 /**
  * Player.java
+ * 
  * @author Sean-Paul Brown
  * @date 03/15/2024
- * @description:
- * This class will provide the framework for how all Projectiles in the game move. 
- * Projectile extends the Entity abstract class. 
+ * @description: This class will provide the framework for how all Projectiles in the game
+ *               move. Projectile extends the Entity abstract class.
  */
 public abstract class Projectile {
     /**
@@ -45,7 +45,7 @@ public abstract class Projectile {
         this.slope = slope;
 
     }
-    
+
     public Rectangle2D getHitbox() {
         return hitbox;
     }

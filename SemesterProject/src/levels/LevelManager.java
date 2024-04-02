@@ -8,18 +8,19 @@ import utils.LoadSave;
 
 /**
  * Level Manager
- * @author johnbotonakis
- * This class will handle things such as importing level sprites, 
- * drawing the level to the screen, and keep track of the current level played
+ * 
+ * @author johnbotonakis This class will handle things such as importing level sprites,
+ *         drawing the level to the screen, and keep track of the current level played
  */
 public class LevelManager {
     private Game game;
     private BufferedImage[] levelSprite;
-    private Level[] levels = new Level[15]; // 15 total levels, so array of size 15
+    private Level[] levels = new Level[15]; // 15 total levels
     private Level currentLevel;
 
     /**
      * Instantiates a manager for created level objects
+     * 
      * @param game - The Game object to which the level will be drawn onto
      */
     public LevelManager(Game game) {
@@ -27,10 +28,9 @@ public class LevelManager {
         importLevelSprites();
         loadLevels();
     }
-    
+
     private void loadLevels() {
         levels[0] = new Level(LoadSave.getLevelData());
-
     }
 
     /**
@@ -52,7 +52,7 @@ public class LevelManager {
      * Draws the level to the screen with the provided sprite sheet
      * 
      * @param g
-     * @param xLevelOffset 
+     * @param xLevelOffset
      */
     public void draw(Graphics g, int xLevelOffset) {
         for (int j = 0; j < Game.TILES_IN_HEIGHT; j++) {
@@ -60,8 +60,8 @@ public class LevelManager {
                 int index = currentLevel.getSpriteIndex(i, j);
                 // index 11 is a transparent tile, might as well not draw it
                 if (index != 11)
-                    g.drawImage(levelSprite[index], i * Game.TILES_SIZE - xLevelOffset, Game.TILES_SIZE * j, Game.TILES_SIZE,
-                            Game.TILES_SIZE, null);
+                    g.drawImage(levelSprite[index], i * Game.TILES_SIZE - xLevelOffset, Game.TILES_SIZE * j,
+                            Game.TILES_SIZE, Game.TILES_SIZE, null);
 
             }
 
@@ -71,13 +71,14 @@ public class LevelManager {
     public void update() {
 
     }
-    
+
     public void setCurrentLevel(int levelIndex) {
         this.currentLevel = levels[0];
     }
 
     /**
      * Returns the current level
+     * 
      * @return - The currently played level
      */
     public Level getCurrentLevel() {

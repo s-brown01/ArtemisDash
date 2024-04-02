@@ -11,9 +11,10 @@ import main.Game;
 
 /**
  * Level Class
- * @author johnbotonakis
- * Every object instantiated from this class will be a level that the user can play throughout. 
- * This holds onto information such as level data and sprite indices to create a level.
+ * 
+ * @author johnbotonakis Every object instantiated from this class will be a level that
+ *         the user can play throughout. This holds onto information such as level data
+ *         and sprite indices to create a level.
  */
 public class Level {
 
@@ -59,7 +60,7 @@ public class Level {
                 new Skeleton((600 / 1.75f) * Game.SCALE, (200 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
         skeletonList.add(
                 new Skeleton((1300 / 1.75f) * Game.SCALE, (200 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
-        
+
         return skeletonList;
     }
 }

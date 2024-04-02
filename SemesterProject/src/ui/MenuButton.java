@@ -10,6 +10,7 @@ import static utils.Constants.ButtonStates.*;
 
 /**
  * Menu Button Class
+ * 
  * @author johnbotonakis
  */
 public class MenuButton {
@@ -53,8 +54,8 @@ public class MenuButton {
         imgs = new BufferedImage[3];
         BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.MENU_BUTTONS);
         for (int i = 0; i < imgs.length; i++) {
-            imgs[i] = temp.getSubimage(i * B_WIDTH_DEFAULT, rowIndex * B_HEIGHT_DEFAULT,
-                    B_WIDTH_DEFAULT, B_HEIGHT_DEFAULT);
+            imgs[i] = temp.getSubimage(i * B_WIDTH_DEFAULT, rowIndex * B_HEIGHT_DEFAULT, B_WIDTH_DEFAULT,
+                    B_HEIGHT_DEFAULT);
         }
     }
 
@@ -85,7 +86,7 @@ public class MenuButton {
         mouseOver = false;
         mousePressed = false;
     }
-    
+
     public void applyGamestate() {
         GameStates.state = state;
     }

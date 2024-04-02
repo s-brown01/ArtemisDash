@@ -10,8 +10,9 @@ import java.awt.event.WindowFocusListener;
 
 /**
  * Game Window Class
- * @author johnbotonakis and Sean-Paul Brown
- * This class will act as the frame holding the painting
+ * 
+ * @author johnbotonakis and Sean-Paul Brown This class will act as the frame holding the
+ *         painting
  */
 public class GameWindow extends JFrame {
 

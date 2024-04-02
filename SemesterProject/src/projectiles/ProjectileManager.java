@@ -18,25 +18,28 @@ import static utils.Constants.ProjectileConstants.ARROW_DAMAGE;
 
 /**
  * ProjectileManager.java
+ * 
  * @author Sean-Paul Brown
  * @date Mar 28, 2024
- * @description
- * This class will be a projectile manager/factory for the Playing GameState. This allows all of the moving/collision logic to be stored outside of the Playing state
+ * @description This class will be a projectile manager/factory for the Playing GameState.
+ *              This allows all of the moving/collision logic to be stored outside of the
+ *              Playing state
  */
 public class ProjectileManager {
     private final Playing playing;
     private BufferedImage[][] arrowImgs;
     private final List<Arrow> arrowList;
-    
+
     /**
      * This is the constructor
-     * @param playing     The playing GameState that is holding this class. 
+     * 
+     * @param playing The playing GameState that is holding this class.
      */
     public ProjectileManager(Playing playing) {
         this.playing = playing;
         // arrowList can be any type of List, LinkedList was chosen first
         this.arrowList = new LinkedList<>();
-        //loadImgs();
+        // loadImgs();
     }
 
     /**
@@ -45,24 +48,27 @@ public class ProjectileManager {
     private void loadImgs() {
         // load all Arrow images here
 //        final BufferedImage arrowSprite = LoadSave.getSpriteSheet("TEST");
-        // the first dimension is how many types of arrows. The second is the maximum number of sprites
+        // the first dimension is how many types of arrows. The second is the maximum number of
+        // sprites
         arrowImgs = new BufferedImage[1][4];
-        
+
         // this loop will fill in the arrowImgs array
         for (int i = 0; i < arrowImgs.length; i++) {
             for (int j = 0; j < arrowImgs[i].length; i++) {
-                // grab all of the sprites from that row. width and height should be determined on the arrow size
+                // grab all of the sprites from that row. width and height should be determined on the
+                // arrow size
 //                arrowImgs[i][j] = arrowSprite.getSubimage(1, 1, 1, 11);
             }
         }
     }
-    
+
     /**
-     * This method updates each projectile and checks their end-case (when they should de-spawn)
+     * This method updates each projectile and checks their end-case (when they should
+     * de-spawn)
      */
     public void update() {
         // the following for loop is from StackOverflow and ChatGPT
-        
+
         // Create an iterator to safely iterate over the arrowList
         final Iterator<Arrow> arrowIter = arrowList.iterator();
         // Iterate over each arrow in the arrowList
@@ -78,7 +84,7 @@ public class ProjectileManager {
             }
         }
     }
-    
+
     /**
      * @return
      */
@@ -88,7 +94,8 @@ public class ProjectileManager {
     }
 
     /**
-     * This method will draw every projectile on screen. 
+     * This method will draw every projectile on screen.
+     * 
      * @param g
      */
     public void draw(Graphics g) {
@@ -97,10 +104,10 @@ public class ProjectileManager {
             a.draw(g);
         }
     }
-    
+
     public void checkEnemyHit(Enemy e) {
         // check every Arrow on the screen
-        for (Arrow a: arrowList) {
+        for (Arrow a : arrowList) {
             // checl if the Enemy intersects with the Arrow's hitbox
             if (e.getHitbox().intersects(a.getHitbox())) {
                 // if it does intersect, hurt them
@@ -109,12 +116,13 @@ public class ProjectileManager {
                 arrowList.remove(a);
                 // return because the arrow can only hit 1 enemy at a time
                 return;
-            }   
+            }
         }
     }
 
     /**
      * This will create a new arrow in the arrowList here, so it can the arrow can be managed
+     * 
      * @param x
      * @param y
      * @param slope

@@ -12,8 +12,8 @@ import static main.Game.GAME_WIDTH;
 
 /**
  * Game Panel Class
- * @author johnbotonakis and Sean-Paul Brown
- * This class acts as the painting in the frame
+ * 
+ * @author johnbotonakis and Sean-Paul Brown This class acts as the painting in the frame
  */
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
@@ -21,6 +21,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Creates a new panel to which the game will be drawn onto
+     * 
      * @param game - The Game instance to which the game will be drawn to
      */
     public GamePanel(Game game) {
@@ -60,6 +61,7 @@ public class GamePanel extends JPanel {
 
     /**
      * Returns the current game object
+     * 
      * @return - Current Game object
      */
     public Game getGame() {

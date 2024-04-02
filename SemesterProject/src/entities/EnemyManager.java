@@ -15,13 +15,14 @@ import static utils.Constants.EnemyConstants.*;
 
 /**
  * EnemyManager.java
+ * 
  * @author Sean-Paul Brown
  * @date 03/15/2024
- * @description 
- * EnemyManager will handle all enemies in each level.
- * This means that instead of Playing storing and handling every Enemy, they can be dealt with here.
- * This includes checking for updating, drawing, checking for getting hit, and more.
- * Storing all images here will be less memory intensive then every single Enemy-object storing their photos.
+ * @description EnemyManager will handle all enemies in each level. This means that
+ *              instead of Playing storing and handling every Enemy, they can be dealt
+ *              with here. This includes checking for updating, drawing, checking for
+ *              getting hit, and more. Storing all images here will be less memory
+ *              intensive then every single Enemy-object storing their photos.
  */
 public class EnemyManager {
 
@@ -45,7 +46,7 @@ public class EnemyManager {
      * @param level - what level to load enemies in from
      */
     public void loadEnemies(Level level) {
-         skeletonList = level.getSkeletons();
+        skeletonList = level.getSkeletons();
     }
 
     /**
@@ -80,7 +81,7 @@ public class EnemyManager {
                 continue;
             g.setColor(Color.black);
             g.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
-            g.drawString("" + s.getCurrentHealth(), (int)(s.getHitbox().x-15), (int)(s.getHitbox().y-15));
+            g.drawString("" + s.getCurrentHealth(), (int) (s.getHitbox().x - 15), (int) (s.getHitbox().y - 15));
             g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()],
                     (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X + s.xFlipped()),
                     (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH * s.widthFlipped()),
@@ -104,7 +105,7 @@ public class EnemyManager {
             // if the skeleton isn't active, skip it
             if (!s.isActive())
                 continue;
-            
+
             // if the skeleton is active, all enemies have not been killed.
             // this if statement only sets the allEnemiesKilled boolean once: short circuit
             if (allEnemiesKilled) {
@@ -113,7 +114,7 @@ public class EnemyManager {
             s.update(lvlData, player);
             playing.getProjectileManager().checkEnemyHit(s);
         }
-        
+
         // if every enemy is dead/inactive, the level is complete
         if (allEnemiesKilled) {
             playing.levelCompleted();

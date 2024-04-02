@@ -10,12 +10,13 @@ import java.awt.Graphics;
 
 /**
  * Enemy.java
+ * 
  * @author: Sean-Paul Brown
  * @date: 03/15/2024
- * @desc: 
- * This is an abstract class that provides the framework for all Enemy objects in the game. 
- * Individual types of enemies should extend this class, but this should never be a specific enemy. 
- * This will help all Enemies have the same behavior and make it easier to create/implement the EnemyManager.
+ * @desc: This is an abstract class that provides the framework for all Enemy objects in
+ *        the game. Individual types of enemies should extend this class, but this should
+ *        never be a specific enemy. This will help all Enemies have the same behavior and
+ *        make it easier to create/implement the EnemyManager.
  */
 public abstract class Enemy extends Entity {
 
@@ -46,11 +47,12 @@ public abstract class Enemy extends Entity {
 
     /**
      * Initializes an Enemy instance
-     * @param x - 
-     * @param y - 
-     * @param width - 
-     * @param height - 
-     * @param enemy_type - 
+     * 
+     * @param x          -
+     * @param y          -
+     * @param width      -
+     * @param height     -
+     * @param enemy_type -
      */
     public Enemy(float x, float y, int width, int height, int enemy_type) {
         super(x, y, width, height);
@@ -301,7 +303,7 @@ public abstract class Enemy extends Entity {
             return 1;
         }
     }
-    
+
     public int getCurrentHealth() {
         return currentHealth;
     }

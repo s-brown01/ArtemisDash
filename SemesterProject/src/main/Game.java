@@ -8,9 +8,9 @@ import levels.LevelManager;
 
 /**
  * Game Class
- * @author johnbotonakis and Sean-Paul Brown
- * This class handle most logic pertaining to the game, 
- * including updates, FPS, level scale, and tile amount on screen.
+ * 
+ * @author johnbotonakis and Sean-Paul Brown This class handle most logic pertaining to
+ *         the game, including updates, FPS, level scale, and tile amount on screen.
  */
 public class Game implements Runnable {
     // States and Entities

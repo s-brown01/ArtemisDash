@@ -6,8 +6,9 @@ import main.Game;
 
 /**
  * HelperMethods Class
- * @author johnbotonakis
- * This class is full of various methods that will be called by more than just one entity, object, or class
+ * 
+ * @author johnbotonakis This class is full of various methods that will be called by more
+ *         than just one entity, object, or class
  */
 public class HelperMethods {
 
@@ -22,7 +23,7 @@ public class HelperMethods {
      * @param width     - Width of the hitbox of caller entity
      * @param height    - Height of the hitbox of caller entity
      * @param levelData - 2D Array of data that represents the level
-     * @return - True if the entity is able to move, false if it cannot 
+     * @return - True if the entity is able to move, false if it cannot
      */
     public static boolean canMoveHere(float x, float y, float width, float height, int[][] levelData) {
         // check top left and bottom right first in case of arial movement
@@ -48,7 +49,7 @@ public class HelperMethods {
      * @param x       - X-Position of the current entity
      * @param y       - Y-Position of the current entity
      * @param lvlData - Data of the level to be checked against
-     * @return        - True if it is able to be walked on, false otherwise
+     * @return - True if it is able to be walked on, false otherwise
      */
     private static boolean isSolid(float x, float y, int[][] lvlData) {
         int maxWidth = lvlData[0].length * Game.TILES_SIZE;
@@ -75,7 +76,7 @@ public class HelperMethods {
      * @param xIndex    - X-Position in the level index; Any drawn game tile on the X-Axis
      * @param yIndex    - Y-Position in the level index; Any drawn game tile on the Y-Axis
      * @param levelData - The data that makes up the level
-     * @return          - Returns True if the tile is solid, false otherwise
+     * @return - Returns True if the tile is solid, false otherwise
      */
     private static boolean isTileSolid(int xIndex, int yIndex, int[][] levelData) {
         int value = levelData[(int) yIndex][(int) xIndex];
@@ -93,7 +94,7 @@ public class HelperMethods {
      * 
      * @param hitbox - The hitbox calling this collision check
      * @param xSpeed - The X speed of that hitbox
-     * @return       - The offset of the hitbox as to not clip through
+     * @return - The offset of the hitbox as to not clip through
      */
     public static float getXPosWall(Rectangle2D.Float hitbox, float xSpeed) {
         int currentTile = (int) (hitbox.x / Game.TILES_SIZE);
@@ -110,13 +111,13 @@ public class HelperMethods {
     }
 
     /**
-     * Checks when the caller's hitbox collides with something on the top or bottom,
-     * usually after jumping and hitting the ceiling, or jumping and landing on the floor
+     * Checks when the caller's hitbox collides with something on the top or bottom, usually
+     * after jumping and hitting the ceiling, or jumping and landing on the floor
      * 
      * @param hitbox       - The hitbox calling this collision check
      * @param airSpeed     - The Y Speed of that hitbox
      * @param hitboxOffset - How much the sprite is drawn off center from the hitbox
-     * @return             - Returns a float to displace the caller's hitbox.
+     * @return - Returns a float to displace the caller's hitbox.
      */
     public static float getYPosRoof(Rectangle2D.Float hitbox, float airSpeed, float hitboxOffset) {
         int currentTile = (int) (hitbox.y / Game.TILES_SIZE);
@@ -134,11 +135,11 @@ public class HelperMethods {
     /**
      * Checks to see if the entity is on the floor
      * 
-     * @param hitbox   - The hitbox of the entity that called this method
-     * @param lvlData  - The data of the floor
-     * @return         - Returns true if the entity is touching the floor, false if not
+     * @param hitbox  - The hitbox of the entity that called this method
+     * @param lvlData - The data of the floor
+     * @return - Returns true if the entity is touching the floor, false if not
      */
-    public static boolean floorCheck (Rectangle2D.Float hitbox, int[][] lvlData) {
+    public static boolean floorCheck(Rectangle2D.Float hitbox, int[][] lvlData) {
         // Check the pixel below bottomleft and bottomright
         if (!isSolid(hitbox.x, hitbox.y + hitbox.height + 10, lvlData))
             if (!isSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData))

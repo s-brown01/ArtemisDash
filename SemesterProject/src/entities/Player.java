@@ -16,10 +16,10 @@ import utils.Constants;
 import utils.LoadSave;
 
 /**
- * Player.java
- * Player Class
- * @author johnbotonakis and Sean-Paul Brown
- * This player class will hold every variable and funciton relating to the active player's inputs and outputs. 
+ * Player.java Player Class
+ * 
+ * @author johnbotonakis and Sean-Paul Brown This player class will hold every variable
+ *         and funciton relating to the active player's inputs and outputs.
  */
 public class Player extends Entity {
     // player_count and playerCountCheck will make sure there is only 1 player
@@ -47,8 +47,7 @@ public class Player extends Entity {
 
     private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
                                            // doesn't count as multiple
-    
-    
+
     /**
      * this keeps track of where the next attack will go so that specific angles can be done
      */
@@ -96,13 +95,13 @@ public class Player extends Entity {
     /**
      * Renders the player, along with hitbox
      * 
-     * @param g - Graphics
-     * @param xLevelOffset 
+     * @param g            - Graphics
+     * @param xLevelOffset
      * @see java.awt.Graphics @
      */
-    public void renderPlayer(Graphics g, int xLevelOffset) { //Add int yLevelOffset to input vars and to YHitbox
-        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset, (int) (hitbox.y - yDrawOffset),
-                width, height, null);
+    public void renderPlayer(Graphics g, int xLevelOffset) { // Add int yLevelOffset to input vars and to YHitbox
+        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset,
+                (int) (hitbox.y - yDrawOffset), width, height, null);
     }
 
     /**
@@ -125,7 +124,7 @@ public class Player extends Entity {
     /**
      * Load in level data as a 2D array to continuously check for collision
      * 
-     * @param lvlData - The data that 
+     * @param lvlData - The data that
      */
     public void loadLvlData(int[][] lvlData) {
         this.levelData = lvlData;
@@ -182,13 +181,14 @@ public class Player extends Entity {
         if (right) {
             xSpeed += playerSpeed;
         }
-        
+
         // Checks if the player wanted to be in the air
-        if (!inAir) 
-            // And if he is not supposed to be, and there is no gravity Player is now considered in the air. (i.e walking off a ledge)
-            // 
+        if (!inAir)
+            // And if he is not supposed to be, and there is no gravity Player is now considered in
+            // the air. (i.e walking off a ledge)
+            //
             if (!floorCheck(hitbox, levelData))
-                inAir = true; 
+                inAir = true;
 
         if (inAir) {
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
@@ -214,11 +214,11 @@ public class Player extends Entity {
      * Handles event where the jump button, Space bar, is pressed
      */
     private void jump() {
-        //Explain Jump Offset
+        // Explain Jump Offset
         final float JUMP_OFFSET = 0.01f;
         if (jump && jumps <= 1) {
             inAir = true;
-            airSpeed = jumpSpeed + JUMP_OFFSET; 
+            airSpeed = jumpSpeed + JUMP_OFFSET;
             if (hitbox.y < 170) {
                 System.out.println("Hit ceiling, too high");
             }
@@ -254,7 +254,7 @@ public class Player extends Entity {
             }
         }
     }
-    
+
     public void shoot(MouseEvent e) {
         // checking validation
         if (attacking || killed) {
@@ -265,7 +265,7 @@ public class Player extends Entity {
         nextAttack = e.getPoint();
         attacking = true;
     }
-    
+
     /**
      * Check if the Players attack. If the attack has already been checked, don't check it
      */
@@ -281,10 +281,9 @@ public class Player extends Entity {
         final float xDiff = (float) (nextAttack.getX() - (hitbox.x + SHOT_OFFSET_X));
         final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
         final float slope = yDiff / xDiff;
-        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X,
-                hitbox.y + SHOT_OFFSET_Y, slope);
+        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope);
     }
-    
+
     /**
      * Reset the variables that determine ability to jump
      */
@@ -347,7 +346,7 @@ public class Player extends Entity {
 
         if (startAni != player_action) {
             resetAniTick();
-            // this makes it so that when the player is attacking it starts on the 2nd frame. 
+            // this makes it so that when the player is attacking it starts on the 2nd frame.
             // starting on the second frame makes the animation a little quicker/smoother.
             if (attacking) {
                 aniIndex = 1;
@@ -439,6 +438,7 @@ public class Player extends Entity {
         }
 
     }
+
     public boolean getInAir() {
         return inAir;
     }
