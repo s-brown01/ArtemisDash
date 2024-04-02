@@ -10,6 +10,7 @@ import java.util.Random;
 
 import entities.EnemyManager;
 import entities.Player;
+import levels.Level;
 import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
@@ -87,7 +88,12 @@ public class Playing extends State implements StateMethods {
         
     }
     
-    public void loadLevel() {
+    public void nextLevel(int nextLevelIndex) {
+        levelManager.setCurrentLevel(nextLevelIndex);
+        loadCurrentLevel();
+    }
+    
+    private void loadCurrentLevel() {
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());

@@ -171,5 +171,12 @@ public class OverworldButton {
     public boolean isMouseOver() {
         return mouseOver;
     }
+    
+    /**
+     * @return
+     */
+    public int getStageNumber() {
+        return stageNumber;
+    }
 
 }

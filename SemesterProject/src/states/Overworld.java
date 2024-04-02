@@ -38,7 +38,7 @@ public class Overworld extends State implements StateMethods {
      */
     private void initButtons() {
         for (int i = 0; i < buttonArr.length; i++) {
-            buttonArr[i] = new OverworldButton(btnLocations[i].x, btnLocations[i].y, "Level Name", 1, i + 1);
+            buttonArr[i] = new OverworldButton(btnLocations[i].x, btnLocations[i].y, "Level Name", 1, i);
         }
         // this is just to see how the levels look at different stages
         // should be removed by game starting
@@ -86,7 +86,7 @@ public class Overworld extends State implements StateMethods {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // NOT TO BE USED
+        // ignore this method, not using it
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Overworld extends State implements StateMethods {
             // check if the mouse is in the bounds of the button
             // if the mouse is inbounds AND was pressed on that button, move to that level
             if (isInOB(e, ob) && ob.isMousePressed()) {
-                GameStates.state = GameStates.PLAYING;
+                applyState(ob);
             }
         }
         for (OverworldButton ob : buttonArr) {
@@ -135,16 +135,12 @@ public class Overworld extends State implements StateMethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-        case KeyEvent.VK_ENTER:
-            GameStates.state = GameStates.PLAYING;
-            break;
-        }
+        // ignore this method, not using key bindings in OverWorld
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
+        // ignore this method, not using key bindings in OverWorld
 
     }
 
@@ -158,6 +154,11 @@ public class Overworld extends State implements StateMethods {
      */
     private boolean isInOB(MouseEvent e, OverworldButton ob) {
         return ob.getBounds().contains(e.getPoint());
+    }
+    
+    private void applyState(OverworldButton ob) {
+        game.getPlaying().nextLevel(ob.getStageNumber());
+        GameStates.state = GameStates.PLAYING;
     }
 
 }
