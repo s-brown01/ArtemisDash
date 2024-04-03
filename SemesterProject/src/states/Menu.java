@@ -1,9 +1,3 @@
-/**
- * Menu Class
- * @author johnbotonakis
- * 
- */
-
 package states;
 
 import java.awt.Color;
@@ -17,6 +11,12 @@ import main.Game;
 import ui.MenuButton;
 import utils.LoadSave;
 
+/**
+ * Menu Class
+ * 
+ * @author johnbotonakis
+ * 
+ */
 public class Menu extends State implements StateMethods {
 
     private MenuButton[] buttons = new MenuButton[3];

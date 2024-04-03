@@ -1,8 +1,3 @@
-/**
- * Game Window Class
- * @author johnbotonakis
- * This class will act as the frame holding the painting
- */
 package main;
 
 import javax.swing.JFrame;
@@ -13,6 +8,12 @@ import javax.swing.JMenuItem;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
+/**
+ * Game Window Class
+ * 
+ * @author johnbotonakis and Sean-Paul Brown This class will act as the frame holding the
+ *         painting
+ */
 public class GameWindow extends JFrame {
 
     /**

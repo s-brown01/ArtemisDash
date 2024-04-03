@@ -1,8 +1,3 @@
-/**
- * Playing Class
- * @author johnbotonakis
- * This class handles the core game loop of completing levels
- */
 package states;
 
 import java.awt.Color;
@@ -15,28 +10,34 @@ import java.util.Random;
 
 import entities.EnemyManager;
 import entities.Player;
+import levels.Level;
 import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
 import ui.HUD;
+import projectiles.ProjectileManager;
 import ui.PauseOverlay;
 import static utils.Constants.*;
 import utils.LoadSave;
 
+/**
+ * Playing Class
+ * 
+ * @author johnbotonakis This class handles the core game loop of completing levels
+ */
 public class Playing extends State implements StateMethods {
 
+    // will keep track if the pause menu should be up or not
+    private boolean paused = false, levelComplete = false;
     private Player player;
     private HUD hud;
     private PauseOverlay pauseOverlay;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
+    private ProjectileManager projManager;
     private ArrayList<Arrow> arrowList = new ArrayList<>();
     private int score;
     
-    // will keep track if the pause menu should be up or not
-    private boolean paused = false;
-    
-
     // Level Expansion vars
     private int xLevelOffset;// X-Offset being added to and subtracted from to render the level itself
     private int borderLeft = (int) (0.5 * Game.GAME_WIDTH);// 50% of the screen is rendered
@@ -57,8 +58,7 @@ public class Playing extends State implements StateMethods {
     private int[] mystPos;// Position of myst background asset
     private Random rnd = new Random();
 
-    
-//    public boolean draw; //Testing Text-Based Cutscenes
+
     /**
      * Runs the logic once the game state has switched to PLAYING Loads in the enemies,
      * backgrounds, and player
@@ -78,8 +78,19 @@ public class Playing extends State implements StateMethods {
     private void initClasses() {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
+        projManager = new ProjectileManager(this);
+
+    }
+
+    public void nextLevel(int nextLevelIndex) {
+        levelManager.setCurrentLevel(nextLevelIndex);
+        loadCurrentLevel();
+    }
+
+    private void loadCurrentLevel() {
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
+        enemyManager.loadEnemies(levelManager.getCurrentLevel());
         pauseOverlay = new PauseOverlay();
         hud = new HUD(this);
         this.score = 0;
@@ -109,16 +120,27 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void update() {
+        // if the level is complete, don't update anything
+        if (levelComplete) {
+            // here is where we do anything when the level is completed
+            GameStates.state = GameStates.OVERWORLD;
+            return;
+        }
+        
         if (paused) {
+            // update pause overlay here
             pauseOverlay.update();
             return;
         }
+
+
+        // if this is paused, don't update all the paused stuff but not the rest
         levelManager.update();
         player.update();
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
+        projManager.update();
         screenScroller();
         hud.updateHUD();
-
     }
 
     /**
@@ -159,23 +181,20 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Draws everything that is intended to be visible, to the screen
+     * Draws everything that is intended to be visible while in a level/playing the game
      * 
-     * @param g -
+     * @param g - the Graphics where to draw the screen
      */
     @Override
     public void draw(Graphics g) {
+        // draw background first so everything else sits on it
         drawBackground(g);
         levelManager.draw(g, xLevelOffset);
-        enemyManager.draw(g);
-        player.renderPlayer(g, xLevelOffset);
         hud.draw(g);
-        for (Arrow a : arrowList)
-            a.draw(g);
+        enemyManager.draw(g, xLevelOffset);
+        projManager.draw(g, xLevelOffset);
+        player.renderPlayer(g, xLevelOffset);
         if (paused) {
-            g.setFont(boldFont);
-            g.setColor(new Color(150, 150, 150, 150));
-            g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
             pauseOverlay.draw(g);
         }
     }
@@ -200,18 +219,18 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * If the user clicks the mouse button, the Player entity will shoot an arrow
+     * If the user clicks the mouse button, the Player Entity will try to shoot an arrow
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        player.checkAttack(this, e); // THIS IS BAD, NOT WORK CORRECT
-        // user has to click on 6th frame to shoot
-        if (e.getButton() == MouseEvent.BUTTON1)
-            player.setAttack(true);
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            player.shoot(e);
+        }
+
     }
 
     /**
-     * Depending on the key pressed, the Player entity will react in different ways.
+     * Depending on the key pressed, the Player Entity will react in different ways.
      */
     @Override
     public void keyPressed(KeyEvent e) {
@@ -246,7 +265,7 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Once a key is released, the Player entity will react in different ways
+     * Once a key is released, the Player Entity will react in different ways
      */
     @Override
     public void keyReleased(KeyEvent e) {
@@ -286,14 +305,32 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * @param x
-     * @param y
-     * @param slope
+     * Getter for the ProjectileManager
+     * 
+     * @return - the ProjectileManager for the game
+     */
+    public ProjectileManager getProjectileManager() {
+        return projManager;
+    }
+
+    /**
+     * create a new arrow at a specific point in the screen, along with the slope that the
+     * arrow will take
+     * 
+     * @param x     - the x coordinate
+     * @param y     - the y coordinate
+     * @param slope - the slope/path that the arrow will take
      * 
      */
     public void addPlayerArrow(float x, float y, float slope) {
-        System.out.println("ADDING NEW ARROW");
-        arrowList.add(new Arrow((int) x, (int) y, (int) slope));
+        projManager.newArrow(x, y, slope);
+    }
+
+    /**
+     * Sets the levelComplete to true
+     */
+    public void completeLevel() {
+        this.levelComplete = true;
     }
 
     @Override

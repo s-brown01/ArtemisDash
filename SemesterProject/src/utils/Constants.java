@@ -1,10 +1,3 @@
-/**
- * CONSTANTS Class
- * @author johnbotonakis
- * Handles every constant variable that will be used for this game;
- * As of now, it is mainly used to pilot the animations and direct 
- * the game to where each animation is, on the sprite sheet
- */
 package utils;
 
 import java.awt.Color;
@@ -12,6 +5,13 @@ import java.awt.Point;
 
 import main.Game;
 
+/**
+ * CONSTANTS Class
+ * 
+ * @author johnbotonakis Handles every constant variable that will be used for this game;
+ *         As of now, it is mainly used to pilot the animations and direct the game to
+ *         where each animation is, on the sprite sheet
+ */
 public class Constants {
 
     /**
@@ -368,6 +368,11 @@ public class Constants {
         public static final int ARROW_HITBOX_HEIGHT = (int) (25 * Game.SCALE);
         public static final int ARROW_DRAW_OFFSET_X = (int) (0 * Game.SCALE);
         public static final int ARROW_DRAW_OFFSET_Y = (int) (0 * Game.SCALE);
+
+        /** the horizontal speed of the arrow */
+        public static final float ARROW_SPEED = 1.0f;
+        /** how much damage an entity will take if hit with an ARROW */
+        public static final int ARROW_DAMAGE = 1;
 
         public static int getProjHeight(int projType) {
             switch (projType) {

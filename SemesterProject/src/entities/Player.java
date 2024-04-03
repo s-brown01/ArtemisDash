@@ -1,10 +1,3 @@
-/**
- * Player.java
- * Player Class
- * @author johnbotonakis and Sean-Paul Brown
- * This player class will hold every variable and funciton relating to the active player's inputs and outputs. 
- * 
- */
 package entities;
 
 import static utils.Constants.PlayerStates.*;
@@ -13,6 +6,7 @@ import static utils.HelperMethods.*;
 import static utils.Constants.GRAVITY;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
@@ -21,6 +15,12 @@ import states.Playing;
 import utils.Constants;
 import utils.LoadSave;
 
+/**
+ * Player.java Player Class
+ * 
+ * @author johnbotonakis and Sean-Paul Brown This player class will hold every variable
+ *         and funciton relating to the active player's inputs and outputs.
+ */
 public class Player extends Entity {
     // player_count and playerCountCheck will make sure there is only 1 player
 //    private static int player_count = 0;
@@ -51,7 +51,15 @@ public class Player extends Entity {
     private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
                                            // doesn't count as multiple
 
-    // Jumping and Gravity variables
+
+    /**
+     * this keeps track of where the next attack will go so that specific angles can be done
+     */
+    private Point nextAttack;
+
+    /**
+     * Jumping and Gravity variables
+     */
     private float jumpSpeed = -2.75f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
     private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
@@ -83,8 +91,9 @@ public class Player extends Entity {
     public void update() {
         updatePos();
         updateAniTick();
-//        if (attacking)
-//            checkAttack();
+        if (attacking) {
+            checkAttack();
+        }
         setAnimation();
     }
 
@@ -124,30 +133,6 @@ public class Player extends Entity {
      */
     public void loadLvlData(int[][] lvlData) {
         this.levelData = lvlData;
-    }
-
-    /**
-     * Check if the Players attack. If the attack has already been checked, don't check it
-     */
-    public void checkAttack(Playing p, MouseEvent e) {
-        // PLEASE
-        // REWORK THIS
-        // ITS SO BAD
-        // the attack should only be checked once on 6th frame (index 5)
-        if (attackChecked) {
-            System.out.println("NO SHOT - attackChecked");
-            return;
-        }
-        if (aniIndex != 5) {
-            System.out.println("NO SHOT - aniIndex");
-            return;
-        }
-        System.out.println("SHOT");
-        attackChecked = true;
-        final float xDiff = e.getX() - hitbox.x + utils.Constants.PlayerStates.SHOT_OFFSET_X;
-        final float yDiff = e.getY() - hitbox.y + utils.Constants.PlayerStates.SHOT_OFFSET_Y;
-        p.addPlayerArrow(hitbox.x + utils.Constants.PlayerStates.SHOT_OFFSET_X,
-                hitbox.y + +utils.Constants.PlayerStates.SHOT_OFFSET_Y, xDiff / yDiff);
     }
 
     /**
@@ -265,7 +250,7 @@ public class Player extends Entity {
                     hitbox.y -= i * i;
 
                 }
-//                if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
+                // if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
                 inAir = true;
                 airSpeed = 0;
                 gravity = GRAVITY;
@@ -273,6 +258,35 @@ public class Player extends Entity {
 
             }
         }
+    }
+
+    public void shoot(MouseEvent e) {
+        // checking validation
+        if (attacking || killed) {
+            // dont attack again while attacking
+            return;
+        }
+        // if they aren't already attacking, they are now
+        nextAttack = e.getPoint();
+        attacking = true;
+    }
+
+    /**
+     * Check if the Players attack. If the attack has already been checked, don't check it
+     */
+    private void checkAttack() {
+        if (attackChecked) {
+            return;
+        }
+        // the attack should only be checked once on 6th frame (index 5)
+        if (aniIndex != 5) {
+            return;
+        }
+        attackChecked = true;
+        final float xDiff = (float) (nextAttack.getX() - (hitbox.x + SHOT_OFFSET_X));
+        final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
+        final float slope = yDiff / xDiff;
+        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope);
     }
 
     /**
@@ -337,6 +351,11 @@ public class Player extends Entity {
 
         if (startAni != player_action) {
             resetAniTick();
+            // this makes it so that when the player is attacking it starts on the 2nd frame.
+            // starting on the second frame makes the animation a little quicker/smoother.
+            if (attacking) {
+                aniIndex = 1;
+            }
         }
 
     }
@@ -347,7 +366,6 @@ public class Player extends Entity {
     private void resetAniTick() {
         aniTick = 0;
         aniIndex = 0;
-
     }
 
     /**

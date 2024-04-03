@@ -8,13 +8,20 @@ import java.awt.Rectangle;
 
 import static utils.Constants.OverworldButtonConstants.*;
 
+/**
+ * OverworldButton.java
+ * 
+ * @author Sean-Paul Brown This class represents how a "level"/button is displayed on the
+ *         Overworld GameState. This class relies on the
+ *         utils.Constants.OverworldButtonConstants class. This represents a single
+ *         level/button
+ */
 public class OverworldButton {
     // this class will keep track of...
     private final String levelName;
     private final int worldNumber, stageNumber;
     private boolean completed = false, mouseOver = false, mousePressed = false, hidden = true;
     private Color color;
-//    private Color[][] colors = new Color[][] {{new Color(0,0,0)}, {new Color(0, 0, 100), new Color(0, 0, 150), new Color(0,0,200)}, {new Color(0,100,0), new Color(0,150,0), new Color(0,200,0)}};
     private Rectangle bounds;
 
     public OverworldButton(int x, int y, String levelName, int worldNumber, int stageNumber) {
@@ -166,6 +173,13 @@ public class OverworldButton {
      */
     public boolean isMouseOver() {
         return mouseOver;
+    }
+
+    /**
+     * @return
+     */
+    public int getStageNumber() {
+        return stageNumber;
     }
 
 }

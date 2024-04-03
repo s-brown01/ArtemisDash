@@ -1,8 +1,3 @@
-/**
- * Game Panel Class
- * @author johnbotonakis
- * This class acts as the painting in the frame
- */
 package main;
 
 import java.awt.Dimension;
@@ -15,6 +10,11 @@ import inputs.MouseInputs;
 import static main.Game.GAME_HEIGHT;
 import static main.Game.GAME_WIDTH;
 
+/**
+ * Game Panel Class
+ * 
+ * @author johnbotonakis and Sean-Paul Brown This class acts as the painting in the frame
+ */
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
     private Game game;
