@@ -10,9 +10,9 @@ import main.Game;
  * 
  * @author johnbotonakis and Sean-Paul Brown
  * 
- * Handles every constant variable that will be used for this game;
- *         As of now, it is mainly used to pilot the animations and direct the game to
- *         where each animation is, on the sprite sheet
+ *         Handles every constant variable that will be used for this game; As of now, it
+ *         is mainly used to pilot the animations and direct the game to where each
+ *         animation is, on the sprite sheet
  */
 public class Constants {
 
@@ -74,8 +74,8 @@ public class Constants {
         public static final Color OUTLINE = new Color(212, 175, 55);
 
         /**
-         * Each point here represents one of the clickable levels on the Overworld menu.
-         * The point does 
+         * Each point here represents one of the clickable levels on the Overworld menu. The point
+         * does
          * 
          * all points were calculated on paper arbitrary points that look good on screen divide by
          * 1.75f because that is the default scale, then multiple by scale
@@ -112,9 +112,11 @@ public class Constants {
         private static final Point LEVEL_15 = new Point((int) (900 / 1.75f * Game.SCALE),
                 (int) (625 / 1.75f * Game.SCALE));
         /**
-         * This is a final array of all 15 Levels, so that it can be easily access by the Overworld GameState
+         * This is a final array of all 15 Levels, so that it can be easily access by the
+         * Overworld GameState
          */
-        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5, LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
+        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5,
+                LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
 
     }
 
@@ -150,10 +152,12 @@ public class Constants {
         public static final int SHOT_OFFSET_Y = 11;
 
         /**
-         * Get the specifc amount of sprites (how many frames an action takes) per action for the Player. 
+         * Get the specifc amount of sprites (how many frames an action takes) per action for the
+         * Player.
          * 
-         * @param player_action - the action to get the sprite amount for, based on the constants above in this class.
-         * @return              - the amount of sprites that the specific action takes, defaults to 1.
+         * @param player_action - the action to get the sprite amount for, based on the constants
+         *                      above in this class.
+         * @return - the amount of sprites that the specific action takes, defaults to 1.
          */
         public static int getSpriteAmt(int player_action) {
             switch (player_action) {
@@ -392,7 +396,7 @@ public class Constants {
          * Get the specific height of a hitbox for a Projectile based on the constants above
          * 
          * @param projType - the type of Projectile to get height for, the constants in this class
-         * @return         - the height of the hitbox for the Projectile
+         * @return - the height of the hitbox for the Projectile
          */
         public static int getProjHeight(int projType) {
             switch (projType) {
@@ -407,7 +411,7 @@ public class Constants {
          * Get the specific width of a hitbox for a Projectile based on the constants above
          * 
          * @param projType - the type of Projectile to get width for, the constants in this class
-         * @return         - the width of the hitbox for the Projectile
+         * @return - the width of the hitbox for the Projectile
          */
         public static int getProjWidth(int projType) {
             switch (projType) {
@@ -419,12 +423,13 @@ public class Constants {
         }
 
         /**
-         * @deprecated THIS METHOD IS NOT USED 
+         * @deprecated THIS METHOD IS NOT USED
          * 
-         * Get the specific speed of a hitbox for a Projectile based on the constants above
+         *             Get the specific speed of a hitbox for a Projectile based on the constants
+         *             above
          * 
          * @param projType - the type of Projectile to get speed for, the constants in this class
-         * @return         - the speed of the hitbox for the Projectile
+         * @return - the speed of the hitbox for the Projectile
          */
         public static float getProjSpeed(int projType) {
             switch (projType) {

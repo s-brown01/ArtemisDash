@@ -13,14 +13,16 @@ import static utils.Constants.ProjectileConstants.*;
  * @description
  */
 public class Arrow extends Projectile {
-    
+
     private final float SPEED;
 
     /**
-     * @param x         - the x coordinate of the left of the hitbox
-     * @param y         - the y coordinate of the top of the hitbox
-     * @param slope     - the slope of the arrow: a negative slope will make the arrow rise, positive falls
-     * @param left      - if the Arrow is moving towards the left, this should be true, if right, false
+     * @param x     - the x coordinate of the left of the hitbox
+     * @param y     - the y coordinate of the top of the hitbox
+     * @param slope - the slope of the arrow: a negative slope will make the arrow rise,
+     *              positive falls
+     * @param left  - if the Arrow is moving towards the left, this should be true, if right,
+     *              false
      */
     public Arrow(float x, float y, float slope, boolean left) {
         super(x, y, slope, ARROW);
@@ -32,7 +34,8 @@ public class Arrow extends Projectile {
     }
 
     /**
-     * This method will update the behavior of the Arrow, calling methods like updateMovement(). 
+     * This method will update the behavior of the Arrow, calling methods like
+     * updateMovement().
      * 
      */
     public void update() {
@@ -40,7 +43,7 @@ public class Arrow extends Projectile {
         // TODO Fill in method
         updateMovement();
     }
-    
+
     /**
      * This will update the movement of a projectile
      */
@@ -51,8 +54,9 @@ public class Arrow extends Projectile {
 
     /**
      * This method will draw the specific Arrow to the Graphics inputted into the function
-     * @param g             - the Graphics where to draw stuff
-     * @param xLevelOffset  - the int representing the screenscrolling
+     * 
+     * @param g            - the Graphics where to draw stuff
+     * @param xLevelOffset - the int representing the screenscrolling
      */
     public void draw(Graphics g, int xLevelOffset) {
         g.setColor(Color.cyan);

@@ -256,7 +256,8 @@ public class Player extends Entity {
     }
 
     /**
-     * This will start the Player attacking. If this is called then 
+     * This will start the Player attacking. If this is called then
+     * 
      * @param e
      */
     public void shoot(MouseEvent e) {
@@ -286,7 +287,7 @@ public class Player extends Entity {
         final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
         final float slope = yDiff / xDiff;
         /*
-         *  the arrow should spawn at the 
+         * the arrow should spawn at the
          */
         playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope, xDiff > 0);
     }

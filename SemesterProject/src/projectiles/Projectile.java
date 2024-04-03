@@ -34,10 +34,10 @@ public abstract class Projectile {
      * This is the constructor of the Projectile. It relies on the ProjectileConstants static
      * class in utils.Constants
      * 
-     * @param x         - the X-coordinate of the Projectile
-     * @param y         - the Y-coordinate of the Projectile
-     * @param slope     - the slope of the Projectile, what path it will follow
-     * @param projType  - the type of Projectile it is, based on ProjectileConstants
+     * @param x        - the X-coordinate of the Projectile
+     * @param y        - the Y-coordinate of the Projectile
+     * @param slope    - the slope of the Projectile, what path it will follow
+     * @param projType - the type of Projectile it is, based on ProjectileConstants
      */
     public Projectile(float x, float y, float slope, int projType) {
         this.x = x;
@@ -46,12 +46,12 @@ public abstract class Projectile {
         // get the specific height and width depending on the type given
 //        super(x, y, getProjWidth(projectileType), getProjHeight(projectileType));
 //        hitbox = new Rectangle2D.Float(x, y, ARROW_HITBOX_WIDTH, ARROW_HITBOX_HEIGHT);
-        hitbox = new Rectangle2D.Float(this.x, this.y, 
-                getProjWidth(projType), getProjHeight(projType));
+        hitbox = new Rectangle2D.Float(this.x, this.y, getProjWidth(projType), getProjHeight(projType));
     }
 
     /**
      * A getter for the hitbox
+     * 
      * @return - the Player's hitbox
      */
     public Rectangle2D getHitbox() {
