@@ -8,7 +8,9 @@ import main.Game;
 /**
  * CONSTANTS Class
  * 
- * @author johnbotonakis Handles every constant variable that will be used for this game;
+ * @author johnbotonakis and Sean-Paul Brown
+ * 
+ * Handles every constant variable that will be used for this game;
  *         As of now, it is mainly used to pilot the animations and direct the game to
  *         where each animation is, on the sprite sheet
  */
@@ -71,42 +73,48 @@ public class Constants {
         public static final Color DEFAULT_CLICKED = new Color(0, 200, 0);
         public static final Color OUTLINE = new Color(212, 175, 55);
 
-        /*
+        /**
+         * Each point here represents one of the clickable levels on the Overworld menu.
+         * The point does 
+         * 
          * all points were calculated on paper arbitrary points that look good on screen divide by
          * 1.75f because that is the default scale, then multiple by scale
+         * 
          */
-        private static final Point POINT_1 = new Point((int) (660 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_1 = new Point((int) (660 / 1.75f * Game.SCALE),
                 (int) (190 / 1.75f * Game.SCALE));
-        private static final Point POINT_2 = new Point((int) (680 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_2 = new Point((int) (680 / 1.75f * Game.SCALE),
                 (int) (220 / 1.75f * Game.SCALE));
-        private static final Point POINT_3 = new Point((int) (680 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_3 = new Point((int) (680 / 1.75f * Game.SCALE),
                 (int) (280 / 1.75f * Game.SCALE));
-        private static final Point POINT_4 = new Point((int) (720 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_4 = new Point((int) (720 / 1.75f * Game.SCALE),
                 (int) (250 / 1.75f * Game.SCALE));
-        private static final Point POINT_5 = new Point((int) (520 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_5 = new Point((int) (520 / 1.75f * Game.SCALE),
                 (int) (340 / 1.75f * Game.SCALE));
-        private static final Point POINT_6 = new Point((int) (650 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_6 = new Point((int) (650 / 1.75f * Game.SCALE),
                 (int) (380 / 1.75f * Game.SCALE));
-        private static final Point POINT_7 = new Point((int) (795 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_7 = new Point((int) (795 / 1.75f * Game.SCALE),
                 (int) (420 / 1.75f * Game.SCALE));
-        private static final Point POINT_8 = new Point((int) (760 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_8 = new Point((int) (760 / 1.75f * Game.SCALE),
                 (int) (350 / 1.75f * Game.SCALE));
-        private static final Point POINT_9 = new Point((int) (870 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_9 = new Point((int) (870 / 1.75f * Game.SCALE),
                 (int) (390 / 1.75f * Game.SCALE));
-        private static final Point POINT_10 = new Point((int) (400 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_10 = new Point((int) (400 / 1.75f * Game.SCALE),
                 (int) (475 / 1.75f * Game.SCALE));
-        private static final Point POINT_11 = new Point((int) (600 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_11 = new Point((int) (600 / 1.75f * Game.SCALE),
                 (int) (515 / 1.75f * Game.SCALE));
-        private static final Point POINT_12 = new Point((int) (800 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_12 = new Point((int) (800 / 1.75f * Game.SCALE),
                 (int) (540 / 1.75f * Game.SCALE));
-        private static final Point POINT_13 = new Point((int) (870 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_13 = new Point((int) (870 / 1.75f * Game.SCALE),
                 (int) (480 / 1.75f * Game.SCALE));
-        private static final Point POINT_14 = new Point((int) (800 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_14 = new Point((int) (800 / 1.75f * Game.SCALE),
                 (int) (610 / 1.75f * Game.SCALE));
-        private static final Point POINT_15 = new Point((int) (900 / 1.75f * Game.SCALE),
+        private static final Point LEVEL_15 = new Point((int) (900 / 1.75f * Game.SCALE),
                 (int) (625 / 1.75f * Game.SCALE));
-        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { POINT_1, POINT_2, POINT_3, POINT_4, POINT_5,
-                POINT_6, POINT_7, POINT_8, POINT_9, POINT_10, POINT_11, POINT_12, POINT_13, POINT_14, POINT_15 };
+        /**
+         * This is a final array of all 15 Levels, so that it can be easily access by the Overworld GameState
+         */
+        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5, LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
 
     }
 
@@ -141,6 +149,12 @@ public class Constants {
         public static final int SHOT_OFFSET_X = 34;
         public static final int SHOT_OFFSET_Y = 11;
 
+        /**
+         * Get the specifc amount of sprites (how many frames an action takes) per action for the Player. 
+         * 
+         * @param player_action - the action to get the sprite amount for, based on the constants above in this class.
+         * @return              - the amount of sprites that the specific action takes, defaults to 1.
+         */
         public static int getSpriteAmt(int player_action) {
             switch (player_action) {
             case IDLE:
@@ -370,28 +384,48 @@ public class Constants {
         public static final int ARROW_DRAW_OFFSET_Y = (int) (0 * Game.SCALE);
 
         /** the horizontal speed of the arrow */
-        public static final float ARROW_SPEED = 1.0f;
+        public static final float ARROW_SPEED = 2.0f;
         /** how much damage an entity will take if hit with an ARROW */
         public static final int ARROW_DAMAGE = 1;
 
+        /**
+         * Get the specific height of a hitbox for a Projectile based on the constants above
+         * 
+         * @param projType - the type of Projectile to get height for, the constants in this class
+         * @return         - the height of the hitbox for the Projectile
+         */
         public static int getProjHeight(int projType) {
             switch (projType) {
             case ARROW:
-                return ARROW_HEIGHT_DEFAULT;
+                return ARROW_HITBOX_WIDTH;
             default:
                 return 30;
             }
         }
 
+        /**
+         * Get the specific width of a hitbox for a Projectile based on the constants above
+         * 
+         * @param projType - the type of Projectile to get width for, the constants in this class
+         * @return         - the width of the hitbox for the Projectile
+         */
         public static int getProjWidth(int projType) {
             switch (projType) {
             case ARROW:
-                return 50;
+                return ARROW_HITBOX_HEIGHT;
             default:
                 return 60;
             }
         }
 
+        /**
+         * @deprecated THIS METHOD IS NOT USED 
+         * 
+         * Get the specific speed of a hitbox for a Projectile based on the constants above
+         * 
+         * @param projType - the type of Projectile to get speed for, the constants in this class
+         * @return         - the speed of the hitbox for the Projectile
+         */
         public static float getProjSpeed(int projType) {
             switch (projType) {
             case ARROW:
