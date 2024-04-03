@@ -7,9 +7,9 @@ import states.*;
 import levels.LevelManager;
 
 /**
- * Game Class
- * 
- * @author johnbotonakis and Sean-Paul Brown This class handle most logic pertaining to
+ * Game.java
+ * @author johnbotonakis and Sean-Paul Brown 
+ * This class handle most logic pertaining to
  *         the game, including updates, FPS, level scale, and tile amount on screen.
  */
 public class Game implements Runnable {
@@ -27,8 +27,13 @@ public class Game implements Runnable {
     private Thread gameThread;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
+    // this is the amount of nanoseconds in 1 second: 1 Billion nanoseconds
+    private final double NANOSECONDS_IN_SEC = 1000000000.0;
 
-    // Game Scale and tiles
+    /*
+     * All variables specific to the game:
+     * Game Scale and tiles
+     */
     public final static int TILES_DEFAULT_SIZE = 32; // 32 x 32 tile size
     public final static float SCALE = 1.75f; // How much should everything get scaled by? KEEP THIS ROUND
     public final static int TILES_IN_WIDTH = 26; // How many tiles width-wise should be drawn?
@@ -37,6 +42,7 @@ public class Game implements Runnable {
     public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH; // 56 * 26 = 1456
     public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT; // 56 * 14 = 448
     public final static float GAME_BUFFER = (20 / 1.75f * Game.SCALE);
+    
 
     /**
      * Main Game Constructor
@@ -74,11 +80,12 @@ public class Game implements Runnable {
      */
     @Override
     public void run() {
-        // How long each frame will last; 1 billion nano seconds = 1 second
-        double timePerFrame = 1000000000.0 / FPS_SET;
-        double timePerUpdate = 1000000000.0 / UPS_SET;
+        // How long each frame/update should take in nanoseconds
+        double timePerFrame = NANOSECONDS_IN_SEC / FPS_SET;
+        double timePerUpdate = NANOSECONDS_IN_SEC / UPS_SET;
         long previousTime = System.nanoTime();
 
+        // used to keep track of how 
         int frames = 0;
         int updates = 0;
 
