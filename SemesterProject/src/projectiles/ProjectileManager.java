@@ -1,20 +1,16 @@
 
 package projectiles;
 
+import static utils.Constants.ProjectileConstants.ARROW_DAMAGE;
+
 import java.awt.Graphics;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import entities.Enemy;
-import entities.Entity;
-import levels.Level;
 import states.Playing;
-import utils.LoadSave;
-
-import static utils.Constants.ProjectileConstants.ARROW_DAMAGE;
 
 /**
  * ProjectileManager.java

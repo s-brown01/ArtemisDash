@@ -1,10 +1,11 @@
 package projectiles;
 
+import static utils.Constants.ProjectileConstants.ARROW_SPEED;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
 import static utils.Constants.ProjectileConstants.*;
-
 /**
  * Arrow.java
  * 

@@ -13,7 +13,6 @@ import utils.LoadSave;
  *         drawing the level to the screen, and keep track of the current level played
  */
 public class LevelManager {
-    private Game game;
     private BufferedImage[] levelSprite;
     private Level[] levels = new Level[15]; // 15 total levels
     private Level currentLevel;
@@ -24,7 +23,6 @@ public class LevelManager {
      * @param game - The Game object to which the level will be drawn onto
      */
     public LevelManager(Game game) {
-        this.game = game;
         importLevelSprites();
         loadLevels();
     }

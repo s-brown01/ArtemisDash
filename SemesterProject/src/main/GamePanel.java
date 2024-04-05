@@ -16,6 +16,7 @@ import static main.Game.GAME_WIDTH;
  * @author johnbotonakis and Sean-Paul Brown This class acts as the painting in the frame
  */
 public class GamePanel extends JPanel {
+    private static final long serialVersionUID = 1L;
     private MouseInputs mouseInputs;
     private Game game;
 

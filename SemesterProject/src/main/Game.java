@@ -3,8 +3,10 @@ package main;
 import java.awt.Graphics;
 
 import entities.Player;
-import states.*;
-import levels.LevelManager;
+import states.GameStates;
+import states.Menu;
+import states.Overworld;
+import states.Playing;
 
 /**
  * Game.java
@@ -18,8 +20,6 @@ public class Game implements Runnable {
     private Menu menu;
     private Overworld overworld;
 
-    // Windows and Panels
-    private GameWindow gameWindow;
     private GamePanel gamePanel;
 
     // Updates and Frame Logic
@@ -49,7 +49,7 @@ public class Game implements Runnable {
         gamePanel = new GamePanel(this);
         gamePanel.setFocusable(true);
         gamePanel.requestFocus();
-        gameWindow = new GameWindow(gamePanel);
+        new GameWindow(gamePanel);
         startGame();
     }
 
@@ -82,9 +82,6 @@ public class Game implements Runnable {
         double timePerUpdate = NANOSECONDS_IN_SEC / UPS_SET;
         long previousTime = System.nanoTime();
 
-        // used to keep track of how
-        int frames = 0;
-        int updates = 0;
 
         double deltaUpdates = 0;
         double deltaFrames = 0;
@@ -98,21 +95,16 @@ public class Game implements Runnable {
 
             if (deltaUpdates >= 1) {
                 updateGameState();
-                updates++;
                 deltaUpdates--;
             }
 
             if (deltaFrames >= 1) {
                 gamePanel.repaint();
-                frames++;
                 deltaFrames--;
             }
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
-//                System.out.println("FPS: " + frames + " | UPDATES: " + updates); //TESTING: Ensure FPS and UPS are working properly
-                frames = 0;
-                updates = 0;
             }
         }
     }

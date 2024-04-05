@@ -11,6 +11,7 @@ import javax.swing.JFrame;
  * @author johnbotonakis and Sean-Paul Brown This class will act as the frame holding the
  *         painting
  */
+//DOUBLE BUFFERING HERE NOWHERE ELSE!
 public class GameWindow extends JFrame {
 
     /**

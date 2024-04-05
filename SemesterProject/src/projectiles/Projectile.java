@@ -1,10 +1,9 @@
 package projectiles;
 
-import java.awt.Graphics;
+import static utils.Constants.ProjectileConstants.*;
+
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-
-import static utils.Constants.ProjectileConstants.*;
 
 /**
  * Player.java
