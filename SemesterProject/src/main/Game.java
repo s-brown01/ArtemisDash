@@ -157,7 +157,12 @@ public class Game implements Runnable {
      * When window focus is lost, stop the player immediately
      */
     public void windowLost() {
-        playing.getPlayer().resetDirBools();
+        if (GameStates.state == GameStates.PLAYING) {
+            playing.getPlayer().resetDirBools();
+        }
+        else {
+            return;
+        }
     }
 
     // Getters and setters

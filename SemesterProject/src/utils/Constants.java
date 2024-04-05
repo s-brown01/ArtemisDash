@@ -63,15 +63,18 @@ public class Constants {
         public static final int BUTTON_SIZE = (int) (25 / 1.75f * Game.SCALE);
 
         // the colors to be used for overworld buttons
-        public static final Color HIDDEN = new Color(0, 0, 0);
+        public static final Color HIDDEN = new Color(105, 97, 101);
         public static final Color HIDDEN_HIGHLIGHT = new Color(50, 50, 50);
-        public static final Color COMPLETED = new Color(0, 0, 100);
-        public static final Color COMPLETED_HIGHLIGHT = new Color(0, 0, 150);
-        public static final Color COMPLETED_CLICKED = new Color(0, 0, 200);
-        public static final Color DEFAULT = new Color(0, 100, 0);
-        public static final Color DEFAULT_HIGHLIGHT = new Color(0, 150, 0);
-        public static final Color DEFAULT_CLICKED = new Color(0, 200, 0);
-        public static final Color OUTLINE = new Color(212, 175, 55);
+        
+        public static final Color COMPLETED = new Color(128, 191, 255);
+        public static final Color COMPLETED_HIGHLIGHT = new Color(77, 166, 255);
+        public static final Color COMPLETED_CLICKED = new Color(67, 155, 255);
+        
+        public static final Color DEFAULT = new Color(179, 102, 255);
+        public static final Color DEFAULT_HIGHLIGHT = new Color(129, 73, 184);
+        public static final Color DEFAULT_CLICKED = new Color(102, 58, 145);
+        
+        public static final Color OUTLINE = new Color(0, 0, 55);
 
         /**
          * Each point here represents one of the clickable levels on the Overworld menu. The point
