@@ -279,11 +279,12 @@ public class Player extends Entity {
      * Check if the Players attack. If the attack has already been checked, don't check it
      */
     private void checkAttack() {
+        final int attackAniIndex = 5;
         if (attackChecked) {
             return;
         }
         // the attack should only be checked once on 6th frame (index 5)
-        if (aniIndex != 5) {
+        if (aniIndex != attackAniIndex) {
             return;
         }
         attackChecked = true;
@@ -294,6 +295,7 @@ public class Player extends Entity {
          * the arrow should spawn at the
          */
         playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope, xDiff > 0);
+        
     }
 
     /**
