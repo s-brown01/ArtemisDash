@@ -1,17 +1,20 @@
 package entities;
 
-import java.awt.Color;
-import java.awt.Font;
+import static utils.Constants.EnemyConstants.SKELETON_DRAW_OFFSET_X;
+import static utils.Constants.EnemyConstants.SKELETON_DRAW_OFFSET_Y;
+import static utils.Constants.EnemyConstants.SKELETON_HEIGHT;
+import static utils.Constants.EnemyConstants.SKELETON_HEIGHT_DEFAULT;
+import static utils.Constants.EnemyConstants.SKELETON_WIDTH;
+import static utils.Constants.EnemyConstants.SKELETON_WIDTH_DEFAULT;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import levels.Level;
-import main.Game;
 import states.Playing;
 import utils.LoadSave;
-import static utils.Constants.EnemyConstants.*;
 
 /**
  * EnemyManager.java

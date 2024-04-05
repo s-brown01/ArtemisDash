@@ -1,10 +1,10 @@
 package projectiles;
 
-import java.awt.Graphics;
+import static utils.Constants.ProjectileConstants.ARROW_HITBOX_HEIGHT;
+import static utils.Constants.ProjectileConstants.ARROW_HITBOX_WIDTH;
+
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-
-import static utils.Constants.ProjectileConstants.*;
 
 /**
  * Player.java

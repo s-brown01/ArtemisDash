@@ -1,23 +1,19 @@
 package states;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Random;
 
 import entities.EnemyManager;
 import entities.Player;
-import levels.Level;
 import levels.LevelManager;
 import main.Game;
-import projectiles.Arrow;
-import ui.HUD;
 import projectiles.ProjectileManager;
+import ui.HUD;
 import ui.PauseOverlay;
-import static utils.Constants.*;
+import utils.Constants.BackgroundStates;
 import utils.LoadSave;
 
 /**
@@ -35,7 +31,6 @@ public class Playing extends State implements StateMethods {
     private LevelManager levelManager;
     private EnemyManager enemyManager;
     private ProjectileManager projManager;
-    private ArrayList<Arrow> arrowList = new ArrayList<>();
     private int score;
     
     // Level Expansion vars

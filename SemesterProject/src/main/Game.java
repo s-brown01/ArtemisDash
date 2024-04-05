@@ -3,8 +3,10 @@ package main;
 import java.awt.Graphics;
 
 import entities.Player;
-import states.*;
-import levels.LevelManager;
+import states.GameStates;
+import states.Menu;
+import states.Overworld;
+import states.Playing;
 
 /**
  * Game Class
@@ -13,14 +15,10 @@ import levels.LevelManager;
  *         the game, including updates, FPS, level scale, and tile amount on screen.
  */
 public class Game implements Runnable {
-    // States and Entities
-    private LevelManager levelManager;
     private Playing playing;
     private Menu menu;
     private Overworld overworld;
 
-    // Windows and Panels
-    private GameWindow gameWindow;
     private GamePanel gamePanel;
 
     // Updates and Frame Logic
@@ -46,7 +44,7 @@ public class Game implements Runnable {
         gamePanel = new GamePanel(this);
         gamePanel.setFocusable(true);
         gamePanel.requestFocus();
-        gameWindow = new GameWindow(gamePanel);
+        new GameWindow(gamePanel);
         startGame();
     }
 
@@ -79,9 +77,6 @@ public class Game implements Runnable {
         double timePerUpdate = 1000000000.0 / UPS_SET;
         long previousTime = System.nanoTime();
 
-        int frames = 0;
-        int updates = 0;
-
         double deltaUpdates = 0;
         double deltaFrames = 0;
         long lastCheck = System.currentTimeMillis();
@@ -94,21 +89,16 @@ public class Game implements Runnable {
 
             if (deltaUpdates >= 1) {
                 updateGameState();
-                updates++;
                 deltaUpdates--;
             }
 
             if (deltaFrames >= 1) {
                 gamePanel.repaint();
-                frames++;
                 deltaFrames--;
             }
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
-//                System.out.println("FPS: " + frames + " | UPDATES: " + updates); //TESTING: Ensure FPS and UPS are working properly
-                frames = 0;
-                updates = 0;
             }
         }
     }
