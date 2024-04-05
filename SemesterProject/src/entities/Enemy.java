@@ -47,7 +47,6 @@ public abstract class Enemy extends Entity {
 
     /**
      * Initializes an Enemy instance
-     * 
      * @param x          - the x-coordinate of the Enemy, will be left side of hitbox
      * @param y          - the y-coorindate of the Enemy, will be the top side of hitboc
      * @param width      - the width of the hitbox

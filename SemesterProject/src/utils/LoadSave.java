@@ -1,7 +1,10 @@
 package utils;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -17,7 +20,10 @@ import main.Game;
  */
 public class LoadSave {
 
+    public static final String FONT = "./res/HudFont.ttf"; //Mercy Christole
+    public static final String HUDBG = "/HUDbg.png";
     public static final String PLAYER_SPRITES = "/Artemis_Finished.png";
+    public static final String PLAYER_PORTRAIT = "/temp_artemis.png";
     public static final String SKELETON_SPRITES = "/Skeleton.png";
 
     public static final String OVERWORLD_BG = "/overworld1.png";
@@ -75,4 +81,29 @@ public class LoadSave {
         return lvlData;
 
     }
+    
+    /**
+     * Loads a custom font from a file.
+     * Re-Used from Botonakis_Project2
+     *
+     * @param path The path to the font file.
+     * @param size The size of the font to be loaded.
+     * @return The loaded Font object.
+     */
+    public static Font loadFont(String path, float size) {
+        Font customFont = null;
+        try {
+            // Load the font file
+            File fontFile = new File(path);
+            if (!fontFile.canRead()) {
+                System.err.println("Font file not accessible.");
+                return null;
+            }
+            customFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(size);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+        return customFont;
+    }
+
 }

@@ -23,30 +23,34 @@ import utils.LoadSave;
  */
 public class Player extends Entity {
     // player_count and playerCountCheck will make sure there is only 1 player
-    private static int player_count = 0;
-
-    private static boolean singletonCheck() {
-        return player_count < 1;
-    }
+//    private static int player_count = 0;
+//
+//    private static boolean singletonCheck() {
+//        return player_count < 1;
+//    }
 
     private final Playing playing;
     private BufferedImage[][] animations;
+    private int[][] levelData;
+
+    // Player Actions
     private int player_action = IDLE;
     private boolean moving, attacking, killed, dashing = false;
     private boolean left, up, right, down, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
-    private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
+    private int playerHealth = 3;
+    private int playerLives = 3;
 
-    private int[][] levelData;
+    // Hitbox Vars
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
     private float yDrawOffset = 20 * Game.SCALE; // Calculated Y - Positional offset for drawing Sprite
     private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
     private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
-                                                            // height
     private float hitboxOffset = (55 / 1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
 
     private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
                                            // doesn't count as multiple
+
 
     /**
      * this keeps track of where the next attack will go so that specific angles can be done
@@ -58,6 +62,7 @@ public class Player extends Entity {
      */
     private float jumpSpeed = -2.75f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
+    private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
 
     /**
      * Constructor for the player class
@@ -72,8 +77,8 @@ public class Player extends Entity {
         super(x, y, width, height);
         this.playing = playing;
         // Singleton check
-        if (!Player.singletonCheck())
-            throw new IllegalStateException("Only 1 Player can ever be created at a time");
+//        if (!Player.singletonCheck())
+//            throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAni();
         initHitbox((int) x, (int) y, (int) (hitboxCorrectionWidth), (int) (hitboxCorrectionHeight));
         this.state = IDLE;
@@ -444,7 +449,6 @@ public class Player extends Entity {
         if (!jump) {
             gravity = gravity + 0.01f;
         }
-
     }
 
     public boolean getInAir() {
@@ -452,11 +456,33 @@ public class Player extends Entity {
     }
 
     public void setDash(boolean dashing) {
-        this.dashing = dashing;
+        //If already dashing and you press the button again,
+        //stop dashing
+        if (this.dashing == true && dashing == true) {
+            this.dashing = false;
+        }
+        else {
+            this.dashing = dashing;
+        }
     }
 
     public void setJumps() {
         this.jumps++;// Set this to only increment ONCE
     }
 
+    public int getHealth() {
+        return playerHealth;
+    }
+
+    public void setHealth(int health) {
+        this.playerHealth = health;
+    }
+
+    public int getLives() {
+        return playerLives;
+    }
+    
+    public void setLives(int lives) {
+        this.playerLives = lives;
+    }
 }

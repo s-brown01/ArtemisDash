@@ -14,6 +14,7 @@ import levels.Level;
 import levels.LevelManager;
 import main.Game;
 import projectiles.Arrow;
+import ui.HUD;
 import projectiles.ProjectileManager;
 import ui.PauseOverlay;
 import static utils.Constants.*;
@@ -29,17 +30,18 @@ public class Playing extends State implements StateMethods {
     // will keep track if the pause menu should be up or not
     private boolean paused = false, levelComplete = false;
     private Player player;
+    private HUD hud;
     private PauseOverlay pauseOverlay;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
     private ProjectileManager projManager;
-
+    private ArrayList<Arrow> arrowList = new ArrayList<>();
+    private int score;
+    
     // Level Expansion vars
     private int xLevelOffset;// X-Offset being added to and subtracted from to render the level itself
-
     private int borderLeft = (int) (0.5 * Game.GAME_WIDTH);// 50% of the screen is rendered
     private int borderRight = (int) (0.5 * Game.GAME_WIDTH);// 50% of the screen is hidden
-
     private int levelTilesWide = LoadSave.getLevelData()[0].length; //
     private int maxTileOffset = levelTilesWide - Game.TILES_IN_WIDTH; //
     private int maxXOffset = maxTileOffset * Game.TILES_SIZE; //
@@ -56,6 +58,7 @@ public class Playing extends State implements StateMethods {
     private int[] mystPos;// Position of myst background asset
     private Random rnd = new Random();
 
+
     /**
      * Runs the logic once the game state has switched to PLAYING Loads in the enemies,
      * backgrounds, and player
@@ -66,11 +69,6 @@ public class Playing extends State implements StateMethods {
         super(game);
         initClasses();
         initBackgroundAssets();
-
-        mystPos = new int[8];
-        for (int i = 0; i < mystPos.length; i++) {
-            mystPos[i] = (int) (70 * Game.SCALE) + rnd.nextInt((int) (150 * Game.SCALE));
-        }
     }
 
     /**
@@ -81,8 +79,6 @@ public class Playing extends State implements StateMethods {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
         projManager = new ProjectileManager(this);
-//        player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
-//        player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 
     }
 
@@ -96,7 +92,8 @@ public class Playing extends State implements StateMethods {
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         pauseOverlay = new PauseOverlay();
-//        this.score = 0;
+        hud = new HUD(this);
+        this.score = 0;
 
     }
 
@@ -105,6 +102,12 @@ public class Playing extends State implements StateMethods {
      * switch to another set of assets depending on the world
      */
     private void initBackgroundAssets() {
+        //Myst positioning array
+        mystPos = new int[8];
+        for (int i = 0; i < mystPos.length; i++) {
+            mystPos[i] = (int) (70 * Game.SCALE) + rnd.nextInt((int) (150 * Game.SCALE));
+        }
+        //Load in background images
         backgroundimg = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG);
         background_myst_img = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_MYST);
         background_rocks = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_ROCKS);
@@ -123,18 +126,21 @@ public class Playing extends State implements StateMethods {
             GameStates.state = GameStates.OVERWORLD;
             return;
         }
-
-        // if this is paused, don't update all the paused stuff but not the rest
+        
         if (paused) {
             // update pause overlay here
             pauseOverlay.update();
             return;
         }
+
+
+        // if this is paused, don't update all the paused stuff but not the rest
         levelManager.update();
         player.update();
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
         projManager.update();
         screenScroller();
+        hud.updateHUD();
     }
 
     /**
@@ -184,22 +190,13 @@ public class Playing extends State implements StateMethods {
         // draw background first so everything else sits on it
         drawBackground(g);
         levelManager.draw(g, xLevelOffset);
+        hud.draw(g);
         enemyManager.draw(g, xLevelOffset);
         projManager.draw(g, xLevelOffset);
         player.renderPlayer(g, xLevelOffset);
-
-        // draw the pause screen only if it is paused.
-        // this is last because it should be "on top" of the rest of the screen
         if (paused) {
-            g.setFont(boldFont);
-            g.setColor(new Color(150, 150, 150, 150));
-            g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
-            g.setColor(Color.BLACK);
-            g.fillRect(Game.GAME_WIDTH / 3, Game.GAME_HEIGHT / 3, Game.GAME_WIDTH / 3, Game.GAME_HEIGHT / 2);
-            g.setColor(Color.cyan);
             pauseOverlay.draw(g);
         }
-
     }
 
     /**
@@ -256,6 +253,14 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_BACK_SPACE:
             GameStates.state = GameStates.MENU;
             break;
+        case KeyEvent.VK_9:
+            updateScore(9);
+            break;
+          //Testing text-based cutscenes
+//        case KeyEvent.VK_0:
+//            draw = true;
+//            break;
+            
         }
     }
 
@@ -361,4 +366,12 @@ public class Playing extends State implements StateMethods {
 
     }
 
+    public int getScore() {
+        return this.score;
+        
+    }
+    
+    public void updateScore(int scoreval) {
+        this.score += scoreval;
+    }
 }
