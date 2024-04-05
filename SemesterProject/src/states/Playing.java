@@ -37,7 +37,7 @@ public class Playing extends State implements StateMethods {
     private ProjectileManager projManager;
     private ArrayList<Arrow> arrowList = new ArrayList<>();
     private int score;
-    
+
     // Level Expansion vars
     private int xLevelOffset;// X-Offset being added to and subtracted from to render the level itself
     private int borderLeft = (int) (0.5 * Game.GAME_WIDTH);// 50% of the screen is rendered
@@ -57,7 +57,6 @@ public class Playing extends State implements StateMethods {
     private BufferedImage backgroundimg, background_myst_img, background_rocks;
     private int[] mystPos;// Position of myst background asset
     private Random rnd = new Random();
-
 
     /**
      * Runs the logic once the game state has switched to PLAYING Loads in the enemies,
@@ -102,12 +101,12 @@ public class Playing extends State implements StateMethods {
      * switch to another set of assets depending on the world
      */
     private void initBackgroundAssets() {
-        //Myst positioning array
+        // Myst positioning array
         mystPos = new int[8];
         for (int i = 0; i < mystPos.length; i++) {
             mystPos[i] = (int) (70 * Game.SCALE) + rnd.nextInt((int) (150 * Game.SCALE));
         }
-        //Load in background images
+        // Load in background images
         backgroundimg = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG);
         background_myst_img = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_MYST);
         background_rocks = LoadSave.getSpriteSheet(LoadSave.WORLD1_BG_ROCKS);
@@ -126,13 +125,12 @@ public class Playing extends State implements StateMethods {
             GameStates.state = GameStates.OVERWORLD;
             return;
         }
-        
+
         if (paused) {
             // update pause overlay here
             pauseOverlay.update();
             return;
         }
-
 
         // if this is paused, don't update all the paused stuff but not the rest
         levelManager.update();
@@ -256,11 +254,11 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_9:
             updateScore(9);
             break;
-          //Testing text-based cutscenes
+        // Testing text-based cutscenes
 //        case KeyEvent.VK_0:
 //            draw = true;
 //            break;
-            
+
         }
     }
 
@@ -368,9 +366,9 @@ public class Playing extends State implements StateMethods {
 
     public int getScore() {
         return this.score;
-        
+
     }
-    
+
     public void updateScore(int scoreval) {
         this.score += scoreval;
     }

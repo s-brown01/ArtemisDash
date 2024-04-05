@@ -146,7 +146,6 @@ public class PauseOverlay {
         return b.getBounds().contains(e.getX(), e.getY());
     }
 
-
     public void mouseDragged(MouseEvent e) {
     }
 

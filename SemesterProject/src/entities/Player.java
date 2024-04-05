@@ -51,7 +51,6 @@ public class Player extends Entity {
     private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
                                            // doesn't count as multiple
 
-
     /**
      * this keeps track of where the next attack will go so that specific angles can be done
      */
@@ -456,12 +455,11 @@ public class Player extends Entity {
     }
 
     public void setDash(boolean dashing) {
-        //If already dashing and you press the button again,
-        //stop dashing
+        // If already dashing and you press the button again,
+        // stop dashing
         if (this.dashing == true && dashing == true) {
             this.dashing = false;
-        }
-        else {
+        } else {
             this.dashing = dashing;
         }
     }
@@ -481,7 +479,7 @@ public class Player extends Entity {
     public int getLives() {
         return playerLives;
     }
-    
+
     public void setLives(int lives) {
         this.playerLives = lives;
     }
