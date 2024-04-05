@@ -401,7 +401,7 @@ public class Constants {
         public static int getProjHeight(int projType) {
             switch (projType) {
             case ARROW:
-                return ARROW_HITBOX_WIDTH;
+                return ARROW_HITBOX_HEIGHT;
             default:
                 return 30;
             }
@@ -416,7 +416,7 @@ public class Constants {
         public static int getProjWidth(int projType) {
             switch (projType) {
             case ARROW:
-                return ARROW_HITBOX_HEIGHT;
+                return ARROW_HITBOX_WIDTH;
             default:
                 return 60;
             }
