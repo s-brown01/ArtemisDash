@@ -60,17 +60,26 @@ public class Constants {
      * Overworld Vars and Constants
      */
     public static class OverworldButtonConstants {
+        /**
+         * This is the size of 1 side of square Overworld Buttons
+         */
         public static final int BUTTON_SIZE = (int) (25 / 1.75f * Game.SCALE);
 
-        // the colors to be used for overworld buttons
+        /**
+         * This is the colors that are displayed on the Overworld screen for the levels
+         */
+        // hidden is for the levels that are hidden and can't be played
         public static final Color HIDDEN = new Color(0, 0, 0);
         public static final Color HIDDEN_HIGHLIGHT = new Color(50, 50, 50);
+        // completed is for the finished levels, played and completed
         public static final Color COMPLETED = new Color(0, 0, 100);
         public static final Color COMPLETED_HIGHLIGHT = new Color(0, 0, 150);
         public static final Color COMPLETED_CLICKED = new Color(0, 0, 200);
+        // default is for the levels that are not completed or hidden (unplayed or not 100%'d)
         public static final Color DEFAULT = new Color(0, 100, 0);
         public static final Color DEFAULT_HIGHLIGHT = new Color(0, 150, 0);
         public static final Color DEFAULT_CLICKED = new Color(0, 200, 0);
+        // this is the color of the outline around each color
         public static final Color OUTLINE = new Color(212, 175, 55);
 
         /**

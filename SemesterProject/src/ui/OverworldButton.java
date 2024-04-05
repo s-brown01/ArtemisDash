@@ -24,6 +24,14 @@ public class OverworldButton {
     private Color color;
     private Rectangle bounds;
 
+    /**
+     * The constructor for this class
+     * @param x             - the x coordinate of the button; left-side of the button
+     * @param y             - the y coordinate of the button; top-side of the button
+     * @param levelName     - the name of the level to be played
+     * @param worldNumber   - the number of the world that the level is located in
+     * @param stageNumber   - the stage number of the level 
+     */
     public OverworldButton(int x, int y, String levelName, int worldNumber, int stageNumber) {
         this.bounds = new Rectangle(x, y, 25, 25);
         this.levelName = levelName;
@@ -31,15 +39,9 @@ public class OverworldButton {
         this.stageNumber = stageNumber; // this will be incremented for all levels
     }
 
-    public OverworldButton(int x, int y) {
-        this.bounds = new Rectangle(x, y, BUTTON_SIZE, BUTTON_SIZE);
-        this.levelName = "Level Name";
-        this.worldNumber = 1; // specific worlds
-        this.stageNumber = 1; // this will be incremented for all levels
-    }
-
     /**
-     * 
+     * This will update the OverworldButton, mainly how the colors are displayed.
+     * It uses the hidden/completed and mouseOver/mousePressed 
      */
     public void update() {
         if (hidden) {
@@ -62,14 +64,17 @@ public class OverworldButton {
     }
 
     /**
-     * 
-     * @param g
+     * Draws the button to the graphics g given into the method.
+     * @param g - the Graphics where to draw the button
      */
     public void draw(Graphics g) {
+        // Graphics2D allows us to use setStroke and other methods.
+        // Casting here doesn't change anything
         Graphics2D g2d = (Graphics2D) g;
         g.setColor(color);
         g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
         g.setColor(OUTLINE);
+        // setting the stroke to 2.0 pixels, so it is drawn as a thicker line around the rectangle
         g2d.setStroke(new BasicStroke(2.0f));
         g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
@@ -81,13 +86,17 @@ public class OverworldButton {
      * @return - a formatted String of the level info
      */
     public String toString() {
-        return "World " + worldNumber + ", Stage " + stageNumber + " - " + levelName;
+        if (hidden) {
+            return "?????";
+        } else {
+            return "World " + worldNumber + ", Stage " + stageNumber + " - " + levelName;
+        }
     }
 
     /**
      * Get a boolean if the level is hidden or not
      * 
-     * @return
+     * @return hidden
      */
     public boolean isHidden() {
         return hidden;
@@ -96,7 +105,7 @@ public class OverworldButton {
     /**
      * Get a boolean if the level is completed or not
      * 
-     * @return
+     * @return completed
      */
     public boolean isCompleted() {
         return completed;
@@ -160,7 +169,7 @@ public class OverworldButton {
     /**
      * getter for mousePressed
      * 
-     * @return
+     * @return mousePressed
      */
     public boolean isMousePressed() {
         return mousePressed;
@@ -169,14 +178,16 @@ public class OverworldButton {
     /**
      * getter for mouseOver
      * 
-     * @return
+     * @return mouseOver
      */
     public boolean isMouseOver() {
         return mouseOver;
     }
 
     /**
-     * @return
+     * getter for the stageNumber 
+     * 
+     * @return stage number
      */
     public int getStageNumber() {
         return stageNumber;

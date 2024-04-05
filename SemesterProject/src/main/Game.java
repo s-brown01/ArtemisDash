@@ -163,10 +163,14 @@ public class Game implements Runnable {
     }
 
     /**
-     * When window focus is lost, stop the player immediately
+     * This function handles when the Game loses system-focus. It will pause the game.
      */
     public void windowLost() {
-        playing.getPlayer().resetDirBools();
+        // only reset play bools if on the playing 
+        if (GameStates.state == GameStates.PLAYING) {
+            playing.getPlayer().resetDirBools();
+            playing.setPaused(true);
+        }
     }
 
     // Getters and setters
