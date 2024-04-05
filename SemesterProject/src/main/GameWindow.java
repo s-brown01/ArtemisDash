@@ -1,12 +1,10 @@
 package main;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+
+import javax.swing.JFrame;
+import java.nio.DoubleBuffer;
 
 /**
  * Game Window Class
@@ -14,6 +12,7 @@ import java.awt.event.WindowFocusListener;
  * @author johnbotonakis and Sean-Paul Brown This class will act as the frame holding the
  *         painting
  */
+//DOUBLE BUFFERING HERE NOWHERE ELSE!
 public class GameWindow extends JFrame {
 
     /**
