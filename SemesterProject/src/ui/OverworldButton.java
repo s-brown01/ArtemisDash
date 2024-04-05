@@ -89,7 +89,7 @@ public class OverworldButton {
         if (hidden) {
             return "?????";
         } else {
-            return "World " + worldNumber + ", Stage " + stageNumber + " - " + levelName;
+            return "WORLD " + worldNumber + "- STAGE " + stageNumber + ":\n" + "    " + levelName;
         }
     }
 
