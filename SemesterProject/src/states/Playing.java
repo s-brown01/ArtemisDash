@@ -182,14 +182,18 @@ public class Playing extends State implements StateMethods {
     public void draw(Graphics g) {
         // draw background first so everything else sits on it
         drawBackground(g);
+        // if it is paused, only draw the background and the pauseOverlay. 
+        if (paused) {
+            pauseOverlay.draw(g);
+            // return so it doesn't draw anything else
+            return;
+        }
+        // if not paused, draw everything beneath this.
         levelManager.draw(g, xLevelOffset);
         hud.draw(g);
         enemyManager.draw(g, xLevelOffset);
         projManager.draw(g, xLevelOffset);
         player.renderPlayer(g, xLevelOffset);
-        if (paused) {
-            pauseOverlay.draw(g);
-        }
     }
 
     /**
@@ -209,52 +213,6 @@ public class Playing extends State implements StateMethods {
 
         }
 
-    }
-
-    /**
-     * If the user clicks the mouse button, the Player Entity will try to shoot an arrow
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            player.shoot(e);
-        }
-
-    }
-
-    /**
-     * Depending on the key pressed, the Player Entity will react in different ways.
-     */
-    @Override
-    public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-        case KeyEvent.VK_A:
-            player.setLeft(true);
-            break;
-        case KeyEvent.VK_D:
-            player.setRight(true);
-            break;
-        case KeyEvent.VK_SPACE:
-            player.setJump(true);
-            break;
-        case KeyEvent.VK_P:
-            paused = !paused;
-            break;
-        case KeyEvent.VK_SHIFT:
-            player.setDash(true);
-            break;
-        case KeyEvent.VK_BACK_SPACE:
-            GameStates.state = GameStates.MENU;
-            break;
-        case KeyEvent.VK_9:
-            updateScore(9);
-            break;
-        // Testing text-based cutscenes
-//        case KeyEvent.VK_0:
-//            draw = true;
-//            break;
-
-        }
     }
 
     /**
@@ -340,6 +298,7 @@ public class Playing extends State implements StateMethods {
         if (paused) {
             pauseOverlay.mousePressed(e);
         }
+        
 
     }
 
@@ -357,6 +316,56 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mouseMoved(e);
         }
 
+    }
+    
+    /**
+     * If the user clicks the mouse button, the Player Entity will try to shoot an arrow
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            player.shoot(e);
+        }
+
+    }
+
+    /**
+     * Depending on the key pressed, the Player Entity will react in different ways.
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_A:
+            player.setLeft(true);
+            break;
+        case KeyEvent.VK_D:
+            player.setRight(true);
+            break;
+        case KeyEvent.VK_SPACE:
+            player.setJump(true);
+            break;
+        case KeyEvent.VK_P:
+            paused = !paused;
+            break;
+        case KeyEvent.VK_SHIFT:
+            player.setDash(true);
+            break;
+        case KeyEvent.VK_BACK_SPACE:
+            GameStates.state = GameStates.MENU;
+            break;
+        case KeyEvent.VK_9:
+            updateScore(9);
+            break;
+        // Testing text-based cutscenes
+//        case KeyEvent.VK_0:
+//            draw = true;
+//            break;
+
+        }
+    }
+    
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
 
     public int getScore() {

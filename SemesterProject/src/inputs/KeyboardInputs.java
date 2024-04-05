@@ -14,6 +14,7 @@ import states.GameStates;
  */
 public class KeyboardInputs implements KeyListener {
 
+    /** The GamePanel where all inputs will be directed */
     private GamePanel gamePanel;
 
     public KeyboardInputs(GamePanel gamePanel) {
@@ -68,10 +69,12 @@ public class KeyboardInputs implements KeyListener {
 
     }
 
+    /**
+     * This is called when a key is pressed and released, never used in the game.
+     */
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
+        // Never used, have to have in this class because of KeyListener
     }
 
 }

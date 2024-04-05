@@ -15,6 +15,7 @@ import states.Playing;
  *         the game, including updates, FPS, level scale, and tile amount on screen.
  */
 public class Game implements Runnable {
+    // States and Entities
     private Playing playing;
     private Menu menu;
     private Overworld overworld;
@@ -154,14 +155,14 @@ public class Game implements Runnable {
     }
 
     /**
-     * When window focus is lost, stop the player immediately
+     * This function handles when the Game loses system-focus. It will pause the game.
      */
     public void windowLost() {
+
+        // only reset play bools if on the playing 
         if (GameStates.state == GameStates.PLAYING) {
             playing.getPlayer().resetDirBools();
-        }
-        else {
-            return;
+            playing.setPaused(true);
         }
     }
 
