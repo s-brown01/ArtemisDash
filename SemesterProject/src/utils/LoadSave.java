@@ -20,7 +20,7 @@ import main.Game;
  */
 public class LoadSave {
 
-    public static final String FONT = "./res/HudFont.ttf"; //Mercy Christole
+    public static final String FONT = "./res/HudFont.ttf"; // Mercy Christole
     public static final String HUDBG = "/HUDbg.png";
     public static final String PLAYER_SPRITES = "/Artemis_Finished.png";
     public static final String PLAYER_PORTRAIT = "/temp_artemis.png";
@@ -81,10 +81,9 @@ public class LoadSave {
         return lvlData;
 
     }
-    
+
     /**
-     * Loads a custom font from a file.
-     * Re-Used from Botonakis_Project2
+     * Loads a custom font from a file. Re-Used from Botonakis_Project2
      *
      * @param path The path to the font file.
      * @param size The size of the font to be loaded.

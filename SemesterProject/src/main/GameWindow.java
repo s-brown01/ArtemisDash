@@ -21,10 +21,6 @@ public class GameWindow extends JFrame {
      */
     private static final long serialVersionUID = 1L;
 
-    private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem m1, m2, m3;
-
     /**
      * Initializes the window with which the gamePanel will sit
      * 
@@ -32,22 +28,6 @@ public class GameWindow extends JFrame {
      */
     public GameWindow(GamePanel gamePanel) {
         super();
-
-        // this is how we add a menuBar to our game
-        // so far no Item as any action, clicking them does nothing
-        // easy to implement/remove
-        menuBar = new JMenuBar();
-        menu = new JMenu("Menu");
-        m1 = new JMenuItem("Pause");
-        m2 = new JMenuItem("End Level");
-        m3 = new JMenuItem("Quit Game");
-
-        menu.add(m1);
-        menu.add(m2);
-        menu.add(m3);
-        menuBar.add(menu);
-
-        this.setJMenuBar(menuBar);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// When exiting, close program
         this.add(gamePanel);// Add in the game Panel
