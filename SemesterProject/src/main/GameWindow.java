@@ -1,12 +1,9 @@
 package main;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+
+import javax.swing.JFrame;
 
 /**
  * Game Window Class
@@ -22,9 +19,9 @@ public class GameWindow extends JFrame {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Initializes the window with which the gamePanel will sit
+     * Constructor - initializes the window with which the gamePanel will sit
      * 
-     * @param gamePanel - The current game Panel to be displayed
+     * @param gamePanel - The current GamePanel to be displayed
      */
     public GameWindow(GamePanel gamePanel) {
         super();
@@ -35,6 +32,7 @@ public class GameWindow extends JFrame {
         this.setResizable(false); // Do not resize
         this.setLocationRelativeTo(null); // Center the frame
         this.setVisible(true);
+        
         this.addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(WindowEvent e) {

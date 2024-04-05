@@ -14,7 +14,6 @@ import levels.LevelManager;
  */
 public class Game implements Runnable {
     // States and Entities
-    private LevelManager levelManager;
     private Playing playing;
     private Menu menu;
     private Overworld overworld;

@@ -1,17 +1,15 @@
 package entities;
 
-import java.awt.Color;
-import java.awt.Font;
+import static utils.Constants.EnemyConstants.*;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import levels.Level;
-import main.Game;
 import states.Playing;
 import utils.LoadSave;
-import static utils.Constants.EnemyConstants.*;
 
 /**
  * EnemyManager.java
