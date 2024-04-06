@@ -32,9 +32,6 @@ public class Playing extends State implements StateMethods {
     private EnemyManager enemyManager;
     private ProjectileManager projManager;
     private int score;
-    
-    /** to draw where the arrow will go */
-    private boolean drawArrowPath = false;
 
     // Level Expansion vars
     private int xLevelOffset;// X-Offset being added to and subtracted from to render the level itself
@@ -197,9 +194,7 @@ public class Playing extends State implements StateMethods {
         enemyManager.draw(g, xLevelOffset);
         projManager.draw(g, xLevelOffset);
         player.renderPlayer(g, xLevelOffset);
-        if (drawArrowPath) {
-            
-        }
+
     }
 
     /**
@@ -296,7 +291,7 @@ public class Playing extends State implements StateMethods {
         if (paused) {
             pauseOverlay.mouseDragged(e);
         }
-
+        player.setNextAttack(e.getPoint()); 
     }
 
     @Override
@@ -305,10 +300,10 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mousePressed(e);
             return;
         }
-        drawArrowPath = true;
-        
-        
-
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            player.setNextAttack(e.getPoint());
+            player.setDrawArrowPath(true);
+        }
     }
 
     @Override
@@ -316,7 +311,11 @@ public class Playing extends State implements StateMethods {
         if (paused) {
             pauseOverlay.mouseReleased(e);
         }
-        drawArrowPath = false;
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            player.setDrawArrowPath(false);
+            player.shoot(e);
+        }
+
     }
 
     @Override
@@ -332,9 +331,7 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            player.shoot(e);
-        }
+        // unused
 
     }
 

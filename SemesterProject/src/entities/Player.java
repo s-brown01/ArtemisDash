@@ -5,7 +5,10 @@ import static utils.Constants.PlayerStates.getSpriteAmt;
 import static utils.HelperMethods.*;
 import static utils.Constants.GRAVITY;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -55,6 +58,8 @@ public class Player extends Entity {
      * this keeps track of where the next attack will go so that specific angles can be done
      */
     private Point nextAttack;
+    /** to draw where the arrow will go */
+    private boolean drawArrowPath = false;
 
     /**
      * Jumping and Gravity variables
@@ -102,9 +107,18 @@ public class Player extends Entity {
      * @param g             - Graphics where to draw the player
      * @param xLevelOffset  - how far the screen offset is from scrolling
      */
-    public void renderPlayer(Graphics g, int xLevelOffset) { // Add int yLevelOffset to input vars and to YHitbox
-        g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset,
+    public void renderPlayer(Graphics g, int xLevelOffset) { 
+        // Add int yLevelOffset to input vars and to YHitbox
+        Graphics2D g2D = (Graphics2D) g;
+        g2D.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset,
                 (int) (hitbox.y - yDrawOffset), width, height, null);
+        
+        // drawing the dashed line to show the path of the arrow
+        if (drawArrowPath && nextAttack != null) {
+            g2D.setColor(Color.CYAN);
+            g2D.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[]{5.0f, 5.0f}, 0.0f));
+            g2D.drawLine((int)(hitbox.x+SHOT_OFFSET_X), (int)(hitbox.y + SHOT_OFFSET_Y ), (int)(nextAttack.getX()), (int)(nextAttack.getY()));
+        }
     }
 
     /**
@@ -567,5 +581,21 @@ public class Player extends Entity {
      */
     public void setLives(int lives) {
         this.playerLives = lives;
+    }
+    
+    /**
+     * Setter for the nextAttack Point
+     * @param p the Point where the next attack will be located
+     */
+    public void setNextAttack(Point p) {
+        nextAttack = p;
+    }
+
+    /**
+     * Setter for drawArrowPath. If this is true, then a line will be drawn from the Player to nextAttack Point
+     * @param drawArrowPath - true to draw the line, false to not
+     */
+    public void setDrawArrowPath(boolean drawArrowPath) {
+        this.drawArrowPath = drawArrowPath;
     }
 }
