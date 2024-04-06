@@ -3,6 +3,7 @@ package projectiles;
 import static utils.Constants.ProjectileConstants.*;
 
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Float;
 import java.awt.image.BufferedImage;
 
 /**
@@ -53,7 +54,7 @@ public abstract class Projectile {
      * 
      * @return - the Player's hitbox
      */
-    public Rectangle2D getHitbox() {
+    public Rectangle2D.Float getHitbox() {
         return hitbox;
     }
 

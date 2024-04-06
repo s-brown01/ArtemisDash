@@ -2,14 +2,17 @@
 package projectiles;
 
 import static utils.Constants.ProjectileConstants.ARROW_DAMAGE;
+import static utils.HelperMethods.canMoveHere;
 
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import entities.Enemy;
+import main.Game;
 import states.Playing;
 
 /**
@@ -59,12 +62,13 @@ public class ProjectileManager {
     }
 
     /**
-     * This method updates each projectile and checks their end-case (when they should
+     * This method updates each Projectile and checks their end-case (when they should
      * de-spawn)
+     * 
+     * @param levelData - the current Level represented as a 2D int array
      */
-    public void update() {
+    public void update(int[][] levelData) {
         // the following for loop is from StackOverflow and ChatGPT
-
         // Create an iterator to safely iterate over the arrowList
         final Iterator<Arrow> arrowIter = arrowList.iterator();
         // Iterate over each arrow in the arrowList
@@ -74,7 +78,8 @@ public class ProjectileManager {
             // update the arrow
             a.update();
             // check for collision
-            if (collisionCheck()) {
+            // TODO: CHANGE THE GETSPEED HERE
+            if (collisionCheck(a.getHitbox(), levelData, a.getSpeed(), a.getSpeed())) {
                 // if an Arrow collides with something it is destroyed
                 arrowIter.remove();
             }
@@ -82,10 +87,37 @@ public class ProjectileManager {
     }
 
     /**
-     * @return
+     * Checks to see if the Projectile placed into the equation collides with the level or
+     * exceeds the bounds
+     * 
+     * @param p         - the Projectile to check collision with
+     * @param levelData - the current Level represented as a 2D int array
+     * 
+     * @return true if the arrow collides with anything, false if not.
      */
-    private boolean collisionCheck() {
-        // TODO Auto-generated method stub
+    private boolean collisionCheck(Rectangle2D.Float hitbox, int[][] levelData, float xSpeed, float ySpeed) {
+        // bounds check
+        // checking if going below 0
+        if (hitbox.getX() < 0 || hitbox.getY() < 0) {
+            return true;
+        }
+        // checking if the hitbox other end of the hitbox is outside of the game
+        if (hitbox.getX() + hitbox.getHeight() > Game.GAME_WIDTH
+                || hitbox.getY() + hitbox.getHeight() > Game.GAME_HEIGHT) {
+            return true;
+        }
+        
+        // checking that the arrow can move to the tile that is xSpeed away
+        if (!canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+            return true;
+        }
+        
+        // checking that the arrow can move to the tile that is ySpeed away
+        if (!canMoveHere(hitbox.x, hitbox.y + ySpeed, hitbox.width, hitbox.height, levelData)) {
+            return true;
+        }
+        
+        // if it has passed everything, nothing is collided with so return false
         return false;
     }
 
@@ -110,8 +142,12 @@ public class ProjectileManager {
      */
     public void checkEnemyHit(Enemy e) {
         // check every Arrow on the screen
-        for (Arrow a : arrowList) {
-            // check if the Enemy intersects with the Arrow's hitbox
+        // Create an iterator to safely iterate over the arrowList
+        final Iterator<Arrow> arrowIter = arrowList.iterator();
+        // Iterate over each arrow in the arrowList
+        while (arrowIter.hasNext()) {
+            // Get the next arrow from the iterator
+            Arrow a = arrowIter.next();
             if (e.getHitbox().intersects(a.getHitbox())) {
                 // if it does intersect, hurt them
                 e.hurt(ARROW_DAMAGE);
