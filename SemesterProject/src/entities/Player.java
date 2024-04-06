@@ -99,9 +99,8 @@ public class Player extends Entity {
     /**
      * Renders the player, along with hitbox
      * 
-     * @param g            - Graphics
-     * @param xLevelOffset
-     * @see java.awt.Graphics @
+     * @param g             - Graphics where to draw the player
+     * @param xLevelOffset  - how far the screen offset is from scrolling
      */
     public void renderPlayer(Graphics g, int xLevelOffset) { // Add int yLevelOffset to input vars and to YHitbox
         g.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset,
@@ -400,50 +399,101 @@ public class Player extends Entity {
     }
 
     /**
-     * Getters and setters
+     * Getter for left
      * 
-     * @return
+     * @return the current value of left
      */
     public boolean isLeft() {
         return left;
     }
 
+    /**
+     * Setter for left 
+     * 
+     * @param left - true if the player is moving left. False if not.
+     */
     public void setLeft(boolean left) {
         this.left = left;
     }
 
+    /**
+     * Getter for up
+     * 
+     * @return the current value of up
+     */
     public boolean isUp() {
         return up;
     }
 
+    /**
+     * Setter for up 
+     * 
+     * @param up - true if the player is moving up. False if not.
+     */
     public void setUp(boolean up) {
         this.up = up;
     }
-
+    
+    /**
+     * Getter for right
+     * 
+     * @return the current value of right
+     */
     public boolean isRight() {
         return right;
     }
-
+    
+    /**
+     * Setter for right 
+     * 
+     * @param right - true if the player is moving right. False if not.
+     */
     public void setRight(boolean right) {
         this.right = right;
     }
 
+    /**
+     * Getter for down
+     * 
+     * @return the current value of down
+     */
     public boolean isDown() {
         return down;
     }
 
+    /**
+     * Setter for down
+     * 
+     * @param down - true if the player is moving down. False if not.
+     */
     public void setDown(boolean down) {
         this.down = down;
     }
 
+    /**
+     * Getter for attacking
+     * 
+     * @return the current value of attacking
+     */
+    public boolean isAttacking() {
+        return attacking;
+    }
+    
+    /**
+     * Setter for attacking
+     * 
+     * @param attack - true if the player is attacking. False if not.
+     */
     public void setAttack(boolean attack) {
         attacking = attack;
     }
 
-    public boolean isAttacking() {
-        return attacking;
-    }
 
+    /**
+     * Setter for jump
+     * 
+     * @param jump - true if the player is jumping. False if not.
+     */
     public void setJump(boolean jump) {
         this.jump = jump;
         // When jump is released, implement gravity a bit more
@@ -452,10 +502,20 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Getter for in air
+     * 
+     * @return the current value of inAir
+     */
     public boolean getInAir() {
         return inAir;
     }
 
+    /**
+     * Setter for dashing
+     * 
+     * @param dashing - true if the player is dashing. False if not.
+     */
     public void setDash(boolean dashing) {
         // If already dashing and you press the button again,
         // stop dashing
@@ -466,22 +526,45 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Increment the jump counter by 1
+     */
     public void setJumps() {
         this.jumps++;// Set this to only increment ONCE
     }
 
+
+    /**
+     * Getter for the players current health
+     * 
+     * @return the current health of the player
+     */
     public int getHealth() {
         return playerHealth;
     }
 
+    /**
+     * Setter for the players health 
+     * 
+     * @param health - how much health the player should have
+     */
     public void setHealth(int health) {
         this.playerHealth = health;
     }
 
+    /**
+     * Getter for the amount of lives the player has
+     * 
+     * @return the currnet amount of lives left
+     */
     public int getLives() {
         return playerLives;
     }
 
+    /**
+     * Setter for the amount of lives that the player has
+     * @param lives - the amount of lives to be given to the player
+     */
     public void setLives(int lives) {
         this.playerLives = lives;
     }
