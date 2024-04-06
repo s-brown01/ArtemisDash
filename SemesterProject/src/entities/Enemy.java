@@ -1,6 +1,8 @@
 package entities;
 
 import main.Game;
+import states.Playing;
+
 import static utils.Constants.Directions.*;
 import static utils.Constants.EnemyConstants.*;
 import static utils.Constants.GRAVITY;
@@ -29,6 +31,8 @@ public abstract class Enemy extends Entity {
     protected float walkSpeed = 0.80f;
     // The offset is 55 when game scale is 1.75, so divide to make it work for all scales
     protected float hitboxYOffset = (55 / 1.75f) * Game.SCALE;
+    protected int score = 0;
+    protected boolean killed = false;
 
     /*
      * These are temporary variables to define how far the enemy can see and how fast the
@@ -109,6 +113,7 @@ public abstract class Enemy extends Entity {
         currentHealth -= damageTaken;
         if (currentHealth <= 0) {
             active = false;
+            killed = true;
         }
     }
 
@@ -308,6 +313,14 @@ public abstract class Enemy extends Entity {
 
     public int getCurrentHealth() {
         return currentHealth;
+    }
+    
+    public int getScore() {
+        return score;
+    }
+    
+    public boolean getKilled() {
+        return killed;
     }
 
 }

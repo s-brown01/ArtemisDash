@@ -111,6 +111,11 @@ public class EnemyManager {
             }
             s.update(lvlData, player);
             playing.getProjectileManager().checkEnemyHit(s);
+            if (s.killed) {
+                playing.updateScore(s.score);
+            }
+            
+            
         }
 
         // if every enemy is dead/inactive, the level is complete

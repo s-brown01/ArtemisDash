@@ -22,12 +22,6 @@ import utils.LoadSave;
  *         and funciton relating to the active player's inputs and outputs.
  */
 public class Player extends Entity {
-    // player_count and playerCountCheck will make sure there is only 1 player
-//    private static int player_count = 0;
-//
-//    private static boolean singletonCheck() {
-//        return player_count < 1;
-//    }
 
     private final Playing playing;
     private BufferedImage[][] animations;
@@ -218,7 +212,7 @@ public class Player extends Entity {
      * Handles event where the jump button, Space bar, is pressed
      */
     private void jump() {
-        // Explain Jump Offset
+        // This is the offset to be added to the jump speed to facillitate a double jump
         final float JUMP_OFFSET = 0.02f;
         if (jump && jumps < 3) {
             inAir = true;
@@ -319,9 +313,7 @@ public class Player extends Entity {
             hitbox.x += xSpeed;
         } else {
             hitbox.x = getXPosWall(hitbox, xSpeed);
-            if (player_action == DASH) {
-
-            }
+            
         }
 
     }
@@ -332,6 +324,7 @@ public class Player extends Entity {
     private void setAnimation() {
 
         int startAni = player_action;
+//        float startingY = hitbox.y;
 
         if (moving) {
             player_action = RUNNING;
@@ -343,6 +336,12 @@ public class Player extends Entity {
             player_action = DRAW;
         }
 
+//        if (jump) {
+//            if () {
+//                player_action = JUMPSTART;
+//            }
+//        }
+            
         if (jump && inAir) {// If spacebar is held and you're in the air, hold the jumping animation
             player_action = JUMPSTART;
         }
@@ -462,6 +461,14 @@ public class Player extends Entity {
      */
     public void incJumpCount() {
         this.jumps++;
+    }
+    
+    public boolean isFalling(float currentY) {
+        if(hitbox.y - currentY == 0) {
+            return false;
+        }
+        
+        return true;
     }
 
     public void setDash(boolean dashing) {
