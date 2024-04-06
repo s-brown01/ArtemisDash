@@ -32,6 +32,9 @@ public class Playing extends State implements StateMethods {
     private EnemyManager enemyManager;
     private ProjectileManager projManager;
     private int score;
+    
+    /** to draw where the arrow will go */
+    private boolean drawArrowPath = false;
 
     // Level Expansion vars
     private int xLevelOffset;// X-Offset being added to and subtracted from to render the level itself
@@ -194,6 +197,9 @@ public class Playing extends State implements StateMethods {
         enemyManager.draw(g, xLevelOffset);
         projManager.draw(g, xLevelOffset);
         player.renderPlayer(g, xLevelOffset);
+        if (drawArrowPath) {
+            
+        }
     }
 
     /**
@@ -297,7 +303,10 @@ public class Playing extends State implements StateMethods {
     public void mousePressed(MouseEvent e) {
         if (paused) {
             pauseOverlay.mousePressed(e);
+            return;
         }
+        drawArrowPath = true;
+        
         
 
     }
@@ -307,7 +316,7 @@ public class Playing extends State implements StateMethods {
         if (paused) {
             pauseOverlay.mouseReleased(e);
         }
-
+        drawArrowPath = false;
     }
 
     @Override
