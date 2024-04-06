@@ -35,7 +35,7 @@ public class Player extends Entity {
 
     // Player Actions
     private int player_action = IDLE;
-    private boolean moving, attacking, killed, dashing = false;
+    private boolean moving, attacking, killed, dash = false;
     private boolean left, up, right, down, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
     private int playerHealth = 3;
@@ -164,7 +164,7 @@ public class Player extends Entity {
             jump();
         }
 
-        if (dashing) {
+        if (dash) {
             dash();
         }
         // check if holding both left and right or holding neither
@@ -219,12 +219,12 @@ public class Player extends Entity {
      */
     private void jump() {
         // Explain Jump Offset
-        final float JUMP_OFFSET = 0.01f;
-        if (jump && jumps <= 1) {
+        final float JUMP_OFFSET = 0.02f;
+        if (jump && jumps < 3) {
             inAir = true;
             airSpeed = jumpSpeed + JUMP_OFFSET;
             if (hitbox.y < 170) {
-                System.out.println("Hit ceiling, too high");
+                System.err.println("Hit ceiling, too high");
             }
         }
 
@@ -238,7 +238,7 @@ public class Player extends Entity {
      * Handles event where the dash button (Shift) is pressed
      */
     private void dash() {
-        if (dashing) {
+        if (dash) {
             while (canMoveHere(hitbox.x, hitbox.y, hitbox.width, hitbox.height, levelData)) {
                 hitbox.x += playerSpeed + 2f;
                 break;
@@ -253,7 +253,7 @@ public class Player extends Entity {
                 inAir = true;
                 airSpeed = 0;
                 gravity = GRAVITY;
-                dashing = false;
+                dash = false;
 
             }
         }
@@ -354,7 +354,7 @@ public class Player extends Entity {
         if (killed) {
             player_action = DIE;
         }
-        if (dashing) {
+        if (dash) {
             player_action = DASH;
         }
 
@@ -385,6 +385,8 @@ public class Player extends Entity {
         right = false;
         up = false;
         down = false;
+        jump = false;
+        dash = false;
     }
 
     /**
@@ -444,6 +446,10 @@ public class Player extends Entity {
         return attacking;
     }
 
+    public boolean getInAir() {
+        return inAir;
+    }
+
     public void setJump(boolean jump) {
         this.jump = jump;
         // When jump is released, implement gravity a bit more
@@ -451,23 +457,21 @@ public class Player extends Entity {
             gravity = gravity + 0.01f;
         }
     }
-
-    public boolean getInAir() {
-        return inAir;
+    /**
+     * Increases the amount of jumps by 1
+     */
+    public void incJumpCount() {
+        this.jumps++;
     }
 
     public void setDash(boolean dashing) {
         // If already dashing and you press the button again,
         // stop dashing
-        if (this.dashing == true && dashing == true) {
-            this.dashing = false;
+        if (this.dash == true && dashing == true) {
+            this.dash = false;
         } else {
-            this.dashing = dashing;
+            this.dash = dashing;
         }
-    }
-
-    public void setJumps() {
-        this.jumps++;// Set this to only increment ONCE
     }
 
     public int getHealth() {

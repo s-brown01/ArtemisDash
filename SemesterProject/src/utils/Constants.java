@@ -66,7 +66,7 @@ public class Constants {
         public static final int BUTTON_SIZE = (int) (25 / 1.75f * Game.SCALE);
 
 /**
- * This is the colors that are displayed on the Overworld screen for the levels
+         * This is the colors that are displayed on the Overworld screen for the levels
  */
         // hidden is for the levels that are hidden and can't be played
         public static final Color HIDDEN = new Color(105, 97, 101);
