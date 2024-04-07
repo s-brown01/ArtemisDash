@@ -68,6 +68,7 @@ public class Game implements Runnable {
     private void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
+        // overworld needs to be created AFTER the playing class since it uses the playing's levelManager
         overworld = new Overworld(this);
     }
 
