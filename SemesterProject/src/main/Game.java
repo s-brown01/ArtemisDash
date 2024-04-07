@@ -15,22 +15,29 @@ import states.Playing;
  *         the game, including updates, FPS, level scale, and tile amount on screen.
  */
 public class Game implements Runnable {
-    // States and Entities
+    /**
+     * States and Entities
+     */
     private Playing playing;
     private Menu menu;
     private Overworld overworld;
 
+    /**
+     * The GamePanel where to draw the Game
+     */
     private GamePanel gamePanel;
 
-    // Updates and Frame Logic
+    /**
+     * Updates and Frame Logic
+     */
     private Thread gameThread;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
     // this is the amount of nanoseconds in 1 second: 1 Billion nanoseconds
     private final double NANOSECONDS_IN_SEC = 1000000000.0;
 
-    /*
-     * All variables specific to the game: Game Scale and tiles
+    /**
+     * All variables specific to the game: Game Scale and tiles and buffer
      */
     public final static int TILES_DEFAULT_SIZE = 32; // 32 x 32 tile size
     public final static float SCALE = 1.75f; // How much should everything get scaled by? KEEP THIS ROUND
@@ -39,10 +46,10 @@ public class Game implements Runnable {
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);// 32 *1.75 = 56
     public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH; // 56 * 26 = 1456
     public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT; // 56 * 14 = 448
-    public final static float GAME_BUFFER = (20 / 1.75f * Game.SCALE);
+    public final static float GAME_BUFFER = (20 / 1.75f * SCALE);
 
     /**
-     * Main Game Constructor
+     * The constructor for this class, once this is called then the game will start running.
      */
     public Game() {
         initClasses();
@@ -63,12 +70,13 @@ public class Game implements Runnable {
     }
 
     /**
-     * Initializes each game state to be used when called
+     * Initializes each of the states in a specific order.
      */
     private void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
-        // overworld needs to be created AFTER the playing class since it uses the playing's levelManager
+        // overworld needs to be created AFTER the playing class since it uses the playing's
+        // levelManager
         overworld = new Overworld(this);
     }
 
@@ -83,39 +91,48 @@ public class Game implements Runnable {
         double timePerUpdate = NANOSECONDS_IN_SEC / UPS_SET;
         long previousTime = System.nanoTime();
 
-
+        // this is the time that it has been the last update
         double deltaUpdates = 0;
+        // this is the time that it has been the last frame
         double deltaFrames = 0;
-        long lastCheck = System.currentTimeMillis();
 
+        // while the game is running, so this should be an infinite loop
         while (true) {
+            // get the current time in nano seconds
             long currentTime = System.nanoTime();
+            // add the time since the last check to the delta's
             deltaUpdates += (currentTime - previousTime) / timePerUpdate;
             deltaFrames += (currentTime - previousTime) / timePerFrame;
+            // this time is now the last checked time
             previousTime = currentTime;
 
+            // if the delta update time is >= 1, then update the game
             if (deltaUpdates >= 1) {
                 updateGameState();
+                // only subtract 1 from the updates, so if it is above 1, that extra time is accounted for
+                // in the next update
                 deltaUpdates--;
             }
 
+            // if the delta frame time is >= 1, then repaint the game
             if (deltaFrames >= 1) {
                 gamePanel.repaint();
+                // only subtract 1 from the frame, so if it is above 1, that extra time is accounted for
+                // in the next frame
                 deltaFrames--;
             }
 
-            if (System.currentTimeMillis() - lastCheck >= 1000) {
-                lastCheck = System.currentTimeMillis();
-            }
         }
     }
 
     /**
-     * Sets the currently drawn screen based on what state the game is in
+     * Sets the currently drawn screen based on what state the game is in (from
+     * GameStates.state)
      * 
-     * @param g
+     * @param g - the Graphics where to draw the screens
      */
     public void render(Graphics g) {
+        // draw whatever the current GameStates is
         switch (GameStates.state) {
         case MENU:
             menu.draw(g);
@@ -129,15 +146,17 @@ public class Game implements Runnable {
         case OPTIONS:
             break;
         case QUIT:
+            // if quitting, then exit the system
             System.exit(-1);
             break;
         }
     }
 
     /**
-     * Updates the game state
+     * Updates the current game state based on the GameStates.state
      */
     public void updateGameState() {
+        // update whatever the current GameState is
         switch (GameStates.state) {
         case MENU:
             menu.update();
@@ -151,34 +170,47 @@ public class Game implements Runnable {
         case OPTIONS:
             break;
         case QUIT:
+            // if quitting, then exit the system
             System.exit(-1);
+            break;
         }
     }
 
     /**
-     * This function handles when the Game loses system-focus. It will pause the game.
+     * This function handles when the Game loses system-focus. It will pause the game when
+     * Playing.
      */
     public void windowLost() {
-        // only reset play bools if on the playing 
+        // only reset play bools if on the playing
         if (GameStates.state == GameStates.PLAYING) {
             playing.getPlayer().resetDirBools();
             playing.setPaused(true);
         }
     }
 
-    // Getters and setters
-    public Player getPlayer() {
-        return playing.getPlayer();
-    }
-
+    /**
+     * Getter for the Menu GameState
+     * 
+     * @return the Menu state of the Game
+     */
     public Menu getMenu() {
         return menu;
     }
 
+    /**
+     * Getter for the Playing GameState
+     * 
+     * @return the Playing state of the game
+     */
     public Playing getPlaying() {
         return playing;
     }
 
+    /**
+     * Getter for the Overworld GameState
+     * 
+     * @return the Overworld state of the game
+     */
     public Overworld getOverworld() {
         return overworld;
     }
