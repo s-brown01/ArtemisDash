@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import levels.LevelManager;
+
 import static utils.Constants.OverworldButtonConstants.*;
 
 import main.Game;
@@ -25,11 +27,17 @@ public class Overworld extends State implements StateMethods {
     private final Point[] btnLocations = BUTTON_POINT_ARRAY;
     private OverworldButton[] buttonArr = new OverworldButton[btnLocations.length];
     private OverworldButton selectedLvl = null;
+    private final LevelManager levelManager;
 
+    /**
+     * This is the constructor for a Overworld menu. This can only be called after the Game has a Playing class created
+     * @param game  - the Game handling this menu
+     */
     public Overworld(Game game) {
         super(game);
         background = LoadSave.getSpriteSheet(LoadSave.OVERWORLD_BG);
         initButtons();
+        this.levelManager = game.getPlaying().getLevelManager();
     }
 
     /**
@@ -54,9 +62,18 @@ public class Overworld extends State implements StateMethods {
      */
     @Override
     public void update() {
+        updateBooleans();
         for (OverworldButton ob : buttonArr) {
             ob.update();
         }
+    }
+
+    /**
+     * This method will check if 
+     */
+    private void updateBooleans() {
+        // TODO Auto-generated method stub
+        
     }
 
     /**
@@ -85,34 +102,51 @@ public class Overworld extends State implements StateMethods {
         }
     }
 
+    /**
+     * This is called when the mouse is pressed and moved; ignored in this class
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         // ignore this method, not using it
     }
 
+    /**
+     * This deals with that happens when the mouse is pressed down. It checks if the mouse is over any button, and if so then sets the mousePressed of that button to true.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
+        // regardless of what mouse button was pressed, check if the mouse is over any of the buttons.
         for (OverworldButton ob : buttonArr) {
+            // if the mouse is in a button, set that button to true
             if (isInOB(e, ob)) {
                 ob.setMousePressed(true);
+                // return because it will only be over 1 button at a time
+                return;
             }
         }
     }
 
+    /**
+     * This is called when the mouse is pressed then released; ignored in this class
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         // disregard this function, using mousePressed/mouseReleased instead
     }
 
+    /**
+     * When the mouse is released, this method should be called. It checks if the mouse in on a button and it is was pressed on that button.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
+        // check if the mouse is in the bounds of the button
         for (OverworldButton ob : buttonArr) {
-            // check if the mouse is in the bounds of the button
-            // if the mouse is inbounds AND was pressed on that button, move to that level
+            // if the mouse is inbounds AND was pressed on that button, apply that button
             if (isInOB(e, ob) && ob.isMousePressed()) {
                 applyState(ob);
             }
         }
+        // if it wasn't over any button, reset everything
         for (OverworldButton ob : buttonArr) {
             ob.setMouseOver(false);
             ob.setMousePressed(false);
@@ -120,12 +154,17 @@ public class Overworld extends State implements StateMethods {
 
     }
 
+    /**
+     * When the mouse is moved (pressed or not), this method should be called. It checks where the mouse is and sets the Button's mouseOver boolean (if appropriate)
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
+        // reset every mouseOver variable so it defaults to false
         for (OverworldButton ob : buttonArr) {
             ob.setMouseOver(false);
             selectedLvl = null;
         }
+        // since everything is false, check if the mouse is over any of the buttons
         for (OverworldButton ob : buttonArr) {
             if (isInOB(e, ob)) {
                 ob.setMouseOver(true);
@@ -134,11 +173,17 @@ public class Overworld extends State implements StateMethods {
         }
     }
 
+    /**
+     * This handles what happens when a key is pressed; Ignored in this class
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         // ignore this method, not using key bindings in OverWorld
     }
 
+    /**
+     * This handles what happens when a key is released; Ignored in this class
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         // ignore this method, not using key bindings in OverWorld
@@ -157,7 +202,16 @@ public class Overworld extends State implements StateMethods {
         return ob.getBounds().contains(e.getPoint());
     }
 
+    /**
+     * If the level is not hidden, then set the next level and apply the GameState PLAYING
+     * @param ob - the OverworldButton that was selected (it's stage number will be the level to be loaded)
+     */
     private void applyState(OverworldButton ob) {
+        // if the level is hidden, the user can't play it
+        if (ob.isHidden()) {
+            return;
+        }
+        // if not hidden, then they can play it
         game.getPlaying().nextLevel(ob.getStageNumber());
         GameStates.state = GameStates.PLAYING;
     }
