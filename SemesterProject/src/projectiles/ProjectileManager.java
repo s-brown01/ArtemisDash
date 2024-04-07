@@ -99,21 +99,27 @@ public class ProjectileManager {
         // bounds check
         // checking if going below 0
         if (hitbox.getX() < 0 || hitbox.getY() < 0) {
+            System.out.println("NOT Passed collision check - a");
             return true;
         }
-        // checking if the hitbox other end of the hitbox is outside of the game
-        if (hitbox.getX() + hitbox.getHeight() > Game.GAME_WIDTH
-                || hitbox.getY() + hitbox.getHeight() > Game.GAME_HEIGHT) {
+        // checking if the hitbox other end of the hitbox is outside of the game.
+        // check the length and height of the level, must convert the array length to tiles.
+        if (hitbox.getX() + hitbox.getHeight() > levelData[0].length * Game.TILES_SIZE
+                || hitbox.getY() + hitbox.getHeight() > levelData.length * Game.TILES_SIZE) {
+            System.out.println("NOT Passed collision check - b");
             return true;
         }
         
         // checking that the arrow can move to the tile that is xSpeed away
         if (!canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+            System.out.println("NOT Passed collision check - c");
+
             return true;
         }
         
         // checking that the arrow can move to the tile that is ySpeed away
         if (!canMoveHere(hitbox.x, hitbox.y + ySpeed, hitbox.width, hitbox.height, levelData)) {
+            System.out.println("NOT Passed collision check - d");
             return true;
         }
         

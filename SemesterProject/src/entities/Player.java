@@ -117,7 +117,7 @@ public class Player extends Entity {
         if (drawArrowPath && nextAttack != null) {
             g2D.setColor(Color.CYAN);
             g2D.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[]{5.0f, 5.0f}, 0.0f));
-            g2D.drawLine((int)(hitbox.x + SHOT_OFFSET_X) - xLevelOffset, (int)(hitbox.y + SHOT_OFFSET_Y ), (int)(nextAttack.getX()) - xLevelOffset, (int)(nextAttack.getY()));
+            g2D.drawLine((int)(hitbox.x + SHOT_OFFSET_X) - xLevelOffset, (int)(hitbox.y + SHOT_OFFSET_Y ), (int)(nextAttack.getX()), (int)(nextAttack.getY()));
         }
     }
 
@@ -308,7 +308,7 @@ public class Player extends Entity {
         /*
          * the arrow should spawn at the
          */
-        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X - xDrawOffset, hitbox.y + SHOT_OFFSET_Y, slope, xDiff > 0);
+        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope, xDiff > 0);
         
     }
 
