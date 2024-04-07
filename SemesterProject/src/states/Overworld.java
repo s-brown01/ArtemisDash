@@ -88,7 +88,8 @@ public class Overworld extends State implements StateMethods {
      * that represents them in LevelMaanger
      */
     private void updateLevelBooleans() {
-        // for each button, get the Level that is matched to that button. Then set the completed/hidden to the booleans from that Level
+        // for each button, get the Level that is matched to that button. Then set the
+        // completed/hidden to the booleans from that Level
         for (OverworldButton ob : buttonArr) {
             final Level currLevel = levelManager.getLevelAtIndex(ob.getStageNumber());
             ob.setCompleted(currLevel.getCompleted());
