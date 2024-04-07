@@ -1,8 +1,3 @@
-/**
- * Pause Overlay Class
- * @author johnbotonakis
- * This class handles the pause overlay when the user hits the pause button during gameplay
- */
 package ui;
 
 import java.awt.Graphics;
@@ -13,6 +8,11 @@ import static main.Game.*;
 import static utils.LoadSave.*;
 import static utils.Constants.ButtonStates.*;
 
+/**
+ * Pause Overlay Class
+ * @author johnbotonakis
+ * @description This class handles the pause overlay when the user hits the pause button during gameplay
+ */
 public class PauseOverlay {
     private BufferedImage backgroundImage;
     private int bgX, bgY, bgH, bgW;

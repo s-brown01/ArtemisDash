@@ -12,7 +12,8 @@ import utils.LoadSave;
 /**
  * Menu Class
  * 
- * @author johnbotonakis
+ * @author johnbotonakis and Sean-Paul Brown
+ * @description This is a child class of State that implements the StateMethods interface. This represents the Main Menu of the game, it should be the first screen that the player sees and leads them to the Overworld.
  * 
  */
 public class Menu extends State implements StateMethods {

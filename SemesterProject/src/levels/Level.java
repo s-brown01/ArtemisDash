@@ -12,9 +12,10 @@ import main.Game;
 /**
  * Level Class
  * 
- * @author johnbotonakis Every object instantiated from this class will be a level that
- *         the user can play throughout. This holds onto information such as level data
- *         and sprite indices to create a level.
+ * @author johnbotonakis and Sean-Paul Brown
+ * @description Every object instantiated from this class will be a level that the user
+ *              can play throughout. This holds onto information such as level data and
+ *              sprite indices to create a level.
  */
 public class Level {
 
@@ -22,36 +23,77 @@ public class Level {
     private Boolean completed = false;
     private Boolean hidden = true;
 
+    /**
+     * Constructor for a Level
+     * 
+     * @param lvlData - the levelData that represents the level as a 2D int array
+     */
     public Level(int[][] lvlData) {
         this.lvlData = lvlData;
     }
 
+    /**
+     * Getter for a specific index in the levelData array
+     * 
+     * @param x - the x index (second array index)
+     * @param y - the y index (first array index)
+     * @return the int for the index determined by the parameters
+     */
     public int getSpriteIndex(int x, int y) {
         return lvlData[y][x];
     }
 
+    /**
+     * Getter for the Level's data
+     * 
+     * @return the 2D int Array representing the level
+     */
     public int[][] getLevelData() {
         return lvlData;
     }
 
+    /**
+     * Getter for the completed boolean (to determine if the level has been completed)
+     * 
+     * @return the current value of completed
+     */
     public Boolean getCompleted() {
         return completed;
     }
 
+    /**
+     * Setter for the completed boolean (to determine if the level has been completed)
+     * 
+     * @param completed - true if the level has been 100%'d, false if not
+     */
     public void setCompleted(Boolean completed) {
         this.completed = completed;
     }
 
+    /**
+     * Getter for the hidden boolean (to determine if the level is hidden from the user)
+     * 
+     * @return the current value of hidden
+     */
     public Boolean getHidden() {
         return hidden;
     }
 
+    /**
+     * Setter for the hidden boolean (to determine if the level has been completed)
+     * 
+     * @param hidden - true if the level is hidden from the player, false if the player can
+     *               play/see it
+     */
     public void setHidden(Boolean hidden) {
         this.hidden = hidden;
     }
 
     /**
-     * @return
+     * Return a List of all the Skeletons in this level, it is currently stored as an
+     * ArrayList.
+     * 
+     * @return a List storing all Skeletons in this Level
      */
     public List<Skeleton> getSkeletons() {
         final List<Skeleton> skeletonList = new ArrayList<>();

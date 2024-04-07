@@ -7,7 +7,8 @@ import java.awt.event.MouseEvent;
 /**
  * StateMethods Interface
  * 
- * @author johnbotonakis Defines every method that a state should have when instantiated
+ * @author johnbotonakis 
+ * @description Defines every method that a state should have when instantiated
  *         new
  */
 public interface StateMethods {
@@ -21,7 +22,7 @@ public interface StateMethods {
     /**
      * Displays the caller object to the screen
      * 
-     * @param g
+     * @param g - the Graphics where to draw the state
      */
     public void draw(Graphics g);
 

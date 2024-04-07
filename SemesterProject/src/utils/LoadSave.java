@@ -10,12 +10,11 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import main.Game;
-
 /**
  * LoadSave Class
  * 
- * @author johnbotonakis This class is focused on loading in sprite data, level data, and
+ * @author johnbotonakis 
+ * @description This class is focused on loading in sprite data, level data, and
  *         building levels
  */
 public class LoadSave {

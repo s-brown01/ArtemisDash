@@ -19,7 +19,8 @@ import utils.LoadSave;
 /**
  * Playing Class
  * 
- * @author johnbotonakis This class handles the core game loop of completing levels
+ * @author johnbotonakis 
+ * @description This is a child class of State that implements the StateMethods interface. This class handles the core game loop of completing levels, it represents how a level will be played by the user. 
  */
 public class Playing extends State implements StateMethods {
 

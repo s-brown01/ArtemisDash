@@ -10,7 +10,7 @@ import main.Game;
  * 
  * @author johnbotonakis and Sean-Paul Brown
  * 
- *         Handles every constant variable that will be used for this game; As of now, it
+ * @description Handles every constant variable that will be used for this game; As of now, it
  *         is mainly used to pilot the animations and direct the game to where each
  *         animation is, on the sprite sheet
  */

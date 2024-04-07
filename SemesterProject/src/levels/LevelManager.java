@@ -9,7 +9,8 @@ import utils.LoadSave;
 /**
  * Level Manager
  * 
- * @author johnbotonakis This class will handle things such as importing level sprites,
+ * @author johnbotonakis and Sean-Paul Brown
+ * @description This class will handle things such as importing level sprites,
  *         drawing the level to the screen, and keep track of the current level played
  */
 public class LevelManager {

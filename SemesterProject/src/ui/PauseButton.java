@@ -1,12 +1,13 @@
-/**
- * Pause Button Class
- * @author johnbotonakis
- * This class is responsible for handling the creation of, and interaction with, buttons bound within the Pause Overlay
- */
+
 package ui;
 
 import java.awt.Rectangle;
 
+/**
+ * Pause Button Class
+ * @author johnbotonakis
+ * @description This class is responsible for handling the creation of, and interaction with, buttons bound within the Pause Overlay
+ */
 public class PauseButton {
     protected int x, y, width, height;
     protected Rectangle bounds;

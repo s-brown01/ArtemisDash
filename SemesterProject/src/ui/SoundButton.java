@@ -1,8 +1,3 @@
-/**
- * SoundButton Class
- * @author johnbotonakis
- * This class is responsible for handling the creation of, and interactions with, the Sound button bound within the Pause Overlay
- */
 package ui;
 
 import java.awt.Graphics;
@@ -11,6 +6,11 @@ import java.awt.image.BufferedImage;
 import utils.LoadSave;
 import static utils.Constants.ButtonStates.*;
 
+/**
+ * SoundButton Class
+ * @author johnbotonakis
+ * @description This class is responsible for handling the creation of, and interactions with, the Sound button bound within the Pause Overlay
+ */
 public class SoundButton extends PauseButton {
 
     private BufferedImage[][] soundimgs;

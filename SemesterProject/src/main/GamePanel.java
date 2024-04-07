@@ -45,13 +45,6 @@ public class GamePanel extends JPanel {
     }
 
     /**
-     * ONLY Updates game Logic
-     */
-    public void updateGame() {
-
-    }
-
-    /**
      * ONLY Takes care of drawing everything via the JPanel Graphics object Easier to use the
      * built in tools rather than make from scratch
      */
