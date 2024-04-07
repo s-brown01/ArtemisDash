@@ -19,7 +19,10 @@ import utils.LoadSave;
  * Overworld Class
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * @description This is a child class of State that implements the StateMethods interface. This represents the overworld of the game. This screen will allow the player to move a specific level and show the user's current progress in the game. 
+ * @description This is a child class of State that implements the StateMethods interface.
+ *              This represents the overworld of the game. This screen will allow the
+ *              player to move a specific level and show the user's current progress in
+ *              the game.
  */
 public class Overworld extends State implements StateMethods {
 
@@ -28,6 +31,10 @@ public class Overworld extends State implements StateMethods {
     private OverworldButton[] buttonArr = new OverworldButton[btnLocations.length];
     private OverworldButton selectedLvl = null;
     private final LevelManager levelManager;
+    /**
+     * This boolean keeps track of if the state has changed at all. Default it to true
+     */
+    private boolean changed = true;
 
     /**
      * This is the constructor for a Overworld menu. This can only be called after the Game
@@ -64,18 +71,23 @@ public class Overworld extends State implements StateMethods {
      */
     @Override
     public void update() {
-        updateBooleans();
+        // only update the Level booleans if the state has changed, only need to update it once
+        // per change.
+        // this should hopefully help with performance as it is not checked every update
+        if (changed) {
+            updateLevelBooleans();
+        }
         for (OverworldButton ob : buttonArr) {
             ob.update();
         }
     }
 
     /**
-     * This method will check if
+     * This method will update all of the booleans for each Overworld button for the Level
+     * that represents them in LevelMaanger
      */
-    private void updateBooleans() {
+    private void updateLevelBooleans() {
         // TODO Auto-generated method stub
-
     }
 
     /**
@@ -219,8 +231,10 @@ public class Overworld extends State implements StateMethods {
         if (ob.isHidden()) {
             return;
         }
-        // if not hidden, then they can play it
+        // if not hidden, then they can play it.
+        // load the next level in Playing and also change the changed boolean to true
         game.getPlaying().nextLevel(ob.getStageNumber());
+        changed = true;
         GameStates.state = GameStates.PLAYING;
     }
 
