@@ -11,11 +11,11 @@ import static utils.Constants.OverworldButtonConstants.*;
 /**
  * OverworldButton.java
  * 
- * @author Sean-Paul Brown 
- * @description This class represents how a "level"/button is displayed on the
- *         Overworld GameState. This class relies on the
- *         utils.Constants.OverworldButtonConstants class. This represents a single
- *         level/button
+ * @author Sean-Paul Brown
+ * @description This class represents how a "level"/button is displayed on the Overworld
+ *              GameState. This class relies on the
+ *              utils.Constants.OverworldButtonConstants class. This represents a single
+ *              level/button
  */
 public class OverworldButton {
     // this class will keep track of...

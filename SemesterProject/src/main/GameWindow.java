@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 /**
  * Game Window Class
  * 
- * @author johnbotonakis and Sean-Paul Brown This class will act as the frame holding the
- *         painting
+ * @author johnbotonakis and Sean-Paul Brown
+ * @description This class will act as the frame holding the painting
  */
 //DOUBLE BUFFERING HERE NOWHERE ELSE!
 public class GameWindow extends JFrame {

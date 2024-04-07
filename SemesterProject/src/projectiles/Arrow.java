@@ -12,7 +12,9 @@ import static utils.Constants.ProjectileConstants.*;
  * 
  * @author Sean-Paul Brown
  * @date Mar 26, 2024
- * @description This is a child class of Projectile. It represents an Arrow that the Player will shoot. It cannot detect collisions but will update it's movement when update is called.
+ * @description This is a child class of Projectile. It represents an Arrow that the
+ *              Player will shoot. It cannot detect collisions but will update it's
+ *              movement when update is called.
  */
 public class Arrow extends Projectile {
 
@@ -36,8 +38,7 @@ public class Arrow extends Projectile {
     }
 
     /**
-     * This method will update the behavior of the Arrow, like
-     * updating movement
+     * This method will update the behavior of the Arrow, like updating movement
      * 
      */
     public void update() {

@@ -21,8 +21,9 @@ import utils.LoadSave;
 /**
  * Player.java Player Class
  * 
- * @author johnbotonakis and Sean-Paul Brown This player class will hold every variable
- *         and funciton relating to the active player's inputs and outputs.
+ * @author johnbotonakis and Sean-Paul Brown
+ * @description This player class will hold every variable and funciton relating to the
+ *              active player's inputs and outputs.
  */
 public class Player extends Entity {
     // player_count and playerCountCheck will make sure there is only 1 player

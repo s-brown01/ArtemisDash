@@ -7,10 +7,10 @@ import java.awt.geom.Rectangle2D;
 /**
  * Entity.java Entity Abstract Class
  * 
- * @author johnbotonakis and Sean-Paul Brown This abstract Entity class shares
- *         functionality across all player and enemy objects. Things that can move on
- *         either axis, attack, and have some degree of "intelligence" start their classes
- *         from this blueprint.
+ * @author johnbotonakis and Sean-Paul Brown
+ * @description This abstract Entity class shares functionality across all player and
+ *              enemy objects. Things that can move on either axis, attack, and have some
+ *              degree of "intelligence" start their classes from this blueprint.
  */
 public abstract class Entity {
     protected float x, y;

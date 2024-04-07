@@ -7,9 +7,9 @@ import main.Game;
 /**
  * HelperMethods Class
  * 
- * @author johnbotonakis 
- * @description This class is full of various methods that will be called by more
- *         than just one entity, object, or class
+ * @author johnbotonakis
+ * @description This class is full of various methods that will be called by more than
+ *              just one entity, object, or class
  */
 public class HelperMethods {
 

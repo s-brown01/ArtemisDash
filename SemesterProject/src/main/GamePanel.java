@@ -13,7 +13,8 @@ import static main.Game.GAME_WIDTH;
 /**
  * Game Panel Class
  * 
- * @author johnbotonakis and Sean-Paul Brown This class acts as the painting in the frame
+ * @author johnbotonakis and Sean-Paul Brown
+ * @description This class acts as the painting in the frame
  */
 public class GamePanel extends JPanel {
     private static final long serialVersionUID = 1L;

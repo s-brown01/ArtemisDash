@@ -13,9 +13,9 @@ import javax.imageio.ImageIO;
 /**
  * LoadSave Class
  * 
- * @author johnbotonakis 
- * @description This class is focused on loading in sprite data, level data, and
- *         building levels
+ * @author johnbotonakis
+ * @description This class is focused on loading in sprite data, level data, and building
+ *              levels
  */
 public class LoadSave {
 

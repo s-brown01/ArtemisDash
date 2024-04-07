@@ -12,7 +12,7 @@ import static utils.Constants.ButtonStates.*;
  * Menu Button Class
  * 
  * @author johnbotonakis
- * @description 
+ * @description
  */
 public class MenuButton {
     private int xpos, ypos, rowIndex, index;

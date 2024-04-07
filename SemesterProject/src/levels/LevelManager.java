@@ -10,8 +10,8 @@ import utils.LoadSave;
  * Level Manager
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * @description This class will handle things such as importing level sprites,
- *         drawing the level to the screen, and keep track of the current level played
+ * @description This class will handle things such as importing level sprites, drawing the
+ *              level to the screen, and keep track of the current level played
  */
 public class LevelManager {
     private BufferedImage[] levelSprite;
@@ -29,7 +29,7 @@ public class LevelManager {
     }
 
     /**
-     * Load in the levels array
+     * Load in the levels arrays with template levels.
      */
     private void loadLevels() {
         for (int i = 0; i < levels.length; i++) {
@@ -72,12 +72,15 @@ public class LevelManager {
         }
     }
 
-    public void update() {
-
-    }
-
+    /**
+     * Setter for the current level. The new current level will be the index of the levelIndex
+     * parameter.
+     * 
+     * @param levelIndex - the index of the new current Level, it is mapped to the stage
+     *                   number
+     */
     public void setCurrentLevel(int levelIndex) {
-        this.currentLevel = levels[0];
+        this.currentLevel = levels[levelIndex];
     }
 
     /**

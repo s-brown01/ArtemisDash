@@ -11,7 +11,8 @@ import java.awt.image.BufferedImage;
  * 
  * @author Sean-Paul Brown
  * @date 03/15/2024
- * @description: This class will provide the framework for how all Projectiles in game and the basis for how they should move.
+ * @description: This class will provide the framework for how all Projectiles in game and
+ *               the basis for how they should move.
  */
 public abstract class Projectile {
     /**

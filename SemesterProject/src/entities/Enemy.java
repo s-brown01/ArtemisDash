@@ -13,10 +13,10 @@ import java.awt.Graphics;
  * 
  * @author Sean-Paul Brown
  * @date 03/15/2024
- * @description This is an abstract class that provides the framework for all Enemy objects in
- *        the game. Individual types of enemies should extend this class, but this should
- *        never be a specific enemy. This will help all Enemies have the same behavior and
- *        make it easier to create/implement the EnemyManager.
+ * @description This is an abstract class that provides the framework for all Enemy
+ *              objects in the game. Individual types of enemies should extend this class,
+ *              but this should never be a specific enemy. This will help all Enemies have
+ *              the same behavior and make it easier to create/implement the EnemyManager.
  */
 public abstract class Enemy extends Entity {
 
