@@ -30,8 +30,10 @@ public class Overworld extends State implements StateMethods {
     private final LevelManager levelManager;
 
     /**
-     * This is the constructor for a Overworld menu. This can only be called after the Game has a Playing class created
-     * @param game  - the Game handling this menu
+     * This is the constructor for a Overworld menu. This can only be called after the Game
+     * has a Playing class created
+     * 
+     * @param game - the Game handling this menu
      */
     public Overworld(Game game) {
         super(game);
@@ -69,11 +71,11 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This method will check if 
+     * This method will check if
      */
     private void updateBooleans() {
         // TODO Auto-generated method stub
-        
+
     }
 
     /**
@@ -111,11 +113,13 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This deals with that happens when the mouse is pressed down. It checks if the mouse is over any button, and if so then sets the mousePressed of that button to true.
+     * This deals with that happens when the mouse is pressed down. It checks if the mouse is
+     * over any button, and if so then sets the mousePressed of that button to true.
      */
     @Override
     public void mousePressed(MouseEvent e) {
-        // regardless of what mouse button was pressed, check if the mouse is over any of the buttons.
+        // regardless of what mouse button was pressed, check if the mouse is over any of the
+        // buttons.
         for (OverworldButton ob : buttonArr) {
             // if the mouse is in a button, set that button to true
             if (isInOB(e, ob)) {
@@ -135,7 +139,8 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * When the mouse is released, this method should be called. It checks if the mouse in on a button and it is was pressed on that button.
+     * When the mouse is released, this method should be called. It checks if the mouse in on
+     * a button and it is was pressed on that button.
      */
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -155,7 +160,8 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * When the mouse is moved (pressed or not), this method should be called. It checks where the mouse is and sets the Button's mouseOver boolean (if appropriate)
+     * When the mouse is moved (pressed or not), this method should be called. It checks where
+     * the mouse is and sets the Button's mouseOver boolean (if appropriate)
      */
     @Override
     public void mouseMoved(MouseEvent e) {
@@ -204,7 +210,9 @@ public class Overworld extends State implements StateMethods {
 
     /**
      * If the level is not hidden, then set the next level and apply the GameState PLAYING
-     * @param ob - the OverworldButton that was selected (it's stage number will be the level to be loaded)
+     * 
+     * @param ob - the OverworldButton that was selected (it's stage number will be the level
+     *           to be loaded)
      */
     private void applyState(OverworldButton ob) {
         // if the level is hidden, the user can't play it

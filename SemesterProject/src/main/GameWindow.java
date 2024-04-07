@@ -33,7 +33,7 @@ public class GameWindow extends JFrame {
         this.setResizable(false); // Do not resize
         this.setLocationRelativeTo(null); // Center the frame
         this.setVisible(true);
-        
+
         this.addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(WindowEvent e) {

@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import static utils.Constants.ProjectileConstants.*;
+
 /**
  * Arrow.java
  * 
@@ -63,7 +64,7 @@ public class Arrow extends Projectile {
         g.setColor(Color.cyan);
         g.drawRect((int) (hitbox.x - xLevelOffset), (int) hitbox.y, (int) (hitbox.width), (int) (hitbox.height));
     }
-    
+
     public float getSpeed() {
         return SPEED;
     }

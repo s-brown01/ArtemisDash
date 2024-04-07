@@ -26,11 +26,12 @@ public class OverworldButton {
 
     /**
      * The constructor for this class
-     * @param x             - the x coordinate of the button; left-side of the button
-     * @param y             - the y coordinate of the button; top-side of the button
-     * @param levelName     - the name of the level to be played
-     * @param worldNumber   - the number of the world that the level is located in
-     * @param stageNumber   - the stage number of the level 
+     * 
+     * @param x           - the x coordinate of the button; left-side of the button
+     * @param y           - the y coordinate of the button; top-side of the button
+     * @param levelName   - the name of the level to be played
+     * @param worldNumber - the number of the world that the level is located in
+     * @param stageNumber - the stage number of the level
      */
     public OverworldButton(int x, int y, String levelName, int worldNumber, int stageNumber) {
         this.bounds = new Rectangle(x, y, 25, 25);
@@ -40,8 +41,8 @@ public class OverworldButton {
     }
 
     /**
-     * This will update the OverworldButton, mainly how the colors are displayed.
-     * It uses the hidden/completed and mouseOver/mousePressed 
+     * This will update the OverworldButton, mainly how the colors are displayed. It uses the
+     * hidden/completed and mouseOver/mousePressed
      */
     public void update() {
         if (hidden) {
@@ -65,6 +66,7 @@ public class OverworldButton {
 
     /**
      * Draws the button to the graphics g given into the method.
+     * 
      * @param g - the Graphics where to draw the button
      */
     public void draw(Graphics g) {
@@ -185,7 +187,7 @@ public class OverworldButton {
     }
 
     /**
-     * getter for the stageNumber 
+     * getter for the stageNumber
      * 
      * @return stage number
      */

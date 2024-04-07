@@ -109,20 +109,20 @@ public class ProjectileManager {
             System.out.println("NOT Passed collision check - b");
             return true;
         }
-        
+
         // checking that the arrow can move to the tile that is xSpeed away
         if (!canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
             System.out.println("NOT Passed collision check - c");
 
             return true;
         }
-        
+
         // checking that the arrow can move to the tile that is ySpeed away
         if (!canMoveHere(hitbox.x, hitbox.y + ySpeed, hitbox.width, hitbox.height, levelData)) {
             System.out.println("NOT Passed collision check - d");
             return true;
         }
-        
+
         // if it has passed everything, nothing is collided with so return false
         return false;
     }

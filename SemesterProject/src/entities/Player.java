@@ -104,20 +104,22 @@ public class Player extends Entity {
     /**
      * Renders the player, along with hitbox
      * 
-     * @param g             - Graphics where to draw the player
-     * @param xLevelOffset  - how far the screen offset is from scrolling
+     * @param g            - Graphics where to draw the player
+     * @param xLevelOffset - how far the screen offset is from scrolling
      */
-    public void renderPlayer(Graphics g, int xLevelOffset) { 
+    public void renderPlayer(Graphics g, int xLevelOffset) {
         // Add int yLevelOffset to input vars and to YHitbox
         Graphics2D g2D = (Graphics2D) g;
         g2D.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset,
                 (int) (hitbox.y - yDrawOffset), width, height, null);
-        
+
         // drawing the dashed line to show the path of the arrow
         if (drawArrowPath && nextAttack != null) {
             g2D.setColor(Color.CYAN);
-            g2D.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, new float[]{5.0f, 5.0f}, 0.0f));
-            g2D.drawLine((int)(hitbox.x + SHOT_OFFSET_X) - xLevelOffset, (int)(hitbox.y + SHOT_OFFSET_Y ), (int)(nextAttack.getX()), (int)(nextAttack.getY()));
+            g2D.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f,
+                    new float[] { 5.0f, 5.0f }, 0.0f));
+            g2D.drawLine((int) (hitbox.x + SHOT_OFFSET_X) - xLevelOffset, (int) (hitbox.y + SHOT_OFFSET_Y),
+                    (int) (nextAttack.getX()), (int) (nextAttack.getY()));
         }
     }
 
@@ -300,7 +302,7 @@ public class Player extends Entity {
         if (aniIndex != attackAniIndex) {
             return;
         }
-        
+
         attackChecked = true;
         final float xDiff = (float) (nextAttack.getX() - (hitbox.x + SHOT_OFFSET_X));
         final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
@@ -309,7 +311,7 @@ public class Player extends Entity {
          * the arrow should spawn at the
          */
         playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope, xDiff > 0);
-        
+
     }
 
     /**
@@ -423,7 +425,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Setter for left 
+     * Setter for left
      * 
      * @param left - true if the player is moving left. False if not.
      */
@@ -441,14 +443,14 @@ public class Player extends Entity {
     }
 
     /**
-     * Setter for up 
+     * Setter for up
      * 
      * @param up - true if the player is moving up. False if not.
      */
     public void setUp(boolean up) {
         this.up = up;
     }
-    
+
     /**
      * Getter for right
      * 
@@ -457,9 +459,9 @@ public class Player extends Entity {
     public boolean isRight() {
         return right;
     }
-    
+
     /**
-     * Setter for right 
+     * Setter for right
      * 
      * @param right - true if the player is moving right. False if not.
      */
@@ -493,7 +495,7 @@ public class Player extends Entity {
     public boolean isAttacking() {
         return attacking;
     }
-    
+
     /**
      * Setter for attacking
      * 
@@ -502,7 +504,6 @@ public class Player extends Entity {
     public void setAttack(boolean attack) {
         attacking = attack;
     }
-
 
     /**
      * Setter for jump
@@ -548,7 +549,6 @@ public class Player extends Entity {
         this.jumps++;// Set this to only increment ONCE
     }
 
-
     /**
      * Getter for the players current health
      * 
@@ -559,7 +559,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Setter for the players health 
+     * Setter for the players health
      * 
      * @param health - how much health the player should have
      */
@@ -578,14 +578,16 @@ public class Player extends Entity {
 
     /**
      * Setter for the amount of lives that the player has
+     * 
      * @param lives - the amount of lives to be given to the player
      */
     public void setLives(int lives) {
         this.playerLives = lives;
     }
-    
+
     /**
      * Setter for the nextAttack Point
+     * 
      * @param p the Point where the next attack will be located
      */
     public void setNextAttack(Point p) {
@@ -593,7 +595,9 @@ public class Player extends Entity {
     }
 
     /**
-     * Setter for drawArrowPath. If this is true, then a line will be drawn from the Player to nextAttack Point
+     * Setter for drawArrowPath. If this is true, then a line will be drawn from the Player to
+     * nextAttack Point
+     * 
      * @param drawArrowPath - true to draw the line, false to not
      */
     public void setDrawArrowPath(boolean drawArrowPath) {
