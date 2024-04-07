@@ -141,7 +141,7 @@ public class Playing extends State implements StateMethods {
         }
 
         // if this is paused, don't update all the paused stuff but not the rest
-        levelManager.update();
+//        levelManager.update(); 
         player.update();
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
         projManager.update(levelManager.getCurrentLevel().getLevelData());
@@ -298,6 +298,7 @@ public class Playing extends State implements StateMethods {
     public void completeLevel() {
         this.levelComplete = true;
         levelManager.getCurrentLevel().setCompleted(true);
+        levelManager.unhideNextLevels();
     }
 
     @Override

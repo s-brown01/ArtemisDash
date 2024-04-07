@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import levels.Level;
 import levels.LevelManager;
 
 import static utils.Constants.OverworldButtonConstants.*;
@@ -87,7 +88,17 @@ public class Overworld extends State implements StateMethods {
      * that represents them in LevelMaanger
      */
     private void updateLevelBooleans() {
-        // TODO Auto-generated method stub
+        // for each button, get the Level that is matched to that button. Then set the completed/hidden to the booleans from that Level
+        for (OverworldButton ob : buttonArr) {
+            final Level currLevel = levelManager.getLevelAtIndex(ob.getStageNumber());
+            ob.setCompleted(currLevel.getCompleted());
+            ob.setHidden(currLevel.getHidden());
+        }
+        // the first level should not be hidden no matter what.
+        // completed can either be true or false, so that doesn't change from above
+        levelManager.getLevelAtIndex(0).setHidden(false);
+        buttonArr[0].setHidden(levelManager.getLevelAtIndex(0).getHidden());
+
     }
 
     /**

@@ -21,7 +21,7 @@ public class OverworldButton {
     // this class will keep track of...
     private final String levelName;
     private final int worldNumber, stageNumber;
-    private boolean completed = false, mouseOver = false, mousePressed = false, hidden = true;
+    private boolean completed = false, hidden = true, mouseOver = false, mousePressed = false;
     private Color color;
     private Rectangle bounds;
 

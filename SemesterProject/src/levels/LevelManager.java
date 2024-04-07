@@ -17,6 +17,7 @@ public class LevelManager {
     private BufferedImage[] levelSprite;
     private Level[] levels = new Level[15]; // 15 total levels
     private Level currentLevel;
+    private int currentLevelIndex;
 
     /**
      * Instantiates a manager for created level objects
@@ -80,7 +81,8 @@ public class LevelManager {
      *                   number
      */
     public void setCurrentLevel(int levelIndex) {
-        this.currentLevel = levels[levelIndex];
+        this.currentLevelIndex = levelIndex;
+        this.currentLevel = levels[currentLevelIndex];
     }
 
     /**
@@ -91,4 +93,55 @@ public class LevelManager {
     public Level getCurrentLevel() {
         return currentLevel;
     }
+    
+    /**
+     * Getter for a specific index in the array of levels. They should be mapped to the stage number
+     * @param levelIndex - the specific index to get
+     * @return if can, the Level at the level index; if it is out of bounds, then return null
+     */
+    public Level getLevelAtIndex(int levelIndex) {
+        // sanity check
+        if (levelIndex < 0 || levelIndex >= levels.length) {
+            return null;
+        }
+        return levels[levelIndex];
+    }
+
+
+    /**
+     * Unhide levels based on the current Level. 
+     */
+    public void unhideNextLevels() {
+        // depending what the current level is, it should unhide different levels
+        // for now just unlock the next level
+        switch (currentLevelIndex) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+            unhideLevel(currentLevelIndex + 1);
+        case 15:
+            return;
+        }
+    }
+
+    /**
+     * Set the hidden boolean to false for the specific Level at the index in the parameters
+     * @param index - the index for the Level to set hidden false
+     */
+    private void unhideLevel(int index) {
+        levels[index].setHidden(false);
+    }
+    
 }
