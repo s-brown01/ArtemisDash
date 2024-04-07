@@ -76,11 +76,19 @@ public class Playing extends State implements StateMethods {
 
     }
 
+    /**
+     * This function will load a specific level based on the index given into the parameters
+     * 
+     * @param nextLevelIndex - the next level to be loaded in, index is the same as stage number
+     */
     public void nextLevel(int nextLevelIndex) {
         levelManager.setCurrentLevel(nextLevelIndex);
         loadCurrentLevel();
     }
 
+    /**
+     * Load in all of the enemies and other items in from the current Level. It will reset all booleans to get the Level ready to play for the user
+     */
     private void loadCurrentLevel() {
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
@@ -88,7 +96,7 @@ public class Playing extends State implements StateMethods {
         pauseOverlay = new PauseOverlay();
         hud = new HUD(this);
         this.score = 0;
-
+        levelComplete = levelManager.getCurrentLevel().getCompleted();
     }
 
     /**
@@ -280,37 +288,50 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Sets the levelComplete to true
+     * Sets the levelComplete to true and sets the current Level's complete to true
      */
     public void completeLevel() {
         this.levelComplete = true;
+        levelManager.getCurrentLevel().setCompleted(true);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        // if paused, only send the mouse input into the paused overlay
         if (paused) {
             pauseOverlay.mouseDragged(e);
         }
+        // if the mouse is moved, store the point that it moved to and keep drawing.
+        // this does not work if you check that it is mouse button 1 was moved.
         player.setNextAttack(e.getPoint()); 
+        player.setDrawArrowPath(true);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        // if paused, only send the mouse input into the paused overlay
         if (paused) {
             pauseOverlay.mousePressed(e);
             return;
         }
+        // if mouse button 1 is pressed, store that point and draw the arrow path to that point
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setNextAttack(e.getPoint());
             player.setDrawArrowPath(true);
         }
     }
 
+    /**
+     * This determines how the Playing class and all components interact with the mouse is released
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
+        // if paused, only send the mouse input into the paused overlay
         if (paused) {
             pauseOverlay.mouseReleased(e);
+            return;
         }
+        // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setDrawArrowPath(false);
             player.shoot(e);
@@ -318,6 +339,9 @@ public class Playing extends State implements StateMethods {
 
     }
 
+    /**
+     * This determines how the Playing class will interact with the mouse moving
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         if (paused) {
@@ -327,12 +351,11 @@ public class Playing extends State implements StateMethods {
     }
     
     /**
-     * If the user clicks the mouse button, the Player Entity will try to shoot an arrow
+     * This method is unused for Playing, instead using mouseReleased and mousePressed
      */
     @Override
     public void mouseClicked(MouseEvent e) {
         // unused
-
     }
 
     /**
@@ -370,16 +393,36 @@ public class Playing extends State implements StateMethods {
         }
     }
     
+    /**
+     * Setter for paused boolean (determines if the screen should be paused or not)
+     * @param paused - true if the screen should be paused, false if not
+     */
     public void setPaused(boolean paused) {
         this.paused = paused;
     }
-
+    
+    /**
+     * Getter for the current score
+     * @return the current score
+     */
     public int getScore() {
         return this.score;
 
     }
 
+    /**
+     * Setter for the current score - adds the values of placed in the method to the current value
+     * @param scoreval - the value to be added to the score, can be positive or negative
+     */
     public void updateScore(int scoreval) {
         this.score += scoreval;
+    }
+
+    /**
+     * Getter for the levelManager
+     * @return levelManager
+     */
+    public LevelManager getLevelManager() {
+        return levelManager;
     }
 }
