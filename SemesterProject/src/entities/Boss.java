@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
  *              with this and Enemy.
  */
 public abstract class Boss extends Entity {
+    //test
 
     protected int maxHealth;
     protected int currentHealth;
