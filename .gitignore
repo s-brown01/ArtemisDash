@@ -1,5 +1,6 @@
 /.metadata/
-SemesterProject/bin/
+.project
+.classpath
 bin/
 *.class
 .DS_Store
