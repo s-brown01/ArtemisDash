@@ -142,7 +142,7 @@ public class Playing extends State implements StateMethods {
 
         // if this is paused, don't update all the paused stuff but not the rest
 //        levelManager.update(); 
-        player.update();
+        player.update(xLevelOffset);
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
         projManager.update(levelManager.getCurrentLevel().getLevelData());
         screenScroller();
@@ -206,7 +206,7 @@ public class Playing extends State implements StateMethods {
         hud.draw(g);
         enemyManager.draw(g, xLevelOffset);
         projManager.draw(g, xLevelOffset);
-        player.renderPlayer(g, xLevelOffset);
+        player.renderPlayer(g);
 
     }
 

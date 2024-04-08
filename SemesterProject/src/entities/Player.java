@@ -44,6 +44,10 @@ public class Player extends Entity {
     private float playerSpeed = 1.25f * Game.SCALE;
     private int playerHealth = 3;
     private int playerLives = 3;
+    /** flipX and flipY are for having the player able to flip the sprite left and right */
+    private int flipX = 0, flipW = 1;
+    /** xLevelOffset represents how far the level has scrolled */
+    private int xLevelOffset = 0;
 
     // Hitbox Vars
     private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
@@ -92,8 +96,10 @@ public class Player extends Entity {
 
     /**
      * Handles updates for Position, Animation Tick, and Setting Animations
+     * @param xLevelOffset - how far the screen offset is from scrolling
      */
-    public void update() {
+    public void update(int xLevelOffset) {
+        this.xLevelOffset = xLevelOffset;
         updatePos();
         updateAniTick();
         if (attacking) {
@@ -106,20 +112,22 @@ public class Player extends Entity {
      * Renders the player, along with hitbox
      * 
      * @param g            - Graphics where to draw the player
-     * @param xLevelOffset - how far the screen offset is from scrolling
      */
-    public void renderPlayer(Graphics g, int xLevelOffset) {
+    public void renderPlayer(Graphics g) {
         // Add int yLevelOffset to input vars and to YHitbox
         Graphics2D g2D = (Graphics2D) g;
-        g2D.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset,
-                (int) (hitbox.y - yDrawOffset), width, height, null);
+        g2D.drawImage(animations[player_action][aniIndex], 
+                (int) (hitbox.x - xDrawOffset) - xLevelOffset + flipX,
+                (int) (hitbox.y - yDrawOffset), 
+                width * flipW, height, null);
 
         // drawing the dashed line to show the path of the arrow
         if (drawArrowPath && nextAttack != null) {
             g2D.setColor(Color.CYAN);
             g2D.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f,
                     new float[] { 5.0f, 5.0f }, 0.0f));
-            g2D.drawLine((int) (hitbox.x + SHOT_OFFSET_X) - xLevelOffset, (int) (hitbox.y + SHOT_OFFSET_Y),
+            g2D.drawLine((int) (hitbox.x + SHOT_OFFSET_X) - xLevelOffset, 
+                    (int) (hitbox.y + SHOT_OFFSET_Y),
                     (int) (nextAttack.getX()), (int) (nextAttack.getY()));
         }
     }
@@ -194,13 +202,25 @@ public class Player extends Entity {
         }
 
         float xSpeed = 0;
-
+        // these will keep track of which direction the player is facing
+        // default to 0 and 1 so that the player is facing to the right if nothing is touched
+        flipX = 0;
+        flipW = 1;
+        // if the player is moving left
         if (left) {
+            // the speed is negative, the flipX is the width, and the flipW is reversed
             xSpeed -= playerSpeed;
+            flipX = width;
+            flipW = -1;
         }
+        // if the player is moving right
         if (right) {
+            // the speed is positive, the flipX is the 0 and the flipW is normal
             xSpeed += playerSpeed;
+            flipX = 0;
+            flipW = 1;
         }
+        
 
         // Checks if the player wanted to be in the air
         if (!inAir)
@@ -305,7 +325,7 @@ public class Player extends Entity {
         }
 
         attackChecked = true;
-        final float xDiff = (float) (nextAttack.getX() - (hitbox.x + SHOT_OFFSET_X));
+        final float xDiff = (float) (nextAttack.getX() - (hitbox.x + SHOT_OFFSET_X) - xLevelOffset);
         final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
         final float slope = yDiff / xDiff;
         /*

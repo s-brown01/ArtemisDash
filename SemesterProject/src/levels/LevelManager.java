@@ -93,9 +93,11 @@ public class LevelManager {
     public Level getCurrentLevel() {
         return currentLevel;
     }
-    
+
     /**
-     * Getter for a specific index in the array of levels. They should be mapped to the stage number
+     * Getter for a specific index in the array of levels. They should be mapped to the stage
+     * number
+     * 
      * @param levelIndex - the specific index to get
      * @return if can, the Level at the level index; if it is out of bounds, then return null
      */
@@ -107,9 +109,8 @@ public class LevelManager {
         return levels[levelIndex];
     }
 
-
     /**
-     * Unhide levels based on the current Level. 
+     * Unhide levels based on the current Level.
      */
     public void unhideNextLevels() {
         // depending what the current level is, it should unhide different levels
@@ -138,10 +139,11 @@ public class LevelManager {
 
     /**
      * Set the hidden boolean to false for the specific Level at the index in the parameters
-     * @param index - the index for the Level to set hidden false
+     * 
+     * @param index - the index for the Level to set hidden falsez
      */
     private void unhideLevel(int index) {
         levels[index].setHidden(false);
     }
-    
+
 }
