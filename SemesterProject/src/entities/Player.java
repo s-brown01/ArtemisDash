@@ -26,12 +26,6 @@ import utils.LoadSave;
  *              active player's inputs and outputs.
  */
 public class Player extends Entity {
-    // player_count and playerCountCheck will make sure there is only 1 player
-//    private static int player_count = 0;
-//
-//    private static boolean singletonCheck() {
-//        return player_count < 1;
-//    }
 
     private final Playing playing;
     private BufferedImage[][] animations;
@@ -39,7 +33,7 @@ public class Player extends Entity {
 
     // Player Actions
     private int player_action = IDLE;
-    private boolean moving, attacking, killed, dashing = false;
+    private boolean moving, attacking, killed, dash = false;
     private boolean left, up, right, down, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
     private int playerHealth = 3;
@@ -188,7 +182,7 @@ public class Player extends Entity {
             jump();
         }
 
-        if (dashing) {
+        if (dash) {
             dash();
         }
         // check if holding both left and right or holding neither
@@ -254,13 +248,13 @@ public class Player extends Entity {
      * Handles event where the jump button, Space bar, is pressed
      */
     private void jump() {
-        // Explain Jump Offset
-        final float JUMP_OFFSET = 0.01f;
-        if (jump && jumps <= 1) {
+        // This is the offset to be added to the jump speed to facillitate a double jump
+        final float JUMP_OFFSET = 0.02f;
+        if (jump && jumps < 3) {
             inAir = true;
             airSpeed = jumpSpeed + JUMP_OFFSET;
             if (hitbox.y < 170) {
-                System.out.println("Hit ceiling, too high");
+                System.err.println("Hit ceiling, too high");
             }
         }
 
@@ -274,7 +268,7 @@ public class Player extends Entity {
      * Handles event where the dash button (Shift) is pressed
      */
     private void dash() {
-        if (dashing) {
+        if (dash) {
             while (canMoveHere(hitbox.x, hitbox.y, hitbox.width, hitbox.height, levelData)) {
                 hitbox.x += playerSpeed + 2f;
                 break;
@@ -289,7 +283,7 @@ public class Player extends Entity {
                 inAir = true;
                 airSpeed = 0;
                 gravity = GRAVITY;
-                dashing = false;
+                dash = false;
 
             }
         }
@@ -356,9 +350,7 @@ public class Player extends Entity {
             hitbox.x += xSpeed;
         } else {
             hitbox.x = getXPosWall(hitbox, xSpeed);
-            if (player_action == DASH) {
-
-            }
+            
         }
 
     }
@@ -369,6 +361,7 @@ public class Player extends Entity {
     private void setAnimation() {
 
         int startAni = player_action;
+//        float startingY = hitbox.y;
 
         if (moving) {
             player_action = RUNNING;
@@ -380,6 +373,12 @@ public class Player extends Entity {
             player_action = DRAW;
         }
 
+//        if (jump) {
+//            if () {
+//                player_action = JUMPSTART;
+//            }
+//        }
+            
         if (jump && inAir) {// If spacebar is held and you're in the air, hold the jumping animation
             player_action = JUMPSTART;
         }
@@ -391,7 +390,7 @@ public class Player extends Entity {
         if (killed) {
             player_action = DIE;
         }
-        if (dashing) {
+        if (dash) {
             player_action = DASH;
         }
 
@@ -422,6 +421,8 @@ public class Player extends Entity {
         right = false;
         up = false;
         down = false;
+        jump = false;
+        dash = false;
     }
 
     /**
@@ -525,7 +526,7 @@ public class Player extends Entity {
     public void setAttack(boolean attack) {
         attacking = attack;
     }
-
+    
     /**
      * Setter for jump
      * 
@@ -547,6 +548,21 @@ public class Player extends Entity {
     public boolean getInAir() {
         return inAir;
     }
+    
+    /**
+     * Increases the amount of jumps by 1
+     */
+    public void incJumpCount() {
+        this.jumps++;
+    }
+    
+    public boolean isFalling(float currentY) {
+        if(hitbox.y - currentY == 0) {
+            return false;
+        }
+        
+        return true;
+    }
 
     /**
      * Setter for dashing
@@ -556,18 +572,11 @@ public class Player extends Entity {
     public void setDash(boolean dashing) {
         // If already dashing and you press the button again,
         // stop dashing
-        if (this.dashing == true && dashing == true) {
-            this.dashing = false;
+        if (this.dash == true && dashing == true) {
+            this.dash = false;
         } else {
-            this.dashing = dashing;
+            this.dash = dashing;
         }
-    }
-
-    /**
-     * Increment the jump counter by 1
-     */
-    public void setJumps() {
-        this.jumps++;// Set this to only increment ONCE
     }
 
     /**
@@ -591,7 +600,7 @@ public class Player extends Entity {
     /**
      * Getter for the amount of lives the player has
      * 
-     * @return the currnet amount of lives left
+     * @return the current amount of lives left
      */
     public int getLives() {
         return playerLives;

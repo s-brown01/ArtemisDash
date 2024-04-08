@@ -230,29 +230,6 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Once a key is released, the Player Entity will react in different ways
-     */
-    @Override
-    public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()) {
-        case KeyEvent.VK_A:
-            player.setLeft(false);
-            break;
-        case KeyEvent.VK_D:
-            player.setRight(false);
-            break;
-        case KeyEvent.VK_SPACE:
-            player.setJump(false);
-            player.setJumps();
-            break;
-        case KeyEvent.VK_K:
-            player.kill();
-            break;
-        }
-
-    }
-
-    /**
      * When window focus is lost for whatever reason, this resets the player input, to allow
      * the player to pick up where they were before interruption.
      */
@@ -379,6 +356,7 @@ public class Playing extends State implements StateMethods {
             break;
         case KeyEvent.VK_SPACE:
             player.setJump(true);
+            player.incJumpCount();
             break;
         case KeyEvent.VK_P:
             paused = !paused;
@@ -400,6 +378,28 @@ public class Playing extends State implements StateMethods {
         }
     }
 
+
+    /**
+     * Once a key is released, the Player Entity will react in different ways
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_A:
+            player.setLeft(false);
+            break;
+        case KeyEvent.VK_D:
+            player.setRight(false);
+            break;
+        case KeyEvent.VK_SPACE:
+            player.setJump(false);
+            break;
+        case KeyEvent.VK_K:
+            player.kill();
+            break;
+        }
+    }
+    
     /**
      * Setter for paused boolean (determines if the screen should be paused or not)
      * 

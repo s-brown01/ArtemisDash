@@ -23,6 +23,7 @@ public class Skeleton extends Enemy {
         attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_HITBOX_WIDTH * 3, SKELETON_HITBOX_HEIGHT);
         attackDistance = hitbox.width;
         eyeSight = attackDistance * 5;
+        this.score = 100;
     }
 
     /**

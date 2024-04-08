@@ -19,30 +19,31 @@ import javax.imageio.ImageIO;
  */
 public class LoadSave {
 
-    public static final String FONT = "./res/HudFont.ttf"; // Mercy Christole
-    public static final String HUDBG = "/HUDbg.png";
-    public static final String PLAYER_SPRITES = "/Artemis_Finished.png";
-    public static final String PLAYER_PORTRAIT = "/temp_artemis.png";
-    public static final String SKELETON_SPRITES = "/Skeleton.png";
+    public static final String FONT = "./SemesterProject/res/HudFont.ttf"; // Mercy Christole
+    public static final String HUDBG = "/HUDElements/HUDbg.png";
+    public static final String PLAYER_PORTRAIT = "/HUDElements/temp_artemis.png";
+    
+    public static final String PLAYER_SPRITES = "/EntitySpritesheets/Artemis_Finished.png";
+    public static final String SKELETON_SPRITES = "/EntitySpritesheets/Skeleton.png";
 
     public static final String OVERWORLD_BG = "/overworld1.png";
 
-    public static final String PAUSE_MENU = "/pause_menu.png";
-    public static final String PAUSE_SOUND_BUTTONS = "/pause_sound_buttons.png";
-    public static final String PAUSE_BUTTONS = "/pause_buttons.png";
+    public static final String PAUSE_MENU = "/PauseElements/pause_menu.png";
+    public static final String PAUSE_SOUND_BUTTONS = "/PauseElements/pause_sound_buttons.png";
+    public static final String PAUSE_BUTTONS = "/PauseElements/pause_buttons.png";
 
-    public static final String MENU_BUTTONS = "/button_atlas1.png";
-    public static final String MENU_SCREEN = "/TitleScreen1.png";
+    public static final String MENU_BUTTONS = "/TitleScreenElements/TitleButtons.png";
+    public static final String MENU_SCREEN = "/TitleScreenElements/TitleScreen1.png";
 
-    public static final String WORLD1_SPRITES = "/World1Sprites.png";
-    public static final String WORLD1_BG = "/World1bg.png";
-    public static final String WORLD1_BG_MYST = "/World1bg_myst.png";
-    public static final String WORLD1_BG_ROCKS = "/World1_rocks.png";
-
-    public static final String WORLD2_SPRITES = "/World2Sprites.png";
-    public static final String WORLD3_SPRITES = "/World3Sprites.png";
-
+    public static final String WORLD1_SPRITES = "/World1/World1Sprites.png";
+    public static final String WORLD1_BG = "/World1/World1bg.png";
+    public static final String WORLD1_BG_MYST = "/World1/World1bg_myst.png";
+    public static final String WORLD1_BG_ROCKS = "/World1/World1_rocks.png";
     public static final String LEVEL1_DATA = "/level_one_data_long.png";
+
+    public static final String WORLD2_SPRITES = "/World2/World2Sprites.png";
+    public static final String WORLD3_SPRITES = "/World3/World3Sprites.png";
+
 
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
