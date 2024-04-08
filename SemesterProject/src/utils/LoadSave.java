@@ -20,7 +20,7 @@ import main.Game;
  */
 public class LoadSave {
 
-    public static final String FONT = "./res/HUDElements/HudFont.ttf"; // Mercy Christole
+    public static final String FONT = "./SemesterProject/res/HudFont.ttf"; // Mercy Christole
     public static final String HUDBG = "/HUDElements/HUDbg.png";
     public static final String PLAYER_PORTRAIT = "/HUDElements/temp_artemis.png";
     
