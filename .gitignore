@@ -1,0 +1,7 @@
+/.metadata/
+.classpath
+.gitignore
+.project
+bin/
+*.class
+.DS_Store
