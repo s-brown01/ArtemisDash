@@ -58,4 +58,20 @@ public abstract class Projectile {
         return hitbox;
     }
 
+    /**
+     * This is a helper method to calculate the horizontal speed of a projectile for the
+     * diagonal speed to be consistent with ARROW_SPEED no matter the slope. This was
+     * calculated from using the pythagorean theorem (a^2 +b^2 = c^2). For Projectiles, it is
+     * (xSpeed^2 + ySpeed = slopeSpeed, where ySpeed = xSpeed*slope). From there, it is easy
+     * to solve for xSpeed if you know the slopeSpeed and the slope.
+     * 
+     * @param slopeSpeed - the desired diagonal speed for the projectiles
+     * @param slope      - the slope of the projectile
+     * @return - the horizontal speed for the proctile to have a consistent speed
+     */
+    protected float calculateHorizontalSpeed(float slopeSpeed, float slope) {
+        // xSpeed = square root of (slopeSpeed^2 / (1+slope^2)
+        return (float) Math.sqrt((slopeSpeed * slopeSpeed) / (1 + (slope * slope)));
+    }
+
 }
