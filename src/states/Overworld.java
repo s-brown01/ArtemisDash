@@ -48,7 +48,7 @@ public class Overworld extends State implements StateMethods {
     public Overworld(Game game) {
         super(game);
         background = LoadSave.getSpriteSheet(LoadSave.OVERWORLD_BG);
-     // Font Initialization
+        // Font Initialization
         this.owFont = LoadSave.loadFont(LoadSave.FONT, 35);
         initButtons();
         this.levelManager = game.getPlaying().getLevelManager();
@@ -114,30 +114,30 @@ public class Overworld extends State implements StateMethods {
      */
     @Override
     public void draw(Graphics g) {
-        //Specified positions for titles
+        // Specified positions for titles
         int owTitleXPos = 115;
         int owTitleYPos = 150;
         int owsubTitleXPos = 25;
         int owsubTitleYPos = 250;
         int levelTitleX = 1050;
         int levelTitleY = 100;
-        
+
         // background
         g.drawImage(background, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
 
         // set font and color
         g.setFont(owFont);
         g.setColor(Color.WHITE);
-        
+
         // instructions for user
         g.drawString("OVERWORLD", owTitleXPos, owTitleYPos);
         g.drawString("CLICK A LEVEL TO START", owsubTitleXPos, owsubTitleYPos);
-        
+
         // selected level, make sure its not null
         if (selectedLvl != null)
             drawString(g, selectedLvl.toString(), levelTitleX, levelTitleY);
 
-        //Draws the buttons to the screen
+        // Draws the buttons to the screen
         for (OverworldButton ob : buttonArr) {
             ob.draw(g);
         }
@@ -265,15 +265,15 @@ public class Overworld extends State implements StateMethods {
         changed = true;
         GameStates.state = GameStates.PLAYING;
     }
-    
+
     /**
-     * Draw string is a formatter for the displayed level names in the Overworld,
-     * such that symbols like \n are recognized when drawn to the screen
+     * Draw string is a formatter for the displayed level names in the Overworld, such that
+     * symbols like \n are recognized when drawn to the screen
      * 
-     * @param g - Graphics object to draw to screen
+     * @param g    - Graphics object to draw to screen
      * @param text - The text to be formatted and passed in
-     * @param x - The intended X-Position
-     * @param y - The intended Y-Position
+     * @param x    - The intended X-Position
+     * @param y    - The intended Y-Position
      */
     private void drawString(Graphics g, String text, int x, int y) {
         for (String line : text.split("\n"))

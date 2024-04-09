@@ -90,6 +90,7 @@ public class Player extends Entity {
 
     /**
      * Handles updates for Position, Animation Tick, and Setting Animations
+     * 
      * @param xLevelOffset - how far the screen offset is from scrolling
      */
     public void update(int xLevelOffset) {
@@ -105,23 +106,20 @@ public class Player extends Entity {
     /**
      * Renders the player, along with hitbox
      * 
-     * @param g            - Graphics where to draw the player
+     * @param g - Graphics where to draw the player
      */
     public void renderPlayer(Graphics g) {
         // Add int yLevelOffset to input vars and to YHitbox
         Graphics2D g2D = (Graphics2D) g;
-        g2D.drawImage(animations[player_action][aniIndex], 
-                (int) (hitbox.x - xDrawOffset) - xLevelOffset + flipX,
-                (int) (hitbox.y - yDrawOffset), 
-                width * flipW, height, null);
+        g2D.drawImage(animations[player_action][aniIndex], (int) (hitbox.x - xDrawOffset) - xLevelOffset + flipX,
+                (int) (hitbox.y - yDrawOffset), width * flipW, height, null);
 
         // drawing the dashed line to show the path of the arrow
         if (drawArrowPath && nextAttack != null) {
             g2D.setColor(Color.CYAN);
             g2D.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f,
                     new float[] { 5.0f, 5.0f }, 0.0f));
-            g2D.drawLine((int) (hitbox.x + SHOT_OFFSET_X) - xLevelOffset, 
-                    (int) (hitbox.y + SHOT_OFFSET_Y),
+            g2D.drawLine((int) (hitbox.x + SHOT_OFFSET_X) - xLevelOffset, (int) (hitbox.y + SHOT_OFFSET_Y),
                     (int) (nextAttack.getX()), (int) (nextAttack.getY()));
         }
     }
@@ -214,7 +212,6 @@ public class Player extends Entity {
             flipX = 0;
             flipW = 1;
         }
-        
 
         // Checks if the player wanted to be in the air
         if (!inAir)
@@ -350,7 +347,7 @@ public class Player extends Entity {
             hitbox.x += xSpeed;
         } else {
             hitbox.x = getXPosWall(hitbox, xSpeed);
-            
+
         }
 
     }
@@ -378,7 +375,7 @@ public class Player extends Entity {
 //                player_action = JUMPSTART;
 //            }
 //        }
-            
+
         if (jump && inAir) {// If spacebar is held and you're in the air, hold the jumping animation
             player_action = JUMPSTART;
         }
@@ -526,7 +523,7 @@ public class Player extends Entity {
     public void setAttack(boolean attack) {
         attacking = attack;
     }
-    
+
     /**
      * Setter for jump
      * 
@@ -548,19 +545,19 @@ public class Player extends Entity {
     public boolean getInAir() {
         return inAir;
     }
-    
+
     /**
      * Increases the amount of jumps by 1
      */
     public void incJumpCount() {
         this.jumps++;
     }
-    
+
     public boolean isFalling(float currentY) {
-        if(hitbox.y - currentY == 0) {
+        if (hitbox.y - currentY == 0) {
             return false;
         }
-        
+
         return true;
     }
 

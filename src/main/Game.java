@@ -182,7 +182,7 @@ public class Game implements Runnable {
      * Playing.
      */
     public void windowLost() {
-        // only reset play bools if on the playing 
+        // only reset play bools if on the playing
         if (GameStates.state == GameStates.PLAYING) {
             playing.getPlayer().resetDirBools();
             playing.setPaused(true);

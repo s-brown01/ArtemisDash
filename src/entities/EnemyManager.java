@@ -114,8 +114,7 @@ public class EnemyManager {
             if (s.killed) {
                 playing.updateScore(s.score);
             }
-            
-            
+
         }
 
         // if every enemy is dead/inactive, the level is complete

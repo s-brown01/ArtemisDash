@@ -22,7 +22,7 @@ public class LoadSave {
     public static final String FONT = "res/HUDElements/HudFont.ttf"; // Mercy Christole
     public static final String HUDBG = "/HUDElements/HUDbg.png";
     public static final String PLAYER_PORTRAIT = "/HUDElements/temp_artemis.png";
-    
+
     public static final String PLAYER_SPRITES = "/EntitySpritesheets/Artemis_Finished.png";
     public static final String SKELETON_SPRITES = "/EntitySpritesheets/Skeleton.png";
 
@@ -43,7 +43,6 @@ public class LoadSave {
 
     public static final String WORLD2_SPRITES = "/World2/World2Sprites.png";
     public static final String WORLD3_SPRITES = "/World3/World3Sprites.png";
-
 
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen

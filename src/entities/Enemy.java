@@ -314,11 +314,11 @@ public abstract class Enemy extends Entity {
     public int getCurrentHealth() {
         return currentHealth;
     }
-    
+
     public int getScore() {
         return score;
     }
-    
+
     public boolean getKilled() {
         return killed;
     }

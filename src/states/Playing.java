@@ -45,9 +45,9 @@ public class Playing extends State implements StateMethods {
     private int maxXOffset = maxTileOffset * Game.TILES_SIZE; //
 
     // Y Expansion Vars for longer levels
-    private int yLevelOffset;//Y-Offset being added to and subtracted from to render the level itself
-    private int borderTop = (int)(0.5 * Game.GAME_HEIGHT);//50% of the screen is rendered
-    private int borderBottom = (int)(0.5 * Game.GAME_HEIGHT);//50% of the screen is hidden
+    private int yLevelOffset;// Y-Offset being added to and subtracted from to render the level itself
+    private int borderTop = (int) (0.5 * Game.GAME_HEIGHT);// 50% of the screen is rendered
+    private int borderBottom = (int) (0.5 * Game.GAME_HEIGHT);// 50% of the screen is hidden
     private int levelTilesHigh = LoadSave.getLevelData().length; //
     private int maxYTileOffset = levelTilesHigh - Game.TILES_IN_HEIGHT; //
     private int maxYOffset = maxYTileOffset * Game.TILES_SIZE; //
@@ -170,17 +170,17 @@ public class Playing extends State implements StateMethods {
         }
 
         // Y-Position Vars
-        int playerY = (int)player.getHitbox().y;
+        int playerY = (int) player.getHitbox().y;
         int diffY = playerY - yLevelOffset;
-        if(diffY > borderTop) {
-            yLevelOffset +=diffY - borderTop;
+        if (diffY > borderTop) {
+            yLevelOffset += diffY - borderTop;
         } else if (diffY < borderBottom) {
             yLevelOffset += diffY - borderBottom;
         }
-        
-        if(yLevelOffset > maxYOffset) {
+
+        if (yLevelOffset > maxYOffset) {
             yLevelOffset = maxYOffset;
-        }else if (yLevelOffset < 0) {
+        } else if (yLevelOffset < 0) {
             yLevelOffset = 0;
         }
 
@@ -378,7 +378,6 @@ public class Playing extends State implements StateMethods {
         }
     }
 
-
     /**
      * Once a key is released, the Player Entity will react in different ways
      */
@@ -399,7 +398,7 @@ public class Playing extends State implements StateMethods {
             break;
         }
     }
-    
+
     /**
      * Setter for paused boolean (determines if the screen should be paused or not)
      * 
