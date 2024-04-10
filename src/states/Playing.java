@@ -262,11 +262,11 @@ public class Playing extends State implements StateMethods {
      * @param x     - the x coordinate of the new Arrow
      * @param y     - the y coordinate of the new Arrow
      * @param slope - the slope/path that the arrow will take
-     * @param right  - true if the arrow is moving right, false is left
+     * @param left  - true if the arrow is moving left, false is moving right
      * 
      */
-    public void addPlayerArrow(float x, float y, float slope, boolean right) {
-        projManager.newArrow(x, y, slope, right);
+    public void addPlayerArrow(float x, float y, float slope, boolean left) {
+        projManager.newArrow(x, y, slope, left);
     }
 
     /**

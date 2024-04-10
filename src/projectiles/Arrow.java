@@ -36,19 +36,19 @@ public class Arrow extends Projectile {
      * @param left  - if the Arrow is moving towards the left, this should be true, if right,
      *              false
      */
-    public Arrow(float x, float y, float slope, boolean right) {
+    public Arrow(float x, float y, float slope, boolean left) {
         super(x, y, slope, ARROW);
         // if it is moving left, it should have a positive slope
-        if (right) {
-            this.SPEED = calculateHorizontalSpeed(ARROW_SPEED, slope);
-            this.FLIP_X = 0;
-            this.FLIP_W = 1;
-        }
-        // if the arrow is moving right, it should be the reversed slope
-        else {
+        if (left) {
             this.SPEED = -1 * calculateHorizontalSpeed(ARROW_SPEED, slope);
             this.FLIP_X = hitbox.width;
             this.FLIP_W = -1;
+        }
+        // if the arrow is moving right, it should be the reversed slope
+        else {
+            this.SPEED = calculateHorizontalSpeed(ARROW_SPEED, slope);
+            this.FLIP_X = 0;
+            this.FLIP_W = 1;
         }
     }
 

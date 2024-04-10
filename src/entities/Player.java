@@ -316,13 +316,13 @@ public class Player extends Entity {
         }
 
         attackChecked = true;
-        final float xDiff = (float) (nextAttack.getX() - (hitbox.x + SHOT_OFFSET_X) - xLevelOffset);
+        final float xDiff = (float) ((nextAttack.getX()) - (hitbox.x + SHOT_OFFSET_X - xLevelOffset));
         final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
         final float slope = yDiff / xDiff;
         /*
          * the arrow should spawn at the
          */
-        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope, xDiff > 0);
+        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
 
     }
 

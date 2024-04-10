@@ -156,11 +156,11 @@ public class ProjectileManager {
      * @param x     - the x coordinate of the new Arrow, will be left-bounds of hitbox
      * @param y     - the y coordinate of the new Arrow, will be top-bounds of hitbox
      * @param slope - the slope/path that the arrow will take
-     * @param right  - a boolean determining if the Arrow is moving right (right if left, false
-     *              is left)
+     * @param left  - a boolean determining if the Arrow is moving left (true if left, false
+     *              if right)
      */
-    public void newArrow(float x, float y, float slope, boolean right) {
-        arrowList.add(new Arrow(x, y, slope, right));
+    public void newArrow(float x, float y, float slope, boolean left) {
+        arrowList.add(new Arrow(x, y, slope, left));
     }
 
 }
