@@ -388,11 +388,11 @@ public class Constants {
         public static final int ARROW = 0;
 
         /** the width and height of the ARROW's img */
-        public static final int ARROW_WIDTH_DEFAULT = 0;
-        public static final int ARROW_HEIGHT_DEFAULT = 0;
+        public static final int ARROW_IMG_WIDTH = 12;
+        public static final int ARROW_IMG_HEIGHT = 8;
         /** the width and height adjusted for the game's scale */
-        public static final int ARROW_WIDTH = (int) (ARROW_WIDTH_DEFAULT * Game.SCALE);
-        public static final int ARROW_HEIGHT = (int) (ARROW_HEIGHT_DEFAULT * Game.SCALE);
+        public static final int ARROW_WIDTH = (int) (ARROW_IMG_WIDTH * Game.SCALE);
+        public static final int ARROW_HEIGHT = (int) (ARROW_IMG_HEIGHT * Game.SCALE);
         /** how wide and tall the hitbox will be and the offset's based off the original image */
         public static final int ARROW_HITBOX_WIDTH = (int) (50 * Game.SCALE);
         public static final int ARROW_HITBOX_HEIGHT = (int) (25 * Game.SCALE);

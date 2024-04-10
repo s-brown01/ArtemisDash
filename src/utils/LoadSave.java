@@ -25,6 +25,7 @@ public class LoadSave {
 
     public static final String PLAYER_SPRITES = "/EntitySpritesheets/Artemis_Finished.png";
     public static final String SKELETON_SPRITES = "/EntitySpritesheets/Skeleton.png";
+    public static final String BLUE_PROJECTILE = "/EntitySpritesheets/Blue_Projectiles.png";
 
     public static final String OVERWORLD_BG = "/overworld1.png";
 
@@ -102,6 +103,28 @@ public class LoadSave {
             e.printStackTrace();
         }
         return customFont;
+    }
+    
+    /**
+     * This returns an array of the sprites that will be used for Player's Arrows.
+     * 
+     * @return an array of BufferedImages containing all the sprites
+     */
+    public static BufferedImage[] loadArrowImgs() {
+        final BufferedImage allBlueSprites = getSpriteSheet(BLUE_PROJECTILE);
+//        if (allBlueSprites == null) {
+//            System.exit(0);
+//        }
+        // these are from the sprite sheet, the specifc coordinates of what images to use
+        final int[] arrowImgX = {2, 18, 34, 50, 66};
+        final int arrowImgY = 277;
+        BufferedImage[] arrowSprites = new BufferedImage[arrowImgX.length];
+
+        // get the sprite img at each point above with the Arrow's width and height
+        for (int i = 0; i < arrowImgX.length; i ++) {
+            arrowSprites[i] = allBlueSprites.getSubimage(arrowImgX[i], arrowImgY, Constants.ProjectileConstants.ARROW_IMG_WIDTH, Constants.ProjectileConstants.ARROW_IMG_HEIGHT);
+        }
+        return arrowSprites;
     }
 
 }
