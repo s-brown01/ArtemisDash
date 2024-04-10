@@ -12,7 +12,8 @@ import java.awt.image.BufferedImage;
  * @author Sean-Paul Brown
  * @date 03/15/2024
  * @description: This class will provide the framework for how all Projectiles in game and
- *               the basis for how they should move.
+ *               the basis for how they should move. Made with similar structure to Entity
+ *               abstract class.
  */
 public abstract class Projectile {
     /**
@@ -21,14 +22,16 @@ public abstract class Projectile {
      */
     protected final float slope;
     protected float x, y;
-    protected int width, height;
+//    protected int width, height;
     protected final Rectangle2D.Float hitbox;
-    protected int aniIndex, aniTick;
+    protected int aniIndex = 0, aniTick = 0;
     protected int aniSpeed = utils.Constants.ANISPEED;
     protected BufferedImage[] animations;
 
-    protected boolean active = false;
-    protected float gravity = utils.Constants.GRAVITY;
+    /** active is used to determine if this Projectile should be 'alive' in the Game */
+    protected boolean active = true;
+    /** collision is used to determine if this Projectile is currently colliding with anything */
+    protected boolean colliding = false;
 
     /**
      * This is the constructor of the Projectile. It relies on the ProjectileConstants static
@@ -44,8 +47,6 @@ public abstract class Projectile {
         this.y = y;
         this.slope = slope;
         // get the specific height and width depending on the type given
-//        super(x, y, getProjWidth(projectileType), getProjHeight(projectileType));
-//        hitbox = new Rectangle2D.Float(x, y, ARROW_HITBOX_WIDTH, ARROW_HITBOX_HEIGHT);
         hitbox = new Rectangle2D.Float(this.x, this.y, getProjWidth(projType), getProjHeight(projType));
     }
 
@@ -62,8 +63,7 @@ public abstract class Projectile {
      * This is a helper method to calculate the horizontal speed of a projectile for the
      * diagonal speed to be consistent with ARROW_SPEED no matter the slope. This was
      * calculated from using the pythagorean theorem (a^2 +b^2 = c^2). For Projectiles, it is
-     * (xSpeed^2 + ySpeed = slopeSpeed, where ySpeed = xSpeed*slope). From there, it is easy
-     * to solve for xSpeed if you know the slopeSpeed and the slope.
+     * (xSpeed^2 + ySpeed = slopeSpeed, where ySpeed = xSpeed*slope).
      * 
      * @param slopeSpeed - the desired diagonal speed for the projectiles
      * @param slope      - the slope of the projectile
@@ -72,6 +72,23 @@ public abstract class Projectile {
     protected float calculateHorizontalSpeed(float slopeSpeed, float slope) {
         // xSpeed = square root of (slopeSpeed^2 / (1+slope^2)
         return (float) Math.sqrt((slopeSpeed * slopeSpeed) / (1 + (slope * slope)));
+    }
+
+    /**
+     * Getter for the animation index
+     * 
+     * @return the current animation index
+     */
+    public int getAniIndex() {
+        return aniIndex;
+    }
+    
+    public boolean isActive() {
+        return active;
+    }
+    
+    public boolean isColliding() {
+        return colliding;
     }
 
 }
