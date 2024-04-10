@@ -34,7 +34,7 @@ public class Player extends Entity {
     // Player Actions
     private int player_action = IDLE;
     private boolean moving, attacking, killed, dash = false;
-    private boolean left, up, right, down, jump;
+    private boolean left, right, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
     private int playerHealth = 3;
     private int playerLives = 3;
@@ -355,7 +355,7 @@ public class Player extends Entity {
     /**
      * Updates X-Position of player after hitbox detects collision
      * 
-     * @param xSpeed
+     * @param xSpeed - how fast the player is moving
      */
     private void updateXPos(float xSpeed) {
         if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
@@ -368,7 +368,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Sets the animation based on if player is moving
+     * Sets the animation based on how Player is moving and what state the Player is in
      */
     private void setAnimation() {
 
@@ -431,8 +431,6 @@ public class Player extends Entity {
     public void resetDirBools() {
         left = false;
         right = false;
-        up = false;
-        down = false;
         jump = false;
         dash = false;
     }
@@ -468,24 +466,6 @@ public class Player extends Entity {
     }
 
     /**
-     * Getter for up
-     * 
-     * @return the current value of up
-     */
-    public boolean isUp() {
-        return up;
-    }
-
-    /**
-     * Setter for up
-     * 
-     * @param up - true if the player is moving up. False if not.
-     */
-    public void setUp(boolean up) {
-        this.up = up;
-    }
-
-    /**
      * Getter for right
      * 
      * @return the current value of right
@@ -504,42 +484,6 @@ public class Player extends Entity {
     }
 
     /**
-     * Getter for down
-     * 
-     * @return the current value of down
-     */
-    public boolean isDown() {
-        return down;
-    }
-
-    /**
-     * Setter for down
-     * 
-     * @param down - true if the player is moving down. False if not.
-     */
-    public void setDown(boolean down) {
-        this.down = down;
-    }
-
-    /**
-     * Getter for attacking
-     * 
-     * @return the current value of attacking
-     */
-    public boolean isAttacking() {
-        return attacking;
-    }
-
-    /**
-     * Setter for attacking
-     * 
-     * @param attack - true if the player is attacking. False if not.
-     */
-    public void setAttack(boolean attack) {
-        attacking = attack;
-    }
-
-    /**
      * Setter for jump
      * 
      * @param jump - true if the player is jumping. False if not.
@@ -553,27 +497,10 @@ public class Player extends Entity {
     }
 
     /**
-     * Getter for in air
-     * 
-     * @return the current value of inAir
-     */
-    public boolean getInAir() {
-        return inAir;
-    }
-
-    /**
      * Increases the amount of jumps by 1
      */
     public void incJumpCount() {
         this.jumps++;
-    }
-
-    public boolean isFalling(float currentY) {
-        if (hitbox.y - currentY == 0) {
-            return false;
-        }
-
-        return true;
     }
 
     /**
@@ -601,30 +528,12 @@ public class Player extends Entity {
     }
 
     /**
-     * Setter for the players health
-     * 
-     * @param health - how much health the player should have
-     */
-    public void setHealth(int health) {
-        this.playerHealth = health;
-    }
-
-    /**
      * Getter for the amount of lives the player has
      * 
      * @return the current amount of lives left
      */
     public int getLives() {
         return playerLives;
-    }
-
-    /**
-     * Setter for the amount of lives that the player has
-     * 
-     * @param lives - the amount of lives to be given to the player
-     */
-    public void setLives(int lives) {
-        this.playerLives = lives;
     }
 
     /**
