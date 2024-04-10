@@ -337,7 +337,7 @@ public class Player extends Entity {
         /*
          * the arrow should spawn at the
          */
-        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
+        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X*flipW, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
 
     }
 
