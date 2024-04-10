@@ -1,7 +1,7 @@
 /**
  * 
  */
-package audio;
+package gameaudio;
 
 import java.util.Random;
 

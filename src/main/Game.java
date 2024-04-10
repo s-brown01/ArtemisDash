@@ -2,8 +2,8 @@ package main;
 
 import java.awt.Graphics;
 
-import audio.AudioPlayer;
 import entities.Player;
+import gameaudio.AudioPlayer;
 import states.GameStates;
 import states.Menu;
 import states.Overworld;
