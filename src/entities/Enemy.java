@@ -1,7 +1,6 @@
 package entities;
 
 import main.Game;
-import states.Playing;
 
 import static utils.Constants.Directions.*;
 import static utils.Constants.EnemyConstants.*;
@@ -141,9 +140,9 @@ public abstract class Enemy extends Entity {
      * @param player
      */
     public void checkHit(Player player) {
-        // TODO - one hit should not immediately kill player
-        if (attackbox.intersects(player.getHitbox()))
-            player.kill();
+        if (attackbox.intersects(player.getHitbox())) {
+            player.hurt();
+        }
         attackChecked = true;
     }
 

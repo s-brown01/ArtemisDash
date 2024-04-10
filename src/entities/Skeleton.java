@@ -66,12 +66,16 @@ public class Skeleton extends Enemy {
                 move(lvlData);
                 break;
             case (ATTACK):
+                // change where the attackbox is located
                 updateAttackbox();
-                // check if first update with attack
-                if (aniIndex == 0)
+                // check if first update with attack (i.e. first frame)
+                if (aniIndex == 0) {
                     attackChecked = false;
-                if (!attackChecked && aniIndex == 8)
+                }
+                // 
+                if (!attackChecked && aniIndex == 8) {
                     checkHit(player);
+                }
                 break;
             case (HIT):
                 break;

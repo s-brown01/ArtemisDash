@@ -98,8 +98,9 @@ public class EnemyManager {
         boolean allEnemiesKilled = true;
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it
-            if (!s.isActive())
+            if (!s.isActive()) {
                 continue;
+            }
 
             // if the skeleton is active, all enemies have not been killed.
             // this if statement only sets the allEnemiesKilled boolean once: short circuit

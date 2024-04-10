@@ -155,7 +155,12 @@ public class Constants {
         public static final int DASH = 5;
         public static final int DASHEND = 99;
         public static final int DRAW = 6;
-        public static final int DAMAGE = 999;
+        public static final int DAMAGE = 8;
+        
+        /** 
+         * This is how much health the Player will be starting each level with
+         */
+        public static final int STARTING_HEALTH = 2;
 
         /**
          * Both shot offsets were calculated from the artwork and how far the box is from the top
@@ -401,7 +406,7 @@ public class Constants {
         public static final int ARROW_DRAW_OFFSET_Y = (int) (0 * Game.SCALE);
 
         /** the horizontal speed of the arrow */
-        public static final float ARROW_SPEED = 2.0f;
+        public static final float ARROW_SPEED = 3.5f;
         /** how much damage an entity will take if hit with an ARROW */
         public static final int ARROW_DAMAGE = 1;
 

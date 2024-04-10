@@ -32,10 +32,9 @@ public class Player extends Entity {
 
     // Player Actions
     private int player_action = IDLE;
-    private boolean moving, attacking, killed, dash = false;
+    private boolean moving, attacking, killed, hurting, dash = false;
     private boolean left, right, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
-    private int playerHealth = 3;
     private int playerLives = 3;
     /** flipX and flipY are for having the player able to flip the sprite left and right */
     private int flipX = 0, flipW = 1;
@@ -78,6 +77,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height, Playing playing) {
         super(x, y, width, height);
         this.playing = playing;
+        currentHealth = STARTING_HEALTH;
         // Singleton check
 //        if (!Player.singletonCheck())
 //            throw new IllegalStateException("Only 1 Player can ever be created at a time");
@@ -127,7 +127,6 @@ public class Player extends Entity {
      * Creates an animation library to store every animation from the loaded in sprite sheet
      */
     private void loadAni() {
-
         BufferedImage img = LoadSave.getSpriteSheet(LoadSave.PLAYER_SPRITES);
 
         animations = new BufferedImage[10][20]; // 10 animations; longest animation is 20 frames long
@@ -162,6 +161,7 @@ public class Player extends Entity {
                 aniIndex = 0;
                 attacking = false;
                 attackChecked = false;
+                hurting = false;
             }
         }
     }
@@ -399,7 +399,9 @@ public class Player extends Entity {
         if (!jump && inAir) {// If spacebar is not held and in the air, begin the falling animation
             player_action = FALL;
         }
-
+        if (hurting) {
+            player_action = DAMAGE;
+        }
         if (killed) {
             player_action = DIE;
         }
@@ -525,7 +527,7 @@ public class Player extends Entity {
      * @return the current health of the player
      */
     public int getHealth() {
-        return playerHealth;
+        return currentHealth;
     }
 
     /**
@@ -563,5 +565,21 @@ public class Player extends Entity {
      */
     public void setDrawArrowPath(boolean drawArrowPath) {
         this.drawArrowPath = drawArrowPath;
+    }
+    
+    /**
+     * This method will give damage to the player and check if they have died.
+     */
+    public void hurt() {
+        // if you are already taking damage you can't get hit a second time
+        if (hurting) {
+            return;
+        }
+        // take 1 damage
+        currentHealth--;
+        hurting = true;
+        if (currentHealth < 0) {
+            kill();
+        }
     }
 }
