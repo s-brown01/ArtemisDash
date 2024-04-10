@@ -163,4 +163,11 @@ public class ProjectileManager {
         arrowList.add(new Arrow(x, y, slope, left));
     }
 
+    /** 
+     * This method deletes all Projectiles stored in the manager. Should be used when starting/restarting a level. 
+     */
+    public void reset() {
+        this.arrowList.clear();
+    }
+
 }

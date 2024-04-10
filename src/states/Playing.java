@@ -98,6 +98,7 @@ public class Playing extends State implements StateMethods {
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
+        projManager.reset();
         pauseOverlay = new PauseOverlay();
         hud = new HUD(this);
         this.score = 0;
