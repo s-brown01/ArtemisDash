@@ -121,8 +121,9 @@ public class ProjectileManager {
      * ProjectileMnager.
      * 
      * @param e - the specific Enemy to check.
+     * @return ture if the enemy was hit by an arrow, false if the enemy wasn't.
      */
-    public void checkEnemyHit(Enemy e) {
+    public boolean checkEnemyHit(Enemy e) {
         // check every Arrow on the screen
         // Create an iterator to safely iterate over the arrowList
         final Iterator<Arrow> arrowIter = arrowList.iterator();
@@ -133,12 +134,14 @@ public class ProjectileManager {
             if (e.getHitbox().intersects(a.getHitbox())) {
                 // if it does intersect, hurt them
                 e.hurt(ARROW_DAMAGE);
+                
                 // the arrow breaks on contact with enemy and should be removed from screen
                 arrowList.remove(a);
                 // return because the arrow can only hit 1 enemy at a time
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     /**

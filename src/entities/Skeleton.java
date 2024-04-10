@@ -37,16 +37,18 @@ public class Skeleton extends Enemy {
     }
 
     /**
-     * 
-     * @param lvlData
-     * @param player
+     * This is a helper function to update the behavior of the Skeleton based on it's booleans.
+     * @param lvlData - the current Level's data as a 2D array
+     * @param player  - the Player
      */
     private void updateBehavior(int[][] lvlData, Player player) {
-        if (firstUpdate)
+        if (firstUpdate) {
             firstUpdateCheck(lvlData);
-
-        if (inAir)
+        }
+        
+        if (inAir) {
             updateInAir(lvlData);
+        }
         else {
             switch (state) {
             case (IDLE):
