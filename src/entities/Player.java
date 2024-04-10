@@ -202,15 +202,14 @@ public class Player extends Entity {
         if (left) {
             // the speed is negative, the flipX is the width, and the flipW is reversed
             xSpeed -= playerSpeed;
-            flipX = width;
-            flipW = -1;
+            faceLeft();
         }
         // if the player is moving right
         if (right) {
             // the speed is positive, the flipX is the 0 and the flipW is normal
             xSpeed += playerSpeed;
-            flipX = 0;
-            flipW = 1;
+            faceRight();
+
         }
 
         // Checks if the player wanted to be in the air
@@ -239,6 +238,22 @@ public class Player extends Entity {
             updateXPos(xSpeed);
         }
         moving = true;
+    }
+    
+    /**
+     * This is a helper function to "flip" the sprite so that it is facing towards the right side of the screen.
+     */
+    private void faceRight() {
+        flipX = 0;
+        flipW = 1;        
+    }
+
+    /**
+     * This is a helper function to "flip" the sprite so that it is facing towards the left side of the screen.
+     */
+    private void faceLeft() {
+        flipX = width;
+        flipW = -1;
     }
 
     /**
@@ -613,12 +628,19 @@ public class Player extends Entity {
     }
 
     /**
-     * Setter for the nextAttack Point
+     * Setter for the nextAttack Point and will switch where the player is facing based on where the mouse is
      * 
      * @param p the Point where the next attack will be located
      */
     public void setNextAttack(Point p) {
         nextAttack = p;
+        // checking that if the next attack's x-coordinate if less than the where the player's, then the player should face towards the left
+        if (nextAttack.getX() < (hitbox.x - xLevelOffset)) {
+            faceLeft();
+        } else {
+            // if it is the same of greater than the player's x-coordinate, then face right
+            faceRight();
+        }
     }
 
     /**
