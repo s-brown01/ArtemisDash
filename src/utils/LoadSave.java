@@ -94,10 +94,13 @@ public class LoadSave {
         try {
             // Load the font file
             File fontFile = new File(path);
+            // if the file cannot be read, handle it here
             if (!fontFile.canRead()) {
-                System.err.println("Font file not accessible.");
-                return null;
+                System.err.println("WARNING: Font file not accessible.");
+                // a default Font in case the file can't be read
+                return new Font("Lucida Handwriting", Font.BOLD, 20);
             }
+            // otherwise, load in the Font
             customFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(size);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
