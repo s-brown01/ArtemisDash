@@ -7,11 +7,10 @@ import main.Game;
 import utils.LoadSave;
 
 /**
- * Level Manager
+ * This class will handle things such as importing level sprites, drawing the level to the
+ * screen, and keep track of the current level played
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * @description This class will handle things such as importing level sprites, drawing the
- *              level to the screen, and keep track of the current level played
  */
 public class LevelManager {
     private BufferedImage[] levelSprite;

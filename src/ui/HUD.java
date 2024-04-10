@@ -11,12 +11,10 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * HUD Class
+ * The HUD or Heads Up Display will always be visible during gameplay to inform the player
+ * of their score, their current health, and their lives remaining
  * 
  * @author johnbotonakis
- * @description The HUD or Heads Up Display will always be visible during gameplay to
- *              inform the player of their score, their current health, and their lives
- *              remaining
  */
 public class HUD {
     private BufferedImage portrait, hudbg, hearts, charge;

@@ -17,13 +17,11 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * ProjectileManager.java
+ * This class will be a {@link src.projectiles.Projectile} manager/factory for the Playing
+ * GameState. This allows all of the moving/collision logic to be stored outside of the
+ * Playing state
  * 
  * @author Sean-Paul Brown
- * @date Mar 28, 2024
- * @description This class will be a projectile manager/factory for the Playing GameState.
- *              This allows all of the moving/collision logic to be stored outside of the
- *              Playing state
  */
 public class ProjectileManager {
     private final Playing playing;
@@ -163,8 +161,9 @@ public class ProjectileManager {
         arrowList.add(new Arrow(x, y, slope, left));
     }
 
-    /** 
-     * This method deletes all Projectiles stored in the manager. Should be used when starting/restarting a level. 
+    /**
+     * This method deletes all Projectiles stored in the manager. Should be used when
+     * starting/restarting a level.
      */
     public void reset() {
         this.arrowList.clear();

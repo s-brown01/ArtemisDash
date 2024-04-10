@@ -18,13 +18,11 @@ import ui.OverworldButton;
 import utils.LoadSave;
 
 /**
- * Overworld Class
+ * This is a child class of State that implements the StateMethods interface. This
+ * represents the overworld of the game. This screen will allow the player to move a
+ * specific level and show the user's current progress in the game.
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * @description This is a child class of State that implements the StateMethods interface.
- *              This represents the overworld of the game. This screen will allow the
- *              player to move a specific level and show the user's current progress in
- *              the game.
  */
 public class Overworld extends State implements StateMethods {
 

@@ -5,13 +5,10 @@ import static utils.Constants.EnemyConstants.*;
 import java.awt.geom.Rectangle2D;
 
 /**
- * Skeleton.java
+ * Skeleton is a child-class of Enemy. It is a specific instance of Enemy, that will use
+ * the skeleton constants and implement all behaviors/updates here.
  * 
  * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description: Skeleton is a child-class of Enemy. It is a specific instance of Enemy,
- *               that will use the skeleton constants and implement all behaviors/updates
- *               here.
  */
 public class Skeleton extends Enemy {
 

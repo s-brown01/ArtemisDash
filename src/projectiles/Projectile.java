@@ -7,13 +7,10 @@ import java.awt.geom.Rectangle2D.Float;
 import java.awt.image.BufferedImage;
 
 /**
- * Player.java
+ * This class will provide the framework for how all Projectiles in game and the basis for
+ * how they should move. Made with similar structure to Entity abstract class.
  * 
  * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description: This class will provide the framework for how all Projectiles in game and
- *               the basis for how they should move. Made with similar structure to Entity
- *               abstract class.
  */
 public abstract class Projectile {
     /**
@@ -30,7 +27,9 @@ public abstract class Projectile {
 
     /** active is used to determine if this Projectile should be 'alive' in the Game */
     protected boolean active = true;
-    /** collision is used to determine if this Projectile is currently colliding with anything */
+    /**
+     * collision is used to determine if this Projectile is currently colliding with anything
+     */
     protected boolean colliding = false;
 
     /**
@@ -82,11 +81,11 @@ public abstract class Projectile {
     public int getAniIndex() {
         return aniIndex;
     }
-    
+
     public boolean isActive() {
         return active;
     }
-    
+
     public boolean isColliding() {
         return colliding;
     }

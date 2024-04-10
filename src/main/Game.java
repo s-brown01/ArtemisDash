@@ -9,11 +9,10 @@ import states.Overworld;
 import states.Playing;
 
 /**
- * Game.java
+ * This class handle most logic pertaining to the game, including updates, FPS, level
+ * scale, and tile amount on screen.
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * @description This class handle most logic pertaining to the game, including updates,
- *              FPS, level scale, and tile amount on screen.
  */
 public class Game implements Runnable {
     /**

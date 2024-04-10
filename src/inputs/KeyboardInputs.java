@@ -7,11 +7,10 @@ import main.GamePanel;
 import states.GameStates;
 
 /**
- * Keyboard Inputs
+ * This class will convert the key events from the user to actions on the screen, by
+ * passing in each event to the proper game state. *
  * 
  * @author johnbotonakis
- * @description This class will convert the key events from the user to actions on the
- *              screen, by passing in each event to the proper game state.
  */
 public class KeyboardInputs implements KeyListener {
 

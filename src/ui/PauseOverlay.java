@@ -9,11 +9,10 @@ import static utils.LoadSave.*;
 import static utils.Constants.ButtonStates.*;
 
 /**
- * Pause Overlay Class
+ * This class handles the pause overlay when the user hits the pause button during
+ * gameplay
  * 
  * @author johnbotonakis
- * @description This class handles the pause overlay when the user hits the pause button
- *              during gameplay
  */
 public class PauseOverlay {
     private BufferedImage backgroundImage;

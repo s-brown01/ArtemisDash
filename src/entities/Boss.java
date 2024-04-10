@@ -6,14 +6,12 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
- * Boss.java
+ * This will be an abstract class that provides a framework for all bosses in the game.
+ * This class allows the bosses to have similar behaviors, both in code and possibly in
+ * gameplay. It allows the EnemyManager to work well with this and Enemy.
  * 
  * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description This will be an abstract class that provides a framework for all bosses in
- *              the game. This class allows the bosses to have similar behaviors, both in
- *              code and possibly in gameplay. It allows the EnemyManager to work well
- *              with this and Enemy.
+ * 
  */
 public abstract class Boss extends Entity {
     // test

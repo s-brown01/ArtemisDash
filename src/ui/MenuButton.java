@@ -9,10 +9,11 @@ import utils.LoadSave;
 import static utils.Constants.ButtonStates.*;
 
 /**
- * Menu Button Class
+ * This class represents 1 Button on the Menu GameState. A button will be linked to
+ * different GameStates so that the {@link src.main.Game} can change states based on what
+ * button is pushed.
  * 
  * @author johnbotonakis
- * @description
  */
 public class MenuButton {
     private int xpos, ypos, rowIndex, index;

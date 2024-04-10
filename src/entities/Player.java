@@ -19,11 +19,10 @@ import utils.Constants;
 import utils.LoadSave;
 
 /**
- * Player.java Player Class
+ * This player class will hold every variable and funciton relating to the active player's
+ * inputs and outputs.
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * @description This player class will hold every variable and funciton relating to the
- *              active player's inputs and outputs.
  */
 public class Player extends Entity {
 
@@ -239,17 +238,19 @@ public class Player extends Entity {
         }
         moving = true;
     }
-    
+
     /**
-     * This is a helper function to "flip" the sprite so that it is facing towards the right side of the screen.
+     * This is a helper function to "flip" the sprite so that it is facing towards the right
+     * side of the screen.
      */
     private void faceRight() {
         flipX = 0;
-        flipW = 1;        
+        flipW = 1;
     }
 
     /**
-     * This is a helper function to "flip" the sprite so that it is facing towards the left side of the screen.
+     * This is a helper function to "flip" the sprite so that it is facing towards the left
+     * side of the screen.
      */
     private void faceLeft() {
         flipX = width;
@@ -337,7 +338,7 @@ public class Player extends Entity {
         /*
          * the arrow should spawn at the
          */
-        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X*flipW, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
+        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X * flipW, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
 
     }
 
@@ -537,13 +538,15 @@ public class Player extends Entity {
     }
 
     /**
-     * Setter for the nextAttack Point and will switch where the player is facing based on where the mouse is
+     * Setter for the nextAttack Point and will switch where the player is facing based on
+     * where the mouse is
      * 
      * @param p the Point where the next attack will be located
      */
     public void setNextAttack(Point p) {
         nextAttack = p;
-        // checking that if the next attack's x-coordinate if less than the where the player's, then the player should face towards the left
+        // checking that if the next attack's x-coordinate if less than the where the player's,
+        // then the player should face towards the left
         if (nextAttack.getX() < (hitbox.x - xLevelOffset)) {
             faceLeft();
         } else {

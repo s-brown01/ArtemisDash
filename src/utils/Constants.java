@@ -6,21 +6,14 @@ import java.awt.Point;
 import main.Game;
 
 /**
- * CONSTANTS Class
+ * Handles every constant variable that will be used for this game for all classes. <BR>
+ * Certain constants are within static Classes. This is, in part, an effort to organize
+ * and categorize the constants under one descriptive umbrella. (i.e All background
+ * variables will be in the BackgroundStates class)
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * 
- * @description Handles every constant variable that will be used for this game; As of
- *              now, it is mainly used to pilot the animations and direct the game to
- *              where each animation is, on the sprite sheet
  */
 public class Constants {
-
-    /**
-     * Certain constants are within static Classes. This is, in part, an effort to organize
-     * and categorize the constants under one descriptive umbrella. (i.e All button variables
-     * will be in the ButtonStates class)
-     */
 
     /**
      * Background Parallax Assets (i.e. mist, rocks, etc)
@@ -51,13 +44,13 @@ public class Constants {
     }
 
     /**
-     * Entity Vars and Constants
+     * Constants used for all Entities in the game
      */
     public static final float GRAVITY = 0.04f * Game.SCALE;
     public static final int ANISPEED = 18;
 
     /**
-     * Overworld Vars and Constants
+     * All Constants for the Overworld
      */
     public static class OverworldButtonConstants {
         /**
@@ -68,21 +61,29 @@ public class Constants {
         /**
          * This is the colors that are displayed on the Overworld screen for the levels
          */
-        // hidden is for the levels that are hidden and can't be played
+        /**
+         * hidden is for the levels that are hidden and can't be played
+         */
         public static final Color HIDDEN = new Color(105, 97, 101);
         public static final Color HIDDEN_HIGHLIGHT = new Color(50, 50, 50);
 
-        // completed is for the finished levels, played and completed
+        /**
+         * completed is for the finished levels, played and completed
+         */
         public static final Color COMPLETED = new Color(128, 191, 255);
         public static final Color COMPLETED_HIGHLIGHT = new Color(77, 166, 255);
         public static final Color COMPLETED_CLICKED = new Color(67, 155, 255);
 
-        // default is for the levels that are not completed or hidden (unplayed or not 100%'d)
+        /**
+         * default is for the levels that are not completed or hidden (unplayed or not 100%'d)
+         */
         public static final Color DEFAULT = new Color(179, 102, 255);
         public static final Color DEFAULT_HIGHLIGHT = new Color(129, 73, 184);
         public static final Color DEFAULT_CLICKED = new Color(102, 58, 145);
 
-        // this is the color of the outline around each color
+        /**
+         * this is the color of the outline around each color
+         */
         public static final Color OUTLINE = new Color(0, 0, 55);
 
         /**

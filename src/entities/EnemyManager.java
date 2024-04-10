@@ -12,15 +12,12 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * EnemyManager.java
+ * EnemyManager will handle all enemies in each level. This means that instead of Playing
+ * storing and handling every Enemy, they can be dealt with here. This includes checking
+ * for updating, drawing, checking for getting hit, and more. Storing all images here will
+ * be less memory intensive then every single Enemy-object storing their photos.
  * 
  * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description EnemyManager will handle all enemies in each level. This means that
- *              instead of Playing storing and handling every Enemy, they can be dealt
- *              with here. This includes checking for updating, drawing, checking for
- *              getting hit, and more. Storing all images here will be less memory
- *              intensive then every single Enemy-object storing their photos.
  */
 public class EnemyManager {
 
