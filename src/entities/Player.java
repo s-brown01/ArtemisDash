@@ -193,19 +193,16 @@ public class Player extends Entity {
         }
 
         float xSpeed = 0;
-        // these will keep track of which direction the player is facing
-        // default to 0 and 1 so that the player is facing to the right if nothing is touched
-        flipX = 0;
-        flipW = 1;
-        // if the player is moving left
+
+        // if the player is moving left...
         if (left) {
-            // the speed is negative, the flipX is the width, and the flipW is reversed
+            // the speed is negative, then face to the left
             xSpeed -= playerSpeed;
             faceLeft();
         }
-        // if the player is moving right
+        // if the player is moving right...
         if (right) {
-            // the speed is positive, the flipX is the 0 and the flipW is normal
+            // the speed is positive, then face to the right
             xSpeed += playerSpeed;
             faceRight();
 
@@ -322,6 +319,16 @@ public class Player extends Entity {
      * Check if the Players attack. If the attack has already been checked, don't check it
      */
     private void checkAttack() {
+        // this is the horizontal (x) difference between where the next arrow will go and where the Player is
+        final float xDiff = (float) ((nextAttack.getX()) - (hitbox.x + SHOT_OFFSET_X - xLevelOffset));
+
+        // turn the Player to face where the arrow will fire
+        if (xDiff < 0) {
+            faceLeft();
+        } else {
+            faceRight();
+        }
+
         final int attackAniIndex = 5;
         if (attackChecked) {
             return;
@@ -332,11 +339,13 @@ public class Player extends Entity {
         }
 
         attackChecked = true;
-        final float xDiff = (float) ((nextAttack.getX()) - (hitbox.x + SHOT_OFFSET_X - xLevelOffset));
+        // the vertical (y) difference between the next attack and Player
         final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
+        // the path/slope for the arrow to travel
         final float slope = yDiff / xDiff;
+        
         /*
-         * the arrow should spawn at the
+         * the arrow should spawn near the Player, but there will be a slight offset so that the arrow matches up with the bow
          */
         playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X * flipW, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
 
@@ -578,7 +587,7 @@ public class Player extends Entity {
         // take 1 damage
         currentHealth--;
         hurting = true;
-        if (currentHealth < 0) {
+        if (currentHealth <= 0) {
             kill();
         }
     }
