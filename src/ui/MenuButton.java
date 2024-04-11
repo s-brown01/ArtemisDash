@@ -10,7 +10,7 @@ import static utils.Constants.ButtonStates.*;
 
 /**
  * This class represents 1 Button on the Menu GameState. A button will be linked to
- * different GameStates so that the {@link src.main.Game} can change states based on what
+ * different GameStates so that the Game can change states based on what
  * button is pushed.
  * 
  * @author johnbotonakis

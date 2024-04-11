@@ -17,9 +17,7 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * This class will be a {@link src.projectiles.Projectile} manager/factory for the Playing
- * GameState. This allows all of the moving/collision logic to be stored outside of the
- * Playing state
+ * This class will be a manager/factory for the Playing GameState. This allows all of the moving/collision logic to be stored outside of the zPlaying state
  * 
  * @author Sean-Paul Brown
  */

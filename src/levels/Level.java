@@ -105,11 +105,4 @@ public class Level {
         return skeletonList;
     }
 
-    /**
-     * @return
-     */
-    public int[] getNextLevels() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

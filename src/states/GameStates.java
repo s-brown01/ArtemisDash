@@ -9,6 +9,9 @@ package states;
  */
 public enum GameStates {
 
+    /**
+     * All of the different states that the could have.
+     */
     PLAYING, MENU, OVERWORLD, OPTIONS, QUIT;
 
     // every game should start on the menu

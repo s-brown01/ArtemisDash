@@ -97,6 +97,10 @@ public class Arrow extends Projectile {
                 (int) (hitbox.height), null);
     }
 
+    /**
+     * Getter for the horizontal speed of the Arrow
+     * @return the SPEED of the arrow
+     */
     public float getSpeed() {
         return SPEED;
     }
