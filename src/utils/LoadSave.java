@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  * file names will be stored here. The different functions of this class will be to load
  * in the different types of data.
  * 
- * @author johnbotonakis
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class LoadSave {
     /**

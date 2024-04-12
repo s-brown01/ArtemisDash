@@ -1,4 +1,3 @@
-
 package ui;
 
 import java.awt.Color;
@@ -14,18 +13,34 @@ import utils.LoadSave;
  * The HUD or Heads Up Display will always be visible during gameplay to inform the player
  * of their score, their current health, and their lives remaining
  * 
- * @author johnbotonakis
+ * @author John Botonakis
  */
 public class HUD {
     private BufferedImage portrait, hudbg, hearts, charge;
+    /**
+     * 
+     */
     private final int xPos = 100;
+    /**
+     * 
+     */
     private final int yPos = 15;
+    /**
+     * 
+     */
     private final int width = 80;
+    /**
+     * 
+     */
     private final int height = 80;
     private Playing playing;
     private int playerHealth, playerScore, playerLives;
     private Font hudFont;
 
+    /**
+     * Constructor class to instantiate the elements that make up the HUD
+     * @param playing - Playing Game state
+     */
     public HUD(Playing playing) {
         this.playing = playing;
         this.playerScore = playing.getScore();
@@ -53,7 +68,7 @@ public class HUD {
     public void updateHUD() {
         // Check to ensure that Playing is active.
         // Letting it run once without it active will simply return nothing,
-        // while running it while active, will have the intended behavior
+        // running it while active will have the intended behavior
         if (this.playing == null) {
             return;
         } else {
@@ -63,6 +78,10 @@ public class HUD {
 
     }
 
+    /**
+     * Draws every HUD element to the screen starting from left most element to right most element
+     * @param g
+     */
     public void draw(Graphics g) {
         // Score Positioning Vars
         int scoreXPos = xPos - 50;
@@ -110,11 +129,17 @@ public class HUD {
     public void updateScore() {
         this.playerScore = playing.getScore();
     }
-
+    
+    /**
+     * Function to keep the HUD element tied to lives up to date
+     */
     public void updateLives() {
         this.playerLives = playing.getPlayer().getLives();
     }
 
+    /**
+     * Function to keep the HUD element tied to the dash up to date 
+     */
     public void updateCharge() {
 
     }

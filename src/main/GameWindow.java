@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 /**
  * This class will act as the frame holding the painting
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  */
 //DOUBLE BUFFERING HERE NOWHERE ELSE!
 public class GameWindow extends JFrame {

@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Graphics;
 
-import entities.Player;
 import states.GameStates;
 import states.Menu;
 import states.Overworld;
@@ -12,7 +11,7 @@ import states.Playing;
  * This class handle most logic pertaining to the game, including updates, FPS, level
  * scale, and tile amount on screen.
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Game implements Runnable {
     /**

@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 /**
  * Defines every method that a state should have when instantiated new
  * 
- * @author johnbotonakis
+ * @author John Botonakis and Sean-Paul Brown
  */
 public interface StateMethods {
 

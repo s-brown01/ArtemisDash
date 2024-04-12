@@ -10,7 +10,7 @@ import static utils.Constants.ButtonStates.*;
  * This class is responsible for handling the creation of, and interactions with, the
  * Sound button bound within the Pause Overlay
  * 
- * @author johnbotonakis
+ * @author John Botonakis
  */
 public class SoundButton extends PauseButton {
 

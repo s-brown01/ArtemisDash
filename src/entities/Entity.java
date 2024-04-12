@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
  * Things that can move on either axis, attack, and have some degree of "intelligence"
  * start their classes from this blueprint. *
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  * 
  */
 public abstract class Entity {

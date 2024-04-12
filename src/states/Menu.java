@@ -14,7 +14,7 @@ import utils.LoadSave;
  * represents the Main Menu of the game, it should be the first screen that the player
  * sees and leads them to the Overworld.
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Menu extends State implements StateMethods {
 

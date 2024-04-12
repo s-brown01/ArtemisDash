@@ -13,7 +13,7 @@ import static utils.Constants.ButtonStates.*;
  * different GameStates so that the Game can change states based on what
  * button is pushed.
  * 
- * @author johnbotonakis
+ * @author John Botonakis
  */
 public class MenuButton {
     private int xpos, ypos, rowIndex, index;

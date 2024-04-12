@@ -20,7 +20,7 @@ public abstract class Projectile {
     protected final float slope;
     protected float x, y;
 //    protected int width, height;
-    protected final Rectangle2D.Float hitbox;
+    protected final Float hitbox;
     protected int aniIndex = 0, aniTick = 0;
     protected int aniSpeed = utils.Constants.ANISPEED;
     protected BufferedImage[] animations;

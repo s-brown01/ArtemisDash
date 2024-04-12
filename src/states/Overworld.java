@@ -22,7 +22,7 @@ import utils.LoadSave;
  * represents the overworld of the game. This screen will allow the player to move a
  * specific level and show the user's current progress in the game.
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Overworld extends State implements StateMethods {
 

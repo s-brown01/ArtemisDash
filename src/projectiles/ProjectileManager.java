@@ -65,7 +65,6 @@ public class ProjectileManager {
      * Checks to see if the Projectile placed into the equation collides with the level or
      * exceeds the bounds
      * 
-     * @param p         - the Projectile to check collision with
      * @param levelData - the current Level represented as a 2D int array
      * 
      * @return true if the arrow collides with anything, false if not.

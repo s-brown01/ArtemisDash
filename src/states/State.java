@@ -9,7 +9,7 @@ import ui.MenuButton;
  * This state class defines how each state should behave when instantiated from this
  * parent class
  * 
- * @author johnbotonakis
+ * @author John Botonakis and Sean-Paul Brown
  */
 public abstract class State {
 

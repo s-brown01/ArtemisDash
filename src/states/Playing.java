@@ -22,7 +22,7 @@ import utils.LoadSave;
  * handles the core game loop of completing levels, it represents how a level will be
  * played by the user.
  * 
- * @author johnbotonakis
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Playing extends State implements StateMethods {
 
