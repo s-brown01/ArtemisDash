@@ -278,24 +278,29 @@ public class Player extends Entity {
      * Handles event where the dash button (Shift) is pressed
      */
     private void dash() {
-        if (dash) {
-            while (canMoveHere(hitbox.x, hitbox.y, hitbox.width, hitbox.height, levelData)) {
-                hitbox.x += playerSpeed + 2f;
-                break;
-            }
-            if (!canMoveHere(hitbox.x, hitbox.y, hitbox.width + 5, hitbox.height, levelData)) {
-                for (int i = 0; i < 5; i++) {// idea is to have a parabola but going backwards? hard to make
-                    hitbox.x -= i * 2;
-                    hitbox.y -= i * i;
+        // if not dashing, return
+        if (!dash) {
+            return;
+        }
+        // if dashing...
+        // check they can move to the next step, then they should move
+        while (canMoveHere(hitbox.x, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+            // multiply by the flip width, so that dashing can go both directions
+            hitbox.x += (playerSpeed + 2f) * flipW;
+            break;
+        }
+        if (!canMoveHere(hitbox.x, hitbox.y, hitbox.width + 5, hitbox.height, levelData)) {
+            for (int i = 0; i < 5; i++) {// idea is to have a parabola but going backwards? hard to make
+                hitbox.x -= i * 2;
+                hitbox.y -= i * i;
 
-                }
-                // if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
-                inAir = true;
-                airSpeed = 0;
-                gravity = GRAVITY;
-                dash = false;
-
             }
+            // if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
+            inAir = true;
+            airSpeed = 0;
+            gravity = GRAVITY;
+            dash = false;
+
         }
     }
 
