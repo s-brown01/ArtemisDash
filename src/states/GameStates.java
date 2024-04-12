@@ -5,14 +5,34 @@ package states;
  * the game where the standard controls can be remapped to different functions depending
  * on the current part that you are in
  * 
- * @author johnbotonakis
+ * @author John Botonakis
  */
 public enum GameStates {
 
     /**
-     * All of the different states that the could have.
+     * Represents the state when the game is actively being played.
      */
-    PLAYING, MENU, OVERWORLD, OPTIONS, QUIT;
+    PLAYING,
+
+    /**
+     * Represents the main menu state of the game.
+     */
+    MENU,
+
+    /**
+     * Represents the overworld state of the game.
+     */
+    OVERWORLD,
+
+    /**
+     * Represents the options/settings state of the game.
+     */
+    OPTIONS,
+
+    /**
+     * Represents the state when the player chooses to quit the game.
+     */
+    QUIT;
 
     /**
      * this is what the current state/screen of the game is. Every game starts on the main menu.
