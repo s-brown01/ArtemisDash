@@ -119,22 +119,4 @@ public class HUD {
 
     }
 
-    // For use later with "cut scenes"
-//    public void delay(String s, long delay, Graphics g) {
-//        for ( int i= 0; i < s.length(); i++) { 
-//              // for loop delays individual String characters
-//
-//            System.out.print(s.charAt(i));
-//            g.setColor(Color.CYAN);
-//            g.setFont(hudFont);
-//            g.drawChars(s.toCharArray(), 0, 10, xPos + 20, yPos * 4);
-//            try {
-//                Thread.sleep(delay);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            } //time is in milliseconds
-//        }
-//        System.out.println(""); // this is the space in between lines
-//    }
-
 }

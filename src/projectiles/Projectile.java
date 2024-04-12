@@ -82,10 +82,18 @@ public abstract class Projectile {
         return aniIndex;
     }
 
+    /**
+     * Getter for the active boolean
+     * @return the current value of active
+     */
     public boolean isActive() {
         return active;
     }
 
+    /**
+     * Getter for the colliding boolean
+     * @return the current value of colliding
+     */
     public boolean isColliding() {
         return colliding;
     }

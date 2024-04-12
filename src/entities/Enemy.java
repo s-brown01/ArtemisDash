@@ -145,6 +145,7 @@ public abstract class Enemy extends Entity {
      * better for memory to have imgs stored there.
      * 
      * USE ENEMY MANAGER DRAW INSTEAD
+     * @param g     - the graphics where to draw the Enemy
      */
     public void draw(Graphics g) {
         // EMPTY FUNCTION

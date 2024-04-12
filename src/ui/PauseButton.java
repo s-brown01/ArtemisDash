@@ -7,7 +7,7 @@ import java.awt.Rectangle;
  * This class is responsible for handling the creation of, and interaction with, buttons
  * bound within the Pause Overlay
  * 
- * @author johnbotonakis
+ * @author johnbotonakis and Sean-Paul Brown
  */
 public class PauseButton {
     protected int x, y, width, height;
@@ -37,47 +37,11 @@ public class PauseButton {
     }
 
     /**
-     * Getters and setters
-     * 
-     * @return
+     * Getter for the bounds of this buttons 
+     * @return the rectangle that contains the hitbox of this button
      */
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public Rectangle getBounds() {
         return bounds;
     }
 
-    public void setBounds(Rectangle bounds) {
-        this.bounds = bounds;
-    }
 }

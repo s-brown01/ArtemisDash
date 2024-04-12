@@ -14,7 +14,9 @@ public enum GameStates {
      */
     PLAYING, MENU, OVERWORLD, OPTIONS, QUIT;
 
-    // every game should start on the menu
+    /**
+     * this is what the current state/screen of the game is. Every game starts on the main menu.
+     */
     public static GameStates state = MENU;
 
 }

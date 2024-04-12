@@ -302,7 +302,7 @@ public class Player extends Entity {
     /**
      * This will start the Player attacking. If this is called then
      * 
-     * @param e
+     * @param e - the information about what the mouse is currently doing
      */
     public void shoot(MouseEvent e) {
         // checking validation

@@ -21,6 +21,10 @@ public class Menu extends State implements StateMethods {
     private MenuButton[] buttons = new MenuButton[3];
     private final BufferedImage backgroundImg;
 
+    /**
+     * The constructor for a main menu
+     * @param game      - the game that will hold this Main Menu
+     */
     public Menu(Game game) {
         super(game);
         backgroundImg = LoadSave.getSpriteSheet(LoadSave.MENU_SCREEN);

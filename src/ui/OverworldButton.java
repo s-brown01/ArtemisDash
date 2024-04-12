@@ -97,7 +97,7 @@ public class OverworldButton {
     /**
      * Get a boolean if the level is hidden or not
      * 
-     * @return hidden
+     * @return hidden the current value of hidden
      */
     public boolean isHidden() {
         return hidden;
@@ -106,7 +106,7 @@ public class OverworldButton {
     /**
      * Get a boolean if the level is completed or not
      * 
-     * @return completed
+     * @return completed the current value of completed
      */
     public boolean isCompleted() {
         return completed;
@@ -115,7 +115,7 @@ public class OverworldButton {
     /**
      * Setter for hidden
      * 
-     * @param hidden
+     * @param hidden - the next value of hidden
      */
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
@@ -124,7 +124,7 @@ public class OverworldButton {
     /**
      * setter for completed
      * 
-     * @param completed
+     * @param completed - the next value of completed
      */
     public void setCompleted(boolean completed) {
         this.completed = completed;
@@ -142,7 +142,7 @@ public class OverworldButton {
     /**
      * setter for mouseOver
      * 
-     * @param mouseOver
+     * @param mouseOver  - the new value of mouseOver
      */
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
@@ -151,7 +151,7 @@ public class OverworldButton {
     /**
      * setter for mousePressed
      * 
-     * @param mousePressed
+     * @param mousePressed  - the new value of mouseOver
      */
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
@@ -170,7 +170,7 @@ public class OverworldButton {
     /**
      * getter for mousePressed
      * 
-     * @return mousePressed
+     * @return mousePressed  - the current value of mousePressed
      */
     public boolean isMousePressed() {
         return mousePressed;
@@ -179,7 +179,7 @@ public class OverworldButton {
     /**
      * getter for mouseOver
      * 
-     * @return mouseOver
+     * @return mouseOver - the current value of mouseOver
      */
     public boolean isMouseOver() {
         return mouseOver;
@@ -188,7 +188,7 @@ public class OverworldButton {
     /**
      * getter for the stageNumber
      * 
-     * @return stage number
+     * @return stage number - the stage number associated with this button
      */
     public int getStageNumber() {
         return stageNumber;

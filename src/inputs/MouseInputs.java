@@ -17,8 +17,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
     private GamePanel gamePanel;
 
     /**
-     * 
-     * @param gamePanel
+     * This is the constructor for a MouseInputs class
+     * @param gamePanel - the gamePanel that will be receiving the mouse inputs
      */
     public MouseInputs(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

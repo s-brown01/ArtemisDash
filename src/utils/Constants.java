@@ -431,9 +431,6 @@ public class Constants {
      * Boss Animation States and Constants
      */
     public static class BossConstants {
-        /**
-         * 
-         */
         public static final int BOSS1 = 0;
         public static final int BOSS2 = 1;
         public static final int BOSS3 = 2;
