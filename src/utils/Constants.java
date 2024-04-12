@@ -11,7 +11,7 @@ import main.Game;
  * and categorize the constants under one descriptive umbrella. (i.e All background
  * variables will be in the BackgroundStates class)
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Constants {
 
