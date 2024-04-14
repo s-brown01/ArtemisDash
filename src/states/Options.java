@@ -6,26 +6,19 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import main.Game;
-import ui.MenuButton;
+import ui.OptionsButtons;
 import utils.LoadSave;
 
 /**
- * This is a child class of State that implements the StateMethods interface. This
- * represents the Main Menu of the game, it should be the first screen that the player
- * sees and leads them to the Overworld.
- * 
- * @author John Botonakis and Sean-Paul Brown
+ * Options State class gives functionality to the Options button on the Main Menu
+ * @author John Botonakis
  */
-public class Menu extends State implements StateMethods {
-
-    private MenuButton[] buttons = new MenuButton[3];
+public class Options extends State implements StateMethods {
+    
+    private OptionsButtons[] buttons = new OptionsButtons[2];
     private final BufferedImage backgroundImg;
 
-    /**
-     * The constructor for a main menu
-     * @param game      - the game that will hold this Main Menu
-     */
-    public Menu(Game game) {
+    public Options(Game game) {
         super(game);
         backgroundImg = LoadSave.getSpriteSheet(LoadSave.MENU_SCREEN);
         loadButtons();
@@ -36,8 +29,8 @@ public class Menu extends State implements StateMethods {
      */
     @Override
     public void update() {
-        for (MenuButton mb : buttons) {
-            mb.update();
+        for (OptionsButtons ob : buttons) {
+            ob.update();
         }
     }
 
@@ -47,8 +40,8 @@ public class Menu extends State implements StateMethods {
     @Override
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
-        for (MenuButton mb : buttons) {
-            mb.draw(g);
+        for (OptionsButtons ob : buttons) {
+            ob.draw(g);
         }
     }
 
@@ -57,17 +50,16 @@ public class Menu extends State implements StateMethods {
      * game state to the button function
      */
     private void loadButtons() {
-        buttons[0] = new MenuButton(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), 0, GameStates.OVERWORLD);
-        buttons[1] = new MenuButton(Game.GAME_WIDTH / 6, (int) (270 * Game.SCALE), 1, GameStates.OPTIONS);
-        buttons[2] = new MenuButton(Game.GAME_WIDTH / 6, (int) (340 * Game.SCALE), 2, GameStates.QUIT);
+        buttons[0] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), 0, GameStates.OVERWORLD);
+        buttons[1] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (270 * Game.SCALE), 1, GameStates.OPTIONS);
     }
 
     /**
      * Handles resetting button behavior back to originally defined parameters
      */
     private void resetButtons() {
-        for (MenuButton mb : buttons) {
-            mb.resetButtons();
+        for (OptionsButtons ob : buttons) {
+            ob.resetButtons();
         }
     }
 
@@ -87,27 +79,27 @@ public class Menu extends State implements StateMethods {
     }
 
     /**
-     * Sets behavior of mouse buttons when Mouse 1 is pressed
+     * Sets behavior of buttons when Mouse 1 is pressed
      */
     @Override
     public void mousePressed(MouseEvent e) {
-        for (MenuButton mb : buttons) {
-            if (hoverOverButton(e, mb)) {
-                mb.setMousePressed(true);
+        for (OptionsButtons ob : buttons) {
+            if (hoverOverButton(e, ob)) {
+                ob.setMousePressed(true);
                 break;
             }
         }
     }
 
     /**
-     * Sets behavior of mouse buttons when Mouse 1 is released
+     * Sets behavior of buttons when Mouse 1 is released
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        for (MenuButton mb : buttons) {
-            if (hoverOverButton(e, mb)) {
-                if (mb.isMousePressed()) {
-                    mb.applyGamestate();
+        for (OptionsButtons ob : buttons) {
+            if (hoverOverButton(e, ob)) {
+                if (ob.isMousePressed()) {
+                    ob.applyGamestate();
                     break;
                 }
             }
@@ -117,28 +109,21 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        for (MenuButton mb : buttons) {
-            if (hoverOverButton(e, mb)) {
-                mb.setMouseOver(true);
+        for (OptionsButtons ob : buttons) {
+            if (hoverOverButton(e, ob)) {
+                ob.setMouseOver(true);
                 break;
             } else {
 
-                mb.setMouseOver(false);
+                ob.setMouseOver(false);
             }
         }
     }
 
-    /**
-     * GOES UNUSED but needed to implement StateMethods Properly
-     */
     @Override
     public void keyPressed(KeyEvent e) {
-
     }
-    
-    /**
-     * GOES UNUSED but needed to implement StateMethods Properly
-     */
+
     @Override
     public void keyReleased(KeyEvent e) {
     }
