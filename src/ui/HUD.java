@@ -18,19 +18,19 @@ import utils.LoadSave;
 public class HUD {
     private BufferedImage portrait, hudbg, hearts, charge;
     /**
-     * 
+     * X-Position of the Portrait Sprite
      */
     private final int xPos = 100;
     /**
-     * 
+     * Y-Position of the Portrait Sprite
      */
     private final int yPos = 15;
     /**
-     * 
+     * Width of the Portrait Sprite
      */
     private final int width = 80;
     /**
-     * 
+     * Height of the Portrait Sprite
      */
     private final int height = 80;
     private Playing playing;
@@ -54,7 +54,7 @@ public class HUD {
     private void loadAssets() {
         portrait = LoadSave.getSpriteSheet(LoadSave.PLAYER_PORTRAIT);
         hudbg = LoadSave.getSpriteSheet(LoadSave.HUDBG);
-//        hearts = LoadSave.getSpriteSheet(LoadSave.HUDBG); //Get assets for hearts
+        hearts = LoadSave.getSpriteSheet(LoadSave.HEART); //Get assets for hearts
 //        charge = LoadSave.getSpriteSheet(LoadSave.HUDBG); //Get assets for Dash charge
 
         // Font Initialization
@@ -94,10 +94,13 @@ public class HUD {
         int livesYPos = yPos * 3;
         int playerLivesX = xPos * 5;
         int playerLivesY = yPos + 75;
-
+        
+        //Health Positioning Vars
+        
         g.drawImage(hudbg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
         g.drawImage(portrait, Game.GAME_WIDTH - xPos, yPos, width, height, null);
-
+        g.drawImage(hearts, Game.GAME_WIDTH - xPos, yPos, width, height, null);
+        
         g.setColor(Color.BLACK);
         g.setFont(hudFont);
 

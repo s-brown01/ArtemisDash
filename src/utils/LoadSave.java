@@ -32,6 +32,11 @@ public class LoadSave {
     public static final String PLAYER_PORTRAIT = "/HUDElements/temp_artemis.png";
 
     /**
+     * Where the player health HEART representation is located
+     */
+    public static final String HEART = "/HUDElements/heart.png";
+    
+    /**
      * the file containing all of the player's sprites/animations
      */
     public static final String PLAYER_SPRITES = "/EntitySpritesheets/Artemis_Finished.png";
