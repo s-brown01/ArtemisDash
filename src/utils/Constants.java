@@ -6,35 +6,52 @@ import java.awt.Point;
 import main.Game;
 
 /**
- * CONSTANTS Class
+ * Handles every constant variable that will be used for this game for all classes. <BR>
+ * Certain constants are within static Classes. This is, in part, an effort to organize
+ * and categorize the constants under one descriptive umbrella. (i.e All background
+ * variables will be in the BackgroundStates class)
  * 
- * @author johnbotonakis and Sean-Paul Brown
- * 
- * @description Handles every constant variable that will be used for this game; As of
- *              now, it is mainly used to pilot the animations and direct the game to
- *              where each animation is, on the sprite sheet
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Constants {
-
-    /**
-     * Certain constants are within static Classes. This is, in part, an effort to organize
-     * and categorize the constants under one descriptive umbrella. (i.e All button variables
-     * will be in the ButtonStates class)
-     */
 
     /**
      * Background Parallax Assets (i.e. mist, rocks, etc)
      */
     public static class BackgroundStates {
+        /**
+         * How wide the image of the background mist is
+         */
         public static final int BGMYST_WIDTH_DEFAULT = 450;
+        /**
+         * How tall the image of the background mist is
+         */
         public static final int BGMYST_HEIGHT_DEFAULT = 101;
+        /**
+         * How wide the image of the background-rocks is
+         */
         public static final int BGROCKS_WIDTH_DEFAULT = 448;
+        /**
+         * How wide the image of the background-rocks is
+         */
         public static final int BGROCKS_HEIGHT_DEFAULT = 101;
 
+        /**
+         * How wide the mist will be when scaled with the game
+         */
         public static final int BGMYST_WIDTH = (int) (BGMYST_WIDTH_DEFAULT * Game.SCALE);
+        /**
+         * How tall the mist will be when scaled with the game
+         */
         public static final int BGMYST_HEIGHT = (int) (BGMYST_HEIGHT_DEFAULT * Game.SCALE);
 
+        /**
+         * How wide the rocks will be scaled with the game
+         */
         public static final int BGROCKS_WIDTH = (int) (BGROCKS_WIDTH_DEFAULT * Game.SCALE);
+        /**
+         * How tall the rocks will be scaled with the Game
+         */
         public static final int BGROCKS_HEIGHT = (int) (BGROCKS_HEIGHT_DEFAULT * Game.SCALE);
     }
 
@@ -42,52 +59,95 @@ public class Constants {
      * Menu Button / Pause Button Vars and Constants
      */
     public static class ButtonStates {
+        /**
+         * How wide the button images are
+         */
         public static final int B_WIDTH_DEFAULT = 140;
+        /**
+         * How tall the button images are
+         */
         public static final int B_HEIGHT_DEFAULT = 56;
+        /**
+         * How wide the buttons will be scaled with the game
+         */
         public static final int B_WIDTH = (int) (B_WIDTH_DEFAULT * Game.SCALE);
+        /**
+         * How tall the buttons will be scaled with the game
+         */
         public static final int B_HEIGHT = (int) (B_HEIGHT_DEFAULT * Game.SCALE);
+        /**
+         * How big (length and width) each sound button image is
+         */
         public static final int SOUNDSIZE_DEFAULT = 42;
+        /**
+         * How big (length and width) each sound button will be (scaled with the game)
+         */
         public static final int SOUNDSIZE = (int) (SOUNDSIZE_DEFAULT * Game.SCALE);
     }
 
     /**
-     * Entity Vars and Constants
+     * The gravity used for all in-game Entities and Objects
      */
     public static final float GRAVITY = 0.04f * Game.SCALE;
+    /**
+     * The animation speed for all in-game Entities and Objects
+     */
     public static final int ANISPEED = 18;
 
     /**
-     * Overworld Vars and Constants
+     * All Constants for the Overworld
      */
     public static class OverworldButtonConstants {
         /**
-         * This is the size of 1 side of square Overworld Buttons
+         * This is the size of 1 side of the square Overworld Buttons
          */
         public static final int BUTTON_SIZE = (int) (25 / 1.75f * Game.SCALE);
 
         /**
-         * This is the colors that are displayed on the Overworld screen for the levels
+         * The color of buttons representing hidden levels
          */
-        // hidden is for the levels that are hidden and can't be played
         public static final Color HIDDEN = new Color(105, 97, 101);
+        /**
+         * The color of buttons representing hidden levels when the mouse is over it
+         */
         public static final Color HIDDEN_HIGHLIGHT = new Color(50, 50, 50);
 
-        // completed is for the finished levels, played and completed
+        /**
+         * The color of buttons representing completed levels
+         */
         public static final Color COMPLETED = new Color(128, 191, 255);
+        /**
+         * The color of buttons representing completed levels when the mouse is over it
+         */
         public static final Color COMPLETED_HIGHLIGHT = new Color(77, 166, 255);
+        /**
+         * The color of buttons representing completed levels when the mouse is clicked on it
+         */
         public static final Color COMPLETED_CLICKED = new Color(67, 155, 255);
 
-        // default is for the levels that are not completed or hidden (unplayed or not 100%'d)
+        /**
+         * The color of buttons representing not hidden and not completed levels
+         */
         public static final Color DEFAULT = new Color(179, 102, 255);
+        /**
+         * The color of buttons representing not hidden and not completed levels when the mouse is
+         * hovering on it
+         */
         public static final Color DEFAULT_HIGHLIGHT = new Color(129, 73, 184);
+        /**
+         * The color of buttons representing not hidden and not completed levels when the mouse is
+         * clicked on it
+         */
         public static final Color DEFAULT_CLICKED = new Color(102, 58, 145);
 
-        // this is the color of the outline around each color
+        /**
+         * this is the color of the outline around each button
+         */
         public static final Color OUTLINE = new Color(0, 0, 55);
 
         /**
-         * Each point here represents one of the clickable levels on the Overworld menu. The point
-         * does
+         * Each point here represents one of the clickable buttons that map to different levels on
+         * the Overworld menu. The point is the top-right coordinate of each button.
          * 
          * all points were calculated on paper arbitrary points that look good on screen divide by
          * 1.75f because that is the default scale, then multiple by scale
@@ -146,21 +206,56 @@ public class Constants {
      * Player Animation States and Constants
      */
     public static class PlayerStates {
+        /**
+         * The animation index of being IDLE
+         */
         public static final int IDLE = 0;
+        /**
+         * The animation index of RUNNING or moving
+         */
         public static final int RUNNING = 1;
+        /**
+         * The animation index of JUMPING
+         */
         public static final int JUMPSTART = 2;
+        /**
+         * The animation index of FALLING down
+         */
         public static final int FALL = 9;
+        /**
+         * The animation index of being DYING
+         */
         public static final int DIE = 4;
+        /**
+         * The animation index of being DASHING
+         */
         public static final int DASH = 5;
-        public static final int DASHEND = 99;
+        // public static final int DASHEND = 99;
+        /**
+         * The animation index of being DRAWING an arrow or shooting
+         */
         public static final int DRAW = 6;
-        public static final int DAMAGE = 999;
+        /**
+         * The animation index of taking DAMAGE
+         */
+        public static final int DAMAGE = 8;
 
         /**
-         * Both shot offsets were calculated from the artwork and how far the box is from the top
-         * left of the hitbox
+         * This is how much health the Player will be starting each level with
+         */
+        public static final int STARTING_HEALTH = 2;
+
+        /**
+         * This is how far (horizontally) the arrow should be spawning from the Player's hitbox's
+         * x. This was calculated using the player's animations and how far the bow was from the
+         * top left
          */
         public static final int SHOT_OFFSET_X = 34;
+        /**
+         * This is how far (vertically) the arrow should be spawning from the Player's hitbox's y.
+         * This was calculated using the player's animations and how far the bow was from the top
+         * left
+         */
         public static final int SHOT_OFFSET_Y = 11;
 
         /**
@@ -185,8 +280,8 @@ public class Constants {
                 return 20;
             case DASH:
                 return 10;
-            case DASHEND:
-                return 3;
+            // case DASHEND:
+            // return 3;
             case DRAW:
                 return 6;
             case DAMAGE:
@@ -202,22 +297,63 @@ public class Constants {
      * Enemy Animation States and Constants
      */
     public static class EnemyConstants {
+        /**
+         * An arbitrary number that correlated to Enemy Type
+         */
         public static final int SKELETON = 0;
 
-        // ACTIONS
+        /**
+         * the animation index correlating to the IDLE animation
+         */
         public static final int IDLE = 0;
+        /**
+         * the animation index correlating to the RUNNING animation
+         */
         public static final int RUNNING = 1;
+        /**
+         * the animation index correlating to the ATTACK animation
+         */
         public static final int ATTACK = 2;
+        /**
+         * the animation index correlating to the HIT (taking damage) animation
+         */
         public static final int HIT = 3;
+        /**
+         * the animation index correlating to the DEAD animation
+         */
         public static final int DEAD = 4;
 
+        /**
+         * How wide the skeleton's images are
+         */
         public static final int SKELETON_WIDTH_DEFAULT = 55;
+        /**
+         * How tall the skeleton's images are
+         */
         public static final int SKELETON_HEIGHT_DEFAULT = 64;
+        /**
+         * How wide the skeleton's sprites will be in game
+         */
         public static final int SKELETON_WIDTH = (int) (SKELETON_WIDTH_DEFAULT * Game.SCALE);
+        /**
+         * How tall the skeleton's sprites will be in game
+         */
         public static final int SKELETON_HEIGHT = (int) (SKELETON_HEIGHT_DEFAULT * Game.SCALE);
+        /**
+         * How wide the skeleton's hitbox is when drawn on the images
+         */
         public static final int SKELETON_HITBOX_WIDTH = (int) (23 * Game.SCALE);
+        /**
+         * How tall the skeleton's hitbox is when drawn on the images
+         */
         public static final int SKELETON_HITBOX_HEIGHT = (int) (36 * Game.SCALE);
+        /**
+         * How wide the skeleton's hitbox will be in game
+         */
         public static final int SKELETON_DRAW_OFFSET_X = (int) (18 * Game.SCALE);
+        /**
+         * How tall the skeleton's hitbox will be in game
+         */
         public static final int SKELETON_DRAW_OFFSET_Y = (int) (28 * Game.SCALE);
 
         /**
@@ -385,22 +521,44 @@ public class Constants {
      * Projectile Animation States and Constants
      */
     public static class ProjectileConstants {
+        /**
+         * an arbitrary number that correlates to the type of Projectile an Arrow is
+         */
         public static final int ARROW = 0;
 
-        /** the width and height of the ARROW's img */
+        /** the width of the Arrow's image */
         public static final int ARROW_IMG_WIDTH = 12;
+        /**
+         * the height of the arrow's image
+         */
         public static final int ARROW_IMG_HEIGHT = 8;
-        /** the width and height adjusted for the game's scale */
+        /**
+         * the width adjusted for the game's scale
+         */
         public static final int ARROW_WIDTH = (int) (ARROW_IMG_WIDTH * Game.SCALE);
+        /**
+         * the height adjusted for the game's scale
+         */
         public static final int ARROW_HEIGHT = (int) (ARROW_IMG_HEIGHT * Game.SCALE);
-        /** how wide and tall the hitbox will be and the offset's based off the original image */
+        /**
+         * How wide the arrow's hitbox should be
+         */
         public static final int ARROW_HITBOX_WIDTH = (int) (50 * Game.SCALE);
+        /**
+         * how tall the Arrow's hitbox should be
+         */
         public static final int ARROW_HITBOX_HEIGHT = (int) (25 * Game.SCALE);
+        /**
+         * how far to draw the image from the hitbox
+         */
         public static final int ARROW_DRAW_OFFSET_X = (int) (0 * Game.SCALE);
+        /**
+         * how far to draw the image from the hitbox
+         */
         public static final int ARROW_DRAW_OFFSET_Y = (int) (0 * Game.SCALE);
 
         /** the horizontal speed of the arrow */
-        public static final float ARROW_SPEED = 2.0f;
+        public static final float ARROW_SPEED = 3.5f;
         /** how much damage an entity will take if hit with an ARROW */
         public static final int ARROW_DAMAGE = 1;
 

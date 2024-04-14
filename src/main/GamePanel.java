@@ -11,10 +11,9 @@ import static main.Game.GAME_HEIGHT;
 import static main.Game.GAME_WIDTH;
 
 /**
- * Game Panel Class
+ * This class acts as the painting in the frame
  * 
- * @author johnbotonakis and Sean-Paul Brown
- * @description This class acts as the painting in the frame
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class GamePanel extends JPanel {
     private static final long serialVersionUID = 1L;

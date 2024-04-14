@@ -12,15 +12,12 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * EnemyManager.java
+ * EnemyManager will handle all enemies in each level. This means that instead of Playing
+ * storing and handling every Enemy, they can be dealt with here. This includes checking
+ * for updating, drawing, checking for getting hit, and more. Storing all images here will
+ * be less memory intensive then every single Enemy-object storing their photos.
  * 
  * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description EnemyManager will handle all enemies in each level. This means that
- *              instead of Playing storing and handling every Enemy, they can be dealt
- *              with here. This includes checking for updating, drawing, checking for
- *              getting hit, and more. Storing all images here will be less memory
- *              intensive then every single Enemy-object storing their photos.
  */
 public class EnemyManager {
 
@@ -77,8 +74,9 @@ public class EnemyManager {
         // go through every enemy in the Lists
         for (Skeleton s : skeletonList) {
             // if the skeleton isn't active, skip it
-            if (!s.isActive())
+            if (!s.isActive()) {
                 continue;
+            }
             // this draws the current skeleton with their state and animation at the skeleton hitbox
             g.drawImage(skeletonAnis[s.getState()][s.getAniIndex()],
                     (int) (s.getHitbox().x - SKELETON_DRAW_OFFSET_X - xLevelOffset + s.xFlipped()),
@@ -100,26 +98,30 @@ public class EnemyManager {
         // this boolean will keep track of if every enemy has died, defaulted to true
         boolean allEnemiesKilled = true;
         for (Skeleton s : skeletonList) {
-            // if the skeleton isn't active, skip it
-            if (!s.isActive())
-                continue;
+            // update every skeleton in the list
+            s.update(lvlData, player);
 
-            // if the skeleton is active, all enemies have not been killed.
+            // if the skeleton isn't active, skip it
+            if (!s.isActive()) {
+                continue;
+            }
+
+            // if any skeleton is active, all enemies have not been killed.
             // this if statement only sets the allEnemiesKilled boolean once: short circuit
             if (allEnemiesKilled) {
                 allEnemiesKilled = false;
             }
-            s.update(lvlData, player);
-            playing.getProjectileManager().checkEnemyHit(s);
-            if (s.killed) {
+            // if the player has hit a Skeleton then the Skeleton died and the Player should get points
+            if (playing.getProjectileManager().checkEnemyHit(s)) {
                 playing.updateScore(s.score);
             }
-
         }
 
         // if every enemy is dead/inactive, the level is complete
         if (allEnemiesKilled) {
             playing.completeLevel();
         }
+        
+        // this for loop will remove all inactive enemies
     }
 }

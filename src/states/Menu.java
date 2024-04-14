@@ -10,19 +10,21 @@ import ui.MenuButton;
 import utils.LoadSave;
 
 /**
- * Menu Class
+ * This is a child class of State that implements the StateMethods interface. This
+ * represents the Main Menu of the game, it should be the first screen that the player
+ * sees and leads them to the Overworld.
  * 
- * @author johnbotonakis and Sean-Paul Brown
- * @description This is a child class of State that implements the StateMethods interface.
- *              This represents the Main Menu of the game, it should be the first screen
- *              that the player sees and leads them to the Overworld.
- * 
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Menu extends State implements StateMethods {
 
     private MenuButton[] buttons = new MenuButton[3];
     private final BufferedImage backgroundImg;
 
+    /**
+     * The constructor for a main menu
+     * @param game      - the game that will hold this Main Menu
+     */
     public Menu(Game game) {
         super(game);
         backgroundImg = LoadSave.getSpriteSheet(LoadSave.MENU_SCREEN);

@@ -1,7 +1,6 @@
 package entities;
 
 import main.Game;
-import states.Playing;
 
 import static utils.Constants.Directions.*;
 import static utils.Constants.EnemyConstants.*;
@@ -11,39 +10,49 @@ import static utils.HelperMethods.*;
 import java.awt.Graphics;
 
 /**
- * Enemy.java
+ * This is an abstract class that provides the framework for all Enemy objects in the
+ * game. Individual types of enemies should extend this class, but this should never be a
+ * specific enemy. This will help all Enemies have the same behavior and make it easier to
+ * create/implement the EnemyManager.
  * 
  * @author Sean-Paul Brown
- * @date 03/15/2024
- * @description This is an abstract class that provides the framework for all Enemy
- *              objects in the game. Individual types of enemies should extend this class,
- *              but this should never be a specific enemy. This will help all Enemies have
- *              the same behavior and make it easier to create/implement the EnemyManager.
  */
 public abstract class Enemy extends Entity {
 
-    protected boolean patrolling, attacking; //
-    protected boolean active = true; // keeps track of if enemy is "alive" to the program.
-    protected boolean firstUpdate = true;
+    /** Keeps track of if this Enemy is currently attacking the player*/
+    protected boolean attacking; 
+    protected boolean active = true; // keeps track of if enemy is "alive" to the Game.
+    /**
+     * The firstUpdate keeps track of if the enemy has been updated at all. On the first update, the enemy should check if it is in the air. After the first update, the Enemy should never re-enter the air.
+     */
+    protected boolean firstUpdate = true; 
+    /**
+     * The type of Enemy it is, based on the EnemyConstants
+     */
     protected int enemy_type;
+    /**
+     * The vertical (y-axis) tile that the Enemy is on
+     */
     protected int tileY;
+    /**
+     * used to keep track of if a single attack has been checked for collision with the player
+     */
     protected boolean attackChecked;
+    /** 
+     * the movement speed of the enemy
+     */
     protected float walkSpeed = 0.80f;
-    // The offset is 55 when game scale is 1.75, so divide to make it work for all scales
+    /**
+     * The image offset from top side of image to top side of hitbox.
+     * 
+     * The offset is 55 when game scale is 1.75, so divide to make it work for all scales
+     */
     protected float hitboxYOffset = (55 / 1.75f) * Game.SCALE;
     protected int score = 0;
     protected boolean killed = false;
 
-    /*
-     * These are temporary variables to define how far the enemy can see and how fast the
-     * enemy will walk. Both are open to change, just numbers made up by Sean.
-     * 
-     * Also, enemy_speed can be changed back to walk_speed later if we want It was just a way
-     * to show that the enemy_speed will be different than (but maybe related to?) player
-     * speed
-     * 
-     * Attack distance can also change if we want. For now it is just 1 tile.
-     * 
+    /**
+     * the variables that keep track of how the player sees and attacks the palyer
      */
     protected float attackDistance;
     protected float eyeSight;
@@ -97,10 +106,10 @@ public abstract class Enemy extends Entity {
      * This should be used to change the enemy state, instead of assigning it. This will reset
      * the ticks/index
      * 
-     * @param newState
+     * @param newState - the state to be changed too
      */
     protected void startNewState(int newState) {
-        // TODO - add validity check
+        // reset the animation tick and index so it start from the beginning of the animation
         this.state = newState;
         aniIndex = 0;
         aniTick = 0;
@@ -114,13 +123,19 @@ public abstract class Enemy extends Entity {
      * @param damageTaken - the amount of damage taken by this entity
      */
     public void hurt(int damageTaken) {
+        // take the damage from the arrow
         currentHealth -= damageTaken;
+        // if the health is equal to (or less than) 0, the enemy is dead
         if (currentHealth <= 0) {
-            active = false;
             killed = true;
+            startNewState(DEAD);
         }
     }
 
+    /**
+     * Getter for the active boolean
+     * @return the current value of active
+     */
     public boolean isActive() {
         return active;
     }
@@ -130,6 +145,7 @@ public abstract class Enemy extends Entity {
      * better for memory to have imgs stored there.
      * 
      * USE ENEMY MANAGER DRAW INSTEAD
+     * @param g     - the graphics where to draw the Enemy
      */
     public void draw(Graphics g) {
         // EMPTY FUNCTION
@@ -140,28 +156,31 @@ public abstract class Enemy extends Entity {
      * This will check if this enemy's attack box intersects with the players hitbox. If it
      * does, the attack connected and player takes damage.
      * 
-     * @param player
+     * @param player    - the Player entity
      */
     public void checkHit(Player player) {
-        // TODO - one hit should not immediately kill player
-        if (attackbox.intersects(player.getHitbox()))
-            player.kill();
+        // if the attackbox intersects with the Player's hitbox then the attack hit the player
+        if (attackbox.intersects(player.getHitbox())) {
+            player.hurt();
+        }
+        // once the attack is checked, it shouldn't be checked again
         attackChecked = true;
     }
 
     /**
      * Turn the sprite/walking direction
      * 
-     * @param player
+     * @param player    - the Player entity
      */
     protected void turnTowardsPlayer(Player player) {
         // if the player's x is less than enemy's, they must be to the left
-        if (player.getHitbox().x < hitbox.x)
+        if (player.getHitbox().x < hitbox.x) {
             walkDirection = LEFT;
-        else
+        }
+        else {
             // if not left, than right
             walkDirection = RIGHT;
-
+        }
     }
 
     /**
@@ -176,14 +195,17 @@ public abstract class Enemy extends Entity {
         // enemies cannot see different y-values
         final int playerYTile = (int) (player.getHitbox().y / Game.TILES_SIZE);
         // check height/y-tile
-        if (playerYTile != tileY)
+        if (playerYTile != tileY) {
             return false;
+        }
         // check that the player is within their eyesight
-        if (!isPlayerInSightRange(player))
+        if (!isPlayerInSightRange(player)) {
             return false;
+        }
         // check if the line of sight to the player is clear
-        if (!isSightClear(lvlData, hitbox, player.getHitbox(), tileY))
+        if (!isSightClear(lvlData, hitbox, player.getHitbox(), tileY)) {
             return false;
+        }
         // same height & in eyesight & clear l.o.s.
         // enemy can see player
         return true;
@@ -196,7 +218,7 @@ public abstract class Enemy extends Entity {
      * @return true if the player is within the enemy's eyesight
      */
     private boolean isPlayerInSightRange(Player player) {
-        // using absolute value means that we don't care which side player is on
+        // using absolute value since it doesn't matter which side the player is on
         final int distance = (int) (Math.abs(player.hitbox.x - hitbox.x));
         return distance <= eyeSight;
     }
@@ -204,7 +226,7 @@ public abstract class Enemy extends Entity {
     /**
      * Check if the player is within attack range
      * 
-     * @param player
+     * @param player    - the Player entity
      * @return true the player is, either side
      */
     protected boolean isInAttackRange(Player player) {
@@ -216,15 +238,15 @@ public abstract class Enemy extends Entity {
     /**
      * Update how the enemy will behave in the air/landing
      * 
-     * @param lvlData
+     * @param lvlData - the current Level's data as a 2D int array
      */
     protected void updateInAir(int[][] lvlData) {
-        // check if can fall
+        // check if can there is room underneath to walk. If there is, then fall
         if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
             hitbox.y += airSpeed;
             airSpeed += GRAVITY;
         } else {
-            // if can't fall
+            // if there is nothing underneath, land on the tile exactly
             inAir = false;
             hitbox.y = getYPosRoof(hitbox, airSpeed, hitboxYOffset);
             tileY = (int) (hitbox.y / Game.TILES_SIZE);
@@ -237,8 +259,10 @@ public abstract class Enemy extends Entity {
      * enemies can't jump, it checks if they spawned in the air.
      */
     protected void firstUpdateCheck(int[][] lvlData) {
+        // if this happens, the first update has happened
         firstUpdate = false;
-        // check on ground
+        // check if the Enemy is on the floor.
+        // if it isn't, then they are in the air
         if (!floorCheck(hitbox, lvlData))
             inAir = true;
     }
@@ -249,11 +273,13 @@ public abstract class Enemy extends Entity {
      */
     protected void switchWalkDirection() {
         // if left currently, move right
-        if (walkDirection == LEFT)
+        if (walkDirection == LEFT) {
             walkDirection = RIGHT;
-        else
+        }
+        else {
             // if they're not going left, they are now
             walkDirection = LEFT;
+        }
     }
 
     /**
@@ -293,9 +319,11 @@ public abstract class Enemy extends Entity {
      * @return width of the Enemy if walking left, 0 if facing right;
      */
     public int xFlipped() {
+        // if the enemy is walking to the left, then the draw offset should be the width
         if (walkDirection == LEFT) {
             return width;
         } else {
+            // if the enemy is walking to the left, then the x to draw is the same as hitbox
             return 0;
         }
     }
@@ -308,23 +336,20 @@ public abstract class Enemy extends Entity {
      * @return -1 if facing left, 1 if facing right
      */
     public int widthFlipped() {
+        // if the enemy is walking to the left, then the flipWidth is the opposite sign so it is drawn backwards
         if (walkDirection == LEFT) {
             return -1;
         } else {
+            // if the enemy is walking to the right, then the flipWidth is the normal sign
             return 1;
         }
     }
 
-    public int getCurrentHealth() {
-        return currentHealth;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public boolean getKilled() {
+    /**
+     * Getter for the killed boolean
+     * @return the current value of killed
+     */
+    public boolean isKilled() {
         return killed;
     }
-
 }

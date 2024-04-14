@@ -10,12 +10,11 @@ import entities.Skeleton;
 import main.Game;
 
 /**
- * Level Class
+ * Every object instantiated from this class will be a level that the user can play
+ * throughout. This holds onto information such as level data and sprite indices to create
+ * a level.
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * @description Every object instantiated from this class will be a level that the user
- *              can play throughout. This holds onto information such as level data and
- *              sprite indices to create a level.
  */
 public class Level {
 
@@ -106,11 +105,4 @@ public class Level {
         return skeletonList;
     }
 
-    /**
-     * @return
-     */
-    public int[] getNextLevels() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

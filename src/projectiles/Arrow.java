@@ -9,21 +9,18 @@ import java.awt.image.BufferedImage;
 import static utils.Constants.ProjectileConstants.*;
 
 /**
- * Arrow.java
+ * This is a child class of Projectile. It represents an Arrow that the Player will shoot.
+ * It cannot detect collisions but will update it's movement when update is called.
  * 
  * @author Sean-Paul Brown
- * @date Mar 26, 2024
- * @description This is a child class of Projectile. It represents an Arrow that the
- *              Player will shoot. It cannot detect collisions but will update it's
- *              movement when update is called.
  */
 public class Arrow extends Projectile {
-    
-    /** 
+
+    /**
      * There are a total of 5 sprite maximum for all arrow animations
      */
     private static final int MAX_SPRITES = 5;
-    
+
     private final float SPEED;
     private final float FLIP_X;
     private final int FLIP_W;
@@ -96,11 +93,14 @@ public class Arrow extends Projectile {
     public void draw(Graphics g, int xLevelOffset, BufferedImage img) {
         g.setColor(Color.cyan);
         g.drawRect((int) (hitbox.x - xLevelOffset), (int) hitbox.y, (int) (hitbox.width), (int) (hitbox.height));
-        g.drawImage(img, (int)(hitbox.x - xLevelOffset + FLIP_X), 
-                (int) hitbox.y, 
-                (int) (hitbox.width) * FLIP_W, (int) (hitbox.height), null);
+        g.drawImage(img, (int) (hitbox.x - xLevelOffset + FLIP_X), (int) hitbox.y, (int) (hitbox.width) * FLIP_W,
+                (int) (hitbox.height), null);
     }
 
+    /**
+     * Getter for the horizontal speed of the Arrow
+     * @return the SPEED of the arrow
+     */
     public float getSpeed() {
         return SPEED;
     }

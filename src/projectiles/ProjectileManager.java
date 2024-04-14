@@ -17,16 +17,11 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * ProjectileManager.java
+ * This class will be a manager/factory for the Playing GameState. This allows all of the moving/collision logic to be stored outside of the zPlaying state
  * 
  * @author Sean-Paul Brown
- * @date Mar 28, 2024
- * @description This class will be a projectile manager/factory for the Playing GameState.
- *              This allows all of the moving/collision logic to be stored outside of the
- *              Playing state
  */
 public class ProjectileManager {
-    private final Playing playing;
     private final BufferedImage[] arrowImgs;
     private final List<Arrow> arrowList;
 
@@ -36,7 +31,6 @@ public class ProjectileManager {
      * @param playing The playing GameState that is holding this class.
      */
     public ProjectileManager(Playing playing) {
-        this.playing = playing;
         // arrowList can be any type of List, LinkedList was chosen first
         this.arrowList = new LinkedList<>();
         this.arrowImgs = LoadSave.getArrowImgs();
@@ -71,7 +65,6 @@ public class ProjectileManager {
      * Checks to see if the Projectile placed into the equation collides with the level or
      * exceeds the bounds
      * 
-     * @param p         - the Projectile to check collision with
      * @param levelData - the current Level represented as a 2D int array
      * 
      * @return true if the arrow collides with anything, false if not.
@@ -80,27 +73,22 @@ public class ProjectileManager {
         // bounds check
         // checking if going below 0
         if (hitbox.getX() < 0 || hitbox.getY() < 0) {
-            System.out.println("NOT Passed collision check - a");
             return true;
         }
         // checking if the hitbox other end of the hitbox is outside of the game.
         // check the length and height of the level, must convert the array length to tiles.
         if (hitbox.getX() + hitbox.getHeight() > levelData[0].length * Game.TILES_SIZE
                 || hitbox.getY() + hitbox.getHeight() > levelData.length * Game.TILES_SIZE) {
-            System.out.println("NOT Passed collision check - b");
             return true;
         }
 
         // checking that the arrow can move to the tile that is xSpeed away
         if (!canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
-            System.out.println("NOT Passed collision check - c");
-
             return true;
         }
 
         // checking that the arrow can move to the tile that is ySpeed away
         if (!canMoveHere(hitbox.x, hitbox.y + ySpeed, hitbox.width, hitbox.height, levelData)) {
-            System.out.println("NOT Passed collision check - d");
             return true;
         }
 
@@ -130,8 +118,9 @@ public class ProjectileManager {
      * ProjectileMnager.
      * 
      * @param e - the specific Enemy to check.
+     * @return ture if the enemy was hit by an arrow, false if the enemy wasn't.
      */
-    public void checkEnemyHit(Enemy e) {
+    public boolean checkEnemyHit(Enemy e) {
         // check every Arrow on the screen
         // Create an iterator to safely iterate over the arrowList
         final Iterator<Arrow> arrowIter = arrowList.iterator();
@@ -142,12 +131,14 @@ public class ProjectileManager {
             if (e.getHitbox().intersects(a.getHitbox())) {
                 // if it does intersect, hurt them
                 e.hurt(ARROW_DAMAGE);
+                
                 // the arrow breaks on contact with enemy and should be removed from screen
                 arrowList.remove(a);
                 // return because the arrow can only hit 1 enemy at a time
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     /**
@@ -163,8 +154,9 @@ public class ProjectileManager {
         arrowList.add(new Arrow(x, y, slope, left));
     }
 
-    /** 
-     * This method deletes all Projectiles stored in the manager. Should be used when starting/restarting a level. 
+    /**
+     * This method deletes all Projectiles stored in the manager. Should be used when
+     * starting/restarting a level.
      */
     public void reset() {
         this.arrowList.clear();

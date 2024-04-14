@@ -8,18 +8,17 @@ import main.GamePanel;
 import states.GameStates;
 
 /**
- * Mouse Inputs
+ * This class will convert the mouse events from the user to actions on the screen, by
+ * passing in each event to the proper game state.
  * 
- * @author johnbotonakis
- * @description This class will convert the mouse events from the user to actions on the
- *              screen, by passing in each event to the proper game state.
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class MouseInputs implements MouseListener, MouseMotionListener {
     private GamePanel gamePanel;
 
     /**
-     * 
-     * @param gamePanel
+     * This is the constructor for a MouseInputs class
+     * @param gamePanel - the gamePanel that will be receiving the mouse inputs
      */
     public MouseInputs(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

@@ -10,11 +10,10 @@ import states.Overworld;
 import states.Playing;
 
 /**
- * Game.java
+ * This class handle most logic pertaining to the game, including updates, FPS, level
+ * scale, and tile amount on screen.
  * 
- * @author johnbotonakis and Sean-Paul Brown
- * @description This class handle most logic pertaining to the game, including updates,
- *              FPS, level scale, and tile amount on screen.
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Game implements Runnable {
     /**
@@ -39,17 +38,41 @@ public class Game implements Runnable {
     // this is the amount of nanoseconds in 1 second: 1 Billion nanoseconds
     private final double NANOSECONDS_IN_SEC = 1000000000.0;
 
-    /**
+    /*
      * All variables specific to the game: Game Scale and tiles and buffer
      */
-    public final static int TILES_DEFAULT_SIZE = 32; // 32 x 32 tile size
-    public final static float SCALE = 1.75f; // How much should everything get scaled by? KEEP THIS ROUND
-    public final static int TILES_IN_WIDTH = 26; // How many tiles width-wise should be drawn?
-    public final static int TILES_IN_HEIGHT = 14; // How many tiles height-wise should be drawn?
-    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);// 32 *1.75 = 56
-    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH; // 56 * 26 = 1456
-    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT; // 56 * 14 = 448
-    public final static float GAME_BUFFER = (20 / 1.75f * SCALE);
+    /**
+     * How tall and wide each tile is (they should be squares) in pixels
+     */
+    public final static int TILES_DEFAULT_SIZE = 32;
+    /**
+     * This allows the game to be scaled to different screen sizes
+     */
+    public final static float SCALE = 1.75f; 
+    /**
+     * This is the amount of tiles wide the game is, how many tiles should be drawn horizontall
+     */
+    public final static int TILES_IN_WIDTH = 26; 
+    /**
+     * This is the amount of tiles tall the game is, how many tiles should be drawn vertically
+     */
+    public final static int TILES_IN_HEIGHT = 14;
+    /**
+     * The size of the tiles scaled with the Game
+     */
+    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+    /**
+     * The amount of pixels wide that the game is (already scaled)
+     */
+    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+    /**
+     * The amount of pixels tall that the game is (already scaled)
+     */
+    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT; 
+    /**
+     * the amount of pixels there should be that represent "falling" out of the world.
+     */
+    public final static float GAME_BUFFER = 15 * SCALE;
 
     /**
      * The constructor for this class, once this is called then the game will start running.

@@ -5,10 +5,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 /**
- * StateMethods Interface
+ * Defines every method that a state should have when instantiated new
  * 
- * @author johnbotonakis
- * @description Defines every method that a state should have when instantiated new
+ * @author John Botonakis and Sean-Paul Brown
  */
 public interface StateMethods {
 
@@ -25,18 +24,46 @@ public interface StateMethods {
      */
     public void draw(Graphics g);
 
+    /**
+     * When the mouse is clicked and moved this function should be called. 
+     * @param e - what the mouse is doing
+     */
     public void mouseDragged(MouseEvent e);
 
+    /**
+     * When the mouse is pressed down this function should be called. 
+     * @param e - what the mouse is doing
+     */
     public void mousePressed(MouseEvent e);
 
+    /**
+     * When the mouse is pressed down and released this function should be called. 
+     * @param e - what the mouse is doing
+     */
     public void mouseClicked(MouseEvent e);
 
+    /**
+     * When the mouse is released this function should be called. 
+     * @param e - what the mouse is doing
+     */
     public void mouseReleased(MouseEvent e);
 
+    /**
+     * When the mouse is moved (not clicked) this function should be called. 
+     * @param e - what the mouse is doing
+     */
     public void mouseMoved(MouseEvent e);
 
+    /**
+     * When the key is pressed down this function should be called. 
+     * @param e - information about the key that was pressed
+     */
     public void keyPressed(KeyEvent e);
-
+    
+    /**
+     * When the key is released this function should be called. 
+     * @param e - information about the key that was pressed
+     */
     public void keyReleased(KeyEvent e);
 
 }

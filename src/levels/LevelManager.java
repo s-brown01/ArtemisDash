@@ -7,11 +7,10 @@ import main.Game;
 import utils.LoadSave;
 
 /**
- * Level Manager
+ * This class will handle things such as importing level sprites, drawing the level to the
+ * screen, and keep track of the current level played
  * 
  * @author johnbotonakis and Sean-Paul Brown
- * @description This class will handle things such as importing level sprites, drawing the
- *              level to the screen, and keep track of the current level played
  */
 public class LevelManager {
     private BufferedImage[] levelSprite;
@@ -56,8 +55,8 @@ public class LevelManager {
     /**
      * Draws the level to the screen with the provided sprite sheet
      * 
-     * @param g
-     * @param xLevelOffset
+     * @param g             - the Graphics to draw on
+     * @param xLevelOffset  - the current xOffset of the game from screen-scrolling horizontally
      */
     public void draw(Graphics g, int xLevelOffset) {
         for (int j = 0; j < Game.TILES_IN_HEIGHT; j++) {

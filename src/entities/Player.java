@@ -19,11 +19,10 @@ import utils.Constants;
 import utils.LoadSave;
 
 /**
- * Player.java Player Class
+ * This player class will hold every variable and funciton relating to the active player's
+ * inputs and outputs.
  * 
- * @author johnbotonakis and Sean-Paul Brown
- * @description This player class will hold every variable and funciton relating to the
- *              active player's inputs and outputs.
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Player extends Entity {
 
@@ -33,10 +32,9 @@ public class Player extends Entity {
 
     // Player Actions
     private int player_action = IDLE;
-    private boolean moving, attacking, killed, dash = false;
-    private boolean left, up, right, down, jump;
+    private boolean moving, attacking, killed, hurting, dash = false;
+    private boolean left, right, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
-    private int playerHealth = 3;
     private int playerLives = 3;
     /** flipX and flipY are for having the player able to flip the sprite left and right */
     private int flipX = 0, flipW = 1;
@@ -79,6 +77,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height, Playing playing) {
         super(x, y, width, height);
         this.playing = playing;
+        currentHealth = STARTING_HEALTH;
         // Singleton check
 //        if (!Player.singletonCheck())
 //            throw new IllegalStateException("Only 1 Player can ever be created at a time");
@@ -128,7 +127,6 @@ public class Player extends Entity {
      * Creates an animation library to store every animation from the loaded in sprite sheet
      */
     private void loadAni() {
-
         BufferedImage img = LoadSave.getSpriteSheet(LoadSave.PLAYER_SPRITES);
 
         animations = new BufferedImage[10][20]; // 10 animations; longest animation is 20 frames long
@@ -163,6 +161,7 @@ public class Player extends Entity {
                 aniIndex = 0;
                 attacking = false;
                 attackChecked = false;
+                hurting = false;
             }
         }
     }
@@ -194,23 +193,19 @@ public class Player extends Entity {
         }
 
         float xSpeed = 0;
-        // these will keep track of which direction the player is facing
-        // default to 0 and 1 so that the player is facing to the right if nothing is touched
-        flipX = 0;
-        flipW = 1;
-        // if the player is moving left
+
+        // if the player is moving left...
         if (left) {
-            // the speed is negative, the flipX is the width, and the flipW is reversed
+            // the speed is negative, then face to the left
             xSpeed -= playerSpeed;
-            flipX = width;
-            flipW = -1;
+            faceLeft();
         }
-        // if the player is moving right
+        // if the player is moving right...
         if (right) {
-            // the speed is positive, the flipX is the 0 and the flipW is normal
+            // the speed is positive, then face to the right
             xSpeed += playerSpeed;
-            flipX = 0;
-            flipW = 1;
+            faceRight();
+
         }
 
         // Checks if the player wanted to be in the air
@@ -242,6 +237,24 @@ public class Player extends Entity {
     }
 
     /**
+     * This is a helper function to "flip" the sprite so that it is facing towards the right
+     * side of the screen.
+     */
+    private void faceRight() {
+        flipX = 0;
+        flipW = 1;
+    }
+
+    /**
+     * This is a helper function to "flip" the sprite so that it is facing towards the left
+     * side of the screen.
+     */
+    private void faceLeft() {
+        flipX = width;
+        flipW = -1;
+    }
+
+    /**
      * Handles event where the jump button, Space bar, is pressed
      */
     private void jump() {
@@ -265,31 +278,36 @@ public class Player extends Entity {
      * Handles event where the dash button (Shift) is pressed
      */
     private void dash() {
-        if (dash) {
-            while (canMoveHere(hitbox.x, hitbox.y, hitbox.width, hitbox.height, levelData)) {
-                hitbox.x += playerSpeed + 2f;
-                break;
-            }
-            if (!canMoveHere(hitbox.x, hitbox.y, hitbox.width + 5, hitbox.height, levelData)) {
-                for (int i = 0; i < 5; i++) {// idea is to have a parabola but going backwards? hard to make
-                    hitbox.x -= i * 2;
-                    hitbox.y -= i * i;
+        // if not dashing, return
+        if (!dash) {
+            return;
+        }
+        // if dashing...
+        // check they can move to the next step, then they should move
+        while (canMoveHere(hitbox.x, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+            // multiply by the flip width, so that dashing can go both directions
+            hitbox.x += (playerSpeed + 2f) * flipW;
+            break;
+        }
+        if (!canMoveHere(hitbox.x, hitbox.y, hitbox.width + 5, hitbox.height, levelData)) {
+            for (int i = 0; i < 5; i++) {// idea is to have a parabola but going backwards? hard to make
+                hitbox.x -= i * 2;
+                hitbox.y -= i * i;
 
-                }
-                // if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
-                inAir = true;
-                airSpeed = 0;
-                gravity = GRAVITY;
-                dash = false;
-
             }
+            // if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
+            inAir = true;
+            airSpeed = 0;
+            gravity = GRAVITY;
+            dash = false;
+
         }
     }
 
     /**
      * This will start the Player attacking. If this is called then
      * 
-     * @param e
+     * @param e - the information about what the mouse is currently doing
      */
     public void shoot(MouseEvent e) {
         // checking validation
@@ -306,6 +324,16 @@ public class Player extends Entity {
      * Check if the Players attack. If the attack has already been checked, don't check it
      */
     private void checkAttack() {
+        // this is the horizontal (x) difference between where the next arrow will go and where the Player is
+        final float xDiff = (float) ((nextAttack.getX()) - (hitbox.x + SHOT_OFFSET_X - xLevelOffset));
+
+        // turn the Player to face where the arrow will fire
+        if (xDiff < 0) {
+            faceLeft();
+        } else {
+            faceRight();
+        }
+
         final int attackAniIndex = 5;
         if (attackChecked) {
             return;
@@ -316,13 +344,15 @@ public class Player extends Entity {
         }
 
         attackChecked = true;
-        final float xDiff = (float) ((nextAttack.getX()) - (hitbox.x + SHOT_OFFSET_X - xLevelOffset));
+        // the vertical (y) difference between the next attack and Player
         final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
+        // the path/slope for the arrow to travel
         final float slope = yDiff / xDiff;
+        
         /*
-         * the arrow should spawn at the
+         * the arrow should spawn near the Player, but there will be a slight offset so that the arrow matches up with the bow
          */
-        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
+        playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X * flipW, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
 
     }
 
@@ -340,7 +370,7 @@ public class Player extends Entity {
     /**
      * Updates X-Position of player after hitbox detects collision
      * 
-     * @param xSpeed
+     * @param xSpeed - how fast the player is moving
      */
     private void updateXPos(float xSpeed) {
         if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
@@ -353,7 +383,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Sets the animation based on if player is moving
+     * Sets the animation based on how Player is moving and what state the Player is in
      */
     private void setAnimation() {
 
@@ -383,7 +413,9 @@ public class Player extends Entity {
         if (!jump && inAir) {// If spacebar is not held and in the air, begin the falling animation
             player_action = FALL;
         }
-
+        if (hurting) {
+            player_action = DAMAGE;
+        }
         if (killed) {
             player_action = DIE;
         }
@@ -416,8 +448,6 @@ public class Player extends Entity {
     public void resetDirBools() {
         left = false;
         right = false;
-        up = false;
-        down = false;
         jump = false;
         dash = false;
     }
@@ -453,24 +483,6 @@ public class Player extends Entity {
     }
 
     /**
-     * Getter for up
-     * 
-     * @return the current value of up
-     */
-    public boolean isUp() {
-        return up;
-    }
-
-    /**
-     * Setter for up
-     * 
-     * @param up - true if the player is moving up. False if not.
-     */
-    public void setUp(boolean up) {
-        this.up = up;
-    }
-
-    /**
      * Getter for right
      * 
      * @return the current value of right
@@ -489,42 +501,6 @@ public class Player extends Entity {
     }
 
     /**
-     * Getter for down
-     * 
-     * @return the current value of down
-     */
-    public boolean isDown() {
-        return down;
-    }
-
-    /**
-     * Setter for down
-     * 
-     * @param down - true if the player is moving down. False if not.
-     */
-    public void setDown(boolean down) {
-        this.down = down;
-    }
-
-    /**
-     * Getter for attacking
-     * 
-     * @return the current value of attacking
-     */
-    public boolean isAttacking() {
-        return attacking;
-    }
-
-    /**
-     * Setter for attacking
-     * 
-     * @param attack - true if the player is attacking. False if not.
-     */
-    public void setAttack(boolean attack) {
-        attacking = attack;
-    }
-
-    /**
      * Setter for jump
      * 
      * @param jump - true if the player is jumping. False if not.
@@ -538,27 +514,10 @@ public class Player extends Entity {
     }
 
     /**
-     * Getter for in air
-     * 
-     * @return the current value of inAir
-     */
-    public boolean getInAir() {
-        return inAir;
-    }
-
-    /**
      * Increases the amount of jumps by 1
      */
     public void incJumpCount() {
         this.jumps++;
-    }
-
-    public boolean isFalling(float currentY) {
-        if (hitbox.y - currentY == 0) {
-            return false;
-        }
-
-        return true;
     }
 
     /**
@@ -582,16 +541,7 @@ public class Player extends Entity {
      * @return the current health of the player
      */
     public int getHealth() {
-        return playerHealth;
-    }
-
-    /**
-     * Setter for the players health
-     * 
-     * @param health - how much health the player should have
-     */
-    public void setHealth(int health) {
-        this.playerHealth = health;
+        return currentHealth;
     }
 
     /**
@@ -604,21 +554,21 @@ public class Player extends Entity {
     }
 
     /**
-     * Setter for the amount of lives that the player has
-     * 
-     * @param lives - the amount of lives to be given to the player
-     */
-    public void setLives(int lives) {
-        this.playerLives = lives;
-    }
-
-    /**
-     * Setter for the nextAttack Point
+     * Setter for the nextAttack Point and will switch where the player is facing based on
+     * where the mouse is
      * 
      * @param p the Point where the next attack will be located
      */
     public void setNextAttack(Point p) {
         nextAttack = p;
+        // checking that if the next attack's x-coordinate if less than the where the player's,
+        // then the player should face towards the left
+        if (nextAttack.getX() < (hitbox.x - xLevelOffset)) {
+            faceLeft();
+        } else {
+            // if it is the same of greater than the player's x-coordinate, then face right
+            faceRight();
+        }
     }
 
     /**
@@ -629,5 +579,21 @@ public class Player extends Entity {
      */
     public void setDrawArrowPath(boolean drawArrowPath) {
         this.drawArrowPath = drawArrowPath;
+    }
+    
+    /**
+     * This method will give damage to the player and check if they have died.
+     */
+    public void hurt() {
+        // if you are already taking damage you can't get hit a second time
+        if (hurting) {
+            return;
+        }
+        // take 1 damage
+        currentHealth--;
+        hurting = true;
+        if (currentHealth <= 0) {
+            kill();
+        }
     }
 }

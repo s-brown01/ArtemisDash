@@ -1,5 +1,6 @@
 package states;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -17,12 +18,11 @@ import utils.Constants.BackgroundStates;
 import utils.LoadSave;
 
 /**
- * Playing Class
+ * This is a child class of State that implements the StateMethods interface. This class
+ * handles the core game loop of completing levels, it represents how a level will be
+ * played by the user.
  * 
- * @author johnbotonakis
- * @description This is a child class of State that implements the StateMethods interface.
- *              This class handles the core game loop of completing levels, it represents
- *              how a level will be played by the user.
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Playing extends State implements StateMethods {
 
@@ -142,7 +142,6 @@ public class Playing extends State implements StateMethods {
         }
 
         // if this is paused, don't update all the paused stuff but not the rest
-//        levelManager.update(); 
         player.update(xLevelOffset);
         enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
         projManager.update(levelManager.getCurrentLevel().getLevelData());
@@ -202,6 +201,8 @@ public class Playing extends State implements StateMethods {
             // return so it doesn't draw anything else
             return;
         }
+        g.setColor(Color.WHITE);
+        g.drawString(String.valueOf(player.getHealth()), (int)player.getHitbox().x + 15 - xLevelOffset, (int)player.getHitbox().y - 30);
         // if not paused, draw everything beneath this.
         levelManager.draw(g, xLevelOffset);
         hud.draw(g);
@@ -340,7 +341,7 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        // unused
+        // unused using press and release instead
     }
 
     /**
