@@ -96,10 +96,21 @@ public class HUD {
         int playerLivesY = yPos + 75;
         
         //Health Positioning Vars
+        int heartsXpos = xPos + 80;
         
         g.drawImage(hudbg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
         g.drawImage(portrait, Game.GAME_WIDTH - xPos, yPos, width, height, null);
-        g.drawImage(hearts, Game.GAME_WIDTH - xPos, yPos, width, height, null);
+        
+      if (updateHealth() == 2) {
+      // Draw two full hearts
+          g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos, yPos, width, height, null);
+          g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos - 80, yPos, width, height, null);
+          } else if (playerHealth == 1) {
+        // Draw one full heart and one dead heart
+              g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos, yPos, width, height, null);
+            }
+        // Draw two dead hearts
+//                }
         
         g.setColor(Color.BLACK);
         g.setFont(hudFont);
@@ -117,15 +128,9 @@ public class HUD {
      * Function to continuously check that the health is up to date with what the actual value
      * is
      */
-    public void updateHealth() {
-        this.playerHealth = playing.getPlayer().getHealth();
-        if (playerHealth == 2) {
-            // Draw two full hearts
-        } else if (playerHealth == 1) {
-            // Draw one full heart and one dead heart
-        } else {
-            // Draw two dead hearts
-        }
+    public int updateHealth() {
+        playerHealth = playing.getPlayer().getHealth();
+        return playerHealth;
 
     }
 
