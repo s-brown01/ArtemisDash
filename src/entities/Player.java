@@ -101,7 +101,7 @@ public class Player extends Entity {
                 resetAniTick();
                 playing.setPlayerCurrentlyDying(true);
             } else if (aniIndex == getSpriteAmt(DIE) - 1 && aniTick >= aniSpeed - 1) {
-                playing.setKilled(true);
+                playing.setGameOver(true);
             }else {
                 updateAniTick();
             }

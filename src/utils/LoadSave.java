@@ -111,7 +111,7 @@ public class LoadSave {
     /**
      * The assets for the death screen overlay
      */
-    public static final String DEATHSCREEN = "/PauseElements/endButtons.png";
+    public static final String DEATHSCREEN = "/death_screen.png";
 
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen

@@ -136,16 +136,21 @@ public class Playing extends State implements StateMethods {
             // here is where we do anything when the level is completed
             GameStates.state = GameStates.OVERWORLD;
             return;
+        // update pause overlay
         }else if (paused) {
-            // update pause overlay
             pauseOverlay.update();
             return;
-        } else if (levelComplete) {
+        }//update Level Complete Overlay 
+        else if (levelComplete) {
 //          levelCompletedOverlay.update();
-        }else if (playerCurrentlyDying) {
-          player.update(xLevelOffset);
-        }else {
-          // if this is paused, don't update all the paused stuff but not the rest
+        }//update Death Overlay
+        else if (gameOver) {
+            deathOverlay.update();
+        }//If player is dying currently, freeze everything
+        else if (playerCurrentlyDying) {
+            player.update(xLevelOffset);
+        }// if this is paused, don't update all the paused stuff but not the rest
+        else {
           player.update(xLevelOffset);
           enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
           projManager.update(levelManager.getCurrentLevel().getLevelData());
@@ -206,6 +211,7 @@ public class Playing extends State implements StateMethods {
             // return so it doesn't draw anything else
             return;
         }else if (gameOver) {
+            deathOverlay.draw(g);
             deathOverlay.update();
         }
         else {
@@ -309,6 +315,9 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mousePressed(e);
             return;
         }
+        if(gameOver) {
+            deathOverlay.mousePressed(e);
+        }
         // if mouse button 1 is pressed, store that point and draw the arrow path to that point
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setNextAttack(e.getPoint());
@@ -327,6 +336,9 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mouseReleased(e);
             return;
         }
+        if(gameOver) {
+            deathOverlay.mouseReleased(e);
+        }
         // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setDrawArrowPath(false);
@@ -342,6 +354,9 @@ public class Playing extends State implements StateMethods {
     public void mouseMoved(MouseEvent e) {
         if (paused) {
             pauseOverlay.mouseMoved(e);
+        }
+        if(gameOver) {
+            deathOverlay.mouseMoved(e);
         }
 
     }
@@ -422,16 +437,12 @@ public class Playing extends State implements StateMethods {
     }
     
     /**
-     * Setter for killed boolean (determines if the screen should display Death Overlay or not)
+     * Setter for Game Over boolean (determines if the screen should display Death Overlay or not)
      * 
      * @param paused - true if the screen should display Death Overlay, false if not
      */
-    public void setKilled(boolean killed) {
-        if (this.killed = true) {
-            this.killed = killed;
-            gameOver = true;
-            
-        }
+    public void setGameOver(boolean gameOver) {
+            this.gameOver = gameOver;
     }
 
     /**
@@ -441,7 +452,6 @@ public class Playing extends State implements StateMethods {
      */
     public int getScore() {
         return this.score;
-
     }
 
     /**
@@ -468,6 +478,7 @@ public class Playing extends State implements StateMethods {
      */
     public void resetAll() {
         gameOver = false;
+        score = 0;
         paused = false;
         levelComplete = false;
         killed = false;
@@ -483,5 +494,4 @@ public class Playing extends State implements StateMethods {
         this.playerCurrentlyDying = playerDying;
 
     }
-
 }
