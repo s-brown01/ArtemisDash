@@ -190,9 +190,14 @@ public abstract class Enemy extends Entity {
      * 
      * @param lvlData - the data from the level as a 2D int array
      * @param player  - the main Player
-     * @return returns true if there is a clear line of sight to the player and within sight
+     * @return returns true if there is a clear line of sight to the player and within sight. Returns false if there is not a line of sight or the player is dead
      */
     protected boolean canSeePlayer(int[][] lvlData, Player player) {
+        // if the player is dead, cannot see them
+        if (player.isKilled()) {
+            return false;
+        }
+        
         // enemies cannot see different y-values
         final int playerYTile = (int) (player.getHitbox().y / Game.TILES_SIZE);
         // check height/y-tile

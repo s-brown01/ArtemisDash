@@ -94,17 +94,23 @@ public class Player extends Entity {
      */
     public void update(int xLevelOffset) {
         //If the current health is -0 or below,
-        //Force the death animation forward
-        if(currentHealth <=0) {
-            if(player_action != DIE) {
-                player_action = DIE;
-                resetAniTick();
-                playing.setPlayerCurrentlyDying(true);
-            } else if (aniIndex == getSpriteAmt(DIE) - 1 && aniTick >= aniSpeed - 1) {
-                playing.setGameOver(true);
-            }else {
-                updateAniTick();
-            }
+        // Force the death animation forward
+//        if(currentHealth <=0) {
+//            if(player_action != DIE) {
+//                player_action = DIE;
+//                resetAniTick();
+//                playing.setPlayerCurrentlyDying(true);
+//            } else if (aniIndex == getSpriteAmt(DIE) - 1 && aniTick >= aniSpeed - 1) {
+//                playing.setGameOver(true);
+//            }else {
+//                updateAniTick();
+//            }
+//            return;
+//        }
+        
+        if (killed) {
+            updateAniTick();
+            setAnimation();
             return;
         }
         
@@ -177,6 +183,10 @@ public class Player extends Entity {
                 attacking = false;
                 attackChecked = false;
                 hurting = false;
+                // at the very end of the death animation, then the death screen should show
+                if (killed) {
+                    playing.playerDead();
+                }
             }
         }
     }
@@ -436,11 +446,11 @@ public class Player extends Entity {
         if (hurting) {
             player_action = DAMAGE;
         }
-        if (killed) {
-            player_action = DIE;
-        }
         if (dash) {
             player_action = DASH;
+        }
+        if (killed) {
+            player_action = DIE;
         }
 
         if (startAni != player_action) {
@@ -628,5 +638,9 @@ public class Player extends Entity {
     
     public boolean isInAir() {
         return inAir;
+    }
+
+    public boolean isKilled() {
+        return killed;
     }
 }

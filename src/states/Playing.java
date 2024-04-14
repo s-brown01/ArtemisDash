@@ -79,7 +79,6 @@ public class Playing extends State implements StateMethods {
         enemyManager = new EnemyManager(this);
         projManager = new ProjectileManager(this);
         deathOverlay = new DeathOverlay(this);
-
     }
 
     /**
@@ -99,6 +98,7 @@ public class Playing extends State implements StateMethods {
      */
     private void loadCurrentLevel() {
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
+        playerCurrentlyDying = false;
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
@@ -489,5 +489,10 @@ public class Playing extends State implements StateMethods {
     public void setPlayerCurrentlyDying(boolean playerDying) {
         this.playerCurrentlyDying = playerDying;
 
+    }
+
+    public void playerDead() {
+        // TODO Auto-generated method stub
+        
     }
 }

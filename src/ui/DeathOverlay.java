@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static states.GameStates.*;
 import main.Game;
+import states.GameStates;
 import states.Playing;
 import utils.LoadSave;
 import static utils.Constants.EndButtons.*;
@@ -105,10 +105,11 @@ public class DeathOverlay {
         play.setMouseOver(false);
         menu.setMouseOver(false);
 
-        if (isIn(e, menu))
+        if (isIn(e, menu)) {
             menu.setMouseOver(true);
-        else if (isIn(e, play))
+        } else if (isIn(e, play)) {
             play.setMouseOver(true);
+        }
     }
     
     /**
@@ -120,12 +121,14 @@ public class DeathOverlay {
     public void mouseReleased(MouseEvent e) {
         if (isIn(e, menu)) {
             if (menu.isMousePressed()) {
-                state = MENU;
+                GameStates.state = GameStates.MENU;
                 playing.resetAll();
             }
-        } else if (isIn(e, play))
-            if (play.isMousePressed())
+        } else if (isIn(e, play)) {
+            if (play.isMousePressed()) {
                 playing.resetAll();
+            }
+        }
 
         menu.resetBools();
         play.resetBools();
