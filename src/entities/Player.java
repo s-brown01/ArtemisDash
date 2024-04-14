@@ -25,6 +25,11 @@ import utils.LoadSave;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class Player extends Entity {
+    
+    /**
+     * this is the maximum number of jumps that can occur mid-air. Setting this to 2 means that there is a 'double jump' mechanic.
+     */
+    public static final int MAX_JUMPS = 2;
 
     private final Playing playing;
     private BufferedImage[][] animations;
@@ -175,17 +180,20 @@ public class Player extends Entity {
      */
     private void updateAniTick() {
         aniTick++;
+        // check to see if it is time to increase the animation frame
         if (aniTick >= Constants.ANISPEED) {
             aniTick = 0;
             aniIndex++;
+            // check to see if the animation is completed
             if (aniIndex >= getSpriteAmt(player_action)) {
+                // once it is complete, reset all of the variables such at attacking/hurting
                 aniIndex = 0;
                 attacking = false;
                 attackChecked = false;
                 hurting = false;
-                // at the very end of the death animation, then the death screen should show
+                // at the very end of the death animation, let the Playing State know the player died
                 if (killed) {
-                    playing.playerDead();
+                    playing.playerDied();
                 }
             }
         }
@@ -200,10 +208,11 @@ public class Player extends Entity {
      */
     private void updatePos() {
         moving = false;
+        // if the user is jumping, try to jump
         if (jump) {
             jump();
         }
-
+        // if the user is dashing, try to dash
         if (dash) {
             dash();
         }
@@ -245,24 +254,30 @@ public class Player extends Entity {
             }
         }
 
+        // if the Player is in the air...
         if (inAir) {
+            // if the Player has room underneath or above them to move then then fall
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
+                // move down by the airspeed then have the speed increase by the Gravity
                 hitbox.y += airSpeed;
                 airSpeed += gravity;
-                updateXPos(xSpeed);
+                // check to see if the use is having the Player move horizontally too
             } else {
+                // if cannot move vertically, get the y-position at the tile
                 hitbox.y = getYPosRoof(hitbox, airSpeed, hitboxOffset);
-
+                
+                // check to see if it was falling or rising
                 if (airSpeed > 0) {
+                    // if it was falling they are now on the ground so reset actions
                     resetInAir();
                 } else {
+                    // if they were rising set the speed to the collision speed
                     airSpeed = fallCollisionSpeed;
                 }
-                updateXPos(xSpeed);
             }
-        } else {
-            updateXPos(xSpeed);
         }
+        // always update the horizontal (x) position
+        updateXPos(xSpeed);
         moving = true;
     }
 
@@ -290,7 +305,7 @@ public class Player extends Entity {
     private void jump() {
         // This is the offset to be added to the jump speed to facillitate a double jump
         final float JUMP_OFFSET = 0.02f;
-        if (jump && jumps < 3) {
+        if (jump && jumps <= MAX_JUMPS) {
             inAir = true;
             airSpeed = jumpSpeed + JUMP_OFFSET;
             if (hitbox.y < 170) {
@@ -429,12 +444,6 @@ public class Player extends Entity {
         if (attacking) {
             player_action = DRAW;
         }
-
-//        if (jump) {
-//            if () {
-//                player_action = JUMPSTART;
-//            }
-//        }
 
         if (jump && inAir) {// If spacebar is held and you're in the air, hold the jumping animation
             player_action = JUMPSTART;

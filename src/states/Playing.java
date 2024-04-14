@@ -28,7 +28,7 @@ import utils.LoadSave;
 public class Playing extends State implements StateMethods {
 
     // will keep track if the pause menu/ death overlay  should be up or not
-    private boolean paused,levelComplete,gameOver,playerCurrentlyDying = false;
+    private boolean paused, levelComplete, gameOver;
     private Player player;
     private HUD hud;
     private PauseOverlay pauseOverlay;
@@ -98,7 +98,6 @@ public class Playing extends State implements StateMethods {
      */
     private void loadCurrentLevel() {
         player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
-        playerCurrentlyDying = false;
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
@@ -144,9 +143,6 @@ public class Playing extends State implements StateMethods {
         } else if (gameOver) {
             deathOverlay.update();
             // If player is dying currently, freeze everything
-        } else if (playerCurrentlyDying) {
-            player.update(xLevelOffset);
-            // if there is nothing paused, then update the playing
         } else {
             player.update(xLevelOffset);
             enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
@@ -483,16 +479,9 @@ public class Playing extends State implements StateMethods {
     }
     
     /**
-     * Let's the playing state know the Player entity is currently dying
-     * @param playerDying - If the Player entity is killed, this is set to True, False otherwise.
+     * Let's the playing state know the Player Entity died.
      */
-    public void setPlayerCurrentlyDying(boolean playerDying) {
-        this.playerCurrentlyDying = playerDying;
-
-    }
-
-    public void playerDead() {
-        // TODO Auto-generated method stub
-        
+    public void playerDied() {
+        gameOver = true;
     }
 }
