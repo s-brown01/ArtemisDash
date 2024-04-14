@@ -21,7 +21,8 @@ public abstract class Enemy extends Entity {
 
     /** Keeps track of if this Enemy is currently attacking the player*/
     protected boolean attacking; 
-    protected boolean active = true; // keeps track of if enemy is "alive" to the Game.
+    /** keeps track of if enemy is "alive" to the Game. */
+    protected boolean active = true;
     /**
      * The firstUpdate keeps track of if the enemy has been updated at all. On the first update, the enemy should check if it is in the air. After the first update, the Enemy should never re-enter the air.
      */
@@ -118,7 +119,7 @@ public abstract class Enemy extends Entity {
 
     /**
      * This function will subtract what ever damage is inputed into this method from the
-     * entity total health. If the enemy reaches 0 health, it will deactivate and die.
+     * entity total health. If the enemy reaches 0 health, it will die (change killed to true).
      * 
      * @param damageTaken - the amount of damage taken by this entity
      */
@@ -351,5 +352,21 @@ public abstract class Enemy extends Entity {
      */
     public boolean isKilled() {
         return killed;
+    }
+    
+    /**
+     * Getter for the inAir boolean
+     * @return the current value of inAir
+     */
+    public boolean isInAir() {
+        return inAir;
+    }
+    
+    public int getWalkDirection() {
+        return walkDirection;
+    }
+    
+    public float getWalkSpeed() {
+        return walkSpeed;
     }
 }

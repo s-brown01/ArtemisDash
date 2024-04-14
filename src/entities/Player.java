@@ -183,9 +183,11 @@ public class Player extends Entity {
             dash();
         }
         // check if holding both left and right or holding neither
-        if (!inAir)
-            if ((!left && !right) || (right && left))
+        if (!inAir) {
+            if ((!left && !right) || (right && left))  {
                 return;
+            }
+        }
 
         // checking that the player isn't too far on the bottom of the screen
         if (hitbox.y + hitbox.height >= Game.GAME_HEIGHT - Game.GAME_BUFFER) {
@@ -209,12 +211,14 @@ public class Player extends Entity {
         }
 
         // Checks if the player wanted to be in the air
-        if (!inAir)
+        if (!inAir) {
             // And if he is not supposed to be, and there is no gravity Player is now considered in
             // the air. (i.e walking off a ledge)
             //
-            if (!floorCheck(hitbox, levelData))
+            if (!floorCheck(hitbox, levelData)) {
                 inAir = true;
+            }
+        }
 
         if (inAir) {
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
@@ -224,10 +228,11 @@ public class Player extends Entity {
             } else {
                 hitbox.y = getYPosRoof(hitbox, airSpeed, hitboxOffset);
 
-                if (airSpeed > 0)
+                if (airSpeed > 0) {
                     resetInAir();
-                else
+                } else {
                     airSpeed = fallCollisionSpeed;
+                }
                 updateXPos(xSpeed);
             }
         } else {
@@ -595,5 +600,9 @@ public class Player extends Entity {
         if (currentHealth <= 0) {
             kill();
         }
+    }
+    
+    public boolean isInAir() {
+        return inAir;
     }
 }
