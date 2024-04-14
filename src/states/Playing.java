@@ -28,7 +28,7 @@ import utils.LoadSave;
 public class Playing extends State implements StateMethods {
 
     // will keep track if the pause menu/ death overlay  should be up or not
-    private boolean paused,levelComplete,killed,gameOver,playerCurrentlyDying = false;
+    private boolean paused,levelComplete,gameOver,playerCurrentlyDying = false;
     private Player player;
     private HUD hud;
     private PauseOverlay pauseOverlay;
@@ -136,26 +136,23 @@ public class Playing extends State implements StateMethods {
             // here is where we do anything when the level is completed
             GameStates.state = GameStates.OVERWORLD;
             return;
-        // update pause overlay
+            // update pause overlay
         }else if (paused) {
             pauseOverlay.update();
             return;
-        }//update Level Complete Overlay 
-        else if (levelComplete) {
-//          levelCompletedOverlay.update();
-        }//update Death Overlay
-        else if (gameOver) {
+            // update Level Complete Overlay 
+        } else if (gameOver) {
             deathOverlay.update();
-        }//If player is dying currently, freeze everything
-        else if (playerCurrentlyDying) {
+            // If player is dying currently, freeze everything
+        } else if (playerCurrentlyDying) {
             player.update(xLevelOffset);
-        }// if this is paused, don't update all the paused stuff but not the rest
-        else {
-          player.update(xLevelOffset);
-          enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
-          projManager.update(levelManager.getCurrentLevel().getLevelData());
-          screenScroller();
-          hud.updateHUD();
+            // if there is nothing paused, then update the playing
+        } else {
+            player.update(xLevelOffset);
+            enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
+            projManager.update(levelManager.getCurrentLevel().getLevelData());
+            screenScroller();
+            hud.updateHUD();
       }
     }
 
@@ -481,7 +478,6 @@ public class Playing extends State implements StateMethods {
         score = 0;
         paused = false;
         levelComplete = false;
-        killed = false;
         player.resetDirBools();
         enemyManager.resetAllEnemies();
     }
