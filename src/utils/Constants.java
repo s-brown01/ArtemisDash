@@ -11,7 +11,7 @@ import main.Game;
  * and categorize the constants under one descriptive umbrella. (i.e All background
  * variables will be in the BackgroundStates class)
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class Constants {
 
@@ -191,6 +191,14 @@ public class Constants {
                 LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
 
     }
+    
+    /**
+     * End Screen buttons (Both for level completed and Death screen)
+     */
+    public static class EndButtons {
+        public static final int ENDBUTTON = 56;
+        public static final int ENDBUTTON_SIZE = (int) (ENDBUTTON * Game.SCALE);
+    }
 
     /**
      * Direction Variables
@@ -280,8 +288,6 @@ public class Constants {
                 return 20;
             case DASH:
                 return 10;
-            // case DASHEND:
-            // return 3;
             case DRAW:
                 return 6;
             case DAMAGE:

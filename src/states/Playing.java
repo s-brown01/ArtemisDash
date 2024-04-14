@@ -12,6 +12,7 @@ import entities.Player;
 import levels.LevelManager;
 import main.Game;
 import projectiles.ProjectileManager;
+import ui.DeathOverlay;
 import ui.HUD;
 import ui.PauseOverlay;
 import utils.Constants.BackgroundStates;
@@ -26,14 +27,15 @@ import utils.LoadSave;
  */
 public class Playing extends State implements StateMethods {
 
-    // will keep track if the pause menu should be up or not
-    private boolean paused = false, levelComplete = false;
+    // will keep track if the pause menu/ death overlay  should be up or not
+    private boolean paused,levelComplete,killed,gameOver,playerCurrentlyDying = false;
     private Player player;
     private HUD hud;
     private PauseOverlay pauseOverlay;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
     private ProjectileManager projManager;
+    private DeathOverlay deathOverlay;
     private int score;
 
     // Level Expansion vars
@@ -76,6 +78,7 @@ public class Playing extends State implements StateMethods {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
         projManager = new ProjectileManager(this);
+        deathOverlay = new DeathOverlay(this);
 
     }
 
@@ -133,20 +136,27 @@ public class Playing extends State implements StateMethods {
             // here is where we do anything when the level is completed
             GameStates.state = GameStates.OVERWORLD;
             return;
-        }
-
-        if (paused) {
-            // update pause overlay here
+        // update pause overlay
+        }else if (paused) {
             pauseOverlay.update();
             return;
-        }
-
-        // if this is paused, don't update all the paused stuff but not the rest
-        player.update(xLevelOffset);
-        enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
-        projManager.update(levelManager.getCurrentLevel().getLevelData());
-        screenScroller();
-        hud.updateHUD();
+        }//update Level Complete Overlay 
+        else if (levelComplete) {
+//          levelCompletedOverlay.update();
+        }//update Death Overlay
+        else if (gameOver) {
+            deathOverlay.update();
+        }//If player is dying currently, freeze everything
+        else if (playerCurrentlyDying) {
+            player.update(xLevelOffset);
+        }// if this is paused, don't update all the paused stuff but not the rest
+        else {
+          player.update(xLevelOffset);
+          enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
+          projManager.update(levelManager.getCurrentLevel().getLevelData());
+          screenScroller();
+          hud.updateHUD();
+      }
     }
 
     /**
@@ -200,15 +210,21 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.draw(g);
             // return so it doesn't draw anything else
             return;
+        }else if (gameOver) {
+            deathOverlay.draw(g);
+            deathOverlay.update();
         }
-        g.setColor(Color.WHITE);
-        g.drawString(String.valueOf(player.getHealth()), (int)player.getHitbox().x + 15 - xLevelOffset, (int)player.getHitbox().y - 30);
-        // if not paused, draw everything beneath this.
-        levelManager.draw(g, xLevelOffset);
-        hud.draw(g);
-        enemyManager.draw(g, xLevelOffset);
-        projManager.draw(g, xLevelOffset);
-        player.renderPlayer(g);
+        else {
+            g.setColor(Color.WHITE);
+            g.drawString(String.valueOf(player.getHealth()), (int)player.getHitbox().x + 15 - xLevelOffset, (int)player.getHitbox().y - 30);
+            // if not paused, draw everything beneath this.
+            levelManager.draw(g, xLevelOffset);
+            hud.draw(g);
+            enemyManager.draw(g, xLevelOffset);
+            projManager.draw(g, xLevelOffset);
+            player.renderPlayer(g);
+        }
+        
 
     }
 
@@ -299,6 +315,9 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mousePressed(e);
             return;
         }
+        if(gameOver) {
+            deathOverlay.mousePressed(e);
+        }
         // if mouse button 1 is pressed, store that point and draw the arrow path to that point
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setNextAttack(e.getPoint());
@@ -317,6 +336,9 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mouseReleased(e);
             return;
         }
+        if(gameOver) {
+            deathOverlay.mouseReleased(e);
+        }
         // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setDrawArrowPath(false);
@@ -332,6 +354,9 @@ public class Playing extends State implements StateMethods {
     public void mouseMoved(MouseEvent e) {
         if (paused) {
             pauseOverlay.mouseMoved(e);
+        }
+        if(gameOver) {
+            deathOverlay.mouseMoved(e);
         }
 
     }
@@ -395,9 +420,10 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_SPACE:
             player.setJump(false);
             break;
-        case KeyEvent.VK_K:
-            player.kill();
-            break;
+//Debugging tool: Press K to kill Player
+//        case KeyEvent.VK_K:
+//            player.kill();
+//            break;
         }
     }
 
@@ -409,6 +435,15 @@ public class Playing extends State implements StateMethods {
     public void setPaused(boolean paused) {
         this.paused = paused;
     }
+    
+    /**
+     * Setter for Game Over boolean (determines if the screen should display Death Overlay or not)
+     * 
+     * @param paused - true if the screen should display Death Overlay, false if not
+     */
+    public void setGameOver(boolean gameOver) {
+            this.gameOver = gameOver;
+    }
 
     /**
      * Getter for the current score
@@ -417,7 +452,6 @@ public class Playing extends State implements StateMethods {
      */
     public int getScore() {
         return this.score;
-
     }
 
     /**
@@ -437,5 +471,27 @@ public class Playing extends State implements StateMethods {
      */
     public LevelManager getLevelManager() {
         return levelManager;
+    }
+    
+    /**
+     * Resets all entities to their original values
+     */
+    public void resetAll() {
+        gameOver = false;
+        score = 0;
+        paused = false;
+        levelComplete = false;
+        killed = false;
+        player.resetDirBools();
+        enemyManager.resetAllEnemies();
+    }
+    
+    /**
+     * Let's the playing state know the Player entity is currently dying
+     * @param playerDying - If the Player entity is killed, this is set to True, False otherwise.
+     */
+    public void setPlayerCurrentlyDying(boolean playerDying) {
+        this.playerCurrentlyDying = playerDying;
+
     }
 }

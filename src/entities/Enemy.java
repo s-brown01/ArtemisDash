@@ -369,4 +369,16 @@ public abstract class Enemy extends Entity {
     public float getWalkSpeed() {
         return walkSpeed;
     }
+    
+    /**
+     * Resets enemy behavior
+     */
+    public void resetEnemy() {
+        hitbox.x = x;
+        hitbox.y = y;
+        firstUpdate = true;
+        currentHealth = maxHealth;
+        active = true;
+        airSpeed = 0;
+    }
 }

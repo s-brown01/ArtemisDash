@@ -2,6 +2,8 @@ package main;
 
 import java.awt.Graphics;
 
+import entities.Player;
+import gameaudio.AudioPlayer;
 import states.GameStates;
 import states.Menu;
 import states.Overworld;
@@ -20,6 +22,7 @@ public class Game implements Runnable {
     private Playing playing;
     private Menu menu;
     private Overworld overworld;
+    private AudioPlayer audioPlayer;
 
     /**
      * The GamePanel where to draw the Game
@@ -237,4 +240,10 @@ public class Game implements Runnable {
     public Overworld getOverworld() {
         return overworld;
     }
+    
+    public AudioPlayer getAudioPlayer() {
+        return audioPlayer;
+        
+    }
+    
 }

@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 
 import main.Game;
 import ui.MenuButton;
+import ui.OptionsButtons;
 
 /**
  * This state class defines how each state should behave when instantiated from this
@@ -36,6 +37,17 @@ public abstract class State {
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
     public boolean hoverOverButton(MouseEvent e, MenuButton mb) {
+        return mb.getBounds().contains(e.getX(), e.getY());
+    }
+    
+    /**
+     * This function determines if the mouseEvent parameter is contained within the OptionsButtons' bounds.
+     * 
+     * @param e     - the current information about the MouseEvent
+     * @param mb    - the MenuButton to be checked
+     * @return true if the mouse is contained in the MenuButton's bounds, false if not
+     */
+    public boolean hoverOverButton(MouseEvent e, OptionsButtons mb) {
         return mb.getBounds().contains(e.getX(), e.getY());
     }
 

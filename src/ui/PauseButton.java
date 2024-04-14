@@ -7,7 +7,7 @@ import java.awt.Rectangle;
  * This class is responsible for handling the creation of, and interaction with, buttons
  * bound within the Pause Overlay
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class PauseButton {
     protected int x, y, width, height;
