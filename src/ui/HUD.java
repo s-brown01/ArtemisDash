@@ -105,6 +105,7 @@ public class HUD {
         for (int i =0; i < updateHealth(); i ++) {
             g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos - (i * multipleHearts), yPos, width, height, null);
         }
+       
         g.setColor(Color.BLACK);
         g.setFont(hudFont);
 
