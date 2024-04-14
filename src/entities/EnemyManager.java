@@ -124,4 +124,9 @@ public class EnemyManager {
         
         // this for loop will remove all inactive enemies
     }
+    
+    public void resetAllEnemies() {
+        for (Skeleton s : skeletonList)
+            s.resetEnemy();
+    }
 }

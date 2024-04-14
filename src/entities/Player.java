@@ -93,6 +93,21 @@ public class Player extends Entity {
      * @param xLevelOffset - how far the screen offset is from scrolling
      */
     public void update(int xLevelOffset) {
+        //If the current health is -0 or below,
+        //Force the death animation forward
+        if(currentHealth <=0) {
+            if(player_action != DIE) {
+                player_action = DIE;
+                resetAniTick();
+                playing.setPlayerCurrentlyDying(true);
+            } else if (aniIndex == getSpriteAmt(DIE) - 1 && aniTick >= aniSpeed - 1) {
+                playing.setKilled(true);
+            }else {
+                updateAniTick();
+            }
+            return;
+        }
+        
         this.xLevelOffset = xLevelOffset;
         updatePos();
         updateAniTick();
@@ -433,6 +448,19 @@ public class Player extends Entity {
         }
 
     }
+    
+    /**
+     * Changes the current health value of the player
+     * @param value - The updated health value to change to
+     */
+    public void changeHealth(int value) {
+        currentHealth += value;
+
+        if (currentHealth <= 0)
+            currentHealth = 0;
+        else if (currentHealth >= maxHealth)
+            currentHealth = maxHealth;
+    }
 
     /**
      * Resets animation to ensure that the animation is rendered timely
@@ -457,11 +485,7 @@ public class Player extends Entity {
      * low, OR kill was evoked via key binds
      */
     public void kill() {
-        if (killed)
-            killed = false;
-        else {
-            killed = true;
-        }
+        killed = true;
     }
 
     /**

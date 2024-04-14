@@ -352,4 +352,16 @@ public abstract class Enemy extends Entity {
     public boolean isKilled() {
         return killed;
     }
+    
+    /**
+     * Resets enemy behavior
+     */
+    public void resetEnemy() {
+        hitbox.x = x;
+        hitbox.y = y;
+        firstUpdate = true;
+        currentHealth = maxHealth;
+        active = true;
+        airSpeed = 0;
+    }
 }

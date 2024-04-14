@@ -101,6 +101,17 @@ public class LoadSave {
      * the tile sprites for all of world 3
      */
     public static final String WORLD3_SPRITES = "/World3/World3Sprites.png";
+    
+    /**
+     * The buttons relating to the Level Complete screen as well as Death Screen
+     */
+    public static final String ENDBUTTONS = "/PauseElements/endButtons.png";
+    
+    
+    /**
+     * The assets for the death screen overlay
+     */
+    public static final String DEATHSCREEN = "/PauseElements/endButtons.png";
 
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
@@ -118,6 +129,7 @@ public class LoadSave {
         }
         return img;
     }
+    
 
     /**
      * Uses RGB values to generate a tiled level.
