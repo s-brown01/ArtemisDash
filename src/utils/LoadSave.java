@@ -138,6 +138,9 @@ public class LoadSave {
 
     /**
      * Uses RGB values to generate a tiled level.
+     * Red Value sets the tile 
+     * Green Value sets the enemy
+     * Blue value sets the object
      * 
      * @return - A 2D array that is representative of tiles making up the level
      */
