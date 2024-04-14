@@ -50,11 +50,9 @@ public class EndButtons extends PauseButton{
      * changing its appearance when hovered over or clicked
      */
     public void update() {
+        index = 0;
         if (mouseOver) {
             index = 1;
-        }
-        else {
-            index = 0;
         }
         if (mousePressed) {
             index = 2;

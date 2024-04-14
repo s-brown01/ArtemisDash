@@ -126,7 +126,6 @@ public class EnemyManager {
     }
     
     public void resetAllEnemies() {
-        for (Skeleton s : skeletonList)
-            s.resetEnemy();
+        skeletonList.clear();
     }
 }
