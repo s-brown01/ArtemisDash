@@ -97,21 +97,14 @@ public class HUD {
         
         //Health Positioning Vars
         int heartsXpos = xPos + 80;
+        int multipleHearts = 80;
         
         g.drawImage(hudbg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
         g.drawImage(portrait, Game.GAME_WIDTH - xPos, yPos, width, height, null);
         
-      if (updateHealth() == 2) {
-      // Draw two full hearts
-          g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos, yPos, width, height, null);
-          g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos - 80, yPos, width, height, null);
-          } else if (playerHealth == 1) {
-        // Draw one full heart and one dead heart
-              g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos, yPos, width, height, null);
-            }
-        // Draw two dead hearts
-//                }
-        
+        for (int i =0; i < updateHealth(); i ++) {
+            g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos - (i * multipleHearts), yPos, width, height, null);
+        }
         g.setColor(Color.BLACK);
         g.setFont(hudFont);
 
