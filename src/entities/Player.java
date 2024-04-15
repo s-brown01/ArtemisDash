@@ -221,12 +221,12 @@ public class Player extends Entity {
             dash();
         }
         
-//        // check if holding both left and right or holding neither
-//        if (!inAir) {
-//            if ((!left && !right) || (right && left)) {
-//                return;
-//            }
-//        }
+        // check if holding both left and right or holding neither
+        if (!inAir) {
+            if ((!left && !right) || (right && left)) {
+                return;
+            }
+        }
 
         float xSpeed = 0;
 
