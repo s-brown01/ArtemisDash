@@ -78,9 +78,6 @@ public class Player extends Entity {
         super(x, y, width, height);
         this.playing = playing;
         currentHealth = STARTING_HEALTH;
-        // Singleton check
-//        if (!Player.singletonCheck())
-//            throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAni();
         initHitbox((int) x, (int) y, (int) (hitboxCorrectionWidth), (int) (hitboxCorrectionHeight));
         this.state = IDLE;

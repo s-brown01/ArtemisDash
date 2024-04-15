@@ -84,19 +84,49 @@ public class HUD {
      */
     public void draw(Graphics g) {
         // Score Positioning Vars
+        /**
+         * X-Position of the Score Title
+         */
         int scoreXPos = xPos - 50;
+        /**
+         * Y-Position of the Score Title
+         */
         int scoreYPos = yPos * 3;
+        /**
+         * X-Position of the Score Count
+         */
         int playerScoreX = xPos - 30;
+        /**
+         * Y-Position of the Score Count
+         */
         int playerScoreY = yPos + 75;
 
         // Lives Positioning Vars
+        /**
+         * X-Position of the Lives Title
+         */
         int livesXPos = xPos * 5;
+        /**
+         * Y-Position of the Lives Title
+         */
         int livesYPos = yPos * 3;
+        /**
+         * X-Position of the Lives Count
+         */
         int playerLivesX = xPos * 5;
+        /**
+         * Y-Position of the Lives Count
+         */
         int playerLivesY = yPos + 75;
         
         //Health Positioning Vars
+        /**
+         * X-Position of the Player health represented in hearts
+         */
         int heartsXpos = xPos + 80;
+        /**
+         * X-Position of multiple hearts
+         */
         int multipleHearts = 80;
         
         g.drawImage(hudbg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
