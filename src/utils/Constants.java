@@ -588,11 +588,11 @@ public class Constants {
         /**
          * How wide the arrow's hitbox should be
          */
-        public static final int ARROW_HITBOX_WIDTH = (int) (50 * Game.SCALE);
+        public static final int ARROW_HITBOX_WIDTH = (int) (40 * Game.SCALE);
         /**
          * how tall the Arrow's hitbox should be
          */
-        public static final int ARROW_HITBOX_HEIGHT = (int) (25 * Game.SCALE);
+        public static final int ARROW_HITBOX_HEIGHT = (int) (15 * Game.SCALE);
         /**
          * how far to draw the image from the hitbox
          */
