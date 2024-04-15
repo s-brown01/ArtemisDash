@@ -115,9 +115,13 @@ public class EntityDriver implements DriverInterface {
             allSuccess = false;
         }
 
-        // create a player to the bottom right of the test Skeleton
-        Player testPlayer = new Player(skelX + 1 * Game.TILES_SIZE, skelY + 2 * Game.TILES_SIZE, skelWidth, skelHeight,
-                null);
+        /*
+         * create a player to the right of the test Skeleton. The y-coordinate doesn't matter
+         * (since the player will fall to the ground); however, the x-coordinate should be within
+         * the Enemy's attack range
+         */
+        Player testPlayer = new Player(skelX + 25, skelY, skelWidth, skelHeight, null);
+        testPlayer.loadLvlData(lvlData);
 
         // the first update has different behavior than the rest
         testSkel.update(lvlData, testPlayer);
@@ -136,14 +140,14 @@ public class EntityDriver implements DriverInterface {
 
         // an update buffer to make sure that the loop isn't infinite. This should be a high
         // number because updates happen slowly.
-        final int buffer = 100;
+        final int loopBuffer = 100;
         int counter = 0;
         // make the Skeleton drop to the floor
         while (testSkel.isInAir()) {
             testSkel.update(lvlData, testPlayer);
             counter++;
             // make sure
-            if (counter >= buffer) {
+            if (counter >= loopBuffer) {
                 printEnemyError("Took too long to fall");
                 allSuccess = false;
                 break;
@@ -159,7 +163,7 @@ public class EntityDriver implements DriverInterface {
         // update once more after falling has been completed
         testSkel.update(lvlData, testPlayer);
 
-        // the skeleton ishould not be in the air any longer
+        // the skeleton should not be in the air any longer
         if (testSkel.isInAir()) {
             printEnemyError("Failed inAir, updated");
             allSuccess = false;
@@ -190,13 +194,48 @@ public class EntityDriver implements DriverInterface {
             allSuccess = false;
         }
 
+        // update 1 time to make the Player register they are in the air
+        testPlayer.update(0);
+        // bring the player to the ground too
         while (testPlayer.isInAir()) {
             testPlayer.update(0);
         }
+        // update after landing
         testPlayer.update(0);
-        System.out.println((testSkel.getHitbox().y + testSkel.getHitbox().height) + "  "
-                + (testPlayer.getHitbox().y + testPlayer.getHitbox().height));
 
+        // check they are both resting on the same tile (should be the y + height, since y is the
+        // top of the hitbox)
+        if ((testSkel.getHitbox().y + testSkel.getHitbox().height) != (testPlayer.getHitbox().y
+                + testPlayer.getHitbox().height)) {
+            printEnemyError("Not resting on same tile");
+            allSuccess = false;
+        }
+
+        // checking that the testPlayer is still on the right of the testSkeleton
+        if (testSkel.getHitbox().x - testPlayer.getHitbox().x >= 0) {
+            printEnemyError("Player is not longer on the right");
+            allSuccess = false;
+        }
+
+        // updating the skeleton so it sees the player, and since it is attack range, it now be in
+        // the attacking state
+        testSkel.update(lvlData, testPlayer);
+        if (testSkel.getState() != EnemyConstants.ATTACK) {
+            printEnemyError("Is not in attack state");
+            allSuccess = false;
+        }
+        
+        // test that the enemy turned towards the Player in the update
+        if (testSkel.getWalkDirection() != Directions.RIGHT) {
+            printEnemyError("Failed to turn towards player");
+            allSuccess = false;
+        }
+
+        // check the xFlipped and wFlipped now that the direction has changed
+        if (testSkel.xFlipped() != 0 && testSkel.widthFlipped() != 1) {
+            printEnemyError("Failed xFlipped or widthFlipped after changing direction");
+            allSuccess = false;
+        }
         return allSuccess;
     }
 
