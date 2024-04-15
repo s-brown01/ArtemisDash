@@ -12,13 +12,16 @@ import static utils.Constants.BossConstants.*;
 import static utils.Constants.EnemyConstants.SKELETON_WIDTH_DEFAULT;
 import static utils.HelperMethods.*;
 import static utils.Constants.EnemyConstants.SKELETON_HEIGHT_DEFAULT;
+
 /**
- * This class is a concrete implementation of the Boss superclass. This represents a Skeleton King in the game.
+ * This class is a concrete implementation of the Boss superclass. This represents a
+ * Skeleton King in the game.
+ * 
  * @author Sean-Paul Brown
  *
  */
 public class SkeletonKing extends Boss {
-    
+
     private final int attackDmg;
 
     public SkeletonKing(float x, float y, int width, int height) {
@@ -30,10 +33,11 @@ public class SkeletonKing extends Boss {
     }
 
     /**
-     * this is a helper method that will load all of the animations from the Skeleton sprite sheet into the animations array
+     * this is a helper method that will load all of the animations from the Skeleton sprite
+     * sheet into the animations array
      */
     private void loadAnimations() {
-        // this is the same loop as the EnemyManager loadImgs method for the Skeletons, 
+        // this is the same loop as the EnemyManager loadImgs method for the Skeletons,
         // since the Skeleton King uses the same animations as the Skeletons
         animations = new BufferedImage[6][18];
         final BufferedImage spriteImg = LoadSave.getSpriteSheet(LoadSave.SKELETON_SPRITES);
@@ -43,21 +47,21 @@ public class SkeletonKing extends Boss {
                         SKELETON_WIDTH_DEFAULT, SKELETON_HEIGHT_DEFAULT);
             }
         }
-        
+
     }
 
     /**
      * this will draw the Skeleton King to the Graphics given into the method
      * 
-     * @param g             the Graphics where to draw the Boss
-     * @param xLevelOffset  the horizontal offset from screen scrolling
+     * @param g            the Graphics where to draw the Boss
+     * @param xLevelOffset the horizontal offset from screen scrolling
      */
     @Override
     public void draw(Graphics g, int xLevelOffset) {
         g.drawImage(animations[getState()][getAniIndex()],
                 (int) (hitbox.x - SKELETON_KING_DRAW_OFFSET_X - xLevelOffset + flipX),
                 (int) (hitbox.y - SKELETON_KING_DRAW_OFFSET_Y), (int) (SKELETON_KING_WIDTH * flipW),
-                (int) (SKELETON_KING_HEIGHT), null);    
+                (int) (SKELETON_KING_HEIGHT), null);
     }
 
     @Override
@@ -65,17 +69,17 @@ public class SkeletonKing extends Boss {
         updateBehavior(levelData);
         updateAniTick();
     }
-    
+
     private void updateBehavior(int[][] levelData) {
         if (firstUpdate) {
             firstUpdateCheck(levelData);
         }
-        
+
         if (inAir) {
             updateInAir(levelData);
             return;
-        }   
-        
+        }
+
         switch (state) {
         // if IDLE, start moving
         case (IDLE):
@@ -97,13 +101,13 @@ public class SkeletonKing extends Boss {
 
     private void move(int[][] levelData) {
         // TODO Auto-generated method stub
-        
+
     }
 
     private void startNewState(int newState) {
         this.state = newState;
         aniIndex = 0;
-        aniTick = 0;        
+        aniTick = 0;
     }
 
     private void updateInAir(int[][] levelData) {
@@ -115,7 +119,7 @@ public class SkeletonKing extends Boss {
             // if there is nothing underneath, land on the tile exactly
             inAir = false;
             hitbox.y = getYPosRoof(hitbox, airSpeed, SKELETON_KING_DRAW_OFFSET_Y);
-        }        
+        }
     }
 
     private void firstUpdateCheck(int[][] levelData) {
@@ -123,7 +127,7 @@ public class SkeletonKing extends Boss {
         firstUpdate = false;
         // if it isn't, then they are in the air
         if (!floorCheck(hitbox, levelData))
-            inAir = true;        
+            inAir = true;
     }
 
     private void updateAniTick() {
@@ -137,7 +141,7 @@ public class SkeletonKing extends Boss {
                 // once it is complete, reset all of the variables such at attacking/hurting
                 aniIndex = 0;
             }
-        }        
+        }
     }
 
     /**

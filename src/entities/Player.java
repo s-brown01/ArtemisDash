@@ -209,9 +209,9 @@ public class Player extends Entity {
      */
     private void updatePos() {
         moving = false;
-        
+
         worldBoundsCheck();
-        
+
         // if the user is jumping, try to jump
         if (jump) {
             jump();
@@ -220,13 +220,14 @@ public class Player extends Entity {
         if (dash) {
             dash();
         }
-        // check if holding both left and right or holding neither
-        if (!inAir) {
-            if ((!left && !right) || (right && left)) {
-                return;
-            }
-        }
         
+//        // check if holding both left and right or holding neither
+//        if (!inAir) {
+//            if ((!left && !right) || (right && left)) {
+//                return;
+//            }
+//        }
+
         float xSpeed = 0;
 
         // if the player is moving left...
@@ -281,18 +282,19 @@ public class Player extends Entity {
     }
 
     /**
-     * This is a helper method that checks if the player has gone past the Game's Height. If the player has, then they are killed.
+     * This is a helper method that checks if the player has gone past the Game's Height. If
+     * the player has, then they are killed.
      */
     private void worldBoundsCheck() {
         // this is a buffer when checking game height so there is a little room for error
         final int buffer = 3;
-        
+
         // checking that the player isn't too far on the bottom of the screen
         if (hitbox.y + hitbox.height >= Game.GAME_HEIGHT - buffer) {
             // if they died then have them fall out of the world and die
             kill();
             hitbox.y += hitbox.height * 1.5;
-        }        
+        }
     }
 
     /**
@@ -326,7 +328,7 @@ public class Player extends Entity {
                 System.err.println("Hit ceiling, too high");
             }
         }
-        
+
         if (jumps > MAX_JUMPS) {
             return;
         }

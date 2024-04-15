@@ -78,13 +78,15 @@ public class Skeleton extends Enemy {
         // if moving, check if they can see, move to, and attack the player
         case (RUNNING):
             // turn, attack, then move
-            // if can see player
+            // if the Enemy can see player
             if (canSeePlayer(lvlData, player)) {
-                // turn towards player
+                // then turn towards the turn towards player
                 turnTowardsPlayer(player);
-                // if in attack range
-                if (isInAttackRange(player))
+                // if the Player is in attack range
+                if (isInAttackRange(player)) {
+                    // start attacking the player
                     startNewState(ATTACK);
+                }
             }
             move(lvlData);
             break;

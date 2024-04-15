@@ -240,7 +240,7 @@ public abstract class Enemy extends Entity {
      * @param player - the Player entity
      * @return true the player is, either side
      */
-    protected boolean isInAttackRange(Player player) {
+    public boolean isInAttackRange(Player player) {
         // using absolute value means that we don't care which side player is on
         final int distance = (int) (Math.abs(player.hitbox.x - hitbox.x));
         return distance <= attackDistance;
