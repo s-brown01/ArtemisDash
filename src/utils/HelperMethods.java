@@ -81,7 +81,8 @@ public class HelperMethods {
     private static boolean isTileSolid(int xIndex, int yIndex, int[][] levelData) {
         int value = levelData[(int) yIndex][(int) xIndex];
 
-        // 48 Sprites, 11th sprite in the Level sprite sheet is transparent
+        // 47 Sprites, 11th sprite in the Level sprite sheet is transparent, 45th is Lava
+        //if value is lava, kill
         if (value >= 48 || value < 0 || value != 11) {
             return true;
         } else {
