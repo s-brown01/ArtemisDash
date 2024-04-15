@@ -374,23 +374,19 @@ public abstract class Enemy extends Entity {
         return inAir;
     }
 
+    /**
+     * Getter for the enemies current walk direction
+     * @return the current value of the walk direction, based on the Constants.Direction
+     */
     public int getWalkDirection() {
         return walkDirection;
     }
 
+    /**
+     * Getter for the enemies walk speed 
+     * @return the current value of the walk speed (which is final)
+     */
     public float getWalkSpeed() {
         return walkSpeed;
-    }
-
-    /**
-     * Resets enemy behavior
-     */
-    public void resetEnemy() {
-        hitbox.x = x;
-        hitbox.y = y;
-        firstUpdate = true;
-        currentHealth = maxHealth;
-        active = true;
-        airSpeed = 0;
     }
 }

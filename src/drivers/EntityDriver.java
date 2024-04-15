@@ -35,6 +35,11 @@ public class EntityDriver implements DriverInterface {
      */
     private boolean testEnemy() {
         boolean allSuccess = true;
+        
+        // an update buffer to make sure that the while loops are not infinite. This should be a high
+        // number because updates happen slowly.
+        final int loopBuffer = 500;
+        
         // create a Level to have the skeleton and player interact with.
         // it uses the Level 1 Data.
         Level testLvl = new Level(LoadSave.getLevelData());
@@ -138,9 +143,6 @@ public class EntityDriver implements DriverInterface {
             allSuccess = false;
         }
 
-        // an update buffer to make sure that the loop isn't infinite. This should be a high
-        // number because updates happen slowly.
-        final int loopBuffer = 100;
         int counter = 0;
         // make the Skeleton drop to the floor
         while (testSkel.isInAir()) {
@@ -157,6 +159,12 @@ public class EntityDriver implements DriverInterface {
         // after falling, the enemy will be IDLE until 1 more update
         if (testSkel.getState() != EnemyConstants.IDLE) {
             printEnemyError("Failed getting state, updated");
+            allSuccess = false;
+        }
+        
+        // testing getting x-coordinate after falling, should not have changed
+        if (testSkel.getHitbox().x != skelX) {
+            printEnemyError("failed getting hitbox coords after falling");
             allSuccess = false;
         }
 
@@ -183,7 +191,7 @@ public class EntityDriver implements DriverInterface {
 
         // testing getting x-coordinate after falling, should not have changed
         if (testSkel.getHitbox().x != skelX) {
-            printEnemyError("failed getting hitbox coords, updated");
+            printEnemyError("failed getting hitbox coords, after post-fall update");
             allSuccess = false;
         }
 
@@ -213,7 +221,7 @@ public class EntityDriver implements DriverInterface {
 
         // checking that the testPlayer is still on the right of the testSkeleton
         if (testSkel.getHitbox().x - testPlayer.getHitbox().x >= 0) {
-            printEnemyError("Player is not longer on the right");
+            printEnemyError("Player is no longer on the right");
             allSuccess = false;
         }
 
@@ -236,6 +244,90 @@ public class EntityDriver implements DriverInterface {
             printEnemyError("Failed xFlipped or widthFlipped after changing direction");
             allSuccess = false;
         }
+        
+        // updating it with player insight means that it should have moved to the right
+        if (skelX + testSkel.getWalkSpeed()*testSkel.widthFlipped() != testSkel.getHitbox().x) {
+            printEnemyError("Failed moving towards the player");
+            allSuccess = false;
+        }
+        
+        final int startingPlayerHealth = testPlayer.getHealth();
+        // once the enemy finishes attacking the Player it will go back to IDLE
+        counter = 0;
+        while (testSkel.getState() != EnemyConstants.IDLE) {
+            testSkel.update(lvlData, testPlayer);
+            counter++;
+            // make sure that it is only in the attack or idle states
+            if (!(testSkel.getState() == EnemyConstants.ATTACK || testSkel.getState() == EnemyConstants.IDLE)) {
+                printEnemyError("Failed to return to IDLE from ATTACK");
+                allSuccess = false;
+                break;
+            }
+            // check that it isn't an infinite loop
+            if (counter >= loopBuffer) {
+                printEnemyError("Failed attacking in a reasonable time");
+                allSuccess = false;
+                break;
+            }
+        }
+        
+        // make sure that it reset the index after attacking
+        if (testSkel.getAniIndex() != 0) {
+            printEnemyError("Failed to reset aniIndex after attacking");
+            allSuccess = false;
+        }
+        
+        // testing that the enemy hit the player
+        if (testPlayer.getHealth() != startingPlayerHealth -1) {
+            printEnemyError("Failed to register hit on player");
+            allSuccess = false;
+        }
+        
+        // it should not be moving during the attacking or idle phase (same check as before attack)
+        if (skelX + testSkel.getWalkSpeed()*testSkel.widthFlipped() != testSkel.getHitbox().x) {
+            printEnemyError("Failed moving towards the player");
+            allSuccess = false;
+        }
+        
+        // kill the skeleton (doing the max health damage guarentees a kill)
+        testSkel.hurt(EnemyConstants.getMaxHealth(EnemyConstants.SKELETON));
+        
+        // it should be dead now
+        if (!testSkel.isKilled()) {
+            printEnemyError("Failed to kill skeleton");
+            allSuccess = false;
+        }
+        
+        // it should not immediately be deactivated
+        if (!testSkel.isActive()) {
+            printEnemyError("Deactivated enemy too fast");
+            allSuccess = false;
+        }
+        
+        // should be in the DEAD state and the aniIndex should be restarted
+        if (testSkel.getState() != EnemyConstants.DEAD || testSkel.getAniIndex() != 0) {
+            printEnemyError("Failed to change to the DEAD state");
+            allSuccess = false;
+        }
+        
+        counter = 0;
+        while (testSkel.isActive()) {
+            testSkel.update(lvlData, testPlayer);
+            counter++;
+            // make sure that the state is always DEAD
+            if (testSkel.getState() != EnemyConstants.DEAD) {
+                printEnemyError("Changed states while dying");
+                allSuccess = false;
+            }
+            // check that it isn't an infinite loop
+            if (counter >= loopBuffer) {
+                printEnemyError("Failed dying in a reasonable time");
+                allSuccess = false;
+                break;
+            }
+        }
+        
+        
         return allSuccess;
     }
 
