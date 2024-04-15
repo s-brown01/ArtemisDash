@@ -19,6 +19,7 @@ public class KeyboardInputs implements KeyListener {
 
     /**
      * This is the constructor
+     * 
      * @param gamePanel - the gamePanel where all of the inputs should be directed.
      */
     public KeyboardInputs(GamePanel gamePanel) {

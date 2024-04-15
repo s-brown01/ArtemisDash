@@ -149,11 +149,14 @@ public class HelperMethods {
     }
 
     /**
-     * This determines if one Entity can see another Entity's hitbox in a Level. It will then determine if all of the tiles between the two points are walkable. If so, it will return true. If not, false. 
-     * @param levelData         - the current Level as a 2D int array
-     * @param firstHitbox       - the first Hitbox from one of the Entities to check
-     * @param secondHitbox      - the other Hitbox from the other Entity
-     * @param yTile             - the yTile of the first hitbox
+     * This determines if one Entity can see another Entity's hitbox in a Level. It will then
+     * determine if all of the tiles between the two points are walkable. If so, it will
+     * return true. If not, false.
+     * 
+     * @param levelData    - the current Level as a 2D int array
+     * @param firstHitbox  - the first Hitbox from one of the Entities to check
+     * @param secondHitbox - the other Hitbox from the other Entity
+     * @param yTile        - the yTile of the first hitbox
      * @return true if there is a clear line of sight between both hitboxes
      */
     public static boolean isSightClear(int[][] levelData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox,
@@ -180,7 +183,7 @@ public class HelperMethods {
      * @param hitbox  - The hitbox of the caller entity
      * @param xSpeed  - The current X-Speed of the caller entity
      * @param lvlData - The data that makes up the current level
-     * @return true if the specific tile xSpeed away is walkable 
+     * @return true if the specific tile xSpeed away is walkable
      */
     public static boolean isTileWalkable(Rectangle2D.Float hitbox, float xSpeed, int[][] lvlData) {
         if (xSpeed < 0) {

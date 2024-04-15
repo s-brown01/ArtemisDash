@@ -35,7 +35,8 @@ public enum GameStates {
     QUIT;
 
     /**
-     * this is what the current state/screen of the game is. Every game starts on the main menu.
+     * this is what the current state/screen of the game is. Every game starts on the main
+     * menu.
      */
     public static GameStates state = MENU;
 

@@ -13,7 +13,7 @@ import utils.LoadSave;
  * 
  * @author John Botonakis
  */
-public class EndButtons extends PauseButton{
+public class EndButtons extends PauseButton {
     private BufferedImage[] buttonImgs;
     private int rowIndex, index;
     private boolean mouseOver, mousePressed;
@@ -26,7 +26,7 @@ public class EndButtons extends PauseButton{
      * @param width  - Width of the sprite
      * @param height - Height of the sprite
      */
-    public EndButtons(int x, int y, int width, int height,int rowindex) {
+    public EndButtons(int x, int y, int width, int height, int rowindex) {
         super(x, y, width, height);
         this.rowIndex = rowindex;
         loadDeathImages();
@@ -39,11 +39,10 @@ public class EndButtons extends PauseButton{
     private void loadDeathImages() {
         BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.ENDBUTTONS);
         buttonImgs = new BufferedImage[3];
-            for (int i = 0; i < buttonImgs.length; i++) {
-                buttonImgs[i] = temp.getSubimage(i * ENDBUTTON, rowIndex * ENDBUTTON, ENDBUTTON,
-                        ENDBUTTON);
-            }
+        for (int i = 0; i < buttonImgs.length; i++) {
+            buttonImgs[i] = temp.getSubimage(i * ENDBUTTON, rowIndex * ENDBUTTON, ENDBUTTON, ENDBUTTON);
         }
+    }
 
     /**
      * Handles any updates that are to be processed by the sound button object, such as
@@ -89,16 +88,16 @@ public class EndButtons extends PauseButton{
     /**
      * setter for mouseOver
      * 
-     * @param mouseOver  - the new value of mouseOver
+     * @param mouseOver - the new value of mouseOver
      */
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
     }
-    
+
     /**
      * getter for mousePressed
      * 
-     * @return mousePressed  - the current value of mousePressed
+     * @return mousePressed - the current value of mousePressed
      */
     public boolean isMousePressed() {
         return mousePressed;
@@ -107,7 +106,7 @@ public class EndButtons extends PauseButton{
     /**
      * setter for mousePressed
      * 
-     * @param mousePressed  - the new value of mouseOver
+     * @param mousePressed - the new value of mouseOver
      */
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;

@@ -37,7 +37,8 @@ public class PauseButton {
     }
 
     /**
-     * Getter for the bounds of this buttons 
+     * Getter for the bounds of this buttons
+     * 
      * @return the rectangle that contains the hitbox of this button
      */
     public Rectangle getBounds() {

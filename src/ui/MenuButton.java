@@ -10,8 +10,7 @@ import static utils.Constants.ButtonStates.*;
 
 /**
  * This class represents 1 Button on the Menu GameState. A button will be linked to
- * different GameStates so that the Game can change states based on what
- * button is pushed.
+ * different GameStates so that the Game can change states based on what button is pushed.
  * 
  * @author John Botonakis
  */
@@ -64,7 +63,7 @@ public class MenuButton {
     /**
      * Draws the button to the screen with the specified parameters
      * 
-     * @param g     - the Graphics where to draw the MenuButton
+     * @param g - the Graphics where to draw the MenuButton
      */
     public void draw(Graphics g) {
         g.drawImage(imgs[index], xpos - XOffsetCenter, ypos, B_WIDTH, B_HEIGHT, null);
@@ -96,7 +95,8 @@ public class MenuButton {
     }
 
     /**
-     * set the GameState to whatever value was selected by the user, that value is stored in the menuButton as "state"
+     * set the GameState to whatever value was selected by the user, that value is stored in
+     * the menuButton as "state"
      */
     public void applyGamestate() {
         GameStates.state = state;
@@ -112,24 +112,27 @@ public class MenuButton {
     }
 
     /**
-     * Setter for mouseOver 
-     * @param mouseOver     - new value of mouseOver 
+     * Setter for mouseOver
+     * 
+     * @param mouseOver - new value of mouseOver
      */
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
     }
 
     /**
-     * Getter for mousePressed 
+     * Getter for mousePressed
+     * 
      * @return the current value of mousePressed
      */
     public boolean isMousePressed() {
         return mousePressed;
     }
-    
+
     /**
-     * Setter for mousePressed 
-     * @param mousePressed  - the new of mousePressed
+     * Setter for mousePressed
+     * 
+     * @param mousePressed - the new of mousePressed
      */
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
@@ -137,6 +140,7 @@ public class MenuButton {
 
     /**
      * Getter for the bounds of the button
+     * 
      * @return the Rectangle that is the 'hitbox' of the button
      */
     public Rectangle getBounds() { // Returns rectangle around menu button

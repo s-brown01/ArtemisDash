@@ -40,7 +40,8 @@ public abstract class Boss extends Entity {
 
     /**
      * This method will be used to draw the Boss Entity
-     * @param g     the Graphics where to draw the Boss
+     * 
+     * @param g the Graphics where to draw the Boss
      */
     abstract void draw(Graphics g);
 

@@ -39,6 +39,7 @@ public class HUD {
 
     /**
      * Constructor class to instantiate the elements that make up the HUD
+     * 
      * @param playing - Playing Game state
      */
     public HUD(Playing playing) {
@@ -54,7 +55,7 @@ public class HUD {
     private void loadAssets() {
         portrait = LoadSave.getSpriteSheet(LoadSave.PLAYER_PORTRAIT);
         hudbg = LoadSave.getSpriteSheet(LoadSave.HUDBG);
-        hearts = LoadSave.getSpriteSheet(LoadSave.HEART); //Get assets for hearts
+        hearts = LoadSave.getSpriteSheet(LoadSave.HEART); // Get assets for hearts
 //        charge = LoadSave.getSpriteSheet(LoadSave.HUDBG); //Get assets for Dash charge
 
         // Font Initialization
@@ -79,7 +80,9 @@ public class HUD {
     }
 
     /**
-     * Draws every HUD element to the screen starting from left most element to right most element
+     * Draws every HUD element to the screen starting from left most element to right most
+     * element
+     * 
      * @param g
      */
     public void draw(Graphics g) {
@@ -94,18 +97,18 @@ public class HUD {
         int livesYPos = yPos * 3;
         int playerLivesX = xPos * 5;
         int playerLivesY = yPos + 75;
-        
-        //Health Positioning Vars
+
+        // Health Positioning Vars
         int heartsXpos = xPos + 80;
         int multipleHearts = 80;
-        
+
         g.drawImage(hudbg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
         g.drawImage(portrait, Game.GAME_WIDTH - xPos, yPos, width, height, null);
-        
-        for (int i =0; i < updateHealth(); i ++) {
+
+        for (int i = 0; i < updateHealth(); i++) {
             g.drawImage(hearts, Game.GAME_WIDTH - heartsXpos - (i * multipleHearts), yPos, width, height, null);
         }
-       
+
         g.setColor(Color.BLACK);
         g.setFont(hudFont);
 
@@ -131,7 +134,7 @@ public class HUD {
     public void updateScore() {
         this.playerScore = playing.getScore();
     }
-    
+
     /**
      * Function to keep the HUD element tied to lives up to date
      */
@@ -140,7 +143,7 @@ public class HUD {
     }
 
     /**
-     * Function to keep the HUD element tied to the dash up to date 
+     * Function to keep the HUD element tied to the dash up to date
      */
     public void updateCharge() {
 

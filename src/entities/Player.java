@@ -25,9 +25,10 @@ import utils.LoadSave;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class Player extends Entity {
-    
+
     /**
-     * this is the maximum number of jumps that can occur mid-air. Setting this to 2 means that there is a 'double jump' mechanic.
+     * this is the maximum number of jumps that can occur mid-air. Setting this to 2 means
+     * that there is a 'double jump' mechanic.
      */
     public static final int MAX_JUMPS = 2;
 
@@ -98,7 +99,7 @@ public class Player extends Entity {
      * @param xLevelOffset - how far the screen offset is from scrolling
      */
     public void update(int xLevelOffset) {
-        //If the current health is -0 or below,
+        // If the current health is -0 or below,
         // Force the death animation forward
 //        if(currentHealth <=0) {
 //            if(player_action != DIE) {
@@ -112,13 +113,13 @@ public class Player extends Entity {
 //            }
 //            return;
 //        }
-        
+
         if (killed) {
             updateAniTick();
             setAnimation();
             return;
         }
-        
+
         this.xLevelOffset = xLevelOffset;
         updatePos();
         updateAniTick();
@@ -218,7 +219,7 @@ public class Player extends Entity {
         }
         // check if holding both left and right or holding neither
         if (!inAir) {
-            if ((!left && !right) || (right && left))  {
+            if ((!left && !right) || (right && left)) {
                 return;
             }
         }
@@ -265,7 +266,7 @@ public class Player extends Entity {
             } else {
                 // if cannot move vertically, get the y-position at the tile
                 hitbox.y = getYPosRoof(hitbox, airSpeed, hitboxOffset);
-                
+
                 // check to see if it was falling or rising
                 if (airSpeed > 0) {
                     // if it was falling they are now on the ground so reset actions
@@ -369,7 +370,8 @@ public class Player extends Entity {
      * Check if the Players attack. If the attack has already been checked, don't check it
      */
     private void checkAttack() {
-        // this is the horizontal (x) difference between where the next arrow will go and where the Player is
+        // this is the horizontal (x) difference between where the next arrow will go and where
+        // the Player is
         final float xDiff = (float) ((nextAttack.getX()) - (hitbox.x + SHOT_OFFSET_X - xLevelOffset));
 
         // turn the Player to face where the arrow will fire
@@ -393,9 +395,10 @@ public class Player extends Entity {
         final float yDiff = (float) (nextAttack.getY() - (hitbox.y + SHOT_OFFSET_Y));
         // the path/slope for the arrow to travel
         final float slope = yDiff / xDiff;
-        
+
         /*
-         * the arrow should spawn near the Player, but there will be a slight offset so that the arrow matches up with the bow
+         * the arrow should spawn near the Player, but there will be a slight offset so that the
+         * arrow matches up with the bow
          */
         playing.addPlayerArrow(hitbox.x + SHOT_OFFSET_X * flipW, hitbox.y + SHOT_OFFSET_Y, slope, xDiff < 0);
 
@@ -472,9 +475,10 @@ public class Player extends Entity {
         }
 
     }
-    
+
     /**
      * Changes the current health value of the player
+     * 
      * @param value - The updated health value to change to
      */
     public void changeHealth(int value) {
@@ -628,7 +632,7 @@ public class Player extends Entity {
     public void setDrawArrowPath(boolean drawArrowPath) {
         this.drawArrowPath = drawArrowPath;
     }
-    
+
     /**
      * This method will give damage to the player and check if they have died.
      */
@@ -644,7 +648,7 @@ public class Player extends Entity {
             kill();
         }
     }
-    
+
     public boolean isInAir() {
         return inAir;
     }

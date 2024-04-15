@@ -99,6 +99,7 @@ public class Arrow extends Projectile {
 
     /**
      * Getter for the horizontal speed of the Arrow
+     * 
      * @return the SPEED of the arrow
      */
     public float getSpeed() {

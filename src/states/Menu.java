@@ -23,7 +23,8 @@ public class Menu extends State implements StateMethods {
 
     /**
      * The constructor for a main menu
-     * @param game      - the game that will hold this Main Menu
+     * 
+     * @param game - the game that will hold this Main Menu
      */
     public Menu(Game game) {
         super(game);
@@ -135,7 +136,7 @@ public class Menu extends State implements StateMethods {
     public void keyPressed(KeyEvent e) {
 
     }
-    
+
     /**
      * GOES UNUSED but needed to implement StateMethods Properly
      */

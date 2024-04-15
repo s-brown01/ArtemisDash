@@ -1,9 +1,9 @@
 package drivers;
 
 public class InputsDriver implements DriverInterface {
-    
+
     public InputsDriver() {
-        
+
     }
 
     @Override

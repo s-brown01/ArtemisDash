@@ -17,7 +17,8 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * This class will be a manager/factory for the Playing GameState. This allows all of the moving/collision logic to be stored outside of the zPlaying state
+ * This class will be a manager/factory for the Playing GameState. This allows all of the
+ * moving/collision logic to be stored outside of the zPlaying state
  * 
  * @author Sean-Paul Brown
  */
@@ -131,7 +132,7 @@ public class ProjectileManager {
             if (e.getHitbox().intersects(a.getHitbox())) {
                 // if it does intersect, hurt them
                 e.hurt(ARROW_DAMAGE);
-                
+
                 // the arrow breaks on contact with enemy and should be removed from screen
                 arrowList.remove(a);
                 // return because the arrow can only hit 1 enemy at a time

@@ -15,13 +15,13 @@ import ui.OptionsButtons;
 public abstract class State {
 
     /**
-     * The game that the state's will be held/handled in
-     * protected = private for children
+     * The game that the state's will be held/handled in protected = private for children
      */
     protected Game game;
 
     /**
      * This is the constructor of State
+     * 
      * @param game - the Game that will hold/handle all of the states
      */
     public State(Game game) {
@@ -30,21 +30,23 @@ public abstract class State {
     }
 
     /**
-     * This function determines if the mouseEvent parameter is contained within the menuButton's bounds.
+     * This function determines if the mouseEvent parameter is contained within the
+     * menuButton's bounds.
      * 
-     * @param e     - the current information about the MouseEvent
-     * @param mb    - the MenuButton to be checked
+     * @param e  - the current information about the MouseEvent
+     * @param mb - the MenuButton to be checked
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
     public boolean hoverOverButton(MouseEvent e, MenuButton mb) {
         return mb.getBounds().contains(e.getX(), e.getY());
     }
-    
+
     /**
-     * This function determines if the mouseEvent parameter is contained within the OptionsButtons' bounds.
+     * This function determines if the mouseEvent parameter is contained within the
+     * OptionsButtons' bounds.
      * 
-     * @param e     - the current information about the MouseEvent
-     * @param mb    - the MenuButton to be checked
+     * @param e  - the current information about the MouseEvent
+     * @param mb - the MenuButton to be checked
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
     public boolean hoverOverButton(MouseEvent e, OptionsButtons mb) {
@@ -52,7 +54,8 @@ public abstract class State {
     }
 
     /**
-     * Getter for the game 
+     * Getter for the game
+     * 
      * @return the Game holding this state
      */
     public Game getGame() {

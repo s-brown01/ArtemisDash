@@ -27,7 +27,7 @@ import utils.LoadSave;
  */
 public class Playing extends State implements StateMethods {
 
-    // will keep track if the pause menu/ death overlay  should be up or not
+    // will keep track if the pause menu/ death overlay should be up or not
     private boolean paused, levelComplete, gameOver;
     private Player player;
     private HUD hud;
@@ -136,10 +136,10 @@ public class Playing extends State implements StateMethods {
             GameStates.state = GameStates.OVERWORLD;
             return;
             // update pause overlay
-        }else if (paused) {
+        } else if (paused) {
             pauseOverlay.update();
             return;
-            // update Level Complete Overlay 
+            // update Level Complete Overlay
         } else if (gameOver) {
             deathOverlay.update();
             // If player is dying currently, freeze everything
@@ -149,7 +149,7 @@ public class Playing extends State implements StateMethods {
             projManager.update(levelManager.getCurrentLevel().getLevelData());
             screenScroller();
             hud.updateHUD();
-      }
+        }
     }
 
     /**
@@ -203,13 +203,13 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.draw(g);
             // return so it doesn't draw anything else
             return;
-        }else if (gameOver) {
+        } else if (gameOver) {
             deathOverlay.draw(g);
             deathOverlay.update();
-        }
-        else {
+        } else {
             g.setColor(Color.WHITE);
-            g.drawString(String.valueOf(player.getHealth()), (int)player.getHitbox().x + 15 - xLevelOffset, (int)player.getHitbox().y - 30);
+            g.drawString(String.valueOf(player.getHealth()), (int) player.getHitbox().x + 15 - xLevelOffset,
+                    (int) player.getHitbox().y - 30);
             // if not paused, draw everything beneath this.
             levelManager.draw(g, xLevelOffset);
             hud.draw(g);
@@ -217,7 +217,6 @@ public class Playing extends State implements StateMethods {
             projManager.draw(g, xLevelOffset);
             player.renderPlayer(g);
         }
-        
 
     }
 
@@ -308,7 +307,7 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mousePressed(e);
             return;
         }
-        if(gameOver) {
+        if (gameOver) {
             deathOverlay.mousePressed(e);
         }
         // if mouse button 1 is pressed, store that point and draw the arrow path to that point
@@ -329,7 +328,7 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mouseReleased(e);
             return;
         }
-        if(gameOver) {
+        if (gameOver) {
             deathOverlay.mouseReleased(e);
         }
         // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
@@ -348,7 +347,7 @@ public class Playing extends State implements StateMethods {
         if (paused) {
             pauseOverlay.mouseMoved(e);
         }
-        if(gameOver) {
+        if (gameOver) {
             deathOverlay.mouseMoved(e);
         }
 
@@ -428,14 +427,15 @@ public class Playing extends State implements StateMethods {
     public void setPaused(boolean paused) {
         this.paused = paused;
     }
-    
+
     /**
-     * Setter for Game Over boolean (determines if the screen should display Death Overlay or not)
+     * Setter for Game Over boolean (determines if the screen should display Death Overlay or
+     * not)
      * 
      * @param paused - true if the screen should display Death Overlay, false if not
      */
     public void setGameOver(boolean gameOver) {
-            this.gameOver = gameOver;
+        this.gameOver = gameOver;
     }
 
     /**
@@ -465,7 +465,7 @@ public class Playing extends State implements StateMethods {
     public LevelManager getLevelManager() {
         return levelManager;
     }
-    
+
     /**
      * Resets all entities to their original values
      */
@@ -477,7 +477,7 @@ public class Playing extends State implements StateMethods {
         player.resetDirBools();
         enemyManager.resetAllEnemies();
     }
-    
+
     /**
      * Let's the playing state know the Player Entity died.
      */

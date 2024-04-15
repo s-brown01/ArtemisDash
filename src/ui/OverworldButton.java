@@ -142,7 +142,7 @@ public class OverworldButton {
     /**
      * setter for mouseOver
      * 
-     * @param mouseOver  - the new value of mouseOver
+     * @param mouseOver - the new value of mouseOver
      */
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
@@ -151,7 +151,7 @@ public class OverworldButton {
     /**
      * setter for mousePressed
      * 
-     * @param mousePressed  - the new value of mouseOver
+     * @param mousePressed - the new value of mouseOver
      */
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
@@ -170,7 +170,7 @@ public class OverworldButton {
     /**
      * getter for mousePressed
      * 
-     * @return mousePressed  - the current value of mousePressed
+     * @return mousePressed - the current value of mousePressed
      */
     public boolean isMousePressed() {
         return mousePressed;

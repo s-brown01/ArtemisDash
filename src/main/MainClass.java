@@ -8,10 +8,10 @@ package main;
 public class MainClass {
     /**
      * This function will start and run the Game
+     * 
      * @param args - nothing
      */
     public static void main(String[] args) {
         new Game();
     }
 }
- 

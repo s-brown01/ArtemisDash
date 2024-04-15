@@ -1,9 +1,9 @@
 package drivers;
 
-public class LevelsDriver implements DriverInterface  {
-    
+public class LevelsDriver implements DriverInterface {
+
     public LevelsDriver() {
-        
+
     }
 
     @Override
@@ -11,6 +11,5 @@ public class LevelsDriver implements DriverInterface  {
         // TODO Auto-generated method stub
         return false;
     }
-    
 
 }

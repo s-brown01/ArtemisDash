@@ -1,9 +1,9 @@
 package drivers;
 
 public class StatesDriver implements DriverInterface {
-    
+
     public StatesDriver() {
-        
+
     }
 
     @Override

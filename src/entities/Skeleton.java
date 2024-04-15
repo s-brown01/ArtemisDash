@@ -11,19 +11,20 @@ import java.awt.geom.Rectangle2D;
  * @author Sean-Paul Brown
  */
 public class Skeleton extends Enemy {
-    
+
     /**
-     * This is the frame where the skeleton swings their axe, so it is the frame that should be checked for hitting the player
+     * This is the frame where the skeleton swings their axe, so it is the frame that should
+     * be checked for hitting the player
      */
     private static final int ATTACK_FRAME = 8;
 
-    /** 
+    /**
      * This is the constructor for a single Skeleton
      * 
-     * @param x         - the initial x-coordinate of the Skeleton
-     * @param y         - the initial y-cooridinate of the Skeleton
-     * @param width     - the width of the Skeleton
-     * @param height    - the height of the Skeleton
+     * @param x      - the initial x-coordinate of the Skeleton
+     * @param y      - the initial y-cooridinate of the Skeleton
+     * @param width  - the width of the Skeleton
+     * @param height - the height of the Skeleton
      */
     public Skeleton(float x, float y, int width, int height) {
         super(x, y, width, height, SKELETON);
@@ -40,8 +41,8 @@ public class Skeleton extends Enemy {
      * This will update where the Skeleton is, what action they are doing, and their
      * animation.
      * 
-     * @param lvlData   - A 2D int array of all of the data in the level
-     * @param player    - the Player entity of the Game
+     * @param lvlData - A 2D int array of all of the data in the level
+     * @param player  - the Player entity of the Game
      */
     public void update(int[][] lvlData, Player player) {
         updateBehavior(lvlData, player);
@@ -50,7 +51,9 @@ public class Skeleton extends Enemy {
     }
 
     /**
-     * This is a helper function to update the behavior of the Skeleton based on it's booleans.
+     * This is a helper function to update the behavior of the Skeleton based on it's
+     * booleans.
+     * 
      * @param lvlData - the current Level's data as a 2D array
      * @param player  - the Player Entity
      */
@@ -65,7 +68,7 @@ public class Skeleton extends Enemy {
             // returning here instead of "else" statement
             return;
         }
-        
+
         // if the enemy is not in the air then update their behavior based on their current state
         switch (state) {
         // if IDLE, start moving
@@ -102,7 +105,7 @@ public class Skeleton extends Enemy {
         case (HIT):
             break;
         }
-        
+
     }
 
     /**

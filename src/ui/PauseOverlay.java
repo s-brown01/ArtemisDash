@@ -149,6 +149,7 @@ public class PauseOverlay {
 
     /**
      * THIS FUNCTION IS NOT USED - handles what happens when the mouse is pressed and moved
+     * 
      * @param e - the information about what the mouse is doing
      */
     public void mouseDragged(MouseEvent e) {

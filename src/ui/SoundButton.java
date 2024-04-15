@@ -98,16 +98,16 @@ public class SoundButton extends PauseButton {
     /**
      * setter for mouseOver
      * 
-     * @param mouseOver  - the new value of mouseOver
+     * @param mouseOver - the new value of mouseOver
      */
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
     }
-    
+
     /**
      * getter for mousePressed
      * 
-     * @return mousePressed  - the current value of mousePressed
+     * @return mousePressed - the current value of mousePressed
      */
     public boolean isMousePressed() {
         return mousePressed;
@@ -116,7 +116,7 @@ public class SoundButton extends PauseButton {
     /**
      * setter for mousePressed
      * 
-     * @param mousePressed  - the new value of mouseOver
+     * @param mousePressed - the new value of mouseOver
      */
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
@@ -124,6 +124,7 @@ public class SoundButton extends PauseButton {
 
     /**
      * Getter for the muted boolean
+     * 
      * @return the current value of muted
      */
     public boolean isMuted() {
@@ -131,7 +132,8 @@ public class SoundButton extends PauseButton {
     }
 
     /**
-     * Setter for the muted boolean 
+     * Setter for the muted boolean
+     * 
      * @param muted - new value of muted
      */
     public void setMuted(boolean muted) {

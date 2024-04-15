@@ -55,8 +55,9 @@ public class LevelManager {
     /**
      * Draws the level to the screen with the provided sprite sheet
      * 
-     * @param g             - the Graphics to draw on
-     * @param xLevelOffset  - the current xOffset of the game from screen-scrolling horizontally
+     * @param g            - the Graphics to draw on
+     * @param xLevelOffset - the current xOffset of the game from screen-scrolling
+     *                     horizontally
      */
     public void draw(Graphics g, int xLevelOffset) {
         for (int j = 0; j < Game.TILES_IN_HEIGHT; j++) {

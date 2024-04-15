@@ -48,11 +48,12 @@ public class Game implements Runnable {
     /**
      * This allows the game to be scaled to different screen sizes
      */
-    public final static float SCALE = 1.75f; 
+    public final static float SCALE = 1.75f;
     /**
-     * This is the amount of tiles wide the game is, how many tiles should be drawn horizontall
+     * This is the amount of tiles wide the game is, how many tiles should be drawn
+     * horizontall
      */
-    public final static int TILES_IN_WIDTH = 26; 
+    public final static int TILES_IN_WIDTH = 26;
     /**
      * This is the amount of tiles tall the game is, how many tiles should be drawn vertically
      */
@@ -68,7 +69,7 @@ public class Game implements Runnable {
     /**
      * The amount of pixels tall that the game is (already scaled)
      */
-    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT; 
+    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
     /**
      * the amount of pixels there should be that represent "falling" out of the world.
      */
@@ -240,10 +241,10 @@ public class Game implements Runnable {
     public Overworld getOverworld() {
         return overworld;
     }
-    
+
     public AudioPlayer getAudioPlayer() {
         return audioPlayer;
-        
+
     }
-    
+
 }

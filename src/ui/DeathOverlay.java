@@ -11,8 +11,8 @@ import utils.LoadSave;
 import static utils.Constants.EndButtons.*;
 
 /**
- * This class handles the Death overlay when the Player entity health reaches 0
- * during gameplay
+ * This class handles the Death overlay when the Player entity health reaches 0 during
+ * gameplay
  * 
  * @author John Botonakis
  */
@@ -22,7 +22,7 @@ public class DeathOverlay {
     private int imgX, imgY, imgW, imgH;
     private EndButtons menu, play;
     private Playing playing;
-    
+
     /**
      * Initializes the Pause Overlay by creating and loading in sprite for the menu and its
      * buttons
@@ -45,7 +45,7 @@ public class DeathOverlay {
         imgY = (int) (100 * Game.SCALE);
 
     }
-    
+
     /**
      * Updates the buttons based on the users actions. Things such as hover and mouse click
      * affect the button sprite state
@@ -54,17 +54,17 @@ public class DeathOverlay {
         menu.update();
         play.update();
     }
-    
+
     /**
      * Draws everything that is intended to be visible, to the screen
      * 
      * @param g - Graphics
      */
     public void draw(Graphics g) {
-        //background
+        // background
         g.drawImage(img, imgX, imgY, imgW, imgH, null);
 
-        //buttons
+        // buttons
         menu.draw(g);
         play.draw(g);
     }
@@ -74,13 +74,13 @@ public class DeathOverlay {
      * offsets are set here
      */
     private void createButtons() {
-        //Button Positioning
+        // Button Positioning
         int menuX = (int) (350 * Game.SCALE);
         int playX = (int) (450 * Game.SCALE);
         int yPos = (int) (195 * Game.SCALE);
-        
-        play = new EndButtons(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE,0);
-        menu = new EndButtons(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE,2);
+
+        play = new EndButtons(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 0);
+        menu = new EndButtons(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 2);
     }
 
     /**
@@ -111,7 +111,7 @@ public class DeathOverlay {
             play.setMouseOver(true);
         }
     }
-    
+
     /**
      * Specifies behavior when the mouse button is released, signifying the end of a complete
      * click
@@ -133,7 +133,7 @@ public class DeathOverlay {
         menu.resetBools();
         play.resetBools();
     }
-    
+
     /**
      * Checks to see if the mouse cursor is within the bounds of a menu button
      * 
@@ -144,7 +144,5 @@ public class DeathOverlay {
     private boolean isIn(MouseEvent e, EndButtons b) {
         return b.getBounds().contains(e.getX(), e.getY());
     }
-
-
 
 }

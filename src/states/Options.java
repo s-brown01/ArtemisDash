@@ -11,10 +11,11 @@ import utils.LoadSave;
 
 /**
  * Options State class gives functionality to the Options button on the Main Menu
+ * 
  * @author John Botonakis
  */
 public class Options extends State implements StateMethods {
-    
+
     private OptionsButtons[] buttons = new OptionsButtons[2];
     private final BufferedImage backgroundImg;
 

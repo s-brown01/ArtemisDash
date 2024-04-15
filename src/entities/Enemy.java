@@ -19,14 +19,16 @@ import java.awt.Graphics;
  */
 public abstract class Enemy extends Entity {
 
-    /** Keeps track of if this Enemy is currently attacking the player*/
-    protected boolean attacking; 
+    /** Keeps track of if this Enemy is currently attacking the player */
+    protected boolean attacking;
     /** keeps track of if enemy is "alive" to the Game. */
     protected boolean active = true;
     /**
-     * The firstUpdate keeps track of if the enemy has been updated at all. On the first update, the enemy should check if it is in the air. After the first update, the Enemy should never re-enter the air.
+     * The firstUpdate keeps track of if the enemy has been updated at all. On the first
+     * update, the enemy should check if it is in the air. After the first update, the Enemy
+     * should never re-enter the air.
      */
-    protected boolean firstUpdate = true; 
+    protected boolean firstUpdate = true;
     /**
      * The type of Enemy it is, based on the EnemyConstants
      */
@@ -39,7 +41,7 @@ public abstract class Enemy extends Entity {
      * used to keep track of if a single attack has been checked for collision with the player
      */
     protected boolean attackChecked;
-    /** 
+    /**
      * the movement speed of the enemy
      */
     protected float walkSpeed = 0.80f;
@@ -119,7 +121,8 @@ public abstract class Enemy extends Entity {
 
     /**
      * This function will subtract what ever damage is inputed into this method from the
-     * entity total health. If the enemy reaches 0 health, it will die (change killed to true).
+     * entity total health. If the enemy reaches 0 health, it will die (change killed to
+     * true).
      * 
      * @param damageTaken - the amount of damage taken by this entity
      */
@@ -135,6 +138,7 @@ public abstract class Enemy extends Entity {
 
     /**
      * Getter for the active boolean
+     * 
      * @return the current value of active
      */
     public boolean isActive() {
@@ -146,7 +150,8 @@ public abstract class Enemy extends Entity {
      * better for memory to have imgs stored there.
      * 
      * USE ENEMY MANAGER DRAW INSTEAD
-     * @param g     - the graphics where to draw the Enemy
+     * 
+     * @param g - the graphics where to draw the Enemy
      */
     public void draw(Graphics g) {
         // EMPTY FUNCTION
@@ -157,7 +162,7 @@ public abstract class Enemy extends Entity {
      * This will check if this enemy's attack box intersects with the players hitbox. If it
      * does, the attack connected and player takes damage.
      * 
-     * @param player    - the Player entity
+     * @param player - the Player entity
      */
     public void checkHit(Player player) {
         // if the attackbox intersects with the Player's hitbox then the attack hit the player
@@ -171,14 +176,13 @@ public abstract class Enemy extends Entity {
     /**
      * Turn the sprite/walking direction
      * 
-     * @param player    - the Player entity
+     * @param player - the Player entity
      */
     protected void turnTowardsPlayer(Player player) {
         // if the player's x is less than enemy's, they must be to the left
         if (player.getHitbox().x < hitbox.x) {
             walkDirection = LEFT;
-        }
-        else {
+        } else {
             // if not left, than right
             walkDirection = RIGHT;
         }
@@ -190,14 +194,15 @@ public abstract class Enemy extends Entity {
      * 
      * @param lvlData - the data from the level as a 2D int array
      * @param player  - the main Player
-     * @return returns true if there is a clear line of sight to the player and within sight. Returns false if there is not a line of sight or the player is dead
+     * @return returns true if there is a clear line of sight to the player and within sight.
+     *         Returns false if there is not a line of sight or the player is dead
      */
     protected boolean canSeePlayer(int[][] lvlData, Player player) {
         // if the player is dead, cannot see them
         if (player.isKilled()) {
             return false;
         }
-        
+
         // enemies cannot see different y-values
         final int playerYTile = (int) (player.getHitbox().y / Game.TILES_SIZE);
         // check height/y-tile
@@ -232,7 +237,7 @@ public abstract class Enemy extends Entity {
     /**
      * Check if the player is within attack range
      * 
-     * @param player    - the Player entity
+     * @param player - the Player entity
      * @return true the player is, either side
      */
     protected boolean isInAttackRange(Player player) {
@@ -281,8 +286,7 @@ public abstract class Enemy extends Entity {
         // if left currently, move right
         if (walkDirection == LEFT) {
             walkDirection = RIGHT;
-        }
-        else {
+        } else {
             // if they're not going left, they are now
             walkDirection = LEFT;
         }
@@ -342,7 +346,8 @@ public abstract class Enemy extends Entity {
      * @return -1 if facing left, 1 if facing right
      */
     public int widthFlipped() {
-        // if the enemy is walking to the left, then the flipWidth is the opposite sign so it is drawn backwards
+        // if the enemy is walking to the left, then the flipWidth is the opposite sign so it is
+        // drawn backwards
         if (walkDirection == LEFT) {
             return -1;
         } else {
@@ -353,28 +358,30 @@ public abstract class Enemy extends Entity {
 
     /**
      * Getter for the killed boolean
+     * 
      * @return the current value of killed
      */
     public boolean isKilled() {
         return killed;
     }
-    
+
     /**
      * Getter for the inAir boolean
+     * 
      * @return the current value of inAir
      */
     public boolean isInAir() {
         return inAir;
     }
-    
+
     public int getWalkDirection() {
         return walkDirection;
     }
-    
+
     public float getWalkSpeed() {
         return walkSpeed;
     }
-    
+
     /**
      * Resets enemy behavior
      */

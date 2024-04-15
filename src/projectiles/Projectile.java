@@ -84,6 +84,7 @@ public abstract class Projectile {
 
     /**
      * Getter for the active boolean
+     * 
      * @return the current value of active
      */
     public boolean isActive() {
@@ -92,6 +93,7 @@ public abstract class Projectile {
 
     /**
      * Getter for the colliding boolean
+     * 
      * @return the current value of colliding
      */
     public boolean isColliding() {

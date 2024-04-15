@@ -191,7 +191,7 @@ public class Constants {
                 LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
 
     }
-    
+
     /**
      * End Screen buttons (Both for level completed and Death screen)
      */

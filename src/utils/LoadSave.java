@@ -35,7 +35,7 @@ public class LoadSave {
      * Where the player health HEART representation is located
      */
     public static final String HEART = "/HUDElements/heart.png";
-    
+
     /**
      * the file containing all of the player's sprites/animations
      */
@@ -92,7 +92,7 @@ public class LoadSave {
      * the background rocks for world 1
      */
     public static final String WORLD1_BG_ROCKS = "/World1/World1_rocks.png";
-    
+
     /**
      * the RGB values for Level 1s
      */
@@ -106,13 +106,12 @@ public class LoadSave {
      * the tile sprites for all of world 3
      */
     public static final String WORLD3_SPRITES = "/World3/World3Sprites.png";
-    
+
     /**
      * The buttons relating to the Level Complete screen as well as Death Screen
      */
     public static final String ENDBUTTONS = "/PauseElements/endButtons.png";
-    
-    
+
     /**
      * The assets for the death screen overlay
      */
@@ -134,7 +133,6 @@ public class LoadSave {
         }
         return img;
     }
-    
 
     /**
      * Uses RGB values to generate a tiled level.
