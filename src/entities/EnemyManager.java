@@ -24,6 +24,7 @@ public class EnemyManager {
     private Playing playing;
     private BufferedImage[][] skeletonAnis;
     private List<Skeleton> skeletonList = new ArrayList<>();
+    private List<SkeletonKing> kingList = new ArrayList<>();
 
     /**
      * This class manages every entity instance that is currently loaded into the game
@@ -42,6 +43,7 @@ public class EnemyManager {
      */
     public void loadEnemies(Level level) {
         skeletonList = level.getSkeletons();
+        kingList = level.getSkeletonKings();
     }
 
     /**
@@ -83,6 +85,10 @@ public class EnemyManager {
                     (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH * s.widthFlipped()),
                     (int) (SKELETON_HEIGHT), null);
         }
+        
+        for (SkeletonKing sk : kingList) {
+            sk.draw(g, xLevelOffset);
+        }
     }
 
     /**
@@ -111,22 +117,28 @@ public class EnemyManager {
             if (allEnemiesKilled) {
                 allEnemiesKilled = false;
             }
-            
+
             // if the skeleton is killed, they cannot be hit over and over agian.
-            // if the player has hit a Skeleton then the Skeleton died and the Player should get points
+            // if the player has hit a Skeleton then the Skeleton died and the Player should get
+            // points
             if (!s.isKilled() && playing.getProjectileManager().checkEnemyHit(s)) {
                 playing.updateScore(s.score);
             }
+        }
+        
+        for (SkeletonKing sk : kingList) {
+            sk.update(lvlData);
         }
 
         // if every enemy is dead/inactive, the level is complete
         if (allEnemiesKilled) {
             playing.completeLevel();
         }
-        
-        // this for loop will remove all inactive enemies
     }
     
+    /**
+     * This will reset all of the enemies stored in this manager
+     */
     public void resetAllEnemies() {
         skeletonList.clear();
     }
