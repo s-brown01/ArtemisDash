@@ -51,16 +51,12 @@ public class Player extends Entity {
     private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
                                            // doesn't count as multiple
 
-    /**
-     * this keeps track of where the next attack will go so that specific angles can be done
-     */
+    /**Keeps track of where the next attack will go so that specific angles can be done*/
     private Point nextAttack;
-    /** to draw where the arrow will go */
+    /** Draws the path the arrow will take */
     private boolean drawArrowPath = false;
 
-    /**
-     * Jumping and Gravity variables
-     */
+    //Jumping and Gravity variables
     private float jumpSpeed = -2.75f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
     private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
@@ -400,7 +396,6 @@ public class Player extends Entity {
     private void setAnimation() {
 
         int startAni = player_action;
-//        float startingY = hitbox.y;
 
         if (moving) {
             player_action = RUNNING;
@@ -411,12 +406,6 @@ public class Player extends Entity {
         if (attacking) {
             player_action = DRAW;
         }
-
-//        if (jump) {
-//            if () {
-//                player_action = JUMPSTART;
-//            }
-//        }
 
         if (jump && inAir) {// If spacebar is held and you're in the air, hold the jumping animation
             player_action = JUMPSTART;
