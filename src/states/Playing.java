@@ -207,9 +207,6 @@ public class Playing extends State implements StateMethods {
             deathOverlay.draw(g);
             deathOverlay.update();
         } else {
-            g.setColor(Color.WHITE);
-            g.drawString(String.valueOf(player.getHealth()), (int) player.getHitbox().x + 15 - xLevelOffset,
-                    (int) player.getHitbox().y - 30);
             // if not paused, draw everything beneath this.
             levelManager.draw(g, xLevelOffset);
             hud.draw(g);
@@ -474,6 +471,7 @@ public class Playing extends State implements StateMethods {
         score = 0;
         paused = false;
         levelComplete = false;
+        levelManager.getCurrentLevel().setCompleted(false);
         player.resetDirBools();
         enemyManager.resetAllEnemies();
     }

@@ -71,9 +71,9 @@ public class Game implements Runnable {
      */
     public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
     /**
-     * the amount of pixels there should be that represent "falling" out of the world.
+     * the amount of pixels there are before "falling" out of the world.
      */
-    public final static float GAME_BUFFER = 15 * SCALE;
+    public final static float PIT_DEPTH = GAME_HEIGHT - 10 * SCALE;
 
     /**
      * The constructor for this class, once this is called then the game will start running.

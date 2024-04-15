@@ -209,6 +209,9 @@ public class Player extends Entity {
      */
     private void updatePos() {
         moving = false;
+        
+        worldBoundsCheck();
+        
         // if the user is jumping, try to jump
         if (jump) {
             jump();
@@ -223,12 +226,7 @@ public class Player extends Entity {
                 return;
             }
         }
-
-        // checking that the player isn't too far on the bottom of the screen
-        if (hitbox.y + hitbox.height >= Game.GAME_HEIGHT - Game.GAME_BUFFER) {
-            kill();
-        }
-
+        
         float xSpeed = 0;
 
         // if the player is moving left...
@@ -283,6 +281,21 @@ public class Player extends Entity {
     }
 
     /**
+     * This is a helper method that checks if the player has gone past the Game's Height. If the player has, then they are killed.
+     */
+    private void worldBoundsCheck() {
+        // this is a buffer when checking game height so there is a little room for error
+        final int buffer = 3;
+        
+        // checking that the player isn't too far on the bottom of the screen
+        if (hitbox.y + hitbox.height >= Game.GAME_HEIGHT - buffer) {
+            // if they died then have them fall out of the world and die
+            kill();
+            hitbox.y += hitbox.height * 1.5;
+        }        
+    }
+
+    /**
      * This is a helper function to "flip" the sprite so that it is facing towards the right
      * side of the screen.
      */
@@ -313,8 +326,8 @@ public class Player extends Entity {
                 System.err.println("Hit ceiling, too high");
             }
         }
-
-        if (jumps > 2) {
+        
+        if (jumps > MAX_JUMPS) {
             return;
         }
         jump = false;

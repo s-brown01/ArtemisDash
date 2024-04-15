@@ -131,7 +131,7 @@ public class EnemyManager {
         }
 
         // if every enemy is dead/inactive, the level is complete
-        if (allEnemiesKilled) {
+        if (allEnemiesKilled && !skeletonList.isEmpty()) {
             playing.completeLevel();
         }
     }

@@ -89,10 +89,11 @@ public class DeathOverlay {
      * @param e - Mouse pressed event
      */
     public void mousePressed(MouseEvent e) {
-        if (isIn(e, menu))
+        if (isIn(e, menu)) {
             menu.setMousePressed(true);
-        else if (isIn(e, play))
+        } else if (isIn(e, play)) {
             play.setMousePressed(true);
+        }
     }
 
     /**
@@ -127,6 +128,7 @@ public class DeathOverlay {
         } else if (isIn(e, play)) {
             if (play.isMousePressed()) {
                 playing.resetAll();
+                GameStates.state = GameStates.OVERWORLD;
             }
         }
 
