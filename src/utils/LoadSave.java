@@ -99,6 +99,11 @@ public class LoadSave {
     public static final String LEVEL1_DATA = "/level_one_data_long.png";
 
     /**
+     * the RGB values for the default level
+     */
+    public static final String DEFAULT_LEVEL = "/default_level.png";
+    
+    /**
      * the tile sprites for all of world 2
      */
     public static final String WORLD2_SPRITES = "/World2/World2Sprites.png";
@@ -140,8 +145,8 @@ public class LoadSave {
      * 
      * @return - A 2D array that is representative of tiles making up the level
      */
-    public static int[][] getLevelData() {
-        BufferedImage img = getSpriteSheet(LEVEL1_DATA);
+    public static int[][] getLevelData(String level) {
+        BufferedImage img = getSpriteSheet(level);
         int[][] lvlData = new int[img.getHeight()][img.getWidth()];
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {

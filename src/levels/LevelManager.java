@@ -26,6 +26,8 @@ public class LevelManager {
     public LevelManager(Game game) {
         importLevelSprites();
         loadLevels();
+        // initially the current level is the first one
+        this.currentLevel = levels[0];
     }
 
     /**
@@ -33,7 +35,7 @@ public class LevelManager {
      */
     private void loadLevels() {
         for (int i = 0; i < levels.length; i++) {
-            levels[i] = new Level(LoadSave.getLevelData());
+            levels[i] = new Level(LoadSave.getLevelData(LoadSave.DEFAULT_LEVEL));
         }
     }
 

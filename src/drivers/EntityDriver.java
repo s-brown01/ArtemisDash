@@ -42,7 +42,7 @@ public class EntityDriver implements DriverInterface {
         
         // create a Level to have the skeleton and player interact with.
         // it uses the Level 1 Data.
-        Level testLvl = new Level(LoadSave.getLevelData());
+        Level testLvl = new Level(LoadSave.getLevelData(LoadSave.DEFAULT_LEVEL));
         int[][] lvlData = testLvl.getLevelData();
 
         // create a Skeleton at a point that is above the ground so they are in air. 4 tiles on x

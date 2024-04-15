@@ -30,19 +30,20 @@ public class Playing extends State implements StateMethods {
     // will keep track if the pause menu/ death overlay should be up or not
     private boolean paused, levelComplete, gameOver;
     private Player player;
-    private HUD hud;
-    private PauseOverlay pauseOverlay;
-    private LevelManager levelManager;
-    private EnemyManager enemyManager;
-    private ProjectileManager projManager;
-    private DeathOverlay deathOverlay;
+    private HUD hud;    
+    
+    private final PauseOverlay pauseOverlay = new PauseOverlay();
+    private final LevelManager levelManager = new LevelManager(game);
+    private final EnemyManager enemyManager = new EnemyManager(this);
+    private final ProjectileManager projManager = new ProjectileManager(this);
+    private final DeathOverlay deathOverlay = new DeathOverlay(this);
     private int score;
 
     // Level Expansion vars
     private int xLevelOffset;// X-Offset being added to and subtracted from to render the level itself
     private int borderLeft = (int) (0.5 * Game.GAME_WIDTH);// 50% of the screen is rendered
     private int borderRight = (int) (0.5 * Game.GAME_WIDTH);// 50% of the screen is hidden
-    private int levelTilesWide = LoadSave.getLevelData()[0].length; //
+    private int levelTilesWide = levelManager.getCurrentLevel().getLevelData()[0].length; //
     private int maxTileOffset = levelTilesWide - Game.TILES_IN_WIDTH; //
     private int maxXOffset = maxTileOffset * Game.TILES_SIZE; //
 
@@ -50,7 +51,7 @@ public class Playing extends State implements StateMethods {
     private int yLevelOffset;// Y-Offset being added to and subtracted from to render the level itself
     private int borderTop = (int) (0.5 * Game.GAME_HEIGHT);// 50% of the screen is rendered
     private int borderBottom = (int) (0.5 * Game.GAME_HEIGHT);// 50% of the screen is hidden
-    private int levelTilesHigh = LoadSave.getLevelData().length; //
+    private int levelTilesHigh = levelManager.getCurrentLevel().getLevelData().length; //
     private int maxYTileOffset = levelTilesHigh - Game.TILES_IN_HEIGHT; //
     private int maxYOffset = maxYTileOffset * Game.TILES_SIZE; //
 
@@ -66,19 +67,7 @@ public class Playing extends State implements StateMethods {
      */
     public Playing(Game game) {
         super(game);
-        initClasses();
         initBackgroundAssets();
-    }
-
-    /**
-     * Initializes the classes as a function instead of calling upon them individually Level
-     * Manager, Enemy Manager, and Player entity are all loaded here
-     */
-    private void initClasses() {
-        levelManager = new LevelManager(game);
-        enemyManager = new EnemyManager(this);
-        projManager = new ProjectileManager(this);
-        deathOverlay = new DeathOverlay(this);
     }
 
     /**
@@ -101,7 +90,7 @@ public class Playing extends State implements StateMethods {
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
-        pauseOverlay = new PauseOverlay();
+        
         hud = new HUD(this);
         this.score = 0;
         levelComplete = levelManager.getCurrentLevel().getCompleted();
