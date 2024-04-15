@@ -102,13 +102,14 @@ public class Level {
                 new Skeleton((600 / 1.75f) * Game.SCALE, (200 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
         skeletonList.add(
                 new Skeleton((1300 / 1.75f) * Game.SCALE, (200 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
-        
+
         return skeletonList;
     }
-    
-    public List<SkeletonKing> getSkeletonKings(){
+
+    public List<SkeletonKing> getSkeletonKings() {
         final List<SkeletonKing> skelKingList = new ArrayList<>();
-        skelKingList.add(new SkeletonKing((1500 / 1.75f) * Game.SCALE, (300 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
+        skelKingList.add(new SkeletonKing((1500 / 1.75f) * Game.SCALE, (300 / 1.75f) * Game.SCALE, SKELETON_WIDTH,
+                SKELETON_HEIGHT));
         return skelKingList;
     }
 

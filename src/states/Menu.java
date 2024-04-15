@@ -73,21 +73,6 @@ public class Menu extends State implements StateMethods {
     }
 
     /**
-     * Goes unused as there is no functionality for mouse dragging in the Menu
-     */
-    @Override
-    public void mouseDragged(MouseEvent e) {
-    }
-
-    /**
-     * Goes unused as the "click" encompasses both the press and release of the button, which
-     * we have separate functions for each.
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    /**
      * Sets behavior of mouse buttons when Mouse 1 is pressed
      */
     @Override
@@ -123,10 +108,24 @@ public class Menu extends State implements StateMethods {
                 mb.setMouseOver(true);
                 break;
             } else {
-
                 mb.setMouseOver(false);
             }
         }
+    }
+
+    /**
+     * Goes unused as there is no functionality for mouse dragging in the Menu
+     */
+    @Override
+    public void mouseDragged(MouseEvent e) {
+    }
+
+    /**
+     * Goes unused as the "click" encompasses both the press and release of the button, which
+     * we have separate functions for each.
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
     }
 
     /**

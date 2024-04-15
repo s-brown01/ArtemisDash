@@ -441,7 +441,7 @@ public class Constants {
          * This is an abritrary number that represents the Skeleton King in the Boss Constants
          */
         public static final int SKELETON_KING = 0;
-        
+
         /**
          * This is how much larger a Skeleton King will be than a regular Skeleton
          */
@@ -451,57 +451,60 @@ public class Constants {
          * the animation index correlating to the IDLE animation
          */
         public static final int IDLE = 0;
-        
+
         /**
          * the animation index correlating to the RUNNING animation
          */
         public static final int RUNNING = 1;
-        
+
         /**
          * the animation index correlating to the ATTACK animation
          */
         public static final int ATTACK = 2;
-        
+
         /**
          * the animation index correlating to the HIT (taking damage) animation
          */
         public static final int HIT = 3;
-        
+
         /**
          * the animation index correlating to the DEAD animation
          */
         public static final int DEAD = 4;
-        
+
         /**
          * this is how wide the Skeleton Kings Hitbox would be in the scaled game
          */
         public static final int SKELETON_KING_HITBOX_WIDTH = EnemyConstants.SKELETON_HITBOX_WIDTH * SKELETON_KING_SCALE;
-        
+
         /**
          * this is how tall the Skeleton Kings Hitbox would be in the scaled game
          */
-        public static final int SKELETON_KING_HITBOX_HEIGHT = EnemyConstants.SKELETON_HITBOX_HEIGHT * SKELETON_KING_SCALE;
-        
+        public static final int SKELETON_KING_HITBOX_HEIGHT = EnemyConstants.SKELETON_HITBOX_HEIGHT
+                * SKELETON_KING_SCALE;
+
         /**
          * this is the horizontal offset from the image to the hitbox for the Skeleton King
          */
-        public static final int SKELETON_KING_DRAW_OFFSET_X = EnemyConstants.SKELETON_DRAW_OFFSET_X * SKELETON_KING_SCALE;
-        
+        public static final int SKELETON_KING_DRAW_OFFSET_X = EnemyConstants.SKELETON_DRAW_OFFSET_X
+                * SKELETON_KING_SCALE;
+
         /**
          * this is the vertical offset from the image to the hitbox for the Skeleton King
          */
-        public static final int SKELETON_KING_DRAW_OFFSET_Y = EnemyConstants.SKELETON_DRAW_OFFSET_Y * SKELETON_KING_SCALE;
-        
+        public static final int SKELETON_KING_DRAW_OFFSET_Y = EnemyConstants.SKELETON_DRAW_OFFSET_Y
+                * SKELETON_KING_SCALE;
+
         /**
          * this is how wide the Skeleton King will be in the scaled game
          */
         public static final int SKELETON_KING_WIDTH = EnemyConstants.SKELETON_WIDTH * SKELETON_KING_SCALE;
-        
+
         /**
          * this is how tall the Skeleton King will be in the scaled game
          */
         public static final int SKELETON_KING_HEIGHT = EnemyConstants.SKELETON_HEIGHT * SKELETON_KING_SCALE;
-        
+
         /**
          * Get how every many sprites a specific action take for a specific boss. This returns how
          * many frames/sprites that action takes.

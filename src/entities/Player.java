@@ -57,16 +57,12 @@ public class Player extends Entity {
     private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
                                            // doesn't count as multiple
 
-    /**
-     * this keeps track of where the next attack will go so that specific angles can be done
-     */
+    /** Keeps track of where the next attack will go so that specific angles can be done */
     private Point nextAttack;
-    /** to draw where the arrow will go */
+    /** Draws the path the arrow will take */
     private boolean drawArrowPath = false;
 
-    /**
-     * Jumping and Gravity variables
-     */
+    // Jumping and Gravity variables
     private float jumpSpeed = -2.75f * Game.SCALE; // How high the player can jump
     private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
     private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
@@ -84,9 +80,6 @@ public class Player extends Entity {
         super(x, y, width, height);
         this.playing = playing;
         currentHealth = STARTING_HEALTH;
-        // Singleton check
-//        if (!Player.singletonCheck())
-//            throw new IllegalStateException("Only 1 Player can ever be created at a time");
         loadAni();
         initHitbox((int) x, (int) y, (int) (hitboxCorrectionWidth), (int) (hitboxCorrectionHeight));
         this.state = IDLE;
@@ -209,9 +202,9 @@ public class Player extends Entity {
      */
     private void updatePos() {
         moving = false;
-        
+
         worldBoundsCheck();
-        
+
         // if the user is jumping, try to jump
         if (jump) {
             jump();
@@ -226,7 +219,7 @@ public class Player extends Entity {
                 return;
             }
         }
-        
+
         float xSpeed = 0;
 
         // if the player is moving left...
@@ -281,18 +274,19 @@ public class Player extends Entity {
     }
 
     /**
-     * This is a helper method that checks if the player has gone past the Game's Height. If the player has, then they are killed.
+     * This is a helper method that checks if the player has gone past the Game's Height. If
+     * the player has, then they are killed.
      */
     private void worldBoundsCheck() {
         // this is a buffer when checking game height so there is a little room for error
         final int buffer = 3;
-        
+
         // checking that the player isn't too far on the bottom of the screen
         if (hitbox.y + hitbox.height >= Game.GAME_HEIGHT - buffer) {
             // if they died then have them fall out of the world and die
             kill();
             hitbox.y += hitbox.height * 1.5;
-        }        
+        }
     }
 
     /**
@@ -326,7 +320,7 @@ public class Player extends Entity {
                 System.err.println("Hit ceiling, too high");
             }
         }
-        
+
         if (jumps > MAX_JUMPS) {
             return;
         }
@@ -449,7 +443,6 @@ public class Player extends Entity {
     private void setAnimation() {
 
         int startAni = player_action;
-//        float startingY = hitbox.y;
 
         if (moving) {
             player_action = RUNNING;

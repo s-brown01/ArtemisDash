@@ -85,7 +85,7 @@ public class EnemyManager {
                     (int) (s.getHitbox().y - SKELETON_DRAW_OFFSET_Y), (int) (SKELETON_WIDTH * s.widthFlipped()),
                     (int) (SKELETON_HEIGHT), null);
         }
-        
+
         for (SkeletonKing sk : kingList) {
             sk.draw(g, xLevelOffset);
         }
@@ -125,7 +125,7 @@ public class EnemyManager {
                 playing.updateScore(s.score);
             }
         }
-        
+
         for (SkeletonKing sk : kingList) {
             sk.update(lvlData);
         }
@@ -135,7 +135,7 @@ public class EnemyManager {
             playing.completeLevel();
         }
     }
-    
+
     /**
      * This will reset all of the enemies stored in this manager
      */
