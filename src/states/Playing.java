@@ -101,7 +101,7 @@ public class Playing extends State implements StateMethods {
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
-        pauseOverlay = new PauseOverlay();
+        pauseOverlay = new PauseOverlay(game);
         hud = new HUD(this);
         this.score = 0;
         levelComplete = levelManager.getCurrentLevel().getCompleted();

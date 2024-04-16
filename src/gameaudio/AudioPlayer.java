@@ -112,7 +112,7 @@ public class AudioPlayer {
     }
     
     /**
-     * 
+     * Sets the Level music based on the current level index
      * @param lvlIndex
      */
     public void setLevelSong(int lvlIndex) {
@@ -140,7 +140,7 @@ public class AudioPlayer {
     }
 
     /**
-     * 
+     * Plays other sound effects 
      * @param effect
      */
     public void playEffect(int effect) {
@@ -172,7 +172,14 @@ public class AudioPlayer {
         }
     }
 
-
+    public void toggleEffectMute() {
+        this.effectMute = !effectMute;
+        for (Clip c : fx) {
+            BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+            booleanControl.setValue(effectMute);
+        }
+    }
+    
 
     /**
      * Updates the currently playing song's volume as a float.

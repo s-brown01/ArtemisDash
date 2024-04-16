@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import main.Game;
+
 import static main.Game.*;
 import static utils.LoadSave.*;
 import static utils.Constants.ButtonStates.*;
@@ -18,12 +20,14 @@ public class PauseOverlay {
     private BufferedImage backgroundImage;
     private int bgX, bgY, bgH, bgW;
     private SoundButton musicButton, sfxButton;
+    private Game game;
 
     /**
      * Initializes the Pause Overlay by creating and loading in sprite for the menu and its
      * buttons
      */
-    public PauseOverlay() {
+    public PauseOverlay(Game game) {
+        this.game = game;
         loadBackground();
         createButtons();
     }
@@ -104,12 +108,15 @@ public class PauseOverlay {
         if (isIn(e, musicButton)) {
             if (musicButton.isMousePressed()) {
                 musicButton.setMuted(!musicButton.isMuted());
+                game.getAudioPlayer().toggleSongMute();
+                
             }
         }
         // Similar design here, only for the SFX button
         else if (isIn(e, sfxButton)) {
             if (sfxButton.isMousePressed()) {
                 sfxButton.setMuted(!sfxButton.isMuted());
+                game.getAudioPlayer().toggleEffectMute();
             }
         }
 
