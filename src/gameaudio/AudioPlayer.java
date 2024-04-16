@@ -59,14 +59,14 @@ public class AudioPlayer {
      * Loads in the SFX audio into an array for easier fetching.
      * The array stores these SFX files as Clip objects
      */
-//    public void loadEffect() {
-//        String[] effectNames = { "player_death", "jump", "game-over", "level-complete", "bow_fire","button_hover","button_confirm" };
-//        fx = new Clip[effectNames.length];
-//        for (int i = 0; i < fx.length; i++)
-//            fx[i] = getSound(effectNames[i]);
-//        
-//        updateEffectsVolume();
-//    }
+    public void loadEffect() {
+        String[] effectNames = { "player_death", "jump", "game-over", "level-complete", "bow_fire","button_hover","button_confirm" };
+        fx = new Clip[effectNames.length];
+        for (int i = 0; i < fx.length; i++)
+            fx[i] = getSound(effectNames[i]);
+        
+        updateEffectsVolume();
+    }
 
     /**
      * Loads in the audio file as a Clip object by first getting the resource as a URL file

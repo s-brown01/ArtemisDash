@@ -100,8 +100,8 @@ public class Game implements Runnable {
      * Initializes each of the states in a specific order.
      */
     private void initClasses() {
-        audioPlayer = new AudioPlayer(this);
         menu = new Menu(this);
+        audioPlayer = new AudioPlayer(this);
         playing = new Playing(this);
         // overworld needs to be created AFTER the playing class since it uses the playing's
         // levelManager

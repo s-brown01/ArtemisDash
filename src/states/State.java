@@ -63,9 +63,16 @@ public abstract class State {
         return game;
     }
     
+    /**
+     * Used for audio configuration. Sets the current GameState to the specified state
+     * @param state
+     */
     public void setGamestate(GameStates state) {
-        if (state == GameStates.MENU) {
+        switch(state) {
+        case MENU:
             game.getAudioPlayer().playSong(AudioPlayer.MENU_1);
+        case PLAYING:
+            game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getCurrentLevelIndex());
         }
         GameStates.state = state;
     }
