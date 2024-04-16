@@ -86,7 +86,7 @@ public class Menu extends State implements StateMethods {
     }
 
     /**
-     * Sets behavior of mouse buttons when Mouse 1 is released
+     * Sets behavior of buttons when Mouse 1 is released
      */
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -94,9 +94,9 @@ public class Menu extends State implements StateMethods {
             if (hoverOverButton(e, mb)) {
                 if (mb.isMousePressed()) {
                     mb.applyGamestate();
-                    break;
                 }
             }
+            break;
         }
         resetButtons();
     }

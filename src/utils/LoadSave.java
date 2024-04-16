@@ -37,47 +37,52 @@ public class LoadSave {
     public static final String HEART = "/HUDElements/heart.png";
 
     /**
-     * the file containing all of the player's sprites/animations
+     * The file containing all of the player's sprites/animations
      */
     public static final String PLAYER_SPRITES = "/EntitySpritesheets/Artemis_Finished.png";
     /**
-     * the file containing all of the skeleton's sprites/animations
+     * The file containing all of the skeleton's sprites/animations
      */
     public static final String SKELETON_SPRITES = "/EntitySpritesheets/Skeleton.png";
     /**
-     * the file containing all of the blue projectile sprites/animations
+     * The file containing all of the blue projectile sprites/animations
      */
     public static final String BLUE_PROJECTILE = "/EntitySpritesheets/Blue_Projectiles.png";
 
     /**
-     * the Overworld background image
+     * The background for the Overworld Screen
      */
     public static final String OVERWORLD_BG = "/overworld1.png";
 
     /**
-     * the pause menu background
+     * The background for the Pause Screen
      */
     public static final String PAUSE_MENU = "/PauseElements/pause_menu.png";
     /**
-     * the pause sound button images
+     * The images making up the Pause Sound Buttons
      */
     public static final String PAUSE_SOUND_BUTTONS = "/PauseElements/pause_sound_buttons.png";
     /**
-     * the pause button images
+     * The images making up the Pause Buttons
      */
     public static final String PAUSE_BUTTONS = "/PauseElements/pause_buttons.png";
 
     /**
-     * the main menu button images
+     * The images making up the Main Menu Buttons
      */
     public static final String MENU_BUTTONS = "/TitleScreenElements/TitleButtons.png";
     /**
-     * the main menu's background
+     * The background for the Main Menu
      */
     public static final String MENU_SCREEN = "/TitleScreenElements/TitleScreen1.png";
-
+    
     /**
-     * the sprite sheet for all of the tiles in world 1
+     * The background for the Options Screen
+     */
+    public static final String OPTIONS_SCREEN = "/TitleScreenElements/OptionsScreen.png";
+    
+    /**
+     * The sprite sheet for all of the tiles in world 1
      */
     public static final String WORLD1_SPRITES = "/World1/World1Sprites.png";
     /**

@@ -6,6 +6,7 @@ import entities.Player;
 import gameaudio.AudioPlayer;
 import states.GameStates;
 import states.Menu;
+import states.Options;
 import states.Overworld;
 import states.Playing;
 
@@ -23,6 +24,7 @@ public class Game implements Runnable {
     private Menu menu;
     private Overworld overworld;
     private AudioPlayer audioPlayer;
+    private Options options;
 
     /**
      * The GamePanel where to draw the Game
@@ -101,11 +103,12 @@ public class Game implements Runnable {
      */
     private void initClasses() {
         menu = new Menu(this);
-        audioPlayer = new AudioPlayer(this);
         playing = new Playing(this);
         // overworld needs to be created AFTER the playing class since it uses the playing's
         // levelManager
         overworld = new Overworld(this);
+        options = new Options(this);
+        audioPlayer = new AudioPlayer(this);
     }
 
     /**
@@ -172,6 +175,7 @@ public class Game implements Runnable {
             overworld.draw(g);
             break;
         case OPTIONS:
+            options.update();
             break;
         case QUIT:
             // if quitting, then exit the system
@@ -196,6 +200,7 @@ public class Game implements Runnable {
             overworld.update();
             break;
         case OPTIONS:
+            options.update();
             break;
         case QUIT:
             // if quitting, then exit the system
@@ -241,6 +246,15 @@ public class Game implements Runnable {
      */
     public Overworld getOverworld() {
         return overworld;
+    }
+    
+    /**
+     * Getter for the Options GameState
+     * 
+     * @return the Options state of the game
+     */
+    public Options getOptions() {
+        return options;
     }
 
     /**

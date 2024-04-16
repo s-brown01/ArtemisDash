@@ -172,15 +172,7 @@ public class AudioPlayer {
         }
     }
 
-//    public void toggleEffectMute() {
-//        this.effectMute = !effectMute;
-//        for (Clip c : fx) {
-//            BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
-//            booleanControl.setValue(effectMute);
-//        }
-//        if (!effectMute)
-//            playEffect(JUMP);
-//    }
+
 
     /**
      * Updates the currently playing song's volume as a float.
