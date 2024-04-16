@@ -86,7 +86,7 @@ public class Menu extends State implements StateMethods {
     }
 
     /**
-     * Sets behavior of buttons when Mouse 1 is released
+     * Sets the behavior of buttons when Mouse 1 is released
      */
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -100,7 +100,9 @@ public class Menu extends State implements StateMethods {
         }
         resetButtons();
     }
-
+    /**
+     * Sets the behavior of buttons when Mouse 1 is released
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         for (MenuButton mb : buttons) {

@@ -174,9 +174,13 @@ public class AudioPlayer {
 
     public void toggleEffectMute() {
         this.effectMute = !effectMute;
-        for (Clip c : fx) {
-            BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
-            booleanControl.setValue(effectMute);
+        if (fx == null) {
+            return;
+        }else {
+            for (Clip c : fx) {
+                BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+                booleanControl.setValue(effectMute);
+            }
         }
     }
     
