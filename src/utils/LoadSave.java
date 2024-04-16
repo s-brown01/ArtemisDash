@@ -133,12 +133,13 @@ public class LoadSave {
      * @return - The specified image as a variable
      */
     public static BufferedImage getSpriteSheet(String filename) {
+        // create it here so it can be returned
         BufferedImage img = null;
-
+        // try with resources so it automatically closes
         try (InputStream is = LoadSave.class.getResourceAsStream(filename)) {
             img = ImageIO.read(is);
         } catch (IOException e) {
-            System.out.println("NULL");
+            System.err.println("NULL");
         }
         return img;
     }
@@ -150,14 +151,18 @@ public class LoadSave {
      * @return - A 2D array that is representative of tiles making up the level
      */
     public static int[][] getLevelData(String level) {
+        // get the image containing the RGB values
         BufferedImage img = getSpriteSheet(level);
+        // the level data will represent every pixel in the RBG map
         int[][] lvlData = new int[img.getHeight()][img.getWidth()];
+        // for reach point in the RBG map, assign the value to a 
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {
                 Color color = new Color(img.getRGB(i, j));
                 int value = color.getRed();
-                if (value >= 48)
+                if (value >= 48) {
                     value = 0;
+                }
                 lvlData[j][i] = value;
             }
         return lvlData;
@@ -196,11 +201,9 @@ public class LoadSave {
      * @return an array of BufferedImages containing all the sprites
      */
     public static BufferedImage[] getArrowImgs() {
+        // get the sheet with all of the sprites on it
         final BufferedImage allBlueSprites = getSpriteSheet(BLUE_PROJECTILE);
-//        if (allBlueSprites == null) {
-//            System.exit(0);
-//        }
-        // these are from the sprite sheet, the specifc coordinates of what images to use
+        // these are from the sprite sheet, the specific coordinates of what images to use
         final int[] arrowImgX = { 2, 18, 34, 50, 66 };
         final int arrowImgY = 277;
         BufferedImage[] arrowSprites = new BufferedImage[arrowImgX.length];
