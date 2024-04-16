@@ -45,6 +45,10 @@ public class LoadSave {
      */
     public static final String SKELETON_SPRITES = "/EntitySpritesheets/Skeleton.png";
     /**
+     * the file containing all of the skeleton king's sprites/animations
+     */
+    public static final String SKELETON_KING_SPRITES = "/EntitySpritesheets/SkeletonKing.png";
+    /**
      * the file containing all of the blue projectile sprites/animations
      */
     public static final String BLUE_PROJECTILE = "/EntitySpritesheets/Blue_Projectiles.png";

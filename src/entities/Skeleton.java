@@ -31,8 +31,8 @@ public class Skeleton extends Enemy {
         initHitbox(x, y, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT);
         startNewState(IDLE);
         // attack box will be a long rectangle that extends out from the hitbox of the Skeleton
-        attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_HITBOX_WIDTH * 3, SKELETON_HITBOX_HEIGHT);
-        attackDistance = hitbox.width;
+        attackbox = new Rectangle2D.Float(hitbox.x - SKELETON_HITBOX_WIDTH, hitbox.y, SKELETON_HITBOX_WIDTH * 3, SKELETON_HITBOX_HEIGHT);
+        attackDistance = hitbox.width * 1.5f;
         eyeSight = attackDistance * 5;
         this.score = 100;
     }
@@ -108,14 +108,6 @@ public class Skeleton extends Enemy {
             break;
         }
 
-    }
-
-    /**
-     * Make sure the attack box is in line with the hitbox/sprite
-     */
-    private void updateAttackbox() {
-        attackbox.x = hitbox.x - hitbox.width;
-        attackbox.y = hitbox.y;
     }
 
 }

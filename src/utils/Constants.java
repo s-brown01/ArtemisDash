@@ -304,9 +304,14 @@ public class Constants {
      */
     public static class EnemyConstants {
         /**
-         * An arbitrary number that correlated to Enemy Type
+         * An arbitrary number that correlated to Enemy type Skeleton
          */
         public static final int SKELETON = 0;
+        
+        /**
+         * This is an arbitrary number that represents the Skeleton King 
+         */
+        public static final int SKELETON_KING = 1;
 
         /**
          * the animation index correlating to the IDLE animation
@@ -362,6 +367,16 @@ public class Constants {
          */
         public static final int SKELETON_DRAW_OFFSET_Y = (int) (28 * Game.SCALE);
 
+        
+        public static final float SKELETON_KING_SCALE = 1f;
+        public static final int SKELETON_KING_WIDTH = (int)(SKELETON_KING_SCALE * SKELETON_WIDTH);
+        public static final int SKELETON_KING_HEIGHT = (int)(SKELETON_KING_SCALE * SKELETON_HEIGHT);
+        public static final int SKELETON_KING_HITBOX_WIDTH = (int)(SKELETON_KING_SCALE * SKELETON_HITBOX_WIDTH);
+        public static final int SKELETON_KING_HITBOX_HEIGHT = (int)(SKELETON_KING_SCALE * SKELETON_HITBOX_HEIGHT);
+        public static final int SKELETON_KING_DRAW_OFFSET_X = (int)(SKELETON_KING_SCALE * SKELETON_DRAW_OFFSET_X);
+        public static final int SKELETON_KING_DRAW_OFFSET_Y = (int)(SKELETON_KING_SCALE * SKELETON_DRAW_OFFSET_Y);
+        
+        
         /**
          * Get how every many sprites a specific action take for a specific enemy. This returns
          * how many frames/sprites that action takes.
@@ -377,6 +392,8 @@ public class Constants {
             // first see what enemy it is
             // then see what action, then return appropriate number
             switch (enemy_type) {
+            // both Skeleton King and Skeleton have same sprite amounts
+            case SKELETON_KING:
             case SKELETON:
                 switch (enemy_action) {
                 case IDLE:
@@ -408,6 +425,8 @@ public class Constants {
          */
         public static int getMaxHealth(int enemy_type) {
             switch (enemy_type) {
+            case SKELETON_KING:
+                return 3;
             case SKELETON:
                 return 1;
             default:
@@ -425,136 +444,9 @@ public class Constants {
          */
         public static int getAttackDamage(int enemy_type) {
             switch (enemy_type) {
-            case SKELETON:
+            case SKELETON_KING:
                 return 1;
-            default:
-                return 0;
-            }
-        }
-    }
-
-    /**
-     * Boss Animation States and Constants
-     */
-    public static class BossConstants {
-        /**
-         * This is an abritrary number that represents the Skeleton King in the Boss Constants
-         */
-        public static final int SKELETON_KING = 0;
-
-        /**
-         * This is how much larger a Skeleton King will be than a regular Skeleton
-         */
-        private static final int SKELETON_KING_SCALE = 1;
-
-        /**
-         * the animation index correlating to the IDLE animation
-         */
-        public static final int IDLE = 0;
-
-        /**
-         * the animation index correlating to the RUNNING animation
-         */
-        public static final int RUNNING = 1;
-
-        /**
-         * the animation index correlating to the ATTACK animation
-         */
-        public static final int ATTACK = 2;
-
-        /**
-         * the animation index correlating to the HIT (taking damage) animation
-         */
-        public static final int HIT = 3;
-
-        /**
-         * the animation index correlating to the DEAD animation
-         */
-        public static final int DEAD = 4;
-
-        /**
-         * this is how wide the Skeleton Kings Hitbox would be in the scaled game
-         */
-        public static final int SKELETON_KING_HITBOX_WIDTH = EnemyConstants.SKELETON_HITBOX_WIDTH * SKELETON_KING_SCALE;
-
-        /**
-         * this is how tall the Skeleton Kings Hitbox would be in the scaled game
-         */
-        public static final int SKELETON_KING_HITBOX_HEIGHT = EnemyConstants.SKELETON_HITBOX_HEIGHT
-                * SKELETON_KING_SCALE;
-
-        /**
-         * this is the horizontal offset from the image to the hitbox for the Skeleton King
-         */
-        public static final int SKELETON_KING_DRAW_OFFSET_X = EnemyConstants.SKELETON_DRAW_OFFSET_X
-                * SKELETON_KING_SCALE;
-
-        /**
-         * this is the vertical offset from the image to the hitbox for the Skeleton King
-         */
-        public static final int SKELETON_KING_DRAW_OFFSET_Y = EnemyConstants.SKELETON_DRAW_OFFSET_Y
-                * SKELETON_KING_SCALE;
-
-        /**
-         * this is how wide the Skeleton King will be in the scaled game
-         */
-        public static final int SKELETON_KING_WIDTH = EnemyConstants.SKELETON_WIDTH * SKELETON_KING_SCALE;
-
-        /**
-         * this is how tall the Skeleton King will be in the scaled game
-         */
-        public static final int SKELETON_KING_HEIGHT = EnemyConstants.SKELETON_HEIGHT * SKELETON_KING_SCALE;
-
-        /**
-         * Get how every many sprites a specific action take for a specific boss. This returns how
-         * many frames/sprites that action takes.
-         * 
-         * @param boss_type   - what class the boss is, based on the static variables in
-         *                    BossConstants
-         * @param boss_action - what action is happening, based on the static variables in
-         *                    BossConstants
-         * @return - the amount of frames that that specific action takes
-         */
-        public static int getSpriteAmount(int boss_type, int boss_action) {
-            // first see what boss it is
-            // then see what action, then return appropriate number
-            switch (boss_type) {
-            case SKELETON_KING:
-                // the Skeleton King uses the same animations as the SKELETON enemy
-                EnemyConstants.getSpriteAmount(EnemyConstants.SKELETON, boss_action);
-            default:
-                return 0;
-            }
-        }
-
-        /**
-         * This function will return the maximum health points that a specific boss type has. This
-         * function is based on the static variables of BossConstants and it uses a case-switch.
-         * 
-         * @param boss_type - what class the enemy is, based on the static variables in
-         *                  BossConstants
-         * @return - return the specific amount of health for that enemy, defaults to 1
-         */
-        public static int getMaxHealth(int boss_type) {
-            switch (boss_type) {
-            case SKELETON_KING:
-                return 5;
-            default:
-                return 0;
-            }
-        }
-
-        /**
-         * This function will return the damage per attack for a specific boss type. This function
-         * is based on the static variables of BossConstants and it uses a case-switch.
-         * 
-         * @param boss_type - what class the enemy is, based on the static variables in
-         *                  BossConstants
-         * @return - return the specific amount of damage per attack for that enemy, defaults to 0
-         */
-        public static int getAttackDamage(int boss_type) {
-            switch (boss_type) {
-            case SKELETON_KING:
+            case SKELETON:
                 return 1;
             default:
                 return 0;

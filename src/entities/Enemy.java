@@ -46,6 +46,10 @@ public abstract class Enemy extends Entity {
      */
     protected float walkSpeed = 0.80f;
     /**
+     * This is the speed that the Skeleton King will move at when they are attacking
+     */
+    protected float attackWalkSpeed = 0f;
+    /**
      * The image offset from top side of image to top side of hitbox.
      * 
      * The offset is 55 when game scale is 1.75, so divide to make it work for all scales
@@ -53,6 +57,7 @@ public abstract class Enemy extends Entity {
     protected float hitboxYOffset = (55 / 1.75f) * Game.SCALE;
     protected int score = 0;
     protected boolean killed = false;
+    protected boolean hurting = false;
 
     /**
      * the variables that keep track of how the player sees and attacks the palyer
@@ -129,6 +134,8 @@ public abstract class Enemy extends Entity {
     public void hurt(int damageTaken) {
         // take the damage from the arrow
         currentHealth -= damageTaken;
+        hurting = true;
+        startNewState(HIT);
         // if the health is equal to (or less than) 0, the enemy is dead
         if (currentHealth <= 0) {
             killed = true;
@@ -154,8 +161,6 @@ public abstract class Enemy extends Entity {
      * @param g - the graphics where to draw the Enemy
      */
     public void draw(Graphics g) {
-        // EMPTY FUNCTION
-        // NO ENEMY SHOULD DRAW ITSELF
     }
 
     /**
@@ -302,9 +307,17 @@ public abstract class Enemy extends Entity {
         float xSpeed = 0;
         // left is a negative number, right is a positive number
         if (walkDirection == LEFT) {
-            xSpeed -= walkSpeed;
+            if (attacking) {
+                xSpeed -= attackWalkSpeed;
+            } else {
+                xSpeed -= walkSpeed;
+            }
         } else {
-            xSpeed += walkSpeed;
+            if (attacking) {
+                xSpeed += attackWalkSpeed;
+            } else {
+                xSpeed += walkSpeed;
+            }        
         }
 
         // if the Enemy can move to the tile that is xSpeed away AND they can walk on that tile,
@@ -388,5 +401,21 @@ public abstract class Enemy extends Entity {
      */
     public float getWalkSpeed() {
         return walkSpeed;
+    }
+    
+    /**
+     * Make sure the attack box is in line with the hitbox/sprite
+     */
+    protected void updateAttackbox() {
+        attackbox.x = hitbox.x - hitbox.width;
+        attackbox.y = hitbox.y;
+    }
+    
+    /**
+     * Getter for the hurting variable
+     * @return the current value of hurting
+     */
+    public boolean isHurting() {
+        return hurting;
     }
 }

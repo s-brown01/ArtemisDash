@@ -58,9 +58,9 @@ public abstract class Entity {
      * 
      * @param g - Graphics to be called and drawn from
      */
-    protected void drawAttackbox(Graphics g) {
+    protected void drawAttackbox(Graphics g, int xLevelOffset) {
         g.setColor(Color.RED);
-        g.drawRect((int) attackbox.x, (int) attackbox.y, (int) attackbox.width, (int) attackbox.height);
+        g.drawRect((int) attackbox.x - xLevelOffset, (int) attackbox.y, (int) attackbox.width, (int) attackbox.height);
     }
 
     /**

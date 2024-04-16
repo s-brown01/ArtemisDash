@@ -23,6 +23,7 @@ public class EnemyManager {
 
     private Playing playing;
     private BufferedImage[][] skeletonAnis;
+    private BufferedImage[][] skelKingAnis;
     private List<Skeleton> skeletonList = new ArrayList<>();
     private List<SkeletonKing> kingList = new ArrayList<>();
 
@@ -55,10 +56,19 @@ public class EnemyManager {
     private void loadImgs() {
         // SKELETONS
         skeletonAnis = new BufferedImage[6][18];
-        final BufferedImage img = LoadSave.getSpriteSheet(LoadSave.SKELETON_SPRITES);
+        final BufferedImage skelImg = LoadSave.getSpriteSheet(LoadSave.SKELETON_SPRITES);
         for (int j = 0; j < skeletonAnis.length; j++) {
             for (int i = 0; i < skeletonAnis[j].length; i++) {
-                skeletonAnis[j][i] = img.getSubimage(i * SKELETON_WIDTH_DEFAULT, j * SKELETON_HEIGHT_DEFAULT,
+                skeletonAnis[j][i] = skelImg.getSubimage(i * SKELETON_WIDTH_DEFAULT, j * SKELETON_HEIGHT_DEFAULT,
+                        SKELETON_WIDTH_DEFAULT, SKELETON_HEIGHT_DEFAULT);
+            }
+        }
+        // SKELETON KINGS
+        skelKingAnis = new BufferedImage[6][18];
+        final BufferedImage skelKingImg = LoadSave.getSpriteSheet(LoadSave.SKELETON_KING_SPRITES);
+        for (int j = 0; j < skelKingAnis.length; j++) {
+            for (int i = 0; i < skelKingAnis[j].length; i++) {
+                skelKingAnis[j][i] = skelKingImg.getSubimage(i * SKELETON_WIDTH_DEFAULT, j * SKELETON_HEIGHT_DEFAULT,
                         SKELETON_WIDTH_DEFAULT, SKELETON_HEIGHT_DEFAULT);
             }
         }
@@ -87,7 +97,17 @@ public class EnemyManager {
         }
 
         for (SkeletonKing sk : kingList) {
-            sk.draw(g, xLevelOffset);
+            // if the skeleton isn't active, skip it
+            if (!sk.isActive()) {
+                continue;
+            }
+            // this draws the current skeleton with their state and animation at the skeleton hitbox
+            g.drawImage(skelKingAnis[sk.getState()][sk.getAniIndex()],
+                    (int) (sk.getHitbox().x - SKELETON_KING_DRAW_OFFSET_X - xLevelOffset + sk.xFlipped()),
+                    (int) (sk.getHitbox().y - SKELETON_KING_DRAW_OFFSET_Y), (int) (SKELETON_KING_WIDTH * sk.widthFlipped()),
+                    (int) (SKELETON_KING_HEIGHT), null);   
+            sk.drawHitbox(g, xLevelOffset);
+            sk.drawAttackbox(g, xLevelOffset);
         }
     }
 
@@ -127,7 +147,19 @@ public class EnemyManager {
         }
 
         for (SkeletonKing sk : kingList) {
-            sk.update(lvlData);
+            sk.update(lvlData, player);
+            
+            if (!sk.isActive()) {
+                continue;
+            }
+            
+            if (allEnemiesKilled) {
+                allEnemiesKilled = false;
+            }
+            
+            if (!sk.isKilled() && playing.getProjectileManager().checkEnemyHit(sk)) {
+                playing.updateScore(sk.score);
+            }        
         }
 
         // if every enemy is dead/inactive, the level is complete

@@ -2,6 +2,8 @@ package levels;
 
 import static utils.Constants.EnemyConstants.SKELETON_HEIGHT;
 import static utils.Constants.EnemyConstants.SKELETON_WIDTH;
+import static utils.Constants.EnemyConstants.SKELETON_KING_HEIGHT;
+import static utils.Constants.EnemyConstants.SKELETON_KING_WIDTH;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,8 +110,8 @@ public class Level {
 
     public List<SkeletonKing> getSkeletonKings() {
         final List<SkeletonKing> skelKingList = new ArrayList<>();
-        skelKingList.add(new SkeletonKing((1500 / 1.75f) * Game.SCALE, (300 / 1.75f) * Game.SCALE, SKELETON_WIDTH,
-                SKELETON_HEIGHT));
+        skelKingList.add(new SkeletonKing((1500 / 1.75f) * Game.SCALE, (425 / 1.75f) * Game.SCALE, SKELETON_KING_WIDTH,
+                SKELETON_KING_HEIGHT));
         return skelKingList;
     }
 

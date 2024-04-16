@@ -122,6 +122,10 @@ public class ProjectileManager {
      * @return ture if the enemy was hit by an arrow, false if the enemy wasn't.
      */
     public boolean checkEnemyHit(Enemy e) {
+        // check if the enemy is currently hurting so that they can't get hit over and over
+        if (e.isHurting()) {
+            return false;
+        }
         // check every Arrow on the screen
         // Create an iterator to safely iterate over the arrowList
         final Iterator<Arrow> arrowIter = arrowList.iterator();
