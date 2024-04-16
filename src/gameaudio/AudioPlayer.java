@@ -32,19 +32,22 @@ public class AudioPlayer {
     public static int BTN_HOVER = 5;
     public static int BTN_CONFIRM = 6;
 
-    private Clip[] music, fx;
     private int currentID;
-    private float volume = 0.5f;
+    private Clip[] music, fx;
+    private Game game;
     private boolean songMute, effectMute;
     private Random rnd = new Random();
-    private Game game;
+    private float volume = 0.8f;
 
     public AudioPlayer(Game game) {
         loadSong();
         playSong(MENU_1);
-//        loadEffect();
     }
 
+    /**
+     * Loads the music audio into an array for easier fetching.
+     * The array stores these audio files as Clip objects
+     */
     public void loadSong() {
         String[] names = {"mm","W1L1"};
         music = new Clip[names.length];
@@ -52,6 +55,10 @@ public class AudioPlayer {
             music[i] = getSound(names[i]);
     }
 
+    /**
+     * Loads in the SFX audio into an array for easier fetching.
+     * The array stores these SFX files as Clip objects
+     */
 //    public void loadEffect() {
 //        String[] effectNames = { "player_death", "jump", "game-over", "level-complete", "bow_fire","button_hover","button_confirm" };
 //        fx = new Clip[effectNames.length];
@@ -61,6 +68,12 @@ public class AudioPlayer {
 //        updateEffectsVolume();
 //    }
 
+    /**
+     * Loads in the audio file as a Clip object by first getting the resource as a URL file
+     * 
+     * @param name - Name of clip to load in
+     * @return The audio file 
+     */
     private Clip getSound(String name) {
         URL url = getClass().getResource("/Audio/" + name + ".wav");
         AudioInputStream audio;
@@ -79,17 +92,29 @@ public class AudioPlayer {
         return null;
 
     }
+    
+    /**
+     * 
+     * @param volume
+     */
     public void setVolume(float volume) {
         this.volume = volume;
         updateSongVolume();
         updateEffectsVolume();
     }
 
+    /**
+     * 
+     */
     public void stopSong() {
         if (music[currentID].isActive())
             music[currentID].stop();
     }
-
+    
+    /**
+     * 
+     * @param lvlIndex
+     */
     public void setLevelSong(int lvlIndex) {
         if (lvlIndex % 2 == 0)
             playSong(W_1L_1);
@@ -97,22 +122,36 @@ public class AudioPlayer {
             playSong(W_1L_2);
     }
 
+    /**
+     * Stops whatever song is currently playing, and switches to the LEVELCOMPLETE song
+     */
     public void lvlCompleted() {
         stopSong();
         playEffect(LEVELCOMPLETE);
     }
 
+    /**
+     * Plays the SFX for attacking
+     */
     public void playAttackSound() {
         int start = 4;
-//        start += rnd.nextInt(3);
+        start += rnd.nextInt(3);
         playEffect(start);
     }
 
+    /**
+     * 
+     * @param effect
+     */
     public void playEffect(int effect) {
         fx[effect].setMicrosecondPosition(0);
         fx[effect].start();
     }
-
+    /**
+     * Plays the passed in Song, and will loop  
+     * 
+     * @param song - The integer value of the song you wish to play
+     */
     public void playSong(int song) {
         stopSong();
 
@@ -121,7 +160,10 @@ public class AudioPlayer {
         music[currentID].setMicrosecondPosition(0);
         music[currentID].loop(Clip.LOOP_CONTINUOUSLY);
     }
-
+    
+    /**
+     * 
+     */
     public void toggleSongMute() {
         this.songMute = !songMute;
         for (Clip c : music) {
@@ -130,25 +172,30 @@ public class AudioPlayer {
         }
     }
 
-    public void toggleEffectMute() {
-        this.effectMute = !effectMute;
-        for (Clip c : fx) {
-            BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
-            booleanControl.setValue(effectMute);
-        }
-        if (!effectMute)
-            playEffect(JUMP);
-    }
+//    public void toggleEffectMute() {
+//        this.effectMute = !effectMute;
+//        for (Clip c : fx) {
+//            BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+//            booleanControl.setValue(effectMute);
+//        }
+//        if (!effectMute)
+//            playEffect(JUMP);
+//    }
 
+    /**
+     * Updates the currently playing song's volume as a float.
+     */
     private void updateSongVolume() {
-
         FloatControl gainControl = (FloatControl) music[currentID].getControl(FloatControl.Type.MASTER_GAIN);
         float range = gainControl.getMaximum() - gainControl.getMinimum();
         float gain = (range * volume) + gainControl.getMinimum();
         gainControl.setValue(gain);
-
     }
 
+    /**
+     * Updates the currently queued SFX's volume as a float.
+     * This method changes the volume for EVERY sound effect.
+     */
     private void updateEffectsVolume() {
         for (Clip c : fx) {
             FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
