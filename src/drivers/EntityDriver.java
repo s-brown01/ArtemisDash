@@ -3,9 +3,13 @@ package drivers;
 import entities.*;
 import levels.Level;
 import main.Game;
+import states.Playing;
 import utils.Constants.EnemyConstants;
 import utils.LoadSave;
 import static utils.Constants.*;
+
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  * This will test all classes in the Entity package
@@ -25,6 +29,72 @@ public class EntityDriver implements DriverInterface {
         if (!testEnemy()) {
             allSuccess = false;
         }
+        if (!testEnemyManager()) {
+            allSuccess = false;
+        }
+        return allSuccess;
+    }
+
+    private boolean testEnemyManager() {
+        boolean allSuccess = true;
+        Playing playing = new Playing(null);
+        EnemyManager testEM = playing.getEnemyManager();
+        final int buffer = 500;
+        
+        // no Enemies have been loaded yet, test getters
+        if (testEM.getSkeletons().size() != 0 || testEM.getSkeletonKings().size() != 0) {
+            printEnemyManagerError("Failed initial size test");
+            allSuccess = false;
+        }
+        // this will update the enemyManager
+        playing.nextLevel(0);
+        // after loading, it should have 2 skeletons and 1 skeleton king in the first level
+        if (testEM.getSkeletons().size() != 2 || testEM.getSkeletonKings().size() != 1) {
+            printEnemyManagerError("Failed initial size test");
+            allSuccess = false;
+        }
+        
+        // making sure the first skeleton loaded correctly
+        if (!testEM.getSkeletons().get(0).isInAir()) {
+            printEnemyManagerError("Failed initial inAir test");
+            allSuccess = false;
+        }
+        
+        int counter = 0;
+        // making sure that the EM can update correctly
+        while (testEM.getSkeletons().get(0).isInAir()) {
+            testEM.update(playing.getLevelManager().getCurrentLevel().getLevelData(), playing.getPlayer());
+            counter++;
+            if (counter > buffer) {
+                printEnemyManagerError("Failed update test");
+                allSuccess = false;
+            }
+        }
+        
+        // make sure enemy updated correctly
+        if (testEM.getSkeletons().get(0).getState() != EnemyConstants.IDLE) {
+            printEnemyManagerError("Failed state test after update");
+            allSuccess = false;
+        }
+        testEM.update(playing.getLevelManager().getCurrentLevel().getLevelData(), playing.getPlayer());
+        // make sure enemy updated correctly
+        if (testEM.getSkeletons().get(0).getState() != EnemyConstants.RUNNING) {
+            printEnemyManagerError("Failed state test after 2nd update");
+            allSuccess = false;
+        }
+        
+        // make sure that the EM can draw without errors
+        BufferedImage mockImage = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
+        Graphics g = mockImage.getGraphics();
+        testEM.draw(g, 0);
+        
+        testEM.resetAllEnemies();
+        // all enemies should be deleted/cleared
+        if (testEM.getSkeletons().size() != 0 || testEM.getSkeletonKings().size() != 0) {
+            printEnemyManagerError("Failed reset test");
+            allSuccess = false;
+        }
+        
         return allSuccess;
     }
 
@@ -489,4 +559,13 @@ public class EntityDriver implements DriverInterface {
         System.err.println("\tENEMY - " + message);
     }
 
+    /**
+     * This is used to style the messages that are printed if any tests failed in the
+     * testEnemyManager Method
+     * 
+     * @param message the message to be printed
+     */
+    private void printEnemyManagerError(String message) {
+        System.err.println("\tENEMY MANAGER - " + message);
+    }
 }
