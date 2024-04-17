@@ -359,23 +359,41 @@ public class Constants {
          */
         public static final int SKELETON_HITBOX_HEIGHT = (int) (36 * Game.SCALE);
         /**
-         * How wide the skeleton's hitbox will be in game
+         * How far the horizontal offset is from image to hitbox for a regular skeleton
          */
         public static final int SKELETON_DRAW_OFFSET_X = (int) (18 * Game.SCALE);
         /**
-         * How tall the skeleton's hitbox will be in game
+         * How far the vertical offset is from image to hitbox for a regular skeleton
          */
         public static final int SKELETON_DRAW_OFFSET_Y = (int) (28 * Game.SCALE);
-
-        
+        /**
+         * This is how many times larger the Skeleton is than a regular Skeleton
+         */
         public static final float SKELETON_KING_SCALE = 1f;
+        /**
+         * How wide the skeleton king's sprites will be in game
+         */
         public static final int SKELETON_KING_WIDTH = (int)(SKELETON_KING_SCALE * SKELETON_WIDTH);
+        /**
+         * How tall the skeleton king's sprites will be in game
+         */
         public static final int SKELETON_KING_HEIGHT = (int)(SKELETON_KING_SCALE * SKELETON_HEIGHT);
+        /**
+         * How wide the skeleton king's hitbox is when drawn on the images
+         */
         public static final int SKELETON_KING_HITBOX_WIDTH = (int)(SKELETON_KING_SCALE * SKELETON_HITBOX_WIDTH);
+        /**
+         * How tall the skeleton king's hitbox is when drawn on the images
+         */
         public static final int SKELETON_KING_HITBOX_HEIGHT = (int)(SKELETON_KING_SCALE * SKELETON_HITBOX_HEIGHT);
+        /**
+         * How far the horizontal offset is from image to hitbox for a Skeleton King
+         */
         public static final int SKELETON_KING_DRAW_OFFSET_X = (int)(SKELETON_KING_SCALE * SKELETON_DRAW_OFFSET_X);
+        /**
+         * How far the vertical offset is from image to hitbox for a Skeleton King
+         */
         public static final int SKELETON_KING_DRAW_OFFSET_Y = (int)(SKELETON_KING_SCALE * SKELETON_DRAW_OFFSET_Y);
-        
         
         /**
          * Get how every many sprites a specific action take for a specific enemy. This returns
@@ -448,6 +466,40 @@ public class Constants {
                 return 1;
             case SKELETON:
                 return 1;
+            default:
+                return 0;
+            }
+        }
+        
+        /**
+         * This function returns the walk speed for a specific enemy. It represents how fast the enemy moves while they are in their running animation. It is based on the EnemyConstants values.
+         * 
+         * @param enemy_type - the integer that represents a specific enemy type (based on the EnemyConstants values)
+         * @return the walk speed for a specific enemy.
+         */
+        public static float getWalkSpeed(int enemy_type) {
+            switch (enemy_type) {
+            case SKELETON_KING:
+                return 1.00f;
+            case SKELETON:
+                return 0.80f;
+            default:
+                return 0.80f;
+            }
+        }
+        
+        /**
+         * This function returns the attacking walk speed for a specific enemy. It represents how fast the enemy moves while they are in their attacking animation. It is based on the EnemyConstants values.
+         * 
+         * @param enemy_type - the integer that represents a specific enemy type (based on the EnemyConstants values)
+         * @return the attacking walk speed for a specific enemy.
+         */
+        public static float getAttackWalkSpeed(int enemy_type) {
+            switch (enemy_type) {
+            case SKELETON_KING:
+                return 1.00f * .5f;
+            case SKELETON:
+                return 0;
             default:
                 return 0;
             }

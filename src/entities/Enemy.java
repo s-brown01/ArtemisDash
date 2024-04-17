@@ -1,9 +1,9 @@
 package entities;
 
 import main.Game;
+import static utils.Constants.EnemyConstants;
 
 import static utils.Constants.Directions.*;
-import static utils.Constants.EnemyConstants.*;
 import static utils.Constants.GRAVITY;
 import static utils.HelperMethods.*;
 
@@ -44,11 +44,11 @@ public abstract class Enemy extends Entity {
     /**
      * the movement speed of the enemy
      */
-    protected float walkSpeed = 0.80f;
+    protected final float walkSpeed;
     /**
      * This is the speed that the Skeleton King will move at when they are attacking
      */
-    protected float attackWalkSpeed = 0f;
+    protected final float attackWalkSpeed;
     /**
      * The image offset from top side of image to top side of hitbox.
      * 
@@ -78,8 +78,11 @@ public abstract class Enemy extends Entity {
     public Enemy(float x, float y, int width, int height, int enemy_type) {
         super(x, y, width, height);
         this.enemy_type = enemy_type;
-        this.maxHealth = getMaxHealth(enemy_type);
+        this.maxHealth = EnemyConstants.getMaxHealth(enemy_type);
         this.currentHealth = maxHealth;
+        this.walkSpeed = EnemyConstants.getWalkSpeed(enemy_type);
+        this.attackWalkSpeed = EnemyConstants.getAttackWalkSpeed(enemy_type);
+        
     }
 
     /**
@@ -95,7 +98,7 @@ public abstract class Enemy extends Entity {
             aniTick = 0;
             aniIndex++;
             // check if that is the last frame in the, reset the index and state
-            if (aniIndex >= getSpriteAmount(enemy_type, state)) {
+            if (aniIndex >= EnemyConstants.getSpriteAmount(enemy_type, state)) {
                 aniIndex = 0;
                 // attacking = false allows us to not let the enemy attack over and over
                 // once they attack, they go back to idle
@@ -103,8 +106,8 @@ public abstract class Enemy extends Entity {
 
                 switch (state) {
                 // only do 1 attack at a time & leave attack animation
-                case ATTACK, HIT -> startNewState(IDLE);
-                case DEAD -> active = false;
+                case EnemyConstants.ATTACK, EnemyConstants.HIT -> startNewState(EnemyConstants.IDLE);
+                case EnemyConstants.DEAD -> active = false;
                 }
             }
         }
@@ -135,11 +138,11 @@ public abstract class Enemy extends Entity {
         // take the damage from the arrow
         currentHealth -= damageTaken;
         hurting = true;
-        startNewState(HIT);
+        startNewState(EnemyConstants.HIT);
         // if the health is equal to (or less than) 0, the enemy is dead
         if (currentHealth <= 0) {
             killed = true;
-            startNewState(DEAD);
+            startNewState(EnemyConstants.DEAD);
         }
     }
 
@@ -396,8 +399,8 @@ public abstract class Enemy extends Entity {
     }
 
     /**
-     * Getter for the enemies walk speed 
-     * @return the current value of the walk speed (which is final)
+     * Getter for the enemy's walk speed 
+     * @return the value of the walk speed
      */
     public float getWalkSpeed() {
         return walkSpeed;
@@ -417,5 +420,13 @@ public abstract class Enemy extends Entity {
      */
     public boolean isHurting() {
         return hurting;
+    }
+    
+    /**
+     * Getter for the enemy's attacking walk speed
+     * @return the value of the attacking walk speed
+     */
+    public float getAttackWalkSpeed() {
+        return attackWalkSpeed;
     }
 }

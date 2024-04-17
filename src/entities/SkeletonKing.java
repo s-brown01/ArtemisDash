@@ -31,10 +31,6 @@ public class SkeletonKing extends Enemy {
         attackDistance = hitbox.width * 1.5f;
         eyeSight = attackDistance * 10;
         this.score = 1000;
-        // this enemy will move faster than regular Skeletons
-        this.walkSpeed = 1f;
-        // the walk speed while attacking is half of the regular speed
-        this.attackWalkSpeed = walkSpeed / 2f;
     }
     
     /**

@@ -22,7 +22,7 @@ public abstract class Entity {
     protected int aniIndex, aniTick, aniSpeed = utils.Constants.ANISPEED;
     protected int currentHealth, maxHealth;
 
-    protected boolean inAir;
+    protected boolean inAir = true;
     protected float gravity = utils.Constants.GRAVITY; // How quickly the entity falls to earth
     protected float airSpeed = 0f; // How quickly the player moves in the air
 

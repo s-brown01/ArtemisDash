@@ -656,11 +656,27 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Getter for the inAir boolean
+     * @return the current value of inAir
+     */
     public boolean isInAir() {
         return inAir;
     }
 
+    /**
+     * Getter for the killed boolean
+     * @return the current value of killed
+     */
     public boolean isKilled() {
         return killed;
+    }
+
+    /**
+     * Geter for the hurting boolean
+     * @return the current value of hurting
+     */
+    public boolean isHurting() {
+        return hurting;
     }
 }
