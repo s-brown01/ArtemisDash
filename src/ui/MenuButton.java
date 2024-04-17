@@ -99,7 +99,7 @@ public class MenuButton {
      * the menuButton as "state"
      */
     public void applyGamestate() {
-        GameStates.state = state;
+        GameStates.state = this.state;
     }
 
     /**
