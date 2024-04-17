@@ -21,11 +21,11 @@ import utils.LoadSave;
  */
 public class EnemyManager {
 
-    private Playing playing;
+    private final Playing playing;
     private BufferedImage[][] skeletonAnis;
     private BufferedImage[][] skelKingAnis;
-    private List<Skeleton> skeletonList = new ArrayList<>();
-    private List<SkeletonKing> kingList = new ArrayList<>();
+    private final List<Skeleton> skeletonList = new ArrayList<>();
+    private final List<SkeletonKing> kingList = new ArrayList<>();
 
     /**
      * This class manages every entity instance that is currently loaded into the game
@@ -43,8 +43,8 @@ public class EnemyManager {
      * @param level - what level to load enemies in from
      */
     public void loadEnemies(Level level) {
-        skeletonList = level.getSkeletons();
-        kingList = level.getSkeletonKings();
+        skeletonList.addAll(level.getSkeletons());
+        kingList.addAll(level.getSkeletonKings());
     }
 
     /**
@@ -173,5 +173,22 @@ public class EnemyManager {
      */
     public void resetAllEnemies() {
         skeletonList.clear();
+        kingList.clear();
+    }
+    
+    /**
+     * Getter for the List of Skeletons
+     * @return the List containing all Skeletons that were loaded in
+     */
+    public List<Skeleton> getSkeletons() {
+        return skeletonList;
+    }
+    
+    /**
+     * Getter for the List of Skeleton Kings
+     * @return the List containing all Skeleton Kings that were loaded in
+     */
+    public List<SkeletonKing> getSkeletonKings() {
+        return kingList;
     }
 }
