@@ -26,8 +26,9 @@ public class LevelManager {
     public LevelManager(Game game) {
         importLevelSprites();
         loadLevels();
-        // initially the current level is the first one
-        this.currentLevel = levels[0];
+        // initially the current level is the first index
+        this.currentLevelIndex = 0;
+        this.currentLevel = levels[currentLevelIndex];
     }
 
     /**
@@ -112,7 +113,7 @@ public class LevelManager {
     }
 
     /**
-     * Unhide levels based on the current Level.
+     * Set hidden to false on certain levels based on the current Level. This lets the Player 'progress' through the different Levels
      */
     public void unhideNextLevels() {
         // depending what the current level is, it should unhide different levels
@@ -146,6 +147,14 @@ public class LevelManager {
      */
     private void unhideLevel(int index) {
         levels[index].setHidden(false);
+    }
+    
+    /**
+     * Getter for the entire array of Levels
+     * @return the array containing all 15 levels
+     */
+    public Level[] getLevels() {
+        return levels;
     }
 
 }
