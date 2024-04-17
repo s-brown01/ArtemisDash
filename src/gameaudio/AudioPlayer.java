@@ -19,18 +19,18 @@ import main.Game;
 public class AudioPlayer {
     public static int MENU_1 = 0;
     public static int W_1L_1 = 1;
-    public static int W_1L_2 = 2;
-    public static int W_1L_3 = 3;
-    public static int W_1L_4 = 4;
-    public static int W_1L_5 = 5;
+    public static int GAMEOVER = 2;
+    public static int W_1L_2 = 3;
+//    public static int LEVELCOMPLETE = 4;
+//    public static int W_1L_3 = 3;
+//    public static int W_1L_4 = 4;
+//    public static int W_1L_5 = 5;
 
     public static int DEATH = 0;
     public static int JUMP = 1;
-    public static int GAMEOVER = 2;
-    public static int LEVELCOMPLETE = 3;
-    public static int FIRE = 4;
-    public static int BTN_HOVER = 5;
-    public static int BTN_CONFIRM = 6;
+    public static int FIRE = 2;
+//    public static int BTN_HOVER = 5;
+//    public static int BTN_CONFIRM = 6;
 
     private int currentID;
     private Clip[] music, fx;
@@ -41,6 +41,7 @@ public class AudioPlayer {
 
     public AudioPlayer(Game game) {
         loadSong();
+        loadEffect();
         playSong(MENU_1);
     }
 
@@ -49,7 +50,7 @@ public class AudioPlayer {
      * The array stores these audio files as Clip objects
      */
     public void loadSong() {
-        String[] names = {"mm","W1L1"};
+        String[] names = {"mm","W1L1","game-over"};
         music = new Clip[names.length];
         for (int i = 0; i < music.length; i++)
             music[i] = getSound(names[i]);
@@ -60,7 +61,7 @@ public class AudioPlayer {
      * The array stores these SFX files as Clip objects
      */
     public void loadEffect() {
-        String[] effectNames = { "player_death", "jump", "game-over", "level-complete", "bow_fire","button_hover","button_confirm" };
+        String[] effectNames = { "player_death", "jump","bow_fire"};
         fx = new Clip[effectNames.length];
         for (int i = 0; i < fx.length; i++)
             fx[i] = getSound(effectNames[i]);
@@ -135,7 +136,6 @@ public class AudioPlayer {
      */
     public void playAttackSound() {
         int start = 4;
-        start += rnd.nextInt(3);
         playEffect(start);
     }
 
