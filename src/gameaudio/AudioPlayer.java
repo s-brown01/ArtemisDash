@@ -29,8 +29,8 @@ public class AudioPlayer {
     public static int DEATH = 0;
     public static int JUMP = 1;
     public static int FIRE = 2;
-//    public static int BTN_HOVER = 5;
-//    public static int BTN_CONFIRM = 6;
+    public static int BTN_HOVER = 3;
+    public static int BTN_CONFIRM = 4;
 
     private int currentID;
     private Clip[] music, fx;
@@ -61,12 +61,12 @@ public class AudioPlayer {
      * The array stores these SFX files as Clip objects
      */
     public void loadEffect() {
-        String[] effectNames = { "player_death", "jump","bow_fire"};
+        String[] effectNames = { "player_death", "jump","bow_fire","button_hover","button_confirm"};
         fx = new Clip[effectNames.length];
         for (int i = 0; i < fx.length; i++)
             fx[i] = getSound(effectNames[i]);
         
-        updateEffectsVolume();
+//        updateEffectsVolume();
     }
 
     /**
@@ -101,7 +101,7 @@ public class AudioPlayer {
     public void setVolume(float volume) {
         this.volume = volume;
         updateSongVolume();
-        updateEffectsVolume();
+//        updateEffectsVolume();
     }
 
     /**
@@ -199,13 +199,13 @@ public class AudioPlayer {
      * Updates the currently queued SFX's volume as a float.
      * This method changes the volume for EVERY sound effect.
      */
-    private void updateEffectsVolume() {
-        for (Clip c : fx) {
-            FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
-            float range = gainControl.getMaximum() - gainControl.getMinimum();
-            float gain = (range * volume) + gainControl.getMinimum();
-            gainControl.setValue(gain);
-        }
-    }
+//    private void updateEffectsVolume() {
+//        for (Clip c : fx) {
+//            FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
+//            float range = gainControl.getMaximum() - gainControl.getMinimum();
+//            float gain = (range * volume) + gainControl.getMinimum();
+//            gainControl.setValue(gain);
+//        }
+//    }
 
 }
