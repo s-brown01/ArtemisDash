@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import main.Game;
 import ui.MenuButton;
 import ui.OptionsButtons;
+import gameaudio.AudioPlayer;
 
 /**
  * This state class defines how each state should behave when instantiated from this
@@ -60,6 +61,13 @@ public abstract class State {
      */
     public Game getGame() {
         return game;
+    }
+    
+    public void setGamestate(GameStates state) {
+        if (state == GameStates.MENU) {
+            game.getAudioPlayer().playSong(AudioPlayer.MENU_1);
+        }
+        GameStates.state = state;
     }
 
 }
