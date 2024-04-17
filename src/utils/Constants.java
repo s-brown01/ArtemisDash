@@ -307,9 +307,9 @@ public class Constants {
          * An arbitrary number that correlated to Enemy type Skeleton
          */
         public static final int SKELETON = 0;
-        
+
         /**
-         * This is an arbitrary number that represents the Skeleton King 
+         * This is an arbitrary number that represents the Skeleton King
          */
         public static final int SKELETON_KING = 1;
 
@@ -373,28 +373,28 @@ public class Constants {
         /**
          * How wide the skeleton king's sprites will be in game
          */
-        public static final int SKELETON_KING_WIDTH = (int)(SKELETON_KING_SCALE * SKELETON_WIDTH);
+        public static final int SKELETON_KING_WIDTH = (int) (SKELETON_KING_SCALE * SKELETON_WIDTH);
         /**
          * How tall the skeleton king's sprites will be in game
          */
-        public static final int SKELETON_KING_HEIGHT = (int)(SKELETON_KING_SCALE * SKELETON_HEIGHT);
+        public static final int SKELETON_KING_HEIGHT = (int) (SKELETON_KING_SCALE * SKELETON_HEIGHT);
         /**
          * How wide the skeleton king's hitbox is when drawn on the images
          */
-        public static final int SKELETON_KING_HITBOX_WIDTH = (int)(SKELETON_KING_SCALE * SKELETON_HITBOX_WIDTH);
+        public static final int SKELETON_KING_HITBOX_WIDTH = (int) (SKELETON_KING_SCALE * SKELETON_HITBOX_WIDTH);
         /**
          * How tall the skeleton king's hitbox is when drawn on the images
          */
-        public static final int SKELETON_KING_HITBOX_HEIGHT = (int)(SKELETON_KING_SCALE * SKELETON_HITBOX_HEIGHT);
+        public static final int SKELETON_KING_HITBOX_HEIGHT = (int) (SKELETON_KING_SCALE * SKELETON_HITBOX_HEIGHT);
         /**
          * How far the horizontal offset is from image to hitbox for a Skeleton King
          */
-        public static final int SKELETON_KING_DRAW_OFFSET_X = (int)(SKELETON_KING_SCALE * SKELETON_DRAW_OFFSET_X);
+        public static final int SKELETON_KING_DRAW_OFFSET_X = (int) (SKELETON_KING_SCALE * SKELETON_DRAW_OFFSET_X);
         /**
          * How far the vertical offset is from image to hitbox for a Skeleton King
          */
-        public static final int SKELETON_KING_DRAW_OFFSET_Y = (int)(SKELETON_KING_SCALE * SKELETON_DRAW_OFFSET_Y);
-        
+        public static final int SKELETON_KING_DRAW_OFFSET_Y = (int) (SKELETON_KING_SCALE * SKELETON_DRAW_OFFSET_Y);
+
         /**
          * Get how every many sprites a specific action take for a specific enemy. This returns
          * how many frames/sprites that action takes.
@@ -470,11 +470,14 @@ public class Constants {
                 return 0;
             }
         }
-        
+
         /**
-         * This function returns the walk speed for a specific enemy. It represents how fast the enemy moves while they are in their running animation. It is based on the EnemyConstants values.
+         * This function returns the walk speed for a specific enemy. It represents how fast the
+         * enemy moves while they are in their running animation. It is based on the
+         * EnemyConstants values.
          * 
-         * @param enemy_type - the integer that represents a specific enemy type (based on the EnemyConstants values)
+         * @param enemy_type - the integer that represents a specific enemy type (based on the
+         *                   EnemyConstants values)
          * @return the walk speed for a specific enemy.
          */
         public static float getWalkSpeed(int enemy_type) {
@@ -487,11 +490,14 @@ public class Constants {
                 return 0.80f;
             }
         }
-        
+
         /**
-         * This function returns the attacking walk speed for a specific enemy. It represents how fast the enemy moves while they are in their attacking animation. It is based on the EnemyConstants values.
+         * This function returns the attacking walk speed for a specific enemy. It represents how
+         * fast the enemy moves while they are in their attacking animation. It is based on the
+         * EnemyConstants values.
          * 
-         * @param enemy_type - the integer that represents a specific enemy type (based on the EnemyConstants values)
+         * @param enemy_type - the integer that represents a specific enemy type (based on the
+         *                   EnemyConstants values)
          * @return the attacking walk speed for a specific enemy.
          */
         public static float getAttackWalkSpeed(int enemy_type) {

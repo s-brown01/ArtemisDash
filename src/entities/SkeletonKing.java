@@ -8,13 +8,13 @@ import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 public class SkeletonKing extends Enemy {
-    
+
     /**
      * This is the frame where the skeleton swings their axe, so it is the frame that should
      * be checked for hitting the player
      */
     private static final int ATTACK_FRAME = 8;
-    
+
     /**
      * This is the constructor of the Skeleton King
      * 
@@ -27,12 +27,13 @@ public class SkeletonKing extends Enemy {
         super(x, y, width, height, SKELETON_KING);
         initHitbox(x, y, SKELETON_KING_HITBOX_WIDTH, SKELETON_KING_HITBOX_HEIGHT);
         startNewState(IDLE);
-        attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_KING_HITBOX_WIDTH * 3, SKELETON_KING_HITBOX_HEIGHT);
+        attackbox = new Rectangle2D.Float(hitbox.x, hitbox.y, SKELETON_KING_HITBOX_WIDTH * 3,
+                SKELETON_KING_HITBOX_HEIGHT);
         attackDistance = hitbox.width * 1.5f;
         eyeSight = attackDistance * 10;
         this.score = 1000;
     }
-    
+
     /**
      * This will update where the Skeleton King is, what action they are doing, and their
      * animation.
@@ -45,7 +46,7 @@ public class SkeletonKing extends Enemy {
         updateAniTick();
         updateAttackbox();
     }
-    
+
     /**
      * This is a helper function to update the behavior of the Skeleton King based on it's
      * booleans.
@@ -58,18 +59,19 @@ public class SkeletonKing extends Enemy {
         if (firstUpdate) {
             firstUpdateCheck(lvlData);
         }
-        
+
         if (inAir) {
             updateInAir(lvlData);
             return;
         }
-        
+
         switch (state) {
-        case(IDLE):
+        case (IDLE):
             startNewState(RUNNING);
             break;
         case (RUNNING):
-            // since hurting prevents the enemy from taking additional damage, moving it here gives them some invincibility over a couple updates
+            // since hurting prevents the enemy from taking additional damage, moving it here gives
+            // them some invincibility over a couple updates
             hurting = false;
             // turn, attack, then move
             // if the Enemy can see player
@@ -103,14 +105,10 @@ public class SkeletonKing extends Enemy {
             break;
         }
     }
-    
-    
+
     public void drawHitbox(Graphics g, int xLevelOffset) {
         g.setColor(Color.red);
-        g.drawRect((int)hitbox.x - xLevelOffset, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
+        g.drawRect((int) hitbox.x - xLevelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
-    
-    
-
 
 }

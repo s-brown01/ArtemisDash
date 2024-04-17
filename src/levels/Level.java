@@ -113,14 +113,14 @@ public class Level {
      * ArrayList.
      * 
      * @return a List storing all Skeleton Kings in this Level
-     */    
+     */
     public List<SkeletonKing> getSkeletonKings() {
         final List<SkeletonKing> skelKingList = new ArrayList<>();
         skelKingList.add(new SkeletonKing((1500 / 1.75f) * Game.SCALE, (425 / 1.75f) * Game.SCALE, SKELETON_KING_WIDTH,
                 SKELETON_KING_HEIGHT));
         return skelKingList;
     }
-    
+
     /**
      * This allows two different levels to be compared. It compares the level data from each
      * Level to see if they are the same dimensions and same numbers.
@@ -138,8 +138,8 @@ public class Level {
             return false;
         }
         // make sure that every index is the same
-        for (int i = 0; i < lvlData.length; i ++) {
-            for (int j = 0; j < lvlData[i].length; j ++) {
+        for (int i = 0; i < lvlData.length; i++) {
+            for (int j = 0; j < lvlData[i].length; j++) {
                 if (lvlData[i][j] != otherLevelData[i][j]) {
                     return false;
                 }
@@ -147,7 +147,7 @@ public class Level {
         }
         // if passed all tests above, they are the same
         return true;
-        
+
     }
 
 }

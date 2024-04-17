@@ -213,7 +213,7 @@ public class Player extends Entity {
         if (dash) {
             dash();
         }
-        
+
         // check if holding both left and right or holding neither
         if (!inAir) {
             if ((!left && !right) || (right && left)) {
@@ -658,6 +658,7 @@ public class Player extends Entity {
 
     /**
      * Getter for the inAir boolean
+     * 
      * @return the current value of inAir
      */
     public boolean isInAir() {
@@ -666,6 +667,7 @@ public class Player extends Entity {
 
     /**
      * Getter for the killed boolean
+     * 
      * @return the current value of killed
      */
     public boolean isKilled() {
@@ -674,6 +676,7 @@ public class Player extends Entity {
 
     /**
      * Geter for the hurting boolean
+     * 
      * @return the current value of hurting
      */
     public boolean isHurting() {

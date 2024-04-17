@@ -113,7 +113,8 @@ public class LevelManager {
     }
 
     /**
-     * Set hidden to false on certain levels based on the current Level. This lets the Player 'progress' through the different Levels
+     * Set hidden to false on certain levels based on the current Level. This lets the Player
+     * 'progress' through the different Levels
      */
     public void unhideNextLevels() {
         // depending what the current level is, it should unhide different levels
@@ -148,9 +149,10 @@ public class LevelManager {
     private void unhideLevel(int index) {
         levels[index].setHidden(false);
     }
-    
+
     /**
      * Getter for the entire array of Levels
+     * 
      * @return the array containing all 15 levels
      */
     public Level[] getLevels() {

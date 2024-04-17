@@ -4,7 +4,7 @@ package drivers;
  * This is the main driver. Once the main method is called all other unit tests will be
  * done.
  * 
- * @author seanp
+ * @author Sean-Paul Brown
  */
 public class UnitTester {
 

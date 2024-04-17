@@ -5,9 +5,15 @@ import java.awt.image.BufferedImage;
 
 import levels.Level;
 import levels.LevelManager;
-import main.Game;
 import utils.LoadSave;
 
+/**
+ * This is a tester for all of the classes inside of the levels package. It tests the
+ * Level and LevelManager class with the test function.
+ * 
+ * @author Sean-Paul Brown
+ *
+ */
 public class LevelsDriver implements DriverInterface {
 
     @Override

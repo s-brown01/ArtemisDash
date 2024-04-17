@@ -82,7 +82,7 @@ public abstract class Enemy extends Entity {
         this.currentHealth = maxHealth;
         this.walkSpeed = EnemyConstants.getWalkSpeed(enemy_type);
         this.attackWalkSpeed = EnemyConstants.getAttackWalkSpeed(enemy_type);
-        
+
     }
 
     /**
@@ -320,7 +320,7 @@ public abstract class Enemy extends Entity {
                 xSpeed += attackWalkSpeed;
             } else {
                 xSpeed += walkSpeed;
-            }        
+            }
         }
 
         // if the Enemy can move to the tile that is xSpeed away AND they can walk on that tile,
@@ -392,6 +392,7 @@ public abstract class Enemy extends Entity {
 
     /**
      * Getter for the enemies current walk direction
+     * 
      * @return the current value of the walk direction, based on the Constants.Direction
      */
     public int getWalkDirection() {
@@ -399,13 +400,14 @@ public abstract class Enemy extends Entity {
     }
 
     /**
-     * Getter for the enemy's walk speed 
+     * Getter for the enemy's walk speed
+     * 
      * @return the value of the walk speed
      */
     public float getWalkSpeed() {
         return walkSpeed;
     }
-    
+
     /**
      * Make sure the attack box is in line with the hitbox/sprite
      */
@@ -413,17 +415,19 @@ public abstract class Enemy extends Entity {
         attackbox.x = hitbox.x - hitbox.width;
         attackbox.y = hitbox.y;
     }
-    
+
     /**
      * Getter for the hurting variable
+     * 
      * @return the current value of hurting
      */
     public boolean isHurting() {
         return hurting;
     }
-    
+
     /**
      * Getter for the enemy's attacking walk speed
+     * 
      * @return the value of the attacking walk speed
      */
     public float getAttackWalkSpeed() {

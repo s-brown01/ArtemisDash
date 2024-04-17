@@ -106,7 +106,7 @@ public class LoadSave {
      * the RGB values for the default level
      */
     public static final String DEFAULT_LEVEL = "/default_level.png";
-    
+
     /**
      * the tile sprites for all of world 2
      */
@@ -155,7 +155,7 @@ public class LoadSave {
         BufferedImage img = getSpriteSheet(level);
         // the level data will represent every pixel in the RBG map
         int[][] lvlData = new int[img.getHeight()][img.getWidth()];
-        // for reach point in the RBG map, assign the value to a 
+        // for reach point in the RBG map, assign the value to a
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {
                 Color color = new Color(img.getRGB(i, j));

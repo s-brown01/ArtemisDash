@@ -104,8 +104,8 @@ public class EnemyManager {
             // this draws the current skeleton with their state and animation at the skeleton hitbox
             g.drawImage(skelKingAnis[sk.getState()][sk.getAniIndex()],
                     (int) (sk.getHitbox().x - SKELETON_KING_DRAW_OFFSET_X - xLevelOffset + sk.xFlipped()),
-                    (int) (sk.getHitbox().y - SKELETON_KING_DRAW_OFFSET_Y), (int) (SKELETON_KING_WIDTH * sk.widthFlipped()),
-                    (int) (SKELETON_KING_HEIGHT), null);   
+                    (int) (sk.getHitbox().y - SKELETON_KING_DRAW_OFFSET_Y),
+                    (int) (SKELETON_KING_WIDTH * sk.widthFlipped()), (int) (SKELETON_KING_HEIGHT), null);
             sk.drawHitbox(g, xLevelOffset);
             sk.drawAttackbox(g, xLevelOffset);
         }
@@ -148,18 +148,18 @@ public class EnemyManager {
 
         for (SkeletonKing sk : kingList) {
             sk.update(lvlData, player);
-            
+
             if (!sk.isActive()) {
                 continue;
             }
-            
+
             if (allEnemiesKilled) {
                 allEnemiesKilled = false;
             }
-            
+
             if (!sk.isKilled() && playing.getProjectileManager().checkEnemyHit(sk)) {
                 playing.updateScore(sk.score);
-            }        
+            }
         }
 
         // if every enemy is dead/inactive, the level is complete

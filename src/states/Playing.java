@@ -30,8 +30,8 @@ public class Playing extends State implements StateMethods {
     // will keep track if the pause menu/ death overlay should be up or not
     private boolean paused, levelComplete, gameOver;
     private Player player;
-    private HUD hud;    
-    
+    private HUD hud;
+
     private final PauseOverlay pauseOverlay = new PauseOverlay();
     private final LevelManager levelManager = new LevelManager(game);
     private final EnemyManager enemyManager = new EnemyManager(this);
@@ -90,7 +90,7 @@ public class Playing extends State implements StateMethods {
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
-        
+
         hud = new HUD(this);
         this.score = 0;
         levelComplete = levelManager.getCurrentLevel().getCompleted();
