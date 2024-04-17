@@ -144,7 +144,7 @@ public class LevelManager {
     /**
      * Set the hidden boolean to false for the specific Level at the index in the parameters
      * 
-     * @param index - the index for the Level to set hidden falsez
+     * @param index - the index for the Level to set hidden false
      */
     private void unhideLevel(int index) {
         levels[index].setHidden(false);
@@ -159,4 +159,11 @@ public class LevelManager {
         return levels;
     }
 
+    /**
+     * Getter for a current level's index
+     * @return the current value of the current level index
+     */
+    public int getCurrentLevelIndex() {
+        return currentLevelIndex;
+    }
 }

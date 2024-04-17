@@ -9,6 +9,7 @@ import java.util.Random;
 
 import entities.EnemyManager;
 import entities.Player;
+import gameaudio.AudioPlayer;
 import levels.LevelManager;
 import main.Game;
 import projectiles.ProjectileManager;
@@ -32,7 +33,7 @@ public class Playing extends State implements StateMethods {
     private Player player;
     private HUD hud;
 
-    private final PauseOverlay pauseOverlay = new PauseOverlay();
+    private final PauseOverlay pauseOverlay = new PauseOverlay(game);
     private final LevelManager levelManager = new LevelManager(game);
     private final EnemyManager enemyManager = new EnemyManager(this);
     private final ProjectileManager projManager = new ProjectileManager(this);
@@ -90,7 +91,6 @@ public class Playing extends State implements StateMethods {
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
-
         hud = new HUD(this);
         this.score = 0;
         levelComplete = levelManager.getCurrentLevel().getCompleted();
@@ -321,6 +321,7 @@ public class Playing extends State implements StateMethods {
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setDrawArrowPath(false);
             player.shoot(e);
+            game.getAudioPlayer().playEffect(AudioPlayer.FIRE);
         }
 
     }
@@ -362,6 +363,7 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_SPACE:
             player.setJump(true);
             player.incJumpCount();
+            game.getAudioPlayer().playEffect(AudioPlayer.JUMP);
             break;
         case KeyEvent.VK_P:
             paused = !paused;
@@ -479,5 +481,6 @@ public class Playing extends State implements StateMethods {
      */
     public void playerDied() {
         gameOver = true;
+        game.getAudioPlayer().playSong(AudioPlayer.GAMEOVER);
     }
 }

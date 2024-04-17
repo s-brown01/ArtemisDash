@@ -95,7 +95,7 @@ public class MenuButton {
     }
 
     /**
-     * set the GameState to whatever value was selected by the user, that value is stored in
+     * Set the GameState to whatever value was selected by the user, that value is stored in
      * the menuButton as "state"
      */
     public void applyGamestate() {
@@ -146,4 +146,5 @@ public class MenuButton {
     public Rectangle getBounds() { // Returns rectangle around menu button
         return bounds;
     }
+    
 }

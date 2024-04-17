@@ -21,7 +21,7 @@ public class Options extends State implements StateMethods {
 
     public Options(Game game) {
         super(game);
-        backgroundImg = LoadSave.getSpriteSheet(LoadSave.MENU_SCREEN);
+        backgroundImg = LoadSave.getSpriteSheet(LoadSave.OPTIONS_SCREEN);
         loadButtons();
     }
 
@@ -51,8 +51,8 @@ public class Options extends State implements StateMethods {
      * game state to the button function
      */
     private void loadButtons() {
-        buttons[0] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), 0, GameStates.OVERWORLD);
-        buttons[1] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (270 * Game.SCALE), 1, GameStates.OPTIONS);
+        buttons[0] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (240 * Game.SCALE), 0, GameStates.MENU);
+        buttons[1] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (340 * Game.SCALE), 0, GameStates.MENU);
     }
 
     /**
@@ -62,21 +62,6 @@ public class Options extends State implements StateMethods {
         for (OptionsButtons ob : buttons) {
             ob.resetButtons();
         }
-    }
-
-    /**
-     * Goes unused as there is no functionality for mouse dragging in the Menu
-     */
-    @Override
-    public void mouseDragged(MouseEvent e) {
-    }
-
-    /**
-     * Goes unused as the "click" encompasses both the press and release of the button, which
-     * we have separate functions for each.
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
     }
 
     /**
@@ -115,16 +100,34 @@ public class Options extends State implements StateMethods {
                 ob.setMouseOver(true);
                 break;
             } else {
-
                 ob.setMouseOver(false);
             }
         }
     }
 
+    /**
+     * Goes unused as there is no functionality for mouse dragging in the Options Screen
+     */
+    @Override
+    public void mouseDragged(MouseEvent e) {
+    }
+
+    /**
+     * Goes unused as the "click" encompasses both the press and release of the button, which
+     * we have separate functions for each.
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+    /**
+     * Goes unused as there is no functionality for Key events in the Options Screen
+     */
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
+    /**
+     * Goes unused as there is no functionality for Key events in the Options Screen
+     */
     @Override
     public void keyReleased(KeyEvent e) {
     }
