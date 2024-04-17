@@ -86,7 +86,7 @@ public class Playing extends State implements StateMethods {
      * booleans to get the Level ready to play for the user
      */
     private void loadCurrentLevel() {
-        player = new Player(200, 480, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
+        player = new Player(200, 300, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
@@ -446,10 +446,19 @@ public class Playing extends State implements StateMethods {
     /**
      * Getter for the levelManager
      * 
-     * @return levelManager
+     * @return the levelManager
      */
     public LevelManager getLevelManager() {
         return levelManager;
+    }
+    
+    /**
+     * Getter for the Enemy Manager
+     * 
+     * @return the enemyManager
+     */
+    public EnemyManager getEnemyManager() {
+        return enemyManager;
     }
 
     /**
