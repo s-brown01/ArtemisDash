@@ -45,18 +45,18 @@ public class UnitTester {
 //        }
 
         // test the states classes
-//        StatesDriver statesDriver = new StatesDriver();
-//        if (!statesDriver.test()) {
-//            System.err.println("STATES DRIVER FAILED");
-//            allPassed = false;
-//        }
+        StatesDriver statesDriver = new StatesDriver();
+        if (!statesDriver.test()) {
+            System.err.println("STATES DRIVER FAILED");
+            allPassed = false;
+        }
 
         // test the UI classes
-//        UIDriver uiDriver = new UIDriver();
-//        if (!uiDriver.test()) {
-//            System.err.println("UI DRIVER FAILED");
-//            allPassed = false;
-//        }
+        UIDriver uiDriver = new UIDriver();
+        if (!uiDriver.test()) {
+            System.err.println("UI DRIVER FAILED");
+            allPassed = false;
+        }
 
         // test the utils classes
 //        UtilsDriver utilsDriver = new UtilsDriver();
