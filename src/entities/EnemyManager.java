@@ -175,17 +175,19 @@ public class EnemyManager {
         skeletonList.clear();
         kingList.clear();
     }
-    
+
     /**
      * Getter for the List of Skeletons
+     * 
      * @return the List containing all Skeletons that were loaded in
      */
     public List<Skeleton> getSkeletons() {
         return skeletonList;
     }
-    
+
     /**
      * Getter for the List of Skeleton Kings
+     * 
      * @return the List containing all Skeleton Kings that were loaded in
      */
     public List<SkeletonKing> getSkeletonKings() {

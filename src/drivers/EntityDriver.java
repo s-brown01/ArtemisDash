@@ -29,18 +29,40 @@ public class EntityDriver implements DriverInterface {
         if (!testEnemy()) {
             allSuccess = false;
         }
+        // test the enemy manager
         if (!testEnemyManager()) {
             allSuccess = false;
         }
+        // test the Player
+        if (!testPlayer()) {
+            allSuccess = false;
+        }
+
         return allSuccess;
     }
 
+    /**
+     * This is a helper method that tests the Player class.
+     * 
+     * @return true if the Player passed all tests, false if not.
+     */
+    private boolean testPlayer() {
+        boolean allSuccess = true;
+        Player testPlayer = new Player(0, 0, 100, 100, null);
+        return allSuccess;
+    }
+
+    /**
+     * This is a helper method that tests the Enemy Manager class.
+     * 
+     * @return true if the manager passed all of the tests, false otherwise
+     */
     private boolean testEnemyManager() {
         boolean allSuccess = true;
         Playing playing = new Playing(null);
         EnemyManager testEM = playing.getEnemyManager();
         final int buffer = 500;
-        
+
         // no Enemies have been loaded yet, test getters
         if (testEM.getSkeletons().size() != 0 || testEM.getSkeletonKings().size() != 0) {
             printEnemyManagerError("Failed initial size test");
@@ -53,13 +75,13 @@ public class EntityDriver implements DriverInterface {
             printEnemyManagerError("Failed initial size test");
             allSuccess = false;
         }
-        
+
         // making sure the first skeleton loaded correctly
         if (!testEM.getSkeletons().get(0).isInAir()) {
             printEnemyManagerError("Failed initial inAir test");
             allSuccess = false;
         }
-        
+
         int counter = 0;
         // making sure that the EM can update correctly
         while (testEM.getSkeletons().get(0).isInAir()) {
@@ -70,7 +92,7 @@ public class EntityDriver implements DriverInterface {
                 allSuccess = false;
             }
         }
-        
+
         // make sure enemy updated correctly
         if (testEM.getSkeletons().get(0).getState() != EnemyConstants.IDLE) {
             printEnemyManagerError("Failed state test after update");
@@ -82,19 +104,19 @@ public class EntityDriver implements DriverInterface {
             printEnemyManagerError("Failed state test after 2nd update");
             allSuccess = false;
         }
-        
+
         // make sure that the EM can draw without errors
         BufferedImage mockImage = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
         Graphics g = mockImage.getGraphics();
         testEM.draw(g, 0);
-        
+
         testEM.resetAllEnemies();
         // all enemies should be deleted/cleared
         if (testEM.getSkeletons().size() != 0 || testEM.getSkeletonKings().size() != 0) {
             printEnemyManagerError("Failed reset test");
             allSuccess = false;
         }
-        
+
         return allSuccess;
     }
 
@@ -567,5 +589,15 @@ public class EntityDriver implements DriverInterface {
      */
     private void printEnemyManagerError(String message) {
         System.err.println("\tENEMY MANAGER - " + message);
+    }
+
+    /**
+     * This is used to style the messages that are printed if any tests failed in the
+     * testPlayer Method
+     * 
+     * @param message the message to be printed
+     */
+    private void printPlayerError(String message) {
+        System.err.println("\tPLAYER - " + message);
     }
 }

@@ -5,12 +5,15 @@ public class UIDriver implements DriverInterface {
     @Override
     public boolean test() {
         boolean allSuccess = true;
-        testHUD();
+        if (!testHUD()) {
+            allSuccess = false;
+        }
         return allSuccess;
     }
 
-    private void testHUD() {
-        
+    private boolean testHUD() {
+        boolean allSuccess = true;
+        return allSuccess;
     }
 
 }

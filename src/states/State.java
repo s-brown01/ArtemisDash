@@ -62,7 +62,7 @@ public abstract class State {
     public Game getGame() {
         return game;
     }
-    
+
     public void setGamestate(GameStates state) {
         if (state == GameStates.MENU) {
             game.getAudioPlayer().playSong(AudioPlayer.MENU_1);

@@ -89,7 +89,8 @@ public class Game implements Runnable {
     /**
      * This needs to be called in order for the Game to be started.
      * 
-     * <BR>Begins the main loop on a separate thread Done to dedicate a specific thread to free up
+     * <BR>
+     * Begins the main loop on a separate thread Done to dedicate a specific thread to free up
      * logical traffic
      */
     public void startGame() {
@@ -246,6 +247,7 @@ public class Game implements Runnable {
 
     /**
      * Getter for the AudioPlayer, class responsible for playing audio
+     * 
      * @return the AudioPlayer object
      */
     public AudioPlayer getAudioPlayer() {

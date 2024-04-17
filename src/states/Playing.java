@@ -451,7 +451,7 @@ public class Playing extends State implements StateMethods {
     public LevelManager getLevelManager() {
         return levelManager;
     }
-    
+
     /**
      * Getter for the Enemy Manager
      * 

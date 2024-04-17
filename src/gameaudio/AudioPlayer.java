@@ -46,7 +46,7 @@ public class AudioPlayer {
     }
 
     public void loadSong() {
-        String[] names = {"mm","W1L1"};
+        String[] names = { "mm", "W1L1" };
         music = new Clip[names.length];
         for (int i = 0; i < music.length; i++)
             music[i] = getSound(names[i]);
@@ -64,7 +64,7 @@ public class AudioPlayer {
     private Clip getSound(String name) {
         URL url = getClass().getResource("/Audio/" + name + ".wav");
         AudioInputStream audio;
-        
+
         try {
             audio = AudioSystem.getAudioInputStream(url);
             Clip c = AudioSystem.getClip();
@@ -79,6 +79,7 @@ public class AudioPlayer {
         return null;
 
     }
+
     public void setVolume(float volume) {
         this.volume = volume;
         updateSongVolume();
@@ -158,5 +159,4 @@ public class AudioPlayer {
         }
     }
 
-    
 }
