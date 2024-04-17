@@ -204,9 +204,21 @@ public class Constants {
      * Direction Variables
      */
     public static class Directions {
+        /**
+         * An arbitrary number that represents left
+         */
         public static final int LEFT = 0;
+        /**
+         * An arbitrary number that represents up
+         */
         public static final int UP = 1;
+        /**
+         * An arbitrary number that represents right
+         */
         public static final int RIGHT = 2;
+        /**
+         * An arbitrary number that represents down
+         */
         public static final int DOWN = 3;
     }
 
@@ -252,6 +264,14 @@ public class Constants {
          * This is how much health the Player will be starting each level with
          */
         public static final int STARTING_HEALTH = 2;
+        /**
+         * This is how wide each player image is in pixels
+         */
+        public static final int IMAGE_WIDTH = 55;
+        /**
+         * This is how tall each player image is in pixels
+         */
+        public static final int IMAGE_HEIGHT = 65;
 
         /**
          * This is how far (horizontally) the arrow should be spawning from the Player's hitbox's

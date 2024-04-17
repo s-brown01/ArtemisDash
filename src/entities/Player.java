@@ -31,9 +31,18 @@ public class Player extends Entity {
      * that there is a 'double jump' mechanic.
      */
     public static final int MAX_JUMPS = 2;
-
+    /**
+     * This is the Playing class that the Player is currently in
+     */
     private final Playing playing;
+    /**
+     * This all of the animations that the player will do. The first index maps to the
+     * PlayerConstants actions, and the second index is the a specifc frame
+     */
     private BufferedImage[][] animations;
+    /**
+     * The current Level's level data, represented as a 2D int array
+     */
     private int[][] levelData;
 
     // Player Actions
@@ -48,14 +57,31 @@ public class Player extends Entity {
     private int xLevelOffset = 0;
 
     // Hitbox Vars
-    private float xDrawOffset = 20 * Game.SCALE; // Calculated X-Positional offset for drawing Sprite
-    private float yDrawOffset = 20 * Game.SCALE; // Calculated Y - Positional offset for drawing Sprite
-    private float hitboxCorrectionWidth = 20 * Game.SCALE; // Wraps the generic hitbox tighter around the player's width
-    private float hitboxCorrectionHeight = 45 * Game.SCALE; // Wraps the generic hitbox tighter around the player's
-    private float hitboxOffset = (55 / 1.75f) * Game.SCALE;// Calculated Y-Positional change offset for jumping/falling
-
-    private boolean attackChecked = false; // this will keep track if a current has already been checked, so 1 attack
-                                           // doesn't count as multiple
+    /**
+     * Calculated X-Positional offset for drawing Sprite
+     */
+    private float xDrawOffset = 20 * Game.SCALE;
+    /**
+     * Calculated Y - Positional offset for drawing Sprite
+     */
+    private float yDrawOffset = 20 * Game.SCALE;
+    /**
+     * Wraps the generic hitbox tighter around the player's width
+     */
+    private float hitboxCorrectionWidth = 20 * Game.SCALE;
+    /**
+     * Wraps the generic hitbox tighter around the player's
+     */
+    private float hitboxCorrectionHeight = 45 * Game.SCALE;
+    /**
+     * Calculated Y-Positional change offset for jumping/falling
+     */
+    private float hitboxOffset = (55 / 1.75f) * Game.SCALE;
+    /**
+     * this will keep track if a current has already been checked, so 1 attack doesn't count
+     * as multiple
+     */
+    private boolean attackChecked = false;
 
     /** Keeps track of where the next attack will go so that specific angles can be done */
     private Point nextAttack;
@@ -63,9 +89,18 @@ public class Player extends Entity {
     private boolean drawArrowPath = false;
 
     // Jumping and Gravity variables
-    private float jumpSpeed = -2.75f * Game.SCALE; // How high the player can jump
-    private float fallCollisionSpeed = 0.5f * Game.SCALE; // How quickly the player falls after a collision
-    private int jumps = 0;// Counts the number of jumps allowed to the player; Resets back to 0.
+    /**
+     * How high the player can jump
+     */
+    private float jumpSpeed = -2.75f * Game.SCALE;
+    /**
+     * How quickly the player falls after a collision
+     */
+    private float fallCollisionSpeed = 0.5f * Game.SCALE;
+    /**
+     * Counts the number of jumps allowed to the player; Resets back to 0
+     */
+    private int jumps = 0;
 
     /**
      * Constructor for the player class
@@ -92,21 +127,7 @@ public class Player extends Entity {
      * @param xLevelOffset - how far the screen offset is from scrolling
      */
     public void update(int xLevelOffset) {
-        // If the current health is -0 or below,
-        // Force the death animation forward
-//        if(currentHealth <=0) {
-//            if(player_action != DIE) {
-//                player_action = DIE;
-//                resetAniTick();
-//                playing.setPlayerCurrentlyDying(true);
-//            } else if (aniIndex == getSpriteAmt(DIE) - 1 && aniTick >= aniSpeed - 1) {
-//                playing.setGameOver(true);
-//            }else {
-//                updateAniTick();
-//            }
-//            return;
-//        }
-
+        // if dead, only update animations 
         if (killed) {
             updateAniTick();
             setAnimation();
@@ -147,13 +168,16 @@ public class Player extends Entity {
      * Creates an animation library to store every animation from the loaded in sprite sheet
      */
     private void loadAni() {
+        // get the image that contains all of the sprites
         BufferedImage img = LoadSave.getSpriteSheet(LoadSave.PLAYER_SPRITES);
 
-        animations = new BufferedImage[10][20]; // 10 animations; longest animation is 20 frames long
+        // 10 total animations; longest animation is 20 frames long
+        animations = new BufferedImage[10][20];
 
+        // divide up the image into each frame
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations[j].length; i++) {
-                animations[j][i] = img.getSubimage(i * 55, j * 65, 55, 65);
+                animations[j][i] = img.getSubimage(i * IMAGE_WIDTH, j * IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT);
             }
         }
 
@@ -203,6 +227,7 @@ public class Player extends Entity {
     private void updatePos() {
         moving = false;
 
+        // before moving, make sure that they are not outside of the world
         worldBoundsCheck();
 
         // if the user is jumping, try to jump
