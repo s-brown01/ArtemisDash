@@ -2,14 +2,26 @@ package drivers;
 
 public class LevelsDriver implements DriverInterface {
 
-    public LevelsDriver() {
-
-    }
-
     @Override
     public boolean test() {
-        // TODO Auto-generated method stub
-        return false;
+        boolean allSuccess = true;
+        if (!testLevel()) {
+            allSuccess = false;
+        }
+        if (!testLevelManager()) {
+            allSuccess = false;
+        }
+        return allSuccess;
+    }
+
+    private boolean testLevel() {
+        boolean allSuccess = true;
+        return allSuccess;
+    }
+    
+    private boolean testLevelManager() {
+        boolean allSuccess = true;
+        return allSuccess;        
     }
 
 }
