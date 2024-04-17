@@ -94,12 +94,13 @@ public class Menu extends State implements StateMethods {
             if (hoverOverButton(e, mb)) {
                 if (mb.isMousePressed()) {
                     mb.applyGamestate();
+                    break;
                 }
             }
-            break;
         }
         resetButtons();
     }
+
     /**
      * Sets the behavior of buttons when Mouse 1 is released
      */

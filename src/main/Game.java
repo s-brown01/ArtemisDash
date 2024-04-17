@@ -177,7 +177,7 @@ public class Game implements Runnable {
             overworld.draw(g);
             break;
         case OPTIONS:
-            options.update();
+            options.draw(g);
             break;
         case QUIT:
             // if quitting, then exit the system

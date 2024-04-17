@@ -16,7 +16,7 @@ import utils.LoadSave;
  */
 public class Options extends State implements StateMethods {
 
-    private OptionsButtons[] buttons = new OptionsButtons[2];
+    private OptionsButtons button;
     private final BufferedImage backgroundImg;
 
     public Options(Game game) {
@@ -30,9 +30,7 @@ public class Options extends State implements StateMethods {
      */
     @Override
     public void update() {
-        for (OptionsButtons ob : buttons) {
-            ob.update();
-        }
+        button.update();
     }
 
     /**
@@ -41,9 +39,7 @@ public class Options extends State implements StateMethods {
     @Override
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
-        for (OptionsButtons ob : buttons) {
-            ob.draw(g);
-        }
+            button.draw(g);
     }
 
     /**
@@ -51,17 +47,14 @@ public class Options extends State implements StateMethods {
      * game state to the button function
      */
     private void loadButtons() {
-        buttons[0] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (240 * Game.SCALE), 0, GameStates.MENU);
-        buttons[1] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (340 * Game.SCALE), 0, GameStates.MENU);
+        button = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (240 * Game.SCALE), 0, GameStates.MENU);
     }
 
     /**
      * Handles resetting button behavior back to originally defined parameters
      */
     private void resetButtons() {
-        for (OptionsButtons ob : buttons) {
-            ob.resetButtons();
-        }
+            button.resetButtons();
     }
 
     /**
@@ -69,41 +62,32 @@ public class Options extends State implements StateMethods {
      */
     @Override
     public void mousePressed(MouseEvent e) {
-        for (OptionsButtons ob : buttons) {
-            if (hoverOverButton(e, ob)) {
-                ob.setMousePressed(true);
-                break;
+            if (hoverOverButton(e, button)) {
+                button.setMousePressed(true);
             }
         }
-    }
 
     /**
      * Sets behavior of buttons when Mouse 1 is released
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        for (OptionsButtons ob : buttons) {
-            if (hoverOverButton(e, ob)) {
-                if (ob.isMousePressed()) {
-                    ob.applyGamestate();
-                    break;
+            if (hoverOverButton(e, button)) {
+                if (button.isMousePressed()) {
+                    button.applyGamestate();
                 }
             }
+            button.resetButtons();
         }
-        resetButtons();
-    }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        for (OptionsButtons ob : buttons) {
-            if (hoverOverButton(e, ob)) {
-                ob.setMouseOver(true);
-                break;
+            if (hoverOverButton(e, button)) {
+                button.setMouseOver(true);
             } else {
-                ob.setMouseOver(false);
+                button.setMouseOver(false);
             }
         }
-    }
 
     /**
      * Goes unused as there is no functionality for mouse dragging in the Options Screen

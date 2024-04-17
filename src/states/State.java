@@ -74,6 +74,8 @@ public abstract class State {
             game.getAudioPlayer().playSong(AudioPlayer.MENU_1);
         case PLAYING:
             game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getCurrentLevelIndex());
+        default:
+            break;
         }
         GameStates.state = state;
     }
