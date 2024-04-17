@@ -84,14 +84,15 @@ public class Game implements Runnable {
         gamePanel.setFocusable(true);
         gamePanel.requestFocus();
         new GameWindow(gamePanel);
-        startGame();
     }
 
     /**
-     * Begins the main loop on a separate thread Done to dedicate a specific thread to free up
+     * This needs to be called in order for the Game to be started.
+     * 
+     * <BR>Begins the main loop on a separate thread Done to dedicate a specific thread to free up
      * logical traffic
      */
-    private void startGame() {
+    public void startGame() {
         gameThread = new Thread(this);
         gameThread.start();// needs to be LAST
     }

@@ -7,11 +7,12 @@ package main;
  */
 public class MainClass {
     /**
-     * This function will start and run the Game
+     * This function will create and start the Game
      * 
      * @param args - nothing
      */
     public static void main(String[] args) {
-        new Game();
+        Game game = new Game();
+        game.startGame();
     }
 }
