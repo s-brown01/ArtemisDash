@@ -265,6 +265,10 @@ public class Constants {
          */
         public static final int STARTING_HEALTH = 2;
         /**
+         * This is the maximum amount of hearts that a Player could have
+         */
+        public static final int MAX_HEALTH = 3;
+        /**
          * This is how wide each player image is in pixels
          */
         public static final int IMAGE_WIDTH = 55;
@@ -272,6 +276,14 @@ public class Constants {
          * This is how tall each player image is in pixels
          */
         public static final int IMAGE_HEIGHT = 65;
+        /**
+         * This is how wide the players hit box will be in game - scaled
+         */
+        public static final int HITBOX_WIDTH = (int) (20 * Game.SCALE);
+        /**
+         * This is how tall the players hit box will be in game - scaled
+         */
+        public static final int HITBOX_HEIGHT = (int) (45 * Game.SCALE);
 
         /**
          * This is how far (horizontally) the arrow should be spawning from the Player's hitbox's

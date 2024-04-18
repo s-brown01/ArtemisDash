@@ -1,6 +1,5 @@
 package states;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -320,7 +319,7 @@ public class Playing extends State implements StateMethods {
         // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setDrawArrowPath(false);
-            player.shoot(e);
+            player.shoot(e.getPoint());
             game.getAudioPlayer().playEffect(AudioPlayer.FIRE);
         }
 
@@ -400,10 +399,6 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_SPACE:
             player.setJump(false);
             break;
-//Debugging tool: Press K to kill Player
-//        case KeyEvent.VK_K:
-//            player.kill();
-//            break;
         }
     }
 

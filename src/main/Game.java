@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Graphics;
 
-import entities.Player;
 import gameaudio.AudioPlayer;
 import states.GameStates;
 import states.Menu;
@@ -249,7 +248,7 @@ public class Game implements Runnable {
     public Overworld getOverworld() {
         return overworld;
     }
-    
+
     /**
      * Getter for the Options GameState
      * 

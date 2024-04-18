@@ -161,6 +161,7 @@ public class LevelManager {
 
     /**
      * Getter for a current level's index
+     * 
      * @return the current value of the current level index
      */
     public int getCurrentLevelIndex() {

@@ -235,7 +235,7 @@ public class EntityDriver implements DriverInterface {
             printPlayerError("Failed to set Attacking when shooting");
             allSuccess = false;
         }
-        
+
         // update 1 time to make the animation/state progress
         testPlayer.update(0);
 
@@ -254,7 +254,7 @@ public class EntityDriver implements DriverInterface {
             printPlayerError("Stored the fake shot when shouldn't have");
             allSuccess = false;
         }
-        
+
         // kill and update so the state gets changed
         testPlayer.kill();
         testPlayer.update(0);

@@ -109,7 +109,7 @@ public class PauseOverlay {
             if (musicButton.isMousePressed()) {
                 musicButton.setMuted(!musicButton.isMuted());
                 game.getAudioPlayer().toggleSongMute();
-                
+
             }
         }
         // Similar design here, only for the SFX button

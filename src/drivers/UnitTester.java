@@ -24,7 +24,6 @@ public class UnitTester {
         } else {
             System.out.println("\tEntities passed!");
         }
-        
 
         // test the input classes
 //        InputsDriver inputsDriver = new InputsDriver();
@@ -61,7 +60,7 @@ public class UnitTester {
         } else {
             System.out.println("\tStates passed!");
         }
- 
+
         // test the UI classes
         UIDriver uiDriver = new UIDriver();
         if (!uiDriver.test()) {

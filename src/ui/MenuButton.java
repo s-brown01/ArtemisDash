@@ -146,5 +146,5 @@ public class MenuButton {
     public Rectangle getBounds() { // Returns rectangle around menu button
         return bounds;
     }
-    
+
 }

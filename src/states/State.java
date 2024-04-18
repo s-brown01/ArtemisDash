@@ -63,13 +63,13 @@ public abstract class State {
         return game;
     }
 
-    
     /**
      * Used for audio configuration. Sets the current GameState to the specified state
+     * 
      * @param state
      */
     public void setGamestate(GameStates state) {
-        switch(state) {
+        switch (state) {
         case MENU:
             game.getAudioPlayer().playSong(AudioPlayer.MENU_1);
         case PLAYING:

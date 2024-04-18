@@ -46,26 +46,26 @@ public class AudioPlayer {
     }
 
     /**
-     * Loads the music audio into an array for easier fetching.
-     * The array stores these audio files as Clip objects
+     * Loads the music audio into an array for easier fetching. The array stores these audio
+     * files as Clip objects
      */
     public void loadSong() {
-        String[] names = {"mm","W1L1","game-over"};
+        String[] names = { "mm", "W1L1", "game-over" };
         music = new Clip[names.length];
         for (int i = 0; i < music.length; i++)
             music[i] = getSound(names[i]);
     }
 
     /**
-     * Loads in the SFX audio into an array for easier fetching.
-     * The array stores these SFX files as Clip objects
+     * Loads in the SFX audio into an array for easier fetching. The array stores these SFX
+     * files as Clip objects
      */
     public void loadEffect() {
-        String[] effectNames = { "player_death", "jump","bow_fire"};
+        String[] effectNames = { "player_death", "jump", "bow_fire" };
         fx = new Clip[effectNames.length];
         for (int i = 0; i < fx.length; i++)
             fx[i] = getSound(effectNames[i]);
-        
+
         updateEffectsVolume();
     }
 
@@ -73,7 +73,7 @@ public class AudioPlayer {
      * Loads in the audio file as a Clip object by first getting the resource as a URL file
      * 
      * @param name - Name of clip to load in
-     * @return The audio file 
+     * @return The audio file
      */
     private Clip getSound(String name) {
         URL url = getClass().getResource("/Audio/" + name + ".wav");
@@ -93,7 +93,7 @@ public class AudioPlayer {
         return null;
 
     }
-    
+
     /**
      * 
      * @param volume
@@ -111,9 +111,10 @@ public class AudioPlayer {
         if (music[currentID].isActive())
             music[currentID].stop();
     }
-    
+
     /**
      * Sets the Level music based on the current level index
+     * 
      * @param lvlIndex
      */
     public void setLevelSong(int lvlIndex) {
@@ -140,15 +141,17 @@ public class AudioPlayer {
     }
 
     /**
-     * Plays other sound effects 
+     * Plays other sound effects
+     * 
      * @param effect
      */
     public void playEffect(int effect) {
         fx[effect].setMicrosecondPosition(0);
         fx[effect].start();
     }
+
     /**
-     * Plays the passed in Song, and will loop  
+     * Plays the passed in Song, and will loop
      * 
      * @param song - The integer value of the song you wish to play
      */
@@ -160,7 +163,7 @@ public class AudioPlayer {
         music[currentID].setMicrosecondPosition(0);
         music[currentID].loop(Clip.LOOP_CONTINUOUSLY);
     }
-    
+
     /**
      * 
      */
@@ -176,14 +179,13 @@ public class AudioPlayer {
         this.effectMute = !effectMute;
         if (fx == null) {
             return;
-        }else {
+        } else {
             for (Clip c : fx) {
                 BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
                 booleanControl.setValue(effectMute);
             }
         }
     }
-    
 
     /**
      * Updates the currently playing song's volume as a float.
@@ -196,8 +198,8 @@ public class AudioPlayer {
     }
 
     /**
-     * Updates the currently queued SFX's volume as a float.
-     * This method changes the volume for EVERY sound effect.
+     * Updates the currently queued SFX's volume as a float. This method changes the volume
+     * for EVERY sound effect.
      */
     private void updateEffectsVolume() {
         for (Clip c : fx) {

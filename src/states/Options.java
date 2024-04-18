@@ -39,7 +39,7 @@ public class Options extends State implements StateMethods {
     @Override
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
-            button.draw(g);
+        button.draw(g);
     }
 
     /**
@@ -54,7 +54,7 @@ public class Options extends State implements StateMethods {
      * Handles resetting button behavior back to originally defined parameters
      */
     private void resetButtons() {
-            button.resetButtons();
+        button.resetButtons();
     }
 
     /**
@@ -62,32 +62,32 @@ public class Options extends State implements StateMethods {
      */
     @Override
     public void mousePressed(MouseEvent e) {
-            if (hoverOverButton(e, button)) {
-                button.setMousePressed(true);
-            }
+        if (hoverOverButton(e, button)) {
+            button.setMousePressed(true);
         }
+    }
 
     /**
      * Sets behavior of buttons when Mouse 1 is released
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-            if (hoverOverButton(e, button)) {
-                if (button.isMousePressed()) {
-                    button.applyGamestate();
-                }
+        if (hoverOverButton(e, button)) {
+            if (button.isMousePressed()) {
+                button.applyGamestate();
             }
-            button.resetButtons();
         }
+        button.resetButtons();
+    }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-            if (hoverOverButton(e, button)) {
-                button.setMouseOver(true);
-            } else {
-                button.setMouseOver(false);
-            }
+        if (hoverOverButton(e, button)) {
+            button.setMouseOver(true);
+        } else {
+            button.setMouseOver(false);
         }
+    }
 
     /**
      * Goes unused as there is no functionality for mouse dragging in the Options Screen
@@ -103,12 +103,14 @@ public class Options extends State implements StateMethods {
     @Override
     public void mouseClicked(MouseEvent e) {
     }
+
     /**
      * Goes unused as there is no functionality for Key events in the Options Screen
      */
     @Override
     public void keyPressed(KeyEvent e) {
     }
+
     /**
      * Goes unused as there is no functionality for Key events in the Options Screen
      */
