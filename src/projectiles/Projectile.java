@@ -1,6 +1,7 @@
 package projectiles;
 
-import static utils.Constants.ProjectileConstants.*;
+import static utils.Constants.ProjectileConstants.getProjHeight;
+import static utils.Constants.ProjectileConstants.getProjWidth;
 
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Float;

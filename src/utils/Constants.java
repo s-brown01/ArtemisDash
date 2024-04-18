@@ -560,29 +560,29 @@ public class Constants {
          */
         public static final int ARROW_IMG_HEIGHT = 8;
         /**
-         * the width adjusted for the game's scale
+         * the width for the image of the arrow adjusted for the game's scale
          */
-        public static final int ARROW_WIDTH = (int) (ARROW_IMG_WIDTH * Game.SCALE);
+        public static final int ARROW_WIDTH = (int) (40 * Game.SCALE);
         /**
-         * the height adjusted for the game's scale
+         * the height for the image of the arrow adjusted for the game's scale
          */
-        public static final int ARROW_HEIGHT = (int) (ARROW_IMG_HEIGHT * Game.SCALE);
+        public static final int ARROW_HEIGHT = (int) (15 * Game.SCALE);
         /**
          * How wide the arrow's hitbox should be
          */
-        public static final int ARROW_HITBOX_WIDTH = (int) (40 * Game.SCALE);
+        public static final int ARROW_HITBOX_WIDTH = (int) (30 * Game.SCALE);
         /**
          * how tall the Arrow's hitbox should be
          */
-        public static final int ARROW_HITBOX_HEIGHT = (int) (15 * Game.SCALE);
+        public static final int ARROW_HITBOX_HEIGHT = (int) (9 * Game.SCALE);
         /**
          * how far to draw the image from the hitbox
          */
-        public static final int ARROW_DRAW_OFFSET_X = (int) (0 * Game.SCALE);
+        public static final int ARROW_DRAW_OFFSET_X = (int) (5 * Game.SCALE);
         /**
          * how far to draw the image from the hitbox
          */
-        public static final int ARROW_DRAW_OFFSET_Y = (int) (0 * Game.SCALE);
+        public static final int ARROW_DRAW_OFFSET_Y = (int) (4 * Game.SCALE);
 
         /** the horizontal speed of the arrow */
         public static final float ARROW_SPEED = 3.5f;

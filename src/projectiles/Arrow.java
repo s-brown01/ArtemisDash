@@ -1,12 +1,15 @@
 package projectiles;
 
+import static utils.Constants.ProjectileConstants.ARROW;
 import static utils.Constants.ProjectileConstants.ARROW_SPEED;
+import static utils.Constants.ProjectileConstants.ARROW_DRAW_OFFSET_X;
+import static utils.Constants.ProjectileConstants.ARROW_DRAW_OFFSET_Y;
+import static utils.Constants.ProjectileConstants.ARROW_WIDTH;
+import static utils.Constants.ProjectileConstants.ARROW_HEIGHT;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
-import static utils.Constants.ProjectileConstants.*;
 
 /**
  * This is a child class of Projectile. It represents an Arrow that the Player will shoot.
@@ -91,10 +94,8 @@ public class Arrow extends Projectile {
      * @param img          - the Image to draw
      */
     public void draw(Graphics g, int xLevelOffset, BufferedImage img) {
-        g.setColor(Color.cyan);
-        g.drawRect((int) (hitbox.x - xLevelOffset), (int) hitbox.y, (int) (hitbox.width), (int) (hitbox.height));
-        g.drawImage(img, (int) (hitbox.x - xLevelOffset + FLIP_X), (int) hitbox.y, (int) (hitbox.width) * FLIP_W,
-                (int) (hitbox.height), null);
+        g.drawImage(img, (int) (hitbox.x - xLevelOffset - ARROW_DRAW_OFFSET_X + FLIP_X), (int) hitbox.y - ARROW_DRAW_OFFSET_Y, (int) (ARROW_WIDTH) * FLIP_W,
+                (int) (ARROW_HEIGHT), null); 
     }
 
     /**
