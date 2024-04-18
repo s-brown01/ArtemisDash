@@ -1,7 +1,12 @@
 package entities;
 
-import static utils.Constants.EnemyConstants.*;
-import static utils.HelperMethods.getYPosRoof;
+import static utils.Constants.EnemyConstants.ATTACK;
+import static utils.Constants.EnemyConstants.HIT;
+import static utils.Constants.EnemyConstants.IDLE;
+import static utils.Constants.EnemyConstants.RUNNING;
+import static utils.Constants.EnemyConstants.SKELETON_KING;
+import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_HEIGHT;
+import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_WIDTH;
 
 import java.awt.Color;
 import java.awt.Graphics;

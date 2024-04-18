@@ -1,10 +1,11 @@
 package ui;
 
+import static utils.Constants.ButtonStates.SOUNDSIZE_DEFAULT;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import utils.LoadSave;
-import static utils.Constants.ButtonStates.*;
 
 /**
  * This class is responsible for handling the creation of, and interactions with, the

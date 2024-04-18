@@ -1,6 +1,15 @@
 package entities;
 
-import static utils.Constants.EnemyConstants.*;
+import static utils.Constants.EnemyConstants.SKELETON_DRAW_OFFSET_X;
+import static utils.Constants.EnemyConstants.SKELETON_DRAW_OFFSET_Y;
+import static utils.Constants.EnemyConstants.SKELETON_HEIGHT;
+import static utils.Constants.EnemyConstants.SKELETON_HEIGHT_DEFAULT;
+import static utils.Constants.EnemyConstants.SKELETON_KING_DRAW_OFFSET_X;
+import static utils.Constants.EnemyConstants.SKELETON_KING_DRAW_OFFSET_Y;
+import static utils.Constants.EnemyConstants.SKELETON_KING_HEIGHT;
+import static utils.Constants.EnemyConstants.SKELETON_KING_WIDTH;
+import static utils.Constants.EnemyConstants.SKELETON_WIDTH;
+import static utils.Constants.EnemyConstants.SKELETON_WIDTH_DEFAULT;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

@@ -1,12 +1,16 @@
 package ui;
 
+import static utils.Constants.ButtonStates.B_HEIGHT;
+import static utils.Constants.ButtonStates.B_HEIGHT_DEFAULT;
+import static utils.Constants.ButtonStates.B_WIDTH;
+import static utils.Constants.ButtonStates.B_WIDTH_DEFAULT;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import states.GameStates;
 import utils.LoadSave;
-import static utils.Constants.ButtonStates.*;
 
 /**
  * This class represents 1 Button on the Menu GameState. A button will be linked to

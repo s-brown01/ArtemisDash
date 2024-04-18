@@ -1,13 +1,18 @@
 package entities;
 
-import main.Game;
-import static utils.Constants.EnemyConstants;
-
-import static utils.Constants.Directions.*;
 import static utils.Constants.GRAVITY;
-import static utils.HelperMethods.*;
+import static utils.Constants.Directions.LEFT;
+import static utils.Constants.Directions.RIGHT;
+import static utils.HelperMethods.canMoveHere;
+import static utils.HelperMethods.floorCheck;
+import static utils.HelperMethods.getYPosRoof;
+import static utils.HelperMethods.isSightClear;
+import static utils.HelperMethods.isTileWalkable;
 
 import java.awt.Graphics;
+
+import main.Game;
+import utils.Constants.EnemyConstants;
 
 /**
  * This is an abstract class that provides the framework for all Enemy objects in the

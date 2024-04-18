@@ -1,6 +1,12 @@
 package entities;
 
-import static utils.Constants.EnemyConstants.*;
+import static utils.Constants.EnemyConstants.ATTACK;
+import static utils.Constants.EnemyConstants.HIT;
+import static utils.Constants.EnemyConstants.IDLE;
+import static utils.Constants.EnemyConstants.RUNNING;
+import static utils.Constants.EnemyConstants.SKELETON;
+import static utils.Constants.EnemyConstants.SKELETON_HITBOX_HEIGHT;
+import static utils.Constants.EnemyConstants.SKELETON_HITBOX_WIDTH;
 
 import java.awt.geom.Rectangle2D;
 

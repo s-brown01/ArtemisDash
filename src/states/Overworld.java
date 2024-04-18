@@ -1,5 +1,7 @@
 package states;
 
+import static utils.Constants.OverworldButtonConstants.BUTTON_POINT_ARRAY;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,9 +12,6 @@ import java.awt.image.BufferedImage;
 
 import levels.Level;
 import levels.LevelManager;
-
-import static utils.Constants.OverworldButtonConstants.*;
-
 import main.Game;
 import ui.OverworldButton;
 import utils.LoadSave;

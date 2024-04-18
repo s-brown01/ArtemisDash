@@ -1,14 +1,16 @@
 package ui;
 
+import static main.Game.GAME_WIDTH;
+import static main.Game.SCALE;
+import static utils.Constants.ButtonStates.SOUNDSIZE;
+import static utils.LoadSave.PAUSE_MENU;
+import static utils.LoadSave.getSpriteSheet;
+
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import main.Game;
-
-import static main.Game.*;
-import static utils.LoadSave.*;
-import static utils.Constants.ButtonStates.*;
 
 /**
  * This class handles the pause overlay when the user hits the pause button during

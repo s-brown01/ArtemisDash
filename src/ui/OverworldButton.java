@@ -1,14 +1,20 @@
 package ui;
 
+import static utils.Constants.OverworldButtonConstants.COMPLETED;
+import static utils.Constants.OverworldButtonConstants.COMPLETED_CLICKED;
+import static utils.Constants.OverworldButtonConstants.COMPLETED_HIGHLIGHT;
+import static utils.Constants.OverworldButtonConstants.DEFAULT;
+import static utils.Constants.OverworldButtonConstants.DEFAULT_CLICKED;
+import static utils.Constants.OverworldButtonConstants.DEFAULT_HIGHLIGHT;
+import static utils.Constants.OverworldButtonConstants.HIDDEN;
+import static utils.Constants.OverworldButtonConstants.HIDDEN_HIGHLIGHT;
+import static utils.Constants.OverworldButtonConstants.OUTLINE;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
-import states.GameStates;
-
-import static utils.Constants.OverworldButtonConstants.*;
 
 /**
  * This class represents how a "level"/button is displayed on the Overworld GameState.

@@ -1,5 +1,7 @@
 package ui;
 
+import static utils.Constants.EndButtons.ENDBUTTON_SIZE;
+
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -8,7 +10,6 @@ import main.Game;
 import states.GameStates;
 import states.Playing;
 import utils.LoadSave;
-import static utils.Constants.EndButtons.*;
 
 /**
  * This class handles the Death overlay when the Player entity health reaches 0 during
