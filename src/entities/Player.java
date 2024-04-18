@@ -1,16 +1,33 @@
 package entities;
 
-import static utils.Constants.PlayerStates.*;
-import static utils.Constants.PlayerStates.getSpriteAmt;
-import static utils.HelperMethods.*;
 import static utils.Constants.GRAVITY;
+import static utils.Constants.PlayerStates.DAMAGE;
+import static utils.Constants.PlayerStates.DASH;
+import static utils.Constants.PlayerStates.DIE;
+import static utils.Constants.PlayerStates.DRAW;
+import static utils.Constants.PlayerStates.FALL;
+import static utils.Constants.PlayerStates.HITBOX_HEIGHT;
+import static utils.Constants.PlayerStates.HITBOX_WIDTH;
+import static utils.Constants.PlayerStates.IDLE;
+import static utils.Constants.PlayerStates.IMAGE_HEIGHT;
+import static utils.Constants.PlayerStates.IMAGE_WIDTH;
+import static utils.Constants.PlayerStates.JUMPSTART;
+import static utils.Constants.PlayerStates.MAX_HEALTH;
+import static utils.Constants.PlayerStates.RUNNING;
+import static utils.Constants.PlayerStates.SHOT_OFFSET_X;
+import static utils.Constants.PlayerStates.SHOT_OFFSET_Y;
+import static utils.Constants.PlayerStates.STARTING_HEALTH;
+import static utils.Constants.PlayerStates.getSpriteAmt;
+import static utils.HelperMethods.canMoveHere;
+import static utils.HelperMethods.floorCheck;
+import static utils.HelperMethods.getXPosWall;
+import static utils.HelperMethods.getYPosRoof;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import main.Game;
@@ -47,7 +64,7 @@ public class Player extends Entity {
 
     // Player Actions
     private int player_action = IDLE;
-    private boolean moving, attacking, killed, hurting, dash = false;
+    private boolean moving, attacking, killed, hurting, falling, dash = false;
     private boolean left, right, jump;
     private float playerSpeed = 1.25f * Game.SCALE;
     private int playerLives = 3;
@@ -66,14 +83,6 @@ public class Player extends Entity {
      */
     private float yDrawOffset = 20 * Game.SCALE;
     /**
-     * Wraps the generic hitbox tighter around the player's width
-     */
-    private float hitboxCorrectionWidth = 20 * Game.SCALE;
-    /**
-     * Wraps the generic hitbox tighter around the player's
-     */
-    private float hitboxCorrectionHeight = 45 * Game.SCALE;
-    /**
      * Calculated Y-Positional change offset for jumping/falling
      */
     private float hitboxOffset = (55 / 1.75f) * Game.SCALE;
@@ -90,11 +99,11 @@ public class Player extends Entity {
 
     // Jumping and Gravity variables
     /**
-     * How high the player can jump
+     * How fast the player jumps
      */
     private float jumpSpeed = -2.75f * Game.SCALE;
     /**
-     * How quickly the player falls after a collision
+     * How quickly the player starts falls after a collision, a bounce of a roofd
      */
     private float fallCollisionSpeed = 0.5f * Game.SCALE;
     /**
@@ -116,9 +125,8 @@ public class Player extends Entity {
         this.playing = playing;
         currentHealth = STARTING_HEALTH;
         loadAni();
-        initHitbox((int) x, (int) y, (int) (hitboxCorrectionWidth), (int) (hitboxCorrectionHeight));
-        this.state = IDLE;
-
+        initHitbox((int) x, (int) y, HITBOX_WIDTH, HITBOX_HEIGHT);
+        this.player_action = IDLE;
     }
 
     /**
@@ -127,7 +135,7 @@ public class Player extends Entity {
      * @param xLevelOffset - how far the screen offset is from scrolling
      */
     public void update(int xLevelOffset) {
-        // if dead, only update animations 
+        // if dead, only update animations
         if (killed) {
             updateAniTick();
             setAnimation();
@@ -276,6 +284,7 @@ public class Player extends Entity {
         if (inAir) {
             // if the Player has room underneath or above them to move then then fall
             if (canMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
+                falling = true;
                 // move down by the airspeed then have the speed increase by the Gravity
                 hitbox.y += airSpeed;
                 airSpeed += gravity;
@@ -283,11 +292,11 @@ public class Player extends Entity {
             } else {
                 // if cannot move vertically, get the y-position at the tile
                 hitbox.y = getYPosRoof(hitbox, airSpeed, hitboxOffset);
-
                 // check to see if it was falling or rising
                 if (airSpeed > 0) {
                     // if it was falling they are now on the ground so reset actions
                     resetInAir();
+
                 } else {
                     // if they were rising set the speed to the collision speed
                     airSpeed = fallCollisionSpeed;
@@ -388,14 +397,14 @@ public class Player extends Entity {
      * 
      * @param e - the information about what the mouse is currently doing
      */
-    public void shoot(MouseEvent e) {
+    public void shoot(Point p) {
         // checking validation
         if (attacking || killed) {
             // dont attack again while attacking
             return;
         }
         // if they aren't already attacking, they are now
-        nextAttack = e.getPoint();
+        nextAttack = p;
         attacking = true;
     }
 
@@ -446,6 +455,7 @@ public class Player extends Entity {
         gravity = GRAVITY;
         setJump(false);
         jumps = 0;
+        falling = false;
     }
 
     /**
@@ -484,7 +494,7 @@ public class Player extends Entity {
             player_action = JUMPSTART;
         }
 
-        if (!jump && inAir) {// If spacebar is not held and in the air, begin the falling animation
+        if (falling) {
             player_action = FALL;
         }
         if (hurting) {
@@ -506,20 +516,6 @@ public class Player extends Entity {
             }
         }
 
-    }
-
-    /**
-     * Changes the current health value of the player
-     * 
-     * @param value - The updated health value to change to
-     */
-    public void changeHealth(int value) {
-        currentHealth += value;
-
-        if (currentHealth <= 0)
-            currentHealth = 0;
-        else if (currentHealth >= maxHealth)
-            currentHealth = maxHealth;
     }
 
     /**
@@ -666,7 +662,7 @@ public class Player extends Entity {
     }
 
     /**
-     * This method will give damage to the player and check if they have died.
+     * This method will give 1 damage to the player and check if they have died.
      */
     public void hurt() {
         // if you are already taking damage you can't get hit a second time
@@ -678,6 +674,19 @@ public class Player extends Entity {
         hurting = true;
         if (currentHealth <= 0) {
             kill();
+        }
+    }
+
+    /**
+     * This method gives 1 health point back to the player and makes sure they only have the
+     * maximum amount of health.
+     */
+    public void heal() {
+        hurting = false;
+        currentHealth++;
+
+        if (currentHealth > MAX_HEALTH) {
+            currentHealth = maxHealth;
         }
     }
 
@@ -700,11 +709,121 @@ public class Player extends Entity {
     }
 
     /**
-     * Geter for the hurting boolean
+     * Getter for the hurting boolean
      * 
      * @return the current value of hurting
      */
     public boolean isHurting() {
         return hurting;
+    }
+
+    /**
+     * Getter for the players horizontal movement speed
+     * 
+     * @return the horizontal movement speed
+     */
+    public float getPlayerSpeed() {
+        return playerSpeed;
+    }
+
+    public int[][] getLevelData() {
+        return levelData;
+    }
+
+    /**
+     * This classes uses player_action instead of "state" because it is slightly more
+     * descriptive. Functionality is the same as Entity's getState.
+     */
+    @Override
+    public int getState() {
+        return player_action;
+    }
+
+    public static int getMaxJumps() {
+        return MAX_JUMPS;
+    }
+
+    public Playing getPlaying() {
+        return playing;
+    }
+
+    public BufferedImage[][] getAnimations() {
+        return animations;
+    }
+
+    public int getPlayer_action() {
+        return player_action;
+    }
+
+    public boolean isMoving() {
+        return moving;
+    }
+
+    public boolean isAttacking() {
+        return attacking;
+    }
+
+    public boolean isFalling() {
+        return falling;
+    }
+
+    public boolean isDash() {
+        return dash;
+    }
+
+    public boolean isJump() {
+        return jump;
+    }
+
+    public int getPlayerLives() {
+        return playerLives;
+    }
+
+    public int getFlipX() {
+        return flipX;
+    }
+
+    public int getFlipW() {
+        return flipW;
+    }
+
+    public int getxLevelOffset() {
+        return xLevelOffset;
+    }
+
+    public float getxDrawOffset() {
+        return xDrawOffset;
+    }
+
+    public float getyDrawOffset() {
+        return yDrawOffset;
+    }
+
+    public float getHitboxOffset() {
+        return hitboxOffset;
+    }
+
+    public boolean isAttackChecked() {
+        return attackChecked;
+    }
+
+    public Point getNextAttack() {
+        return nextAttack;
+    }
+
+    public boolean isDrawArrowPath() {
+        return drawArrowPath;
+    }
+
+    public float getJumpSpeed() {
+        return jumpSpeed;
+    }
+
+    public float getFallCollisionSpeed() {
+        return fallCollisionSpeed;
+    }
+
+    public int getJumps() {
+        return jumps;
     }
 }
