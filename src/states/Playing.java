@@ -1,6 +1,5 @@
 package states;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -321,7 +320,6 @@ public class Playing extends State implements StateMethods {
         if (e.getButton() == MouseEvent.BUTTON1) {
             player.setDrawArrowPath(false);
             player.shoot(e);
-            game.getAudioPlayer().playEffect(AudioPlayer.FIRE);
         }
 
     }

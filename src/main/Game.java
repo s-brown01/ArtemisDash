@@ -2,7 +2,6 @@ package main;
 
 import java.awt.Graphics;
 
-import entities.Player;
 import gameaudio.AudioPlayer;
 import states.GameStates;
 import states.Menu;
@@ -53,7 +52,7 @@ public class Game implements Runnable {
     public final static float SCALE = 1.75f;
     /**
      * This is the amount of tiles wide the game is, how many tiles should be drawn
-     * horizontall
+     * horizontally
      */
     public final static int TILES_IN_WIDTH = 26;
     /**
@@ -108,9 +107,9 @@ public class Game implements Runnable {
         playing = new Playing(this);
         // overworld needs to be created AFTER the playing class since it uses the playing's
         // levelManager
-        overworld = new Overworld(this);
         options = new Options(this);
         audioPlayer = new AudioPlayer(this);
+        overworld = new Overworld(this);
     }
 
     /**
@@ -179,8 +178,8 @@ public class Game implements Runnable {
         case OPTIONS:
             options.draw(g);
             break;
+    // if quitting, then exit the system
         case QUIT:
-            // if quitting, then exit the system
             System.exit(-1);
             break;
         }
@@ -249,7 +248,7 @@ public class Game implements Runnable {
     public Overworld getOverworld() {
         return overworld;
     }
-    
+
     /**
      * Getter for the Options GameState
      * 

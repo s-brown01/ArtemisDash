@@ -14,10 +14,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import main.Game;
 
 /**
- * Audio Player is a class that allows WAV files to be played through the use of Java CLIPS.
- * The songs are loaded into an array which finds the files in the correct folder, and then
- * converts those WAV files into a format that java can understand, saving them into a new array. From this 
- * new array, they are able to be accessed and played at any time.
+ * Audio Player is a class that allows WAV files to be played through the use of Java
+ * CLIPS. The songs are loaded into an array which finds the files in the correct folder,
+ * and then converts those WAV files into a format that java can understand, saving them
+ * into a new array. From this new array, they are able to be accessed and played at any
+ * time.
+ * 
  * @author John Botonakis
  */
 public class AudioPlayer {
@@ -66,12 +68,12 @@ public class AudioPlayer {
      * Player Dash sound effect
      */
     public static int DASH = 5;
-    
+
     /**
      * Enemy Attack sound effect
      */
     public static int ENEMY_ATTACK = 6;
-    
+
     /**
      * Player Hurt sound effect
      */
@@ -81,12 +83,13 @@ public class AudioPlayer {
     private Clip[] music, fx;
     private Game game;
     private boolean songMute, effectMute;
-    private Random rnd = new Random();
     private float volume = 1f;
 
     /**
-     * The main constructor for the Audio player class. It loads in the Songs first, then the Effects, then 
-     * plays the Main Menu music as it is the first to load in when starting the program.
+     * The main constructor for the Audio player class. It loads in the Songs first, then the
+     * Effects, then plays the Main Menu music as it is the first to load in when starting the
+     * program.
+     * 
      * @param game
      */
     public AudioPlayer(Game game) {
@@ -96,26 +99,16 @@ public class AudioPlayer {
     }
 
     /**
-     * Loads the music audio into an array for easier fetching.
-     * The array stores these audio files as Clip objects
-     */
-    public void loadSong() {
-        String[] names = {"mm","W1L1","game-over"};
-        music = new Clip[names.length];
-        for (int i = 0; i < music.length; i++)
-            music[i] = getSound(names[i]);
-    }
-
-    /**
-     * Loads in the SFX audio into an array for easier fetching.
-     * The array stores these SFX files as Clip objects
+     * Loads in the SFX audio into an array for easier fetching. The array stores these SFX
+     * files as Clip objects
      */
     public void loadEffect() {
-        String[] effectNames = { "player_death", "jump","bow_fire","button_hover","button_confirm","dash","enemy_attack","player_hurt"};
+        String[] effectNames = { "player_death", "jump", "bow_fire", "button_hover", "button_confirm", "dash",
+                "enemy_attack", "player_hurt" };
         fx = new Clip[effectNames.length];
         for (int i = 0; i < fx.length; i++)
             fx[i] = getSound(effectNames[i]);
-        
+
 //        updateEffectsVolume();
     }
 
@@ -123,7 +116,7 @@ public class AudioPlayer {
      * Loads in the audio file as a Clip object by first getting the resource as a URL file
      * 
      * @param name - Name of clip to load in
-     * @return The audio file 
+     * @return The audio file
      */
     private Clip getSound(String name) {
         URL url = getClass().getResource("/Audio/" + name + ".wav");
@@ -143,10 +136,22 @@ public class AudioPlayer {
         return null;
 
     }
-    
+
+    /**
+     * Loads the music audio into an array for easier fetching. The array stores these audio
+     * files as Clip objects
+     */
+    public void loadSong() {
+        String[] names = { "mm", "W1L1", "game-over" };
+        music = new Clip[names.length];
+        for (int i = 0; i < music.length; i++)
+            music[i] = getSound(names[i]);
+    }
+
     /**
      * Adjusts the volume for the songs
-     * @param volume
+     * 
+     * @param volume - The float volume level
      */
     public void setSongVolume(float volume) {
         this.volume = volume;
@@ -160,10 +165,11 @@ public class AudioPlayer {
         if (music[currentID].isActive())
             music[currentID].stop();
     }
-    
+
     /**
      * Sets the Level music based on the current level index
-     * @param lvlIndex
+     * 
+     * @param lvlIndex - The index of the level that corresponds to the selected song
      */
     public void setLevelSong(int lvlIndex) {
         if (lvlIndex % 2 == 0)
@@ -189,15 +195,17 @@ public class AudioPlayer {
     }
 
     /**
-     * Plays other sound effects 
-     * @param effect
+     * Plays other sound effects
+     * 
+     * @param effect - The sound index that is to be played
      */
     public void playEffect(int effect) {
         fx[effect].setMicrosecondPosition(0);
         fx[effect].start();
     }
+
     /**
-     * Plays the passed in Song, and will loop  
+     * Plays the passed in Song, and will loop
      * 
      * @param song - The integer value of the song you wish to play
      */
@@ -209,7 +217,7 @@ public class AudioPlayer {
         music[currentID].setMicrosecondPosition(0);
         music[currentID].loop(Clip.LOOP_CONTINUOUSLY);
     }
-    
+
     /**
      * Mutes all current Songs by passing in a boolean Control value of type MUTE.
      */
@@ -226,12 +234,11 @@ public class AudioPlayer {
      */
     public void toggleEffectMute() {
         this.effectMute = !effectMute;
-            for (Clip c : fx) {
-                BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
-                booleanControl.setValue(effectMute);
-            }
+        for (Clip c : fx) {
+            BooleanControl booleanControl = (BooleanControl) c.getControl(BooleanControl.Type.MUTE);
+            booleanControl.setValue(effectMute);
         }
-    
+    }
 
     /**
      * Updates the currently playing song's volume as a float.
@@ -242,6 +249,5 @@ public class AudioPlayer {
         float gain = (range * volume) + gainControl.getMinimum();
         gainControl.setValue(gain);
     }
-
 
 }

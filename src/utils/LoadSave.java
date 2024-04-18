@@ -79,12 +79,12 @@ public class LoadSave {
      * The background for the Main Menu
      */
     public static final String MENU_SCREEN = "/TitleScreenElements/TitleScreen1.png";
-    
+
     /**
      * The background for the Options Screen
      */
     public static final String OPTIONS_SCREEN = "/TitleScreenElements/OptionsScreen.png";
-    
+
     /**
      * The sprite sheet for all of the tiles in world 1
      */

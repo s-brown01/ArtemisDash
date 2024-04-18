@@ -128,7 +128,7 @@ public class Player extends Entity {
      * @param xLevelOffset - how far the screen offset is from scrolling
      */
     public void update(int xLevelOffset) {
-        // if dead, only update animations 
+        // if dead, only update animations
         if (killed) {
             updateAniTick();
             setAnimation();
@@ -390,6 +390,7 @@ public class Player extends Entity {
      * @param e - the information about what the mouse is currently doing
      */
     public void shoot(MouseEvent e) {
+        playing.getGame().getAudioPlayer().playEffect(AudioPlayer.FIRE);
         // checking validation
         if (attacking || killed) {
             // dont attack again while attacking
@@ -678,6 +679,7 @@ public class Player extends Entity {
         }
         // take 1 damage
         currentHealth--;
+        playing.getGame().getAudioPlayer().playEffect(AudioPlayer.PLAYER_HURT);
         hurting = true;
         if (currentHealth <= 0) {
             kill();

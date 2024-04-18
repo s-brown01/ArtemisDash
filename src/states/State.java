@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 import main.Game;
 import ui.MenuButton;
-import ui.OptionsButtons;
+import ui.OptionsButton;
 import gameaudio.AudioPlayer;
 
 /**
@@ -38,7 +38,7 @@ public abstract class State {
      * @param mb - the MenuButton to be checked
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
-    public boolean hoverOverButton(MouseEvent e, MenuButton mb) {
+    public boolean hoverOverMenuButton(MouseEvent e, MenuButton mb) {
         return mb.getBounds().contains(e.getX(), e.getY());
     }
 
@@ -47,11 +47,11 @@ public abstract class State {
      * OptionsButtons' bounds.
      * 
      * @param e  - the current information about the MouseEvent
-     * @param mb - the MenuButton to be checked
+     * @param ob - the MenuButton to be checked
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
-    public boolean hoverOverButton(MouseEvent e, OptionsButtons mb) {
-        return mb.getBounds().contains(e.getX(), e.getY());
+    public boolean hoverOverOptionsButton(MouseEvent e, OptionsButton ob) {
+        return ob.getBounds().contains(e.getX(), e.getY());
     }
 
     /**
@@ -63,13 +63,13 @@ public abstract class State {
         return game;
     }
 
-    
     /**
      * Used for audio configuration. Sets the current GameState to the specified state
-     * @param state
+     * 
+     * @param state - The state to be switched to and load in corresponding music
      */
-    public void setGamestate(GameStates state) {
-        switch(state) {
+    public void setGamestateAudio(GameStates state) {
+        switch (state) {
         case MENU:
             game.getAudioPlayer().playSong(AudioPlayer.MENU_1);
         case PLAYING:

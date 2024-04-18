@@ -18,7 +18,7 @@ import utils.LoadSave;
  * 
  * @author John Botonakis
  */
-public class OptionsButtons {
+public class OptionsButton {
     private int xpos, ypos, rowIndex, index;
     private int XOffsetCenter = B_WIDTH / 2;
     private GameStates state;
@@ -35,7 +35,7 @@ public class OptionsButtons {
      * @param state    - Determines what state of the game the button is linked to. Once hit,
      *                 this game state will load in.
      */
-    public OptionsButtons(int xpos, int ypos, int rowIndex, GameStates state) {
+    public OptionsButton(int xpos, int ypos, int rowIndex, GameStates state) {
         this.xpos = xpos;
         this.ypos = ypos;
         this.rowIndex = rowIndex;
@@ -49,7 +49,6 @@ public class OptionsButtons {
      */
     private void initBounds() {
         bounds = new Rectangle(xpos - XOffsetCenter, ypos, B_WIDTH, B_HEIGHT);
-
     }
 
     /**
@@ -78,7 +77,6 @@ public class OptionsButtons {
      * keyboard input.
      */
     public void update() {
-        System.out.println("UPDATING BUTTONS");
         // the first index means nothing is on it
         index = 0;
         // the second index is highlighted (mouse hovering)
@@ -151,6 +149,7 @@ public class OptionsButtons {
      * @return the Rectangle that is the 'hitbox' of the button
      */
     public Rectangle getBounds() { // Returns rectangle around menu button
+//        System.out.println(bounds);
         return bounds;
     }
 }
