@@ -1,15 +1,20 @@
 package drivers;
 
-import entities.*;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.image.BufferedImage;
+
+import entities.EnemyManager;
+import entities.Player;
+import entities.Skeleton;
+import entities.SkeletonKing;
 import levels.Level;
 import main.Game;
 import states.Playing;
+import utils.Constants.Directions;
 import utils.Constants.EnemyConstants;
+import utils.Constants.PlayerStates;
 import utils.LoadSave;
-import static utils.Constants.*;
-
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 /**
  * This will test all classes in the Entity package
@@ -48,7 +53,219 @@ public class EntityDriver implements DriverInterface {
      */
     private boolean testPlayer() {
         boolean allSuccess = true;
-        Player testPlayer = new Player(0, 0, 100, 100, null);
+        final int buffer = 500;
+        final int playerX = 3 * Game.TILES_SIZE;
+        final int playerY = 4 * Game.TILES_SIZE;
+        final int playerW = 100;
+        final int playerH = 100;
+        Player testPlayer = new Player(playerX, playerY, playerW, playerH, null);
+
+        // testing hitbox coordinates
+        if (testPlayer.getHitbox().x != playerX || testPlayer.getHitbox().y != playerY) {
+            printPlayerError("failed getting hitbox coords");
+            allSuccess = false;
+        }
+
+        // testing hitbox dimensions
+        if (testPlayer.getHitbox().width != PlayerStates.HITBOX_WIDTH
+                || testPlayer.getHitbox().height != PlayerStates.HITBOX_HEIGHT) {
+            printPlayerError("failed getting hitbox dimensions");
+            allSuccess = false;
+        }
+
+        // should not be left or right when initial
+        if (testPlayer.isLeft() || testPlayer.isRight()) {
+            printPlayerError("Left or Right is true when loading in");
+            allSuccess = false;
+        }
+
+        // testing getting state, should be defaulted to IDLE
+        if (testPlayer.getState() != PlayerStates.IDLE) {
+            printPlayerError("Failed getting state");
+            allSuccess = false;
+        }
+
+        // testing getting the animation index (since no updates, it should be 0th index)
+        if (testPlayer.getAniIndex() != 0) {
+            printPlayerError("Failed getting animation index");
+            allSuccess = false;
+        }
+
+        // testing getting the walkSpeed
+        if (testPlayer.getPlayerSpeed() != (1.25f * Game.SCALE)) {
+            printPlayerError("Failed to get walkSpeed");
+            allSuccess = false;
+        }
+
+        // Skeleton should not be killed when initially created
+        if (testPlayer.isKilled()) {
+            printPlayerError("Failed isKilled, no updates");
+            allSuccess = false;
+        }
+
+        // Skeleton should be inAir when initially created
+        if (!testPlayer.isInAir()) {
+            printPlayerError("Failed inAir, no updates");
+            allSuccess = false;
+        }
+
+        // testing initial health
+        if (testPlayer.getHealth() != PlayerStates.STARTING_HEALTH) {
+            printPlayerError("Failed to load in with correct health");
+            allSuccess = false;
+        }
+
+        // load in the level data for the default level
+        testPlayer.loadLvlData(LoadSave.getLevelData(LoadSave.DEFAULT_LEVEL));
+        int[][] testData = LoadSave.getLevelData(LoadSave.DEFAULT_LEVEL);
+        if (testPlayer.getLevelData().length != testData.length) {
+            printPlayerError("Failed to load level data correctly");
+            allSuccess = false;
+        }
+        // make sure it loaded in correctly
+        if (testPlayer.getLevelData()[0].length != testData[0].length) {
+            printPlayerError("Failed to load level data correctly");
+            allSuccess = false;
+        }
+        // make sure that every index is the same
+        for (int i = 0; i < testData.length && allSuccess; i++) {
+            for (int j = 0; j < testData[i].length; j++) {
+                if (testData[i][j] != testPlayer.getLevelData()[i][j]) {
+                    printPlayerError("Failed to load level data correctly");
+                    allSuccess = false;
+                    break;
+                }
+            }
+        }
+        int counter = 0;
+        testPlayer.update(0);
+        while (testPlayer.isInAir()) {
+            testPlayer.update(0);
+            counter++;
+            if (counter >= buffer) {
+                printPlayerError("Failed to fall");
+                allSuccess = false;
+            }
+            // the last check (when the player hits the ground), the Play will go into the Running
+            // state
+            if (!(testPlayer.getState() == PlayerStates.FALL || testPlayer.getState() == PlayerStates.RUNNING)) {
+                printPlayerError("Failed to go into FALL state");
+                allSuccess = false;
+            }
+        }
+
+        // update 1 more time to make it into the IDLE state
+        testPlayer.update(0);
+        if (testPlayer.getState() != PlayerStates.IDLE) {
+            printPlayerError("Failed getting state");
+            allSuccess = false;
+        }
+
+        // make sure the dimensions didn't change
+        if (testPlayer.getHitbox().x != playerX || testPlayer.getHitbox().width != PlayerStates.HITBOX_WIDTH
+                || testPlayer.getHitbox().height != PlayerStates.HITBOX_HEIGHT) {
+            printPlayerError("Changed dimensions or x after falling");
+            allSuccess = false;
+        }
+
+        // make sure not left or right movement
+        if (testPlayer.isLeft() || testPlayer.isRight()) {
+            printPlayerError("Left or Right is true after falling");
+            allSuccess = false;
+        }
+
+        // make sure not hurting
+        if (testPlayer.isHurting()) {
+            printPlayerError("Hurting too early");
+            allSuccess = false;
+        }
+
+        testPlayer.hurt();
+        // now player should be hurting
+        if (!testPlayer.isHurting()) {
+            printPlayerError("Not hurting after taking damage");
+            allSuccess = false;
+        }
+        // make sure damage was taken
+        if (testPlayer.getHealth() != PlayerStates.STARTING_HEALTH - 1) {
+            printPlayerError("Did not deal 1 damage to the player");
+            allSuccess = false;
+        }
+        // restore the damage
+        testPlayer.heal();
+        if (testPlayer.isHurting()) {
+            printPlayerError("Hurting after healing");
+            allSuccess = false;
+        }
+        // make sure health was given back
+        if (testPlayer.getHealth() != PlayerStates.STARTING_HEALTH) {
+            printPlayerError("Did not heal back to full health");
+            allSuccess = false;
+        }
+        // make sure that no attack was stored
+        if (testPlayer.getNextAttack() != null) {
+            printPlayerError("First attack does not equal null");
+            allSuccess = false;
+        }
+
+        // create a point to the top-left of the player
+        Point shotPoint = new Point(playerX - 20, playerY - 20);
+        testPlayer.setNextAttack(shotPoint);
+        // next attack should be shotEvent
+        if (!testPlayer.getNextAttack().equals(shotPoint)) {
+            printPlayerError("Failed to set next attack correctly");
+            allSuccess = false;
+        }
+        // the shot was to left, the player should be facing left
+        if (testPlayer.getFlipX() != playerW && testPlayer.getFlipW() != -1) {
+            printPlayerError("Failed to face left and set FlipX or FlipW");
+            allSuccess = false;
+        }
+
+        testPlayer.shoot(shotPoint);
+
+        // should be shotPoint
+        if (!testPlayer.getNextAttack().equals(shotPoint)) {
+            printPlayerError("Failed to store nextAttack correctly");
+            allSuccess = false;
+        }
+
+        // should be attacking now
+        if (!testPlayer.isAttacking()) {
+            printPlayerError("Failed to set Attacking when shooting");
+            allSuccess = false;
+        }
+        
+        // update 1 time to make the animation/state progress
+        testPlayer.update(0);
+
+        // should be in attacking state
+        if (testPlayer.getState() != PlayerStates.DRAW) {
+            printPlayerError("Failed change to DRAW state");
+            allSuccess = false;
+        }
+
+        // make a new point with different coordinates than shotPoint
+        Point fakeShot = new Point(playerX - 50, playerY - 50);
+        testPlayer.shoot(fakeShot);
+
+        // testing to make sure that the new shot isn't stored since already attacking
+        if (testPlayer.getNextAttack().equals(fakeShot)) {
+            printPlayerError("Stored the fake shot when shouldn't have");
+            allSuccess = false;
+        }
+        
+        // kill and update so the state gets changed
+        testPlayer.kill();
+        testPlayer.update(0);
+        if (!testPlayer.isKilled()) {
+            printPlayerError("Failed to kill Player");
+            allSuccess = false;
+        }
+        if (testPlayer.getState() != PlayerStates.DIE) {
+            printPlayerError("Failed to change to DIE state");
+            allSuccess = false;
+        }
         return allSuccess;
     }
 
