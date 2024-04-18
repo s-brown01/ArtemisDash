@@ -363,7 +363,6 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_SPACE:
             player.setJump(true);
             player.incJumpCount();
-            game.getAudioPlayer().playEffect(AudioPlayer.JUMP);
             break;
         case KeyEvent.VK_P:
             paused = !paused;
@@ -374,12 +373,9 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_BACK_SPACE:
             GameStates.state = GameStates.MENU;
             break;
-        case KeyEvent.VK_9:
-            updateScore(9);
-            break;
-        // Testing text-based cutscenes
-//        case KeyEvent.VK_0:
-//            draw = true;
+//Debugging tool: Press 9 to increment the score by 9
+//        case KeyEvent.VK_9:
+//            updateScore(9);
 //            break;
 
         }
@@ -399,6 +395,8 @@ public class Playing extends State implements StateMethods {
             break;
         case KeyEvent.VK_SPACE:
             player.setJump(false);
+            game.getAudioPlayer().playEffect(AudioPlayer.JUMP);
+
             break;
 //Debugging tool: Press K to kill Player
 //        case KeyEvent.VK_K:

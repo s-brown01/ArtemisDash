@@ -78,14 +78,17 @@ public class OptionsButtons {
      * keyboard input.
      */
     public void update() {
+        System.out.println("UPDATING BUTTONS");
         // the first index means nothing is on it
         index = 0;
         // the second index is highlighted (mouse hovering)
         if (mouseOver) {
+            System.out.println("HOVER OVER BUTTONS");
             index = 1;
         }
         // the third index shows when the mouse is pressed on the button
         if (mousePressed) {
+            System.out.println("CLICKING BUTTONS");
             index = 2;
         }
     }
@@ -103,7 +106,7 @@ public class OptionsButtons {
      * the menuButton as "state"
      */
     public void applyGamestate() {
-        GameStates.state = state;
+        GameStates.state = this.state;
     }
 
     /**

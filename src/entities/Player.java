@@ -13,6 +13,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import gameaudio.AudioPlayer;
 import main.Game;
 import states.Playing;
 import utils.Constants;
@@ -610,12 +611,14 @@ public class Player extends Entity {
      * @param dashing - true if the player is dashing. False if not.
      */
     public void setDash(boolean dashing) {
+//        playing.getGame().getAudioPlayer().s
         // If already dashing and you press the button again,
         // stop dashing
         if (this.dash == true && dashing == true) {
             this.dash = false;
         } else {
             this.dash = dashing;
+            playing.getGame().getAudioPlayer().playEffect(5);
         }
     }
 

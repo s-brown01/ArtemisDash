@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import main.Game;
+import ui.MenuButton;
 import ui.OptionsButtons;
 import utils.LoadSave;
 
@@ -16,7 +17,7 @@ import utils.LoadSave;
  */
 public class Options extends State implements StateMethods {
 
-    private OptionsButtons button;
+    private OptionsButtons[] buttons = new OptionsButtons[2];
     private final BufferedImage backgroundImg;
 
     public Options(Game game) {
@@ -30,7 +31,9 @@ public class Options extends State implements StateMethods {
      */
     @Override
     public void update() {
-        button.update();
+        for (OptionsButtons mb : buttons) {
+            mb.update();
+        }
     }
 
     /**
@@ -39,7 +42,9 @@ public class Options extends State implements StateMethods {
     @Override
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
-            button.draw(g);
+        for (OptionsButtons mb : buttons) {
+            mb.draw(g);
+        }
     }
 
     /**
@@ -47,24 +52,31 @@ public class Options extends State implements StateMethods {
      * game state to the button function
      */
     private void loadButtons() {
-        button = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (240 * Game.SCALE), 0, GameStates.MENU);
+        buttons[0] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), 0, GameStates.MENU);
+        buttons[1] = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (270 * Game.SCALE), 1, GameStates.OPTIONS);
+//        button = new OptionsButtons(Game.GAME_WIDTH / 9, (int) (370 * Game.SCALE), 0, GameStates.MENU);
     }
 
     /**
      * Handles resetting button behavior back to originally defined parameters
      */
     private void resetButtons() {
-            button.resetButtons();
-    }
+        for (OptionsButtons mb : buttons) {
+            mb.resetButtons();
+        }    }
 
     /**
      * Sets behavior of buttons when Mouse 1 is pressed
      */
     @Override
     public void mousePressed(MouseEvent e) {
-            if (hoverOverButton(e, button)) {
-                button.setMousePressed(true);
+        for (OptionsButtons mb : buttons) {
+            if (hoverOverButton(e, mb)) {
+                mb.setMousePressed(true);
+                game.getAudioPlayer().playEffect(4);
+                break;
             }
+        }
         }
 
     /**
@@ -72,21 +84,27 @@ public class Options extends State implements StateMethods {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-            if (hoverOverButton(e, button)) {
-                if (button.isMousePressed()) {
-                    button.applyGamestate();
+        for (OptionsButtons mb : buttons) {
+            if (hoverOverButton(e, mb)) {
+                if (mb.isMousePressed()) {
+                    mb.applyGamestate();
+                    break;
                 }
             }
-            button.resetButtons();
+        }
+        resetButtons();
         }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-            if (hoverOverButton(e, button)) {
-                button.setMouseOver(true);
+        for (OptionsButtons mb : buttons) {
+            if (hoverOverButton(e, mb)) {
+                mb.setMouseOver(true);
             } else {
-                button.setMouseOver(false);
+                mb.setMouseOver(false);
             }
+            
+        }
         }
 
     /**

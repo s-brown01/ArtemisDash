@@ -110,11 +110,10 @@ public class Menu extends State implements StateMethods {
         for (MenuButton mb : buttons) {
             if (hoverOverButton(e, mb)) {
                 mb.setMouseOver(true);
-                game.getAudioPlayer().playEffect(3);
-                break;
             } else {
                 mb.setMouseOver(false);
             }
+            
         }
     }
 
