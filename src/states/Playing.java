@@ -16,6 +16,8 @@ import ui.DeathOverlay;
 import ui.HUD;
 import ui.PauseOverlay;
 import utils.Constants.BackgroundStates;
+import static utils.Constants.PlayerStates.IMAGE_WIDTH;
+import static utils.Constants.PlayerStates.IMAGE_HEIGHT;
 import utils.LoadSave;
 
 /**
@@ -86,7 +88,7 @@ public class Playing extends State implements StateMethods {
      * booleans to get the Level ready to play for the user
      */
     private void loadCurrentLevel() {
-        player = new Player(200, 300, (int) (55 * Game.SCALE), (int) (65 * Game.SCALE), this);
+        player = new Player(200, 300, (int) (IMAGE_WIDTH * Game.SCALE), (int) (IMAGE_HEIGHT * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
