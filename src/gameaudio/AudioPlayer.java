@@ -216,7 +216,7 @@ public class AudioPlayer {
         stopSong();
 
         currentID = song;
-        updateSongVolume();
+//        updateSongVolume();
         music[currentID].setMicrosecondPosition(0);
         music[currentID].loop(Clip.LOOP_CONTINUOUSLY);
     }

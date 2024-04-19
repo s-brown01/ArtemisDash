@@ -130,7 +130,15 @@ public class LoadSave {
      * The assets for the death screen overlay
      */
     public static final String DEATHSCREEN = "/death_screen.png";
-
+    /**
+     * this is the green value used to determine which tiles have Skeletons on in from the RGB level data
+     */
+    private static final int SKELETON_GREEN_VALUE = 50;
+    /**
+     * this is the green value used to determine which tiles have Skeleton King on in from the RGB level data
+     */
+    private static final int SKELETON_KING_GREEN_VALUE = 51;
+    
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
      * 
