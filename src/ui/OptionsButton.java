@@ -149,7 +149,6 @@ public class OptionsButton {
      * @return the Rectangle that is the 'hitbox' of the button
      */
     public Rectangle getBounds() { // Returns rectangle around menu button
-//        System.out.println(bounds);
         return bounds;
     }
 }
