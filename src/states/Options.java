@@ -48,7 +48,7 @@ public class Options {
      */
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
-        button.draw(g);
+//        button.draw(g);
     }
 
     /**
@@ -56,14 +56,14 @@ public class Options {
      * game state to the button function
      */
     private void loadButtons() {
-        button = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (240 * Game.SCALE), 0, GameStates.MENU);
+//        button = new OptionsButtons(Game.GAME_WIDTH / 6, (int) (240 * Game.SCALE), 0, GameStates.MENU);
     }
 
     /**
      * Handles resetting button behavior back to originally defined parameters
      */
     private void resetButtons() {
-        button.resetButtons();
+//        button.resetButtons();
     }
 
     public void createButtons() {
@@ -71,7 +71,4 @@ public class Options {
         buttons[0] = new OptionsButton(Game.GAME_WIDTH / 6, (int) (370 * Game.SCALE), 0, GameStates.MENU);
         buttons[1] = new OptionsButton(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), 0, GameStates.OVERWORLD);
     }
-
->>>>>>> Audio
-
 }
