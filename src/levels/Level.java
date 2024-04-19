@@ -11,6 +11,7 @@ import java.util.List;
 import entities.Skeleton;
 import entities.SkeletonKing;
 import main.Game;
+import utils.LoadSave;
 
 /**
  * Every object instantiated from this class will be a level that the user can play
@@ -21,17 +22,22 @@ import main.Game;
  */
 public class Level {
 
+    /**
+     * the levelData that represents the environment of the level as a 2D int array
+     */
     private int[][] lvlData;
+    private String fileName;
     private Boolean completed = false;
     private Boolean hidden = true;
 
     /**
      * Constructor for a Level
      * 
-     * @param lvlData - the levelData that represents the level as a 2D int array
+     * @param levelFileName - the file containing the RGB map of the Level
      */
-    public Level(int[][] lvlData) {
-        this.lvlData = lvlData;
+    public Level(String levelFileName) {
+        this.fileName = levelFileName;
+        this.lvlData = LoadSave.getLevelData(levelFileName);
     }
 
     /**
@@ -98,14 +104,7 @@ public class Level {
      * @return a List storing all Skeletons in this Level
      */
     public List<Skeleton> getSkeletons() {
-        final List<Skeleton> skeletonList = new ArrayList<>();
-        // temp code
-        skeletonList.add(
-                new Skeleton((600 / 1.75f) * Game.SCALE, (200 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
-        skeletonList.add(
-                new Skeleton((1300 / 1.75f) * Game.SCALE, (200 / 1.75f) * Game.SCALE, SKELETON_WIDTH, SKELETON_HEIGHT));
-
-        return skeletonList;
+        return LoadSave.getSkeletons(fileName);
     }
 
     /**
@@ -115,10 +114,7 @@ public class Level {
      * @return a List storing all Skeleton Kings in this Level
      */
     public List<SkeletonKing> getSkeletonKings() {
-        final List<SkeletonKing> skelKingList = new ArrayList<>();
-        skelKingList.add(new SkeletonKing((1500 / 1.75f) * Game.SCALE, (425 / 1.75f) * Game.SCALE, SKELETON_KING_WIDTH,
-                SKELETON_KING_HEIGHT));
-        return skelKingList;
+        return LoadSave.getSkeletonKings(fileName);
     }
 
     /**

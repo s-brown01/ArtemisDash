@@ -1,5 +1,10 @@
 package utils;
 
+import static utils.Constants.EnemyConstants.SKELETON_HITBOX_HEIGHT;
+import static utils.Constants.EnemyConstants.SKELETON_HITBOX_WIDTH;
+import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_HEIGHT;
+import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_WIDTH;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -7,8 +12,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
+
+import entities.Skeleton;
+import entities.SkeletonKing;
+import main.Game;
 
 /**
  * This class is focused on loading in sprite data, level data, and building levels. All
@@ -229,6 +240,46 @@ public class LoadSave {
                     Constants.ProjectileConstants.ARROW_IMG_WIDTH, Constants.ProjectileConstants.ARROW_IMG_HEIGHT);
         }
         return arrowSprites;
+    }
+    
+    /**
+     * This method gets all of the Skeletons contained in a specific level inside of a List
+     * @param level - the level to get the Skeletons from
+     * @return a List containing all Skeletons from that level
+     */
+    public static List<Skeleton> getSkeletons(String level) {
+        List<Skeleton> skelList = new ArrayList<>();
+        BufferedImage img = getSpriteSheet(level);
+        // for reach point in the RBG map, assign the value to a
+        for (int j = 0; j < img.getHeight(); j++)
+            for (int i = 0; i < img.getWidth(); i++) {
+                Color color = new Color(img.getRGB(i, j));
+                int value = color.getGreen();
+                if (value == SKELETON_GREEN_VALUE) {
+                    skelList.add(new Skeleton(i*Game.TILES_SIZE, j * Game.TILES_SIZE, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT));
+                }
+            }
+        return skelList;
+    }
+    
+    /**
+     * This method gets all of the Skeleton King contained in a specific level inside of a List
+     * @param level - the level to get the Skeleton King from
+     * @return a List containing all Skeleton Kings from that level
+     */
+    public static List<SkeletonKing> getSkeletonKings(String level) {
+        List<SkeletonKing> skelList = new ArrayList<>();
+        BufferedImage img = getSpriteSheet(level);
+        // for reach point in the RBG map, assign the value to a
+        for (int j = 0; j < img.getHeight(); j++)
+            for (int i = 0; i < img.getWidth(); i++) {
+                Color color = new Color(img.getRGB(i, j));
+                int value = color.getGreen();
+                if (value == SKELETON_GREEN_VALUE) {
+                    skelList.add(new SkeletonKing(i*Game.TILES_SIZE, j * Game.TILES_SIZE, SKELETON_KING_HITBOX_WIDTH, SKELETON_KING_HITBOX_HEIGHT));
+                }
+            }
+        return skelList;
     }
 
 }

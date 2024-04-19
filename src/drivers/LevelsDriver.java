@@ -33,7 +33,7 @@ public class LevelsDriver implements DriverInterface {
 
         // Test creating a Level instance
         int[][] levelData = LoadSave.getLevelData(LoadSave.DEFAULT_LEVEL); // Sample level data
-        final Level level = new Level(levelData);
+        final Level level = new Level(LoadSave.DEFAULT_LEVEL);
 
         // Test getting sprite index
         if (level.getSpriteIndex(0, 0) != 13 || level.getSpriteIndex(2, 2) != 25) {
@@ -86,7 +86,7 @@ public class LevelsDriver implements DriverInterface {
         }
 
         // create 2 new levels to test the equals method
-        final Level sameLevel = new Level(level.getLevelData());
+        final Level sameLevel = new Level(level.getLevelName());
         final Level differentLevel = new Level(new int[][] { { 0, 0 }, { 0, 0 } });
 
         // these two levels should be the same
