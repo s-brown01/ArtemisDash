@@ -196,11 +196,7 @@ public class AudioPlayer {
     /**
      * Plays other sound effects
      * 
-<<<<<<< HEAD
-     * @param effect
-=======
      * @param effect - The sound index that is to be played
->>>>>>> Audio
      */
     public void playEffect(int effect) {
         fx[effect].setMicrosecondPosition(0);
