@@ -35,6 +35,7 @@ public class Options {
      * affect the button sprite state
      */
     public void update() {
+        
         for(OptionsButton ob : buttons) {
             ob.update();
         }
@@ -46,6 +47,7 @@ public class Options {
      * @param g - Graphics
      */
     public void draw(Graphics g) {
+        g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
         // Buttons
         for(OptionsButton ob : buttons) {
             ob.draw(g);
