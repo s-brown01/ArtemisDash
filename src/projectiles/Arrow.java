@@ -1,11 +1,11 @@
 package projectiles;
 
 import static utils.Constants.ProjectileConstants.ARROW;
-import static utils.Constants.ProjectileConstants.ARROW_SPEED;
 import static utils.Constants.ProjectileConstants.ARROW_DRAW_OFFSET_X;
 import static utils.Constants.ProjectileConstants.ARROW_DRAW_OFFSET_Y;
 import static utils.Constants.ProjectileConstants.ARROW_WIDTH;
 import static utils.Constants.ProjectileConstants.ARROW_HEIGHT;
+import static utils.Constants.ProjectileConstants.getProjSpeed;
 
 
 import java.awt.Graphics;
@@ -24,10 +24,6 @@ public class Arrow extends Projectile {
      */
     private static final int MAX_SPRITES = 5;
 
-    private final float SPEED;
-    private final float FLIP_X;
-    private final int FLIP_W;
-
     /**
      * @param x     - the x coordinate of the left of the hitbox
      * @param y     - the y coordinate of the top of the hitbox
@@ -37,19 +33,7 @@ public class Arrow extends Projectile {
      *              false
      */
     public Arrow(float x, float y, float slope, boolean left) {
-        super(x, y, slope, ARROW);
-        // if it is moving left, it should have a positive slope
-        if (left) {
-            this.SPEED = -1 * calculateHorizontalSpeed(ARROW_SPEED, slope);
-            this.FLIP_X = hitbox.width;
-            this.FLIP_W = -1;
-        }
-        // if the arrow is moving right, it should be the reversed slope
-        else {
-            this.SPEED = calculateHorizontalSpeed(ARROW_SPEED, slope);
-            this.FLIP_X = 0;
-            this.FLIP_W = 1;
-        }
+        super(x, y, slope, ARROW, left);       
     }
 
     /**

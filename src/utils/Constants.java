@@ -584,8 +584,7 @@ public class Constants {
          */
         public static final int ARROW_DRAW_OFFSET_Y = (int) (4 * Game.SCALE);
 
-        /** the horizontal speed of the arrow */
-        public static final float ARROW_SPEED = 3.5f;
+        
         /** how much damage an entity will take if hit with an ARROW */
         public static final int ARROW_DAMAGE = 1;
 
@@ -620,18 +619,16 @@ public class Constants {
         }
 
         /**
-         * @deprecated THIS METHOD IS NOT USED
-         * 
-         *             Get the specific speed of a hitbox for a Projectile based on the constants
-         *             above
+         * Get the specific speed of a hitbox for a Projectile based on the constants above
          * 
          * @param projType - the type of Projectile to get speed for, the constants in this class
          * @return - the speed of the hitbox for the Projectile
          */
         public static float getProjSpeed(int projType) {
             switch (projType) {
+            // this is where each Projectile Speed is determined
             case ARROW:
-                return 2.0f * Game.SCALE;
+                return 3.5f;
             default:
                 return 2.0f * Game.SCALE;
             }

@@ -2,6 +2,7 @@ package projectiles;
 
 import static utils.Constants.ProjectileConstants.getProjHeight;
 import static utils.Constants.ProjectileConstants.getProjWidth;
+import static utils.Constants.ProjectileConstants.getProjSpeed;
 
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Float;
@@ -25,6 +26,12 @@ public abstract class Projectile {
     protected int aniIndex = 0, aniTick = 0;
     protected int aniSpeed = utils.Constants.ANISPEED;
     protected BufferedImage[] animations;
+    protected final float SPEED;
+    
+    
+    protected final float FLIP_X;
+    protected final int FLIP_W;
+
 
     /** active is used to determine if this Projectile should be 'alive' in the Game */
     protected boolean active = true;
@@ -41,13 +48,27 @@ public abstract class Projectile {
      * @param y        - the Y-coordinate of the Projectile
      * @param slope    - the slope of the Projectile, what path it will follow
      * @param projType - the type of Projectile it is, based on ProjectileConstants
+     * @param left     - if the Arrow is moving towards the left, this should be true; if right, false
      */
-    public Projectile(float x, float y, float slope, int projType) {
+    public Projectile(float x, float y, float slope, int projType, boolean left) {
         this.x = x;
         this.y = y;
         this.slope = slope;
         // get the specific height and width depending on the type given
         hitbox = new Rectangle2D.Float(this.x, this.y, getProjWidth(projType), getProjHeight(projType));
+        
+        // if it is moving left, it should have a positive slope
+        if (left) {
+            this.SPEED = -1 * calculateHorizontalSpeed(getProjSpeed(projType), slope);
+            this.FLIP_X = hitbox.width;
+            this.FLIP_W = -1;
+        }
+        // if the arrow is moving right, it should be the reversed slope
+        else {
+            this.SPEED = calculateHorizontalSpeed(getProjSpeed(projType), slope);
+            this.FLIP_X = 0;
+            this.FLIP_W = 1;
+        }
     }
 
     /**
