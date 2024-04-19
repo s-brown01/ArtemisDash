@@ -1,12 +1,16 @@
 package states;
 
+import static main.Game.SCALE;
+import static utils.Constants.ButtonStates.SOUNDSIZE;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import main.Game;
-import ui.OptionsButtons;
+import ui.OptionsButton;
+import ui.SoundButton;
 import utils.LoadSave;
 
 /**
@@ -14,29 +18,34 @@ import utils.LoadSave;
  * 
  * @author John Botonakis
  */
-public class Options extends State implements StateMethods {
+public class Options {
 
-    private OptionsButtons button;
     private final BufferedImage backgroundImg;
+    private OptionsButton[] buttons = new OptionsButton[2];
+    private Game game;
 
     public Options(Game game) {
-        super(game);
+        this.game = game;
         backgroundImg = LoadSave.getSpriteSheet(LoadSave.OPTIONS_SCREEN);
-        loadButtons();
+        createButtons();
     }
-
+    
     /**
-     * Given the input of the user, this function helps update the button appearance
+     * Updates the buttons based on the users actions. Things such as hover and mouse click
+     * affect the button sprite state
      */
-    @Override
     public void update() {
-        button.update();
+        
+        for(OptionsButton ob : buttons) {
+            ob.update();
+        }
     }
-
+    
     /**
-     * Draw the menu buttons onto the screen
+     * Draws everything that is intended to be visible, to the screen
+     * 
+     * @param g - Graphics
      */
-    @Override
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
         button.draw(g);
@@ -57,65 +66,12 @@ public class Options extends State implements StateMethods {
         button.resetButtons();
     }
 
-    /**
-     * Sets behavior of buttons when Mouse 1 is pressed
-     */
-    @Override
-    public void mousePressed(MouseEvent e) {
-        if (hoverOverButton(e, button)) {
-            button.setMousePressed(true);
-        }
+    public void createButtons() {
+        // Had to touch up the overall size so decreased it by 5 in its height
+        buttons[0] = new OptionsButton(Game.GAME_WIDTH / 6, (int) (370 * Game.SCALE), 0, GameStates.MENU);
+        buttons[1] = new OptionsButton(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), 0, GameStates.OVERWORLD);
     }
 
-    /**
-     * Sets behavior of buttons when Mouse 1 is released
-     */
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        if (hoverOverButton(e, button)) {
-            if (button.isMousePressed()) {
-                button.applyGamestate();
-            }
-        }
-        button.resetButtons();
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        if (hoverOverButton(e, button)) {
-            button.setMouseOver(true);
-        } else {
-            button.setMouseOver(false);
-        }
-    }
-
-    /**
-     * Goes unused as there is no functionality for mouse dragging in the Options Screen
-     */
-    @Override
-    public void mouseDragged(MouseEvent e) {
-    }
-
-    /**
-     * Goes unused as the "click" encompasses both the press and release of the button, which
-     * we have separate functions for each.
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    /**
-     * Goes unused as there is no functionality for Key events in the Options Screen
-     */
-    @Override
-    public void keyPressed(KeyEvent e) {
-    }
-
-    /**
-     * Goes unused as there is no functionality for Key events in the Options Screen
-     */
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
+>>>>>>> Audio
 
 }

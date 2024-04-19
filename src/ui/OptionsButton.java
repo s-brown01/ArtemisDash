@@ -18,7 +18,7 @@ import utils.LoadSave;
  * 
  * @author John Botonakis
  */
-public class OptionsButtons {
+public class OptionsButton {
     private int xpos, ypos, rowIndex, index;
     private int XOffsetCenter = B_WIDTH / 2;
     private GameStates state;
@@ -35,7 +35,7 @@ public class OptionsButtons {
      * @param state    - Determines what state of the game the button is linked to. Once hit,
      *                 this game state will load in.
      */
-    public OptionsButtons(int xpos, int ypos, int rowIndex, GameStates state) {
+    public OptionsButton(int xpos, int ypos, int rowIndex, GameStates state) {
         this.xpos = xpos;
         this.ypos = ypos;
         this.rowIndex = rowIndex;
@@ -49,7 +49,6 @@ public class OptionsButtons {
      */
     private void initBounds() {
         bounds = new Rectangle(xpos - XOffsetCenter, ypos, B_WIDTH, B_HEIGHT);
-
     }
 
     /**
@@ -82,10 +81,12 @@ public class OptionsButtons {
         index = 0;
         // the second index is highlighted (mouse hovering)
         if (mouseOver) {
+            System.out.println("HOVER OVER BUTTONS");
             index = 1;
         }
         // the third index shows when the mouse is pressed on the button
         if (mousePressed) {
+            System.out.println("CLICKING BUTTONS");
             index = 2;
         }
     }
@@ -103,7 +104,7 @@ public class OptionsButtons {
      * the menuButton as "state"
      */
     public void applyGamestate() {
-        GameStates.state = state;
+        GameStates.state = this.state;
     }
 
     /**
@@ -148,6 +149,7 @@ public class OptionsButtons {
      * @return the Rectangle that is the 'hitbox' of the button
      */
     public Rectangle getBounds() { // Returns rectangle around menu button
+//        System.out.println(bounds);
         return bounds;
     }
 }

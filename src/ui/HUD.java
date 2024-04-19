@@ -16,7 +16,7 @@ import utils.LoadSave;
  * @author John Botonakis
  */
 public class HUD {
-    private BufferedImage portrait, hudbg, hearts, charge;
+    private BufferedImage portrait, hudbg, hearts;
     /**
      * X-Position of the Portrait Sprite
      */
@@ -56,7 +56,6 @@ public class HUD {
         portrait = LoadSave.getSpriteSheet(LoadSave.PLAYER_PORTRAIT);
         hudbg = LoadSave.getSpriteSheet(LoadSave.HUDBG);
         hearts = LoadSave.getSpriteSheet(LoadSave.HEART); // Get assets for hearts
-//        charge = LoadSave.getSpriteSheet(LoadSave.HUDBG); //Get assets for Dash charge
 
         // Font Initialization
         this.hudFont = LoadSave.loadFont(LoadSave.FONT, 25);
@@ -126,8 +125,6 @@ public class HUD {
 
         g.drawString("Lives ", livesXPos, livesYPos);
         g.drawString(String.valueOf(playerLives), playerLivesX, playerLivesY);
-
-        g.drawString("Charge", livesXPos + 400, livesYPos);
     }
 
     /**
