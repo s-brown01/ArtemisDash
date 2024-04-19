@@ -155,7 +155,7 @@ public class AudioPlayer {
      */
     public void setSongVolume(float volume) {
         this.volume = volume;
-        updateSongVolume();
+//        updateSongVolume();
     }
 
     /**
