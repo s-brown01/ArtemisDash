@@ -29,6 +29,7 @@ public class Overworld extends State implements StateMethods {
     private final Point[] btnLocations = BUTTON_POINT_ARRAY;
     private OverworldButton[] buttonArr = new OverworldButton[btnLocations.length];
     private OverworldButton selectedLvl = null;
+    private String[] lvlNames = {"DARRING DESCENT","LAVA LAKE", "BURNING BADLANDS","ROCKY RELIEF","KILL THE KING"};
     private final LevelManager levelManager;
     /**
      * This boolean keeps track of if the state has changed at all. Default it to true
@@ -58,7 +59,7 @@ public class Overworld extends State implements StateMethods {
      */
     private void initButtons() {
         for (int i = 0; i < buttonArr.length; i++) {
-            buttonArr[i] = new OverworldButton(btnLocations[i].x, btnLocations[i].y, "LEVEL NAME", 1, i);
+            buttonArr[i] = new OverworldButton(btnLocations[i].x, btnLocations[i].y, lvlNames[i], 1, i);
         }
         // this is just to see how the levels look at different stages
         // should be removed by game starting

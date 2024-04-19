@@ -184,7 +184,7 @@ public class Constants {
 //        private static final Point LEVEL_15 = new Point((int) (900 / 1.75f * Game.SCALE),
 //                (int) (625 / 1.75f * Game.SCALE));
         /**
-         * This is a final array of all 15 Levels, so that it can be easily access by the
+         * This is a final array of all 5 Levels, so that it can be easily access by the
          * Overworld GameState
          */
 //        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5,
