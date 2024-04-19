@@ -78,8 +78,9 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mousePressed(MouseEvent e) {
         for (MenuButton mb : buttons) {
-            if (hoverOverButton(e, mb)) {
+            if (hoverOverMenuButton(e, mb)) {
                 mb.setMousePressed(true);
+                game.getAudioPlayer().playEffect(4);
                 break;
             }
         }
@@ -91,7 +92,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mouseReleased(MouseEvent e) {
         for (MenuButton mb : buttons) {
-            if (hoverOverButton(e, mb)) {
+            if (hoverOverMenuButton(e, mb)) {
                 if (mb.isMousePressed()) {
                     mb.applyGamestate();
                     break;
@@ -107,12 +108,12 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mouseMoved(MouseEvent e) {
         for (MenuButton mb : buttons) {
-            if (hoverOverButton(e, mb)) {
+            if (hoverOverMenuButton(e, mb)) {
                 mb.setMouseOver(true);
-                break;
             } else {
                 mb.setMouseOver(false);
             }
+
         }
     }
 

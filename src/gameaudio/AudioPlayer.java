@@ -14,31 +14,84 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import main.Game;
 
 /**
+ * Audio Player is a class that allows WAV files to be played through the use of Java
+ * CLIPS. The songs are loaded into an array which finds the files in the correct folder,
+ * and then converts those WAV files into a format that java can understand, saving them
+ * into a new array. From this new array, they are able to be accessed and played at any
+ * time.
  * 
+ * @author John Botonakis
  */
 public class AudioPlayer {
+    /**
+     * Main Menu music
+     */
     public static int MENU_1 = 0;
+    /**
+     * Level 1 music
+     */
     public static int W_1L_1 = 1;
+    /**
+     * Game over music
+     */
     public static int GAMEOVER = 2;
+    /**
+     * Level 2 music
+     */
     public static int W_1L_2 = 3;
 //    public static int LEVELCOMPLETE = 4;
 //    public static int W_1L_3 = 3;
 //    public static int W_1L_4 = 4;
 //    public static int W_1L_5 = 5;
 
+    /**
+     * Death sound effect
+     */
     public static int DEATH = 0;
+    /**
+     * Player Jumping sound effect
+     */
     public static int JUMP = 1;
+    /**
+     * Player Fire sound effect
+     */
     public static int FIRE = 2;
-//    public static int BTN_HOVER = 5;
-//    public static int BTN_CONFIRM = 6;
+    /**
+     * Button state - Hover sound effect
+     */
+    public static int BTN_HOVER = 3;
+    /**
+     * Button state - Confirm sound effect
+     */
+    public static int BTN_CONFIRM = 4;
+    /**
+     * Player Dash sound effect
+     */
+    public static int DASH = 5;
+
+    /**
+     * Enemy Attack sound effect
+     */
+    public static int ENEMY_ATTACK = 6;
+
+    /**
+     * Player Hurt sound effect
+     */
+    public static int PLAYER_HURT = 7;
 
     private int currentID;
     private Clip[] music, fx;
     private Game game;
     private boolean songMute, effectMute;
-    private Random rnd = new Random();
-    private float volume = 0.8f;
+    private float volume = 1f;
 
+    /**
+     * The main constructor for the Audio player class. It loads in the Songs first, then the
+     * Effects, then plays the Main Menu music as it is the first to load in when starting the
+     * program.
+     * 
+     * @param game
+     */
     public AudioPlayer(Game game) {
         loadSong();
         loadEffect();
@@ -61,12 +114,11 @@ public class AudioPlayer {
      * files as Clip objects
      */
     public void loadEffect() {
-        String[] effectNames = { "player_death", "jump", "bow_fire" };
+        String[] effectNames = { "player_death", "jump", "bow_fire", "button_hover", "button_confirm", "dash",
+                "enemy_attack", "player_hurt" };
         fx = new Clip[effectNames.length];
         for (int i = 0; i < fx.length; i++)
             fx[i] = getSound(effectNames[i]);
-
-        updateEffectsVolume();
     }
 
     /**
@@ -94,18 +146,19 @@ public class AudioPlayer {
 
     }
 
+
     /**
+     * Adjusts the volume for the songs
      * 
-     * @param volume
+     * @param volume - The float volume level
      */
-    public void setVolume(float volume) {
+    public void setSongVolume(float volume) {
         this.volume = volume;
-        updateSongVolume();
-        updateEffectsVolume();
+//        updateSongVolume();
     }
 
     /**
-     * 
+     * Stops the currently playing song
      */
     public void stopSong() {
         if (music[currentID].isActive())
@@ -115,7 +168,7 @@ public class AudioPlayer {
     /**
      * Sets the Level music based on the current level index
      * 
-     * @param lvlIndex
+     * @param lvlIndex - The index of the level that corresponds to the selected song
      */
     public void setLevelSong(int lvlIndex) {
         if (lvlIndex % 2 == 0)
@@ -143,7 +196,11 @@ public class AudioPlayer {
     /**
      * Plays other sound effects
      * 
+<<<<<<< HEAD
      * @param effect
+=======
+     * @param effect - The sound index that is to be played
+>>>>>>> Audio
      */
     public void playEffect(int effect) {
         fx[effect].setMicrosecondPosition(0);
@@ -165,7 +222,7 @@ public class AudioPlayer {
     }
 
     /**
-     * 
+     * Mutes all current Songs by passing in a boolean Control value of type MUTE.
      */
     public void toggleSongMute() {
         this.songMute = !songMute;
@@ -175,6 +232,9 @@ public class AudioPlayer {
         }
     }
 
+    /**
+     * Mutes all sound effects by passing in a boolean control value of type MUTE.
+     */
     public void toggleEffectMute() {
         this.effectMute = !effectMute;
         if (fx == null) {
@@ -197,17 +257,5 @@ public class AudioPlayer {
         gainControl.setValue(gain);
     }
 
-    /**
-     * Updates the currently queued SFX's volume as a float. This method changes the volume
-     * for EVERY sound effect.
-     */
-    private void updateEffectsVolume() {
-        for (Clip c : fx) {
-            FloatControl gainControl = (FloatControl) c.getControl(FloatControl.Type.MASTER_GAIN);
-            float range = gainControl.getMaximum() - gainControl.getMinimum();
-            float gain = (range * volume) + gainControl.getMinimum();
-            gainControl.setValue(gain);
-        }
-    }
 
 }
