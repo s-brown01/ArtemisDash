@@ -38,7 +38,6 @@ public class AudioPlayer {
      * Level 2 music
      */
     public static int W_1L_2 = 3;
-//    public static int LEVELCOMPLETE = 4;
 //    public static int W_1L_3 = 3;
 //    public static int W_1L_4 = 4;
 //    public static int W_1L_5 = 5;
@@ -77,6 +76,11 @@ public class AudioPlayer {
      * Player Hurt sound effect
      */
     public static int PLAYER_HURT = 7;
+    
+    /**
+     * Level complete music
+     */
+    public static int LEVELCOMPLETE = 8;
 
     private int currentID;
     private Clip[] music, fx;
@@ -114,7 +118,7 @@ public class AudioPlayer {
      */
     public void loadEffect() {
         String[] effectNames = { "player_death", "jump", "bow_fire", "button_hover", "button_confirm", "dash",
-                "enemy_attack", "player_hurt" };
+                "enemy_attack", "player_hurt","level_complete" };
         fx = new Clip[effectNames.length];
         for (int i = 0; i < fx.length; i++)
             fx[i] = getSound(effectNames[i]);
@@ -181,7 +185,7 @@ public class AudioPlayer {
      */
     public void lvlCompleted() {
         stopSong();
-//        playEffect(LEVELCOMPLETE);
+        playEffect(LEVELCOMPLETE);
     }
 
     /**

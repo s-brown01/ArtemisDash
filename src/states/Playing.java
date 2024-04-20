@@ -276,6 +276,7 @@ public class Playing extends State implements StateMethods {
      */
     public void completeLevel() {
         this.levelComplete = true;
+        game.getAudioPlayer().lvlCompleted();
         levelManager.getCurrentLevel().setCompleted(true);
         levelManager.unhideNextLevels();
     }
