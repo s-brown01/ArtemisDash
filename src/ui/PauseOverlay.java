@@ -78,7 +78,7 @@ public class PauseOverlay {
         // Had to touch up the overall size so decreased it by 5 in its height
         int sizeOffset = 5;
         int soundX = (int) (400 * SCALE);
-        int musicY = (int) (230 * SCALE);
+        int musicY = (int) (275 * SCALE);
         int sfxY = (int) (186 * SCALE);
         musicButton = new SoundButton(soundX, musicY, SOUNDSIZE, SOUNDSIZE - sizeOffset);
         sfxButton = new SoundButton(soundX, sfxY, SOUNDSIZE, SOUNDSIZE - sizeOffset);
