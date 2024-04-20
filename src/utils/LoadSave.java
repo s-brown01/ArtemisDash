@@ -132,6 +132,11 @@ public class LoadSave {
     public static final String DEATHSCREEN = "/death_screen.png";
 
     /**
+     * The assets for the death screen overlay
+     */
+    public static final String WINSCREEN = "/win_screen.png";
+
+    /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
      * 
      * @param filename - The name of the sprite sheet that is requested

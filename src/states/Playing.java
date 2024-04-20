@@ -15,6 +15,7 @@ import projectiles.ProjectileManager;
 import ui.DeathOverlay;
 import ui.HUD;
 import ui.PauseOverlay;
+import ui.WinOverlay;
 import utils.Constants.BackgroundStates;
 import static utils.Constants.PlayerStates.IMAGE_WIDTH;
 import static utils.Constants.PlayerStates.IMAGE_HEIGHT;
@@ -39,6 +40,7 @@ public class Playing extends State implements StateMethods {
     private final EnemyManager enemyManager = new EnemyManager(this);
     private final ProjectileManager projManager = new ProjectileManager(this);
     private final DeathOverlay deathOverlay = new DeathOverlay(this);
+    private final WinOverlay winOverlay = new WinOverlay(this);
     private int score;
 
     // Level Expansion vars
@@ -123,7 +125,7 @@ public class Playing extends State implements StateMethods {
         // if the level is complete, don't update anything
         if (levelComplete) {
             // here is where we do anything when the level is completed
-            GameStates.state = GameStates.OVERWORLD;
+            winOverlay.update();
             return;
             // update pause overlay
         } else if (paused) {
@@ -196,7 +198,10 @@ public class Playing extends State implements StateMethods {
         } else if (gameOver) {
             deathOverlay.draw(g);
             deathOverlay.update();
-        } else {
+        } else if (levelComplete){
+            winOverlay.draw(g);
+            winOverlay.update();
+        }else {
             // if not paused, draw everything beneath this.
             levelManager.draw(g, xLevelOffset);
             hud.draw(g);
