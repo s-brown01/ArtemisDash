@@ -21,7 +21,7 @@ public class WinOverlay {
 
     private BufferedImage img;
     private int imgX, imgY, imgW, imgH;
-    private EndButtons menu, play;
+    private EndButtons returnToMenu, continuePlay;
     private Playing playing;
 
     /**
@@ -52,8 +52,8 @@ public class WinOverlay {
      * affect the button sprite state
      */
     public void update() {
-        menu.update();
-        play.update();
+        returnToMenu.update();
+        continuePlay.update();
     }
 
     /**
@@ -66,8 +66,8 @@ public class WinOverlay {
         g.drawImage(img, imgX, imgY, imgW, imgH, null);
 
         // buttons
-        menu.draw(g);
-        play.draw(g);
+        returnToMenu.draw(g);
+        continuePlay.draw(g);
     }
 
     /**
@@ -80,8 +80,8 @@ public class WinOverlay {
         int playX = (int) (450 * Game.SCALE);
         int yPos = (int) (205 * Game.SCALE);
 
-        play = new EndButtons(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 0);
-        menu = new EndButtons(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 2);
+        continuePlay = new EndButtons(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 0);
+        returnToMenu = new EndButtons(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 2);
     }
 
     /**
@@ -90,10 +90,10 @@ public class WinOverlay {
      * @param e - Mouse pressed event
      */
     public void mousePressed(MouseEvent e) {
-        if (isIn(e, menu)) {
-            menu.setMousePressed(true);
-        } else if (isIn(e, play)) {
-            play.setMousePressed(true);
+        if (isIn(e, returnToMenu)) {
+            returnToMenu.setMousePressed(true);
+        } else if (isIn(e, continuePlay)) {
+            continuePlay.setMousePressed(true);
         }
     }
 
@@ -104,13 +104,13 @@ public class WinOverlay {
      * @param e - Mouse movement event
      */
     public void mouseMoved(MouseEvent e) {
-        play.setMouseOver(false);
-        menu.setMouseOver(false);
+        continuePlay.setMouseOver(false);
+        returnToMenu.setMouseOver(false);
 
-        if (isIn(e, menu)) {
-            menu.setMouseOver(true);
-        } else if (isIn(e, play)) {
-            play.setMouseOver(true);
+        if (isIn(e, returnToMenu)) {
+            returnToMenu.setMouseOver(true);
+        } else if (isIn(e, continuePlay)) {
+            continuePlay.setMouseOver(true);
         }
     }
 
@@ -121,20 +121,21 @@ public class WinOverlay {
      * @param e - Mouse released event
      */
     public void mouseReleased(MouseEvent e) {
-        if (isIn(e, menu)) {
-            if (menu.isMousePressed()) {
+        if (isIn(e, returnToMenu)) {
+            System.out.println("IN BOUNDS MENU");
+            if (returnToMenu.isMousePressed()) {
                 GameStates.state = GameStates.MENU;
                 playing.resetAll();
             }
-        } else if (isIn(e, play)) {
-            if (play.isMousePressed()) {
+        } else if (isIn(e, continuePlay)) {
+            if (continuePlay.isMousePressed()) {
                 playing.resetAll();
                 GameStates.state = GameStates.OVERWORLD;
             }
         }
 
-        menu.resetBools();
-        play.resetBools();
+        returnToMenu.resetBools();
+        continuePlay.resetBools();
     }
 
     /**
