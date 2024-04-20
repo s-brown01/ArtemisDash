@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class LoadSave {
+    //HUD ASSETS
     /**
      * Where the font file is located
      */
@@ -35,7 +36,8 @@ public class LoadSave {
      * Where the player health HEART representation is located
      */
     public static final String HEART = "/HUDElements/heart.png";
-
+    
+    //ENTITY SPRITE SHEETS
     /**
      * The file containing all of the player's sprites/animations
      */
@@ -53,6 +55,7 @@ public class LoadSave {
      */
     public static final String BLUE_PROJECTILE = "/EntitySpritesheets/Blue_Projectiles.png";
 
+    //MENU SCREENS ASSETS
     /**
      * The background for the Overworld Screen
      */
@@ -62,6 +65,26 @@ public class LoadSave {
      * The background for the Pause Screen
      */
     public static final String PAUSE_MENU = "/PauseElements/pause_menu.png";
+    /**
+     * The background for the Main Menu
+     */
+    public static final String MENU_SCREEN = "/TitleScreenElements/TitleScreen1.png";
+    
+    /**
+     * The background for the Options Screen
+     */
+    public static final String OPTIONS_SCREEN = "/TitleScreenElements/OptionsScreen.png";
+    /**
+     * The assets for the death screen overlay
+     */
+    public static final String DEATHSCREEN = "/death_screen.png";
+    
+    /**
+     * The assets for the death screen overlay
+     */
+    public static final String WINSCREEN = "/win_screen.png";
+   
+    //BUTTONS
     /**
      * The images making up the Pause Sound Buttons
      */
@@ -76,15 +99,11 @@ public class LoadSave {
      */
     public static final String MENU_BUTTONS = "/TitleScreenElements/TitleButtons.png";
     /**
-     * The background for the Main Menu
+     * The buttons relating to the Level Complete screen as well as Death Screen
      */
-    public static final String MENU_SCREEN = "/TitleScreenElements/TitleScreen1.png";
+    public static final String ENDBUTTONS = "/PauseElements/endButtons.png";
 
-    /**
-     * The background for the Options Screen
-     */
-    public static final String OPTIONS_SCREEN = "/TitleScreenElements/OptionsScreen.png";
-
+    //WORLD 1 ASSETS
     /**
      * The sprite sheet for all of the tiles in world 1
      */
@@ -102,16 +121,34 @@ public class LoadSave {
      */
     public static final String WORLD1_BG_ROCKS = "/World1/World1_rocks.png";
 
-    /**
-     * the RGB values for Level 1s
-     */
-    public static final String LEVEL1_DATA = "/level_one_data_long.png";
-
+    //LEVEL ASSETS
     /**
      * the RGB values for the default level
      */
     public static final String DEFAULT_LEVEL = "/default_level.png";
+    /**
+     * the RGB values for Level 1
+     */
+    public static final String LEVEL1_DATA = "/World1/level_one_data_long.png";
+//    /**
+//     * the RGB values for Level 1
+//     */
+//    public static final String LEVEL2_DATA = "/World1/level_two_data_long.png";
+//    /**
+//     * the RGB values for Level 1
+//     */
+//    public static final String LEVEL3_DATA = "/World1/level_three_data_long.png";
+//    /**
+//     * the RGB values for Level 1
+//     */
+//    public static final String LEVEL4_DATA = "/World1/level_four_data_long.png";
+//    /**
+//     * the RGB values for Level 1
+//     */
+//    public static final String LEVEL5_DATA = "/World1/level_five_data_long.png";
+    
 
+    //WORLD LEVEL TILE ASSETS
     /**
      * the tile sprites for all of world 2
      */
@@ -121,20 +158,6 @@ public class LoadSave {
      */
     public static final String WORLD3_SPRITES = "/World3/World3Sprites.png";
 
-    /**
-     * The buttons relating to the Level Complete screen as well as Death Screen
-     */
-    public static final String ENDBUTTONS = "/PauseElements/endButtons.png";
-
-    /**
-     * The assets for the death screen overlay
-     */
-    public static final String DEATHSCREEN = "/death_screen.png";
-
-    /**
-     * The assets for the death screen overlay
-     */
-    public static final String WINSCREEN = "/win_screen.png";
 
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
