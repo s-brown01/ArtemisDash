@@ -1,7 +1,5 @@
 package entities;
 
-import static utils.Constants.Directions.LEFT;
-import static utils.Constants.Directions.RIGHT;
 import static utils.Constants.EnemyConstants.ATTACK;
 import static utils.Constants.EnemyConstants.HIT;
 import static utils.Constants.EnemyConstants.IDLE;
@@ -10,7 +8,6 @@ import static utils.Constants.EnemyConstants.SKELETON_KING;
 import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_HEIGHT;
 import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_WIDTH;
 
-import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 public class SkeletonKing extends Enemy {
@@ -20,12 +17,6 @@ public class SkeletonKing extends Enemy {
      * should be checked for hitting the player
      */
     private static final int ATTACK_FRAME = 8;
-
-    /**
-     * This keeps track of if the Skeleton King has turned during their attack, used in the
-     * TurnAttackToPlayer(player) method.
-     */
-    private boolean attackTurned = false;
 
     /**
      * This is the constructor of the Skeleton King

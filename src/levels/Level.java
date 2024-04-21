@@ -10,7 +10,6 @@ import java.util.List;
 
 import entities.Skeleton;
 import entities.SkeletonKing;
-import main.Game;
 import utils.LoadSave;
 
 /**

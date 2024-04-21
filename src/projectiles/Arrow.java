@@ -3,9 +3,8 @@ package projectiles;
 import static utils.Constants.ProjectileConstants.ARROW;
 import static utils.Constants.ProjectileConstants.ARROW_DRAW_OFFSET_X;
 import static utils.Constants.ProjectileConstants.ARROW_DRAW_OFFSET_Y;
-import static utils.Constants.ProjectileConstants.ARROW_WIDTH;
 import static utils.Constants.ProjectileConstants.ARROW_HEIGHT;
-import static utils.Constants.ProjectileConstants.getProjSpeed;
+import static utils.Constants.ProjectileConstants.ARROW_WIDTH;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

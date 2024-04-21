@@ -15,7 +15,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import static utils.Constants.OverworldButtonConstants.*;
 
 /**
  * This class represents how a "level"/button is displayed on the Overworld GameState.

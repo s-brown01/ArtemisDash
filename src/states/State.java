@@ -6,7 +6,6 @@ import gameaudio.AudioPlayer;
 import main.Game;
 import ui.MenuButton;
 import ui.OptionsButton;
-import gameaudio.AudioPlayer;
 
 /**
  * This state class defines how each state should behave when instantiated from this

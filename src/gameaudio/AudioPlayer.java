@@ -10,7 +10,6 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import main.Game;
 
 /**
  * Audio Player is a class that allows WAV files to be played through the use of Java
@@ -84,7 +83,6 @@ public class AudioPlayer {
 
     private int currentID;
     private Clip[] music, fx;
-    private Game game;
     private boolean songMute, effectMute;
     private float volume = 1f;
 
@@ -95,7 +93,7 @@ public class AudioPlayer {
      * 
      * @param game
      */
-    public AudioPlayer(Game game) {
+    public AudioPlayer() {
         loadSong();
         loadEffect();
         playSong(MENU_1);

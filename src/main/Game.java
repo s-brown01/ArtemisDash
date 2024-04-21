@@ -108,7 +108,7 @@ public class Game implements Runnable {
         // overworld needs to be created AFTER the playing class since it uses the playing's
         // levelManager
         options = new Options(this);
-        audioPlayer = new AudioPlayer(this);
+        audioPlayer = new AudioPlayer();
         overworld = new Overworld(this);
     }
 
