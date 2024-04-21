@@ -399,13 +399,16 @@ public class Player extends Entity {
      * @param e - the information about what the mouse is currently doing
      */
     public void shoot(Point p) {
-    playing.getGame().getAudioPlayer().playEffect(AudioPlayer.FIRE);
         // checking validation
         if (attacking || killed) {
             // dont attack again while attacking
             return;
         }
         // if they aren't already attacking, they are now
+        // unit tester check
+        if (playing != null) {
+            playing.getGame().getAudioPlayer().playEffect(AudioPlayer.FIRE);
+        }
         nextAttack = p;
         attacking = true;
     }
@@ -675,7 +678,10 @@ public class Player extends Entity {
         }
         // take 1 damage
         currentHealth--;
-        playing.getGame().getAudioPlayer().playEffect(AudioPlayer.PLAYER_HURT);
+        // check for the unit tester
+        if (playing != null) {
+            playing.getGame().getAudioPlayer().playEffect(AudioPlayer.PLAYER_HURT);
+        }
         hurting = true;
         if (currentHealth <= 0) {
             kill();

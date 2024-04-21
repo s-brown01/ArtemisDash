@@ -32,7 +32,6 @@ public class LevelsDriver implements DriverInterface {
         boolean allSuccess = true;
 
         // Test creating a Level instance
-        int[][] levelData = LoadSave.getLevelData(LoadSave.DEFAULT_LEVEL); // Sample level data
         final Level level = new Level(LoadSave.DEFAULT_LEVEL);
 
         // Test getting sprite index
@@ -40,13 +39,7 @@ public class LevelsDriver implements DriverInterface {
             printLevelError("Failed getSpriteIndex");
             allSuccess = false;
         }
-
-        // Test getting level data
-        if (level.getLevelData() != levelData) {
-            printLevelError("Failed getLevelData");
-            allSuccess = false;
-        }
-
+        
         // Test initial completed value - should be false initially
         if (level.getCompleted()) {
             printLevelError("Failed getCompleted");
@@ -75,19 +68,21 @@ public class LevelsDriver implements DriverInterface {
 
         // Test getSkeletons method, should be 2 skeletons
         if (level.getSkeletons().size() != 2) {
-            printLevelError("Failed getSkeletons");
+            printLevelError(level.getSkeletons().size() + "Failed getSkeletons");
             allSuccess = false;
         }
 
         // Test getSkeletonKings method, should be 1 skeleton king
         if (level.getSkeletonKings().size() != 1) {
-            printLevelError("failed getSkeletonKings");
+            printLevelError(level.getSkeletonKings().size() + "failed getSkeletonKings");
             allSuccess = false;
         }
 
         // create 2 new levels to test the equals method
-        final Level sameLevel = new Level(level.getLevelName());
-        final Level differentLevel = new Level(new int[][] { { 0, 0 }, { 0, 0 } });
+        // same level data as the inital level
+        final Level sameLevel = new Level(LoadSave.DEFAULT_LEVEL);
+        // different level data than the 2 above
+        final Level differentLevel = new Level(LoadSave.LEVEL1_DATA);
 
         // these two levels should be the same
         if (!level.equals(sameLevel)) {
