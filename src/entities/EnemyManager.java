@@ -115,8 +115,6 @@ public class EnemyManager {
                     (int) (sk.getHitbox().x - SKELETON_KING_DRAW_OFFSET_X - xLevelOffset + sk.xFlipped()),
                     (int) (sk.getHitbox().y - SKELETON_KING_DRAW_OFFSET_Y),
                     (int) (SKELETON_KING_WIDTH * sk.widthFlipped()), (int) (SKELETON_KING_HEIGHT), null);
-            sk.drawHitbox(g, xLevelOffset);
-            sk.drawAttackbox(g, xLevelOffset);
         }
     }
 

@@ -1,5 +1,7 @@
 package entities;
 
+import static utils.Constants.Directions.LEFT;
+import static utils.Constants.Directions.RIGHT;
 import static utils.Constants.EnemyConstants.ATTACK;
 import static utils.Constants.EnemyConstants.HIT;
 import static utils.Constants.EnemyConstants.IDLE;
@@ -8,17 +10,21 @@ import static utils.Constants.EnemyConstants.SKELETON_KING;
 import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_HEIGHT;
 import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_WIDTH;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 public class SkeletonKing extends Enemy {
 
     /**
-     * This is the frame where the skeleton swings their axe, so it is the frame that should
+     * This is the frame when the skeleton kings swings its axe, so it is the frame that should
      * be checked for hitting the player
      */
     private static final int ATTACK_FRAME = 8;
+    
+    /**
+     * This keeps track of if the Skeleton King has turned during their attack, used in the TurnAttackToPlayer(player) method.
+     */
+    private boolean attackTurned = false;
 
     /**
      * This is the constructor of the Skeleton King
@@ -92,7 +98,6 @@ public class SkeletonKing extends Enemy {
             move(lvlData);
             break;
         case (ATTACK):
-            // turn towards where the player is so the attack "follows" them
             turnTowardsPlayer(player);
             // change where the attackbox is located
             updateAttackbox();
@@ -104,16 +109,21 @@ public class SkeletonKing extends Enemy {
             if (!attackChecked && aniIndex == ATTACK_FRAME) {
                 checkHit(player);
             }
+            
+            /*
+             * Check to make sure that when attacking, if the player hasn't moved, king doesn't move. This checks if the player is within the attackbox and the buffer. If the player is, then the skeleton king shouldn't move.
+             */
+            final int xBuffer = 15;
+            if (this.attackbox.x + xBuffer < player.getHitbox().x &&
+                    this.attackbox.x + attackbox.width - xBuffer > player.getHitbox().x + player.getHitbox().width) {
+                break;
+            }
+
             move(lvlData);
             break;
         case (HIT):
             break;
         }
-    }
-
-    public void drawHitbox(Graphics g, int xLevelOffset) {
-        g.setColor(Color.red);
-        g.drawRect((int) hitbox.x - xLevelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
 
 }

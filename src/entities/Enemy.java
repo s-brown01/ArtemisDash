@@ -315,18 +315,21 @@ public abstract class Enemy extends Entity {
         float xSpeed = 0;
         // left is a negative number, right is a positive number
         if (walkDirection == LEFT) {
+            // moving left...
             if (attacking) {
                 xSpeed -= attackWalkSpeed;
             } else {
                 xSpeed -= walkSpeed;
             }
         } else {
+            // moving right...
             if (attacking) {
                 xSpeed += attackWalkSpeed;
             } else {
                 xSpeed += walkSpeed;
             }
         }
+        
 
         // if the Enemy can move to the tile that is xSpeed away AND they can walk on that tile,
         // move there.
