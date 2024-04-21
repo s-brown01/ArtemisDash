@@ -16,13 +16,14 @@ import java.awt.geom.Rectangle2D;
 public class SkeletonKing extends Enemy {
 
     /**
-     * This is the frame when the skeleton kings swings its axe, so it is the frame that should
-     * be checked for hitting the player
+     * This is the frame when the skeleton kings swings its axe, so it is the frame that
+     * should be checked for hitting the player
      */
     private static final int ATTACK_FRAME = 8;
-    
+
     /**
-     * This keeps track of if the Skeleton King has turned during their attack, used in the TurnAttackToPlayer(player) method.
+     * This keeps track of if the Skeleton King has turned during their attack, used in the
+     * TurnAttackToPlayer(player) method.
      */
     private boolean attackTurned = false;
 
@@ -109,13 +110,15 @@ public class SkeletonKing extends Enemy {
             if (!attackChecked && aniIndex == ATTACK_FRAME) {
                 checkHit(player);
             }
-            
+
             /*
-             * Check to make sure that when attacking, if the player hasn't moved, king doesn't move. This checks if the player is within the attackbox and the buffer. If the player is, then the skeleton king shouldn't move.
+             * Check to make sure that when attacking, if the player hasn't moved, king doesn't move.
+             * This checks if the player is within the attackbox and the buffer. If the player is,
+             * then the skeleton king shouldn't move.
              */
             final int xBuffer = 15;
-            if (this.attackbox.x + xBuffer < player.getHitbox().x &&
-                    this.attackbox.x + attackbox.width - xBuffer > player.getHitbox().x + player.getHitbox().width) {
+            if (this.attackbox.x + xBuffer < player.getHitbox().x
+                    && this.attackbox.x + attackbox.width - xBuffer > player.getHitbox().x + player.getHitbox().width) {
                 break;
             }
 

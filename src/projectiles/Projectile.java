@@ -27,11 +27,9 @@ public abstract class Projectile {
     protected int aniSpeed = utils.Constants.ANISPEED;
     protected BufferedImage[] animations;
     protected final float SPEED;
-    
-    
+
     protected final float FLIP_X;
     protected final int FLIP_W;
-
 
     /** active is used to determine if this Projectile should be 'alive' in the Game */
     protected boolean active = true;
@@ -48,7 +46,8 @@ public abstract class Projectile {
      * @param y        - the Y-coordinate of the Projectile
      * @param slope    - the slope of the Projectile, what path it will follow
      * @param projType - the type of Projectile it is, based on ProjectileConstants
-     * @param left     - if the Arrow is moving towards the left, this should be true; if right, false
+     * @param left     - if the Arrow is moving towards the left, this should be true; if
+     *                 right, false
      */
     public Projectile(float x, float y, float slope, int projType, boolean left) {
         this.x = x;
@@ -56,7 +55,7 @@ public abstract class Projectile {
         this.slope = slope;
         // get the specific height and width depending on the type given
         hitbox = new Rectangle2D.Float(this.x, this.y, getProjWidth(projType), getProjHeight(projType));
-        
+
         // if it is moving left, it should have a positive slope
         if (left) {
             this.SPEED = -1 * calculateHorizontalSpeed(getProjSpeed(projType), slope);

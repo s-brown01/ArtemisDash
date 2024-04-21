@@ -128,17 +128,17 @@ public class Playing extends State implements StateMethods {
             // here is where we do anything when the level is completed
             winOverlay.update();
             return;
-        // If the game is paused,
-       // update pause overlay
+            // If the game is paused,
+            // update pause overlay
         } else if (paused) {
             pauseOverlay.update();
             return;
-        // If the player is kill,
-        // update death overlay
+            // If the player is kill,
+            // update death overlay
         } else if (gameOver) {
             deathOverlay.update();
-        // Otherwise, the game is still being played,
-        // so update everything else
+            // Otherwise, the game is still being played,
+            // so update everything else
         } else {
             player.update(xLevelOffset);
             enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
@@ -202,10 +202,10 @@ public class Playing extends State implements StateMethods {
         } else if (gameOver) {
             deathOverlay.draw(g);
             deathOverlay.update();
-        } else if (levelComplete){
+        } else if (levelComplete) {
             winOverlay.draw(g);
             winOverlay.update();
-        }else {
+        } else {
             // if not paused, draw everything beneath this.
             levelManager.draw(g, xLevelOffset);
             hud.draw(g);
@@ -307,7 +307,7 @@ public class Playing extends State implements StateMethods {
         if (gameOver) {
             deathOverlay.mousePressed(e);
         }
-        if(levelComplete) {
+        if (levelComplete) {
             winOverlay.mousePressed(e);
         }
         // if mouse button 1 is pressed, store that point and draw the arrow path to that point
@@ -331,7 +331,7 @@ public class Playing extends State implements StateMethods {
         if (gameOver) {
             deathOverlay.mouseReleased(e);
         }
-        if(levelComplete) {
+        if (levelComplete) {
             winOverlay.mouseReleased(e);
         }
         // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
@@ -354,7 +354,7 @@ public class Playing extends State implements StateMethods {
         if (gameOver) {
             deathOverlay.mouseMoved(e);
         }
-        if(levelComplete) {
+        if (levelComplete) {
             winOverlay.mouseMoved(e);
         }
 

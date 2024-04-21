@@ -184,12 +184,12 @@ public class Constants {
 //        private static final Point LEVEL_15 = new Point((int) (900 / 1.75f * Game.SCALE),
 //                (int) (625 / 1.75f * Game.SCALE));
         /**
-         * This is a final array of all 5 Levels, so that it can be easily access by the
-         * Overworld GameState
+         * This is a final array of all 5 Levels, so that it can be easily access by the Overworld
+         * GameState
          */
 //        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5,
 //                LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
-        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5};
+        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5 };
 
     }
 
@@ -585,7 +585,6 @@ public class Constants {
          */
         public static final int ARROW_DRAW_OFFSET_Y = (int) (4 * Game.SCALE);
 
-        
         /** how much damage an entity will take if hit with an ARROW */
         public static final int ARROW_DAMAGE = 1;
 

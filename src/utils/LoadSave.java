@@ -29,7 +29,7 @@ import main.Game;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class LoadSave {
-    //HUD ASSETS
+    // HUD ASSETS
     /**
      * Where the font file is located
      */
@@ -47,8 +47,8 @@ public class LoadSave {
      * Where the player health HEART representation is located
      */
     public static final String HEART = "/HUDElements/heart.png";
-    
-    //ENTITY SPRITE SHEETS
+
+    // ENTITY SPRITE SHEETS
     /**
      * The file containing all of the player's sprites/animations
      */
@@ -66,7 +66,7 @@ public class LoadSave {
      */
     public static final String BLUE_PROJECTILE = "/EntitySpritesheets/Blue_Projectiles.png";
 
-    //MENU SCREENS ASSETS
+    // MENU SCREENS ASSETS
     /**
      * The background for the Overworld Screen
      */
@@ -80,7 +80,7 @@ public class LoadSave {
      * The background for the Main Menu
      */
     public static final String MENU_SCREEN = "/TitleScreenElements/TitleScreen1.png";
-    
+
     /**
      * The background for the Options Screen
      */
@@ -89,13 +89,13 @@ public class LoadSave {
      * The assets for the death screen overlay
      */
     public static final String DEATHSCREEN = "/death_screen.png";
-    
+
     /**
      * The assets for the death screen overlay
      */
     public static final String WINSCREEN = "/win_screen.png";
-   
-    //BUTTONS
+
+    // BUTTONS
     /**
      * The images making up the Pause Sound Buttons
      */
@@ -114,7 +114,7 @@ public class LoadSave {
      */
     public static final String ENDBUTTONS = "/PauseElements/endButtons.png";
 
-    //WORLD 1 ASSETS
+    // WORLD 1 ASSETS
     /**
      * The sprite sheet for all of the tiles in world 1
      */
@@ -132,7 +132,7 @@ public class LoadSave {
      */
     public static final String WORLD1_BG_ROCKS = "/World1/World1_rocks.png";
 
-    //LEVEL ASSETS
+    // LEVEL ASSETS
     /**
      * the RGB values for the default level
      */
@@ -157,9 +157,8 @@ public class LoadSave {
 //     * the RGB values for Level 1
 //     */
 //    public static final String LEVEL5_DATA = "/World1/level_five_data_long.png";
-    
 
-    //WORLD LEVEL TILE ASSETS
+    // WORLD LEVEL TILE ASSETS
     /**
      * the tile sprites for all of world 2
      */
@@ -170,14 +169,16 @@ public class LoadSave {
     public static final String WORLD3_SPRITES = "/World3/World3Sprites.png";
 
     /**
-     * this is the green value used to determine which tiles have Skeletons on in from the RGB level data
+     * this is the green value used to determine which tiles have Skeletons on in from the RGB
+     * level data
      */
     private static final int SKELETON_GREEN_VALUE = 50;
     /**
-     * this is the green value used to determine which tiles have Skeleton King on in from the RGB level data
+     * this is the green value used to determine which tiles have Skeleton King on in from the
+     * RGB level data
      */
     private static final int SKELETON_KING_GREEN_VALUE = 51;
-    
+
     /**
      * Returns the specified sprite atlas for use in drawing the correct image to the screen
      * 
@@ -198,9 +199,8 @@ public class LoadSave {
 
     /**
      * Uses RGB values to generate a tiled level. Red Value sets the tile Green Value sets the
-     * enemy Blue value sets the object
-     * 50 Green Value = Skeleton
-     * 51 Green Value = Skeleton KING
+     * enemy Blue value sets the object 50 Green Value = Skeleton 51 Green Value = Skeleton
+     * KING
      * 
      * @return - A 2D array that is representative of tiles making up the level
      */
@@ -269,9 +269,10 @@ public class LoadSave {
         }
         return arrowSprites;
     }
-    
+
     /**
      * This method gets all of the Skeletons contained in a specific level inside of a List
+     * 
      * @param level - the level to get the Skeletons from
      * @return a List containing all Skeletons from that level
      */
@@ -284,14 +285,17 @@ public class LoadSave {
                 Color color = new Color(img.getRGB(i, j));
                 int value = color.getGreen();
                 if (value == SKELETON_GREEN_VALUE) {
-                    skelList.add(new Skeleton(i*Game.TILES_SIZE, j * Game.TILES_SIZE - SKELETON_HITBOX_HEIGHT, SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT));
+                    skelList.add(new Skeleton(i * Game.TILES_SIZE, j * Game.TILES_SIZE - SKELETON_HITBOX_HEIGHT,
+                            SKELETON_HITBOX_WIDTH, SKELETON_HITBOX_HEIGHT));
                 }
             }
         return skelList;
     }
-    
+
     /**
-     * This method gets all of the Skeleton King contained in a specific level inside of a List
+     * This method gets all of the Skeleton King contained in a specific level inside of a
+     * List
+     * 
      * @param level - the level to get the Skeleton King from
      * @return a List containing all Skeleton Kings from that level
      */
@@ -304,7 +308,8 @@ public class LoadSave {
                 Color color = new Color(img.getRGB(i, j));
                 int value = color.getGreen();
                 if (value == SKELETON_KING_GREEN_VALUE) {
-                    skelList.add(new SkeletonKing(i*Game.TILES_SIZE, j * Game.TILES_SIZE, SKELETON_KING_HITBOX_WIDTH, SKELETON_KING_HITBOX_HEIGHT));
+                    skelList.add(new SkeletonKing(i * Game.TILES_SIZE, j * Game.TILES_SIZE, SKELETON_KING_HITBOX_WIDTH,
+                            SKELETON_KING_HITBOX_HEIGHT));
                 }
             }
         return skelList;

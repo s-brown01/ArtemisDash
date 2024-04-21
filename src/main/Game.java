@@ -178,7 +178,7 @@ public class Game implements Runnable {
         case OPTIONS:
             options.draw(g);
             break;
-    // if quitting, then exit the system
+        // if quitting, then exit the system
         case QUIT:
             System.exit(-1);
             break;

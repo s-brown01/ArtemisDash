@@ -29,7 +29,7 @@ public class Overworld extends State implements StateMethods {
     private final Point[] btnLocations = BUTTON_POINT_ARRAY;
     private OverworldButton[] buttonArr = new OverworldButton[btnLocations.length];
     private OverworldButton selectedLvl = null;
-    private String[] lvlNames = {"DARRING DESCENT","LAVA LAKE", "BURNING BADLANDS","ROCKY RELIEF","KILL THE KING"};
+    private String[] lvlNames = { "DARRING DESCENT", "LAVA LAKE", "BURNING BADLANDS", "ROCKY RELIEF", "KILL THE KING" };
     private final LevelManager levelManager;
     /**
      * This boolean keeps track of if the state has changed at all. Default it to true

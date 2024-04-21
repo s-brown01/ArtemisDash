@@ -7,7 +7,6 @@ import static utils.Constants.ProjectileConstants.ARROW_WIDTH;
 import static utils.Constants.ProjectileConstants.ARROW_HEIGHT;
 import static utils.Constants.ProjectileConstants.getProjSpeed;
 
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -33,7 +32,7 @@ public class Arrow extends Projectile {
      *              false
      */
     public Arrow(float x, float y, float slope, boolean left) {
-        super(x, y, slope, ARROW, left);       
+        super(x, y, slope, ARROW, left);
     }
 
     /**
@@ -78,8 +77,8 @@ public class Arrow extends Projectile {
      * @param img          - the Image to draw
      */
     public void draw(Graphics g, int xLevelOffset, BufferedImage img) {
-        g.drawImage(img, (int) (hitbox.x - xLevelOffset - ARROW_DRAW_OFFSET_X + FLIP_X), (int) hitbox.y - ARROW_DRAW_OFFSET_Y, (int) (ARROW_WIDTH) * FLIP_W,
-                (int) (ARROW_HEIGHT), null); 
+        g.drawImage(img, (int) (hitbox.x - xLevelOffset - ARROW_DRAW_OFFSET_X + FLIP_X),
+                (int) hitbox.y - ARROW_DRAW_OFFSET_Y, (int) (ARROW_WIDTH) * FLIP_W, (int) (ARROW_HEIGHT), null);
     }
 
     /**

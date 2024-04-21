@@ -329,7 +329,6 @@ public abstract class Enemy extends Entity {
                 xSpeed += walkSpeed;
             }
         }
-        
 
         // if the Enemy can move to the tile that is xSpeed away AND they can walk on that tile,
         // move there.

@@ -29,18 +29,18 @@ public class Options {
         backgroundImg = LoadSave.getSpriteSheet(LoadSave.OPTIONS_SCREEN);
         createButtons();
     }
-    
+
     /**
      * Updates the buttons based on the users actions. Things such as hover and mouse click
      * affect the button sprite state
      */
     public void update() {
-        
-        for(OptionsButton ob : buttons) {
+
+        for (OptionsButton ob : buttons) {
             ob.update();
         }
     }
-    
+
     /**
      * Draws everything that is intended to be visible, to the screen
      * 

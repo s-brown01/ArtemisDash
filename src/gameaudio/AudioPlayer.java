@@ -76,7 +76,7 @@ public class AudioPlayer {
      * Player Hurt sound effect
      */
     public static int PLAYER_HURT = 7;
-    
+
     /**
      * Level complete music
      */
@@ -118,7 +118,7 @@ public class AudioPlayer {
      */
     public void loadEffect() {
         String[] effectNames = { "player_death", "jump", "bow_fire", "button_hover", "button_confirm", "dash",
-                "enemy_attack", "player_hurt","level_complete" };
+                "enemy_attack", "player_hurt", "level_complete" };
         fx = new Clip[effectNames.length];
         for (int i = 0; i < fx.length; i++)
             fx[i] = getSound(effectNames[i]);
@@ -148,7 +148,6 @@ public class AudioPlayer {
         return null;
 
     }
-
 
     /**
      * Adjusts the volume for the songs
@@ -255,6 +254,5 @@ public class AudioPlayer {
         float gain = (range * volume) + gainControl.getMinimum();
         gainControl.setValue(gain);
     }
-
 
 }

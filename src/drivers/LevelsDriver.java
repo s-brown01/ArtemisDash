@@ -39,7 +39,7 @@ public class LevelsDriver implements DriverInterface {
             printLevelError("Failed getSpriteIndex");
             allSuccess = false;
         }
-        
+
         // Test initial completed value - should be false initially
         if (level.getCompleted()) {
             printLevelError("Failed getCompleted");
