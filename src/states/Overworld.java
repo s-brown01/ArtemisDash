@@ -98,9 +98,7 @@ public class Overworld extends State implements StateMethods {
         // only update the Level booleans if the state has changed, only need to update it once
         // per change.
         // this should hopefully help with performance as it is not checked every update
-//        if (changed) {
-            updateLevelBooleans();
-//        }
+        updateLevelBooleans();
         for (OverworldButton ob : buttonArr) {
             ob.update();
         }
@@ -134,12 +132,14 @@ public class Overworld extends State implements StateMethods {
     @Override
     public void draw(Graphics g) {
         // Specified positions for titles
-        int owTitleXPos = 115;
-        int owTitleYPos = 150;
-        int owsubTitleXPos = 25;
-        int owsubTitleYPos = 250;
-        int levelTitleX = 1050;
-        int levelTitleY = 100;
+        final int owTitleXPos = 115;
+        final int owTitleYPos = 150;
+        final int owsubTitleXPos = 25;
+        final int owsubTitleYPos = 250;
+        final int levelTitleX = 1050;
+        final int levelTitleY = 100;
+        final int backXPOs = 500;
+        final int backYPos = Game.GAME_HEIGHT - 50;
 
         // background
         g.drawImage(background, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
@@ -151,6 +151,9 @@ public class Overworld extends State implements StateMethods {
         // instructions for user
         g.drawString("OVERWORLD", owTitleXPos, owTitleYPos);
         g.drawString("CLICK A LEVEL TO START", owsubTitleXPos, owsubTitleYPos);
+        
+        g.setFont(LoadSave.loadFont(LoadSave.FONT, 20));
+        g.drawString("Press Backspace to return to main menu", backXPOs, backYPos);
 
         // selected level, make sure its not null
         if (selectedLvl != null)
@@ -202,6 +205,7 @@ public class Overworld extends State implements StateMethods {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
+        System.out.println("2");
         // check if the mouse is in the bounds of the button
         for (OverworldButton ob : buttonArr) {
             // if the mouse is inbounds AND was pressed on that button, apply that button
@@ -242,7 +246,11 @@ public class Overworld extends State implements StateMethods {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        // ignore this method, not using key bindings in OverWorld
+        switch (e.getKeyCode()) {
+        case KeyEvent.VK_BACK_SPACE:
+            GameStates.state = GameStates.MENU;
+            break;  
+        }
     }
 
     /**

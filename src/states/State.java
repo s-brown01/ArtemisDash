@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import gameaudio.AudioPlayer;
 import main.Game;
 import ui.MenuButton;
-import ui.OptionsButton;
+import ui.InstructionsButton;
 
 /**
  * This state class defines how each state should behave when instantiated from this
@@ -50,8 +50,8 @@ public abstract class State {
      * @param ob - the MenuButton to be checked
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
-    public boolean hoverOverOptionsButton(MouseEvent e, OptionsButton ob) {
-        return ob.getBounds().contains(e.getX(), e.getY());
+    public boolean isInInstructionsButton(MouseEvent e, InstructionsButton ib) {
+        return ib.getBounds().contains(e.getX(), e.getY());
     }
 
     /**

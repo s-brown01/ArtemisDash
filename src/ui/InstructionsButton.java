@@ -4,8 +4,16 @@ import static utils.Constants.ButtonStates.B_HEIGHT;
 import static utils.Constants.ButtonStates.B_HEIGHT_DEFAULT;
 import static utils.Constants.ButtonStates.B_WIDTH;
 import static utils.Constants.ButtonStates.B_WIDTH_DEFAULT;
+import static utils.Constants.EndButtons.ENDBUTTON_SIZE;
+import static utils.Constants.OverworldButtonConstants.DEFAULT;
+import static utils.Constants.OverworldButtonConstants.DEFAULT_CLICKED;
+import static utils.Constants.OverworldButtonConstants.DEFAULT_HIGHLIGHT;
+import static utils.Constants.OverworldButtonConstants.OUTLINE;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
@@ -13,36 +21,20 @@ import states.GameStates;
 import utils.LoadSave;
 
 /**
- * This class represents 1 Button on the Options GameState. A button will be linked to
+ * This class represents 1 Button on the Instructions GameState. A button will be linked to
  * different GameStates so that the Game can change states based on what button is pushed.
  * 
- * @author John Botonakis
+ * @author Sean-Paul Brown
  */
-public class OptionsButton {
+public class InstructionsButton extends PauseButton {
     /**
-     * The left coordinate in pixels
+     * The words to display on the button
      */
-    private int xpos, 
+    private String title;
     /**
-     * The top coordinate in pixels
-     */
-    ypos, 
-    /**
-     * This correlates to the image state to draw (default/hover/pressed)
-     */
-    index;
-    /**
-     * Since x is the left coordinate, 1/2 of the width means that the button can be centered on the x-coordinate
-     */
-    private int XOffsetCenter = B_WIDTH / 2;
-    /**
-     * The GameState to switch to
+     * The GameState to switch to when the button is selected
      */
     private GameStates state;
-    /**
-     * The images to draw that contain all of the images for the index property
-     */
-    private BufferedImage[] imgs;
     /**
      * Represents if the mouse is hovering over the button
      */
@@ -52,55 +44,38 @@ public class OptionsButton {
      */
     mousePressed;
     /**
-     * The bounds that determine where the user can click on a button
+     * This is the color that the button will be on screen
      */
-    private Rectangle bounds;
-
+    private Color color;
+    
     /**
-     * Generates a options button object
-     * 
-     * @param xpos     - X-Position on the Screen
-     * @param ypos     - Y-Position on the screen
-     * @param rowIndex - Row index to determine which button to draw
-     * @param state    - Determines what state of the game the button is linked to. Once hit,
-     *                 this game state will load in.
+     * This is the constructor for 1 Instructions  Button
+     * @param title     - the string to be displayed on screen
+     * @param x         - the left coordinate
+     * @param y         - the top coordinate
      */
-    public OptionsButton(int xpos, int ypos, int rowIndex, GameStates state) {
-        this.xpos = xpos;
-        this.ypos = ypos;
+    public InstructionsButton(String title, int x, int y, GameStates state) {
+        super(x, y, (int)(B_WIDTH * .75), (int)(B_HEIGHT * .75));
+        this.title = title;
         this.state = state;
-        loadImgs(rowIndex);
-        initBounds();
-    }
-
-    /**
-     * Initializes a rectangle around the button to determine if mouse is intersecting within.
-     */
-    private void initBounds() {
-        bounds = new Rectangle(xpos - XOffsetCenter, ypos, B_WIDTH, B_HEIGHT);
-    }
-
-    /**
-     * Loads in image to represent the button from a specified sprite sheet
-     * 
-     * @param rowIndex - the index of the sprites to load in
-     */
-    private void loadImgs(int rowIndex) {
-        imgs = new BufferedImage[3];
-        BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.MENU_BUTTONS);
-        for (int i = 0; i < imgs.length; i++) {
-            imgs[i] = temp.getSubimage(i * B_WIDTH_DEFAULT, rowIndex * B_HEIGHT_DEFAULT, B_WIDTH_DEFAULT,
-                    B_HEIGHT_DEFAULT);
-        }
     }
 
     /**
      * Draws the button to the screen with the specified parameters
      * 
-     * @param g - the Graphics where to draw the MenuButton
+     * @param g - the Graphics where to draw the InstructionsButton
      */
     public void draw(Graphics g) {
-        g.drawImage(imgs[index], xpos - XOffsetCenter, ypos, B_WIDTH, B_HEIGHT, null);
+        Graphics2D g2d = (Graphics2D) g;
+        g.setColor(color);
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        g.setColor(OUTLINE);
+        // setting the stroke to 2.0 pixels, so it is drawn as a thicker line around the rectangle
+        g2d.setStroke(new BasicStroke(3f));
+        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        g.setColor(Color.WHITE);
+        g.setFont(LoadSave.loadFont(LoadSave.FONT, 30));
+        g.drawString(title, bounds.x + bounds.width / 5, bounds.y + bounds.height / 4 * 3);
     }
 
     /**
@@ -108,24 +83,19 @@ public class OptionsButton {
      * keyboard input.
      */
     public void update() {
-        // the first index means nothing is on it
-        index = 0;
-        // the second index is highlighted (mouse hovering)
+        color = DEFAULT;
         if (mouseOver) {
-            System.out.println("HOVER OVER BUTTONS");
-            index = 1;
+            color = DEFAULT_HIGHLIGHT;
         }
-        // the third index shows when the mouse is pressed on the button
         if (mousePressed) {
-            System.out.println("CLICKING BUTTONS");
-            index = 2;
+            color = DEFAULT_CLICKED;
         }
     }
 
     /**
      * reset all booleans in the mouse (mouseOver and mousePressed)
      */
-    public void resetButtons() {
+    public void resetButton() {
         mouseOver = false;
         mousePressed = false;
     }

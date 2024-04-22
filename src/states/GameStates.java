@@ -25,9 +25,9 @@ public enum GameStates {
     OVERWORLD,
 
     /**
-     * Represents the options/settings state of the game.
+     * Represents the how-to-play state of the game.
      */
-    OPTIONS,
+    INSTRUCTIONS,
 
     /**
      * Represents the state when the player chooses to quit the game.

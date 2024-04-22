@@ -82,9 +82,9 @@ public class LoadSave {
     public static final String MENU_SCREEN = "/TitleScreenElements/TitleScreen1.png";
 
     /**
-     * The background for the Options Screen
+     * The background for the Instructions Screen
      */
-    public static final String OPTIONS_SCREEN = "/TitleScreenElements/OptionsScreen.png";
+    public static final String INSTRUCTIONS_SCREEN = "/TitleScreenElements/OptionsScreen.png";
     /**
      * The assets for the death screen overlay
      */

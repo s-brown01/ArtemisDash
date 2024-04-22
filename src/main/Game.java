@@ -201,7 +201,7 @@ public class Game implements Runnable {
         case OVERWORLD:
             overworld.draw(g);
             break;
-        case OPTIONS:
+        case INSTRUCTIONS:
             instructions.draw(g);
             break;
         // if quitting, then exit the system
@@ -226,7 +226,7 @@ public class Game implements Runnable {
         case OVERWORLD:
             overworld.update();
             break;
-        case OPTIONS:
+        case INSTRUCTIONS:
             instructions.update();
             break;
         case QUIT:
@@ -280,7 +280,7 @@ public class Game implements Runnable {
      * 
      * @return the Options state of the game
      */
-    public Instructions getOptions() {
+    public Instructions getInstructions() {
         return instructions;
     }
 
