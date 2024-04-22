@@ -82,6 +82,8 @@ public class WinOverlay {
 
         continuePlay = new EndButtons(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 0);
         returnToMenu = new EndButtons(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 2);
+        returnToMenu.resetBools();
+        continuePlay.resetBools();
     }
 
     /**
