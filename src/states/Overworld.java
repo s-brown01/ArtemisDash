@@ -205,7 +205,6 @@ public class Overworld extends State implements StateMethods {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("2");
         // check if the mouse is in the bounds of the button
         for (OverworldButton ob : buttonArr) {
             // if the mouse is inbounds AND was pressed on that button, apply that button
