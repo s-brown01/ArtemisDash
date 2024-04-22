@@ -35,6 +35,7 @@ import main.Game;
 import states.Playing;
 import utils.Constants;
 import utils.LoadSave;
+import utils.Constants.PlayerStates;
 
 /**
  * This player class will hold every variable and funciton relating to the active player's
@@ -162,6 +163,11 @@ public class Player extends Entity {
      * Counts the number of jumps allowed to the player; Resets back to 0
      */
     private int jumps = 0;
+    
+    /**
+     * This is the score of the player across all levels combined
+     */
+    private int score = 0;
 
     /**
      * Constructor for the player class
@@ -272,6 +278,7 @@ public class Player extends Entity {
                 // at the very end of the death animation, let the Playing State know the player died
                 if (killed) {
                     playerLives--;
+                    changeScore(-100);
                     playing.playerDied();
                 }
             }
@@ -458,9 +465,6 @@ public class Player extends Entity {
         }
         // if they aren't already attacking, they are now
         // unit tester check
-        if (playing != null) {
-            playing.getGame().getAudioPlayer().playEffect(AudioPlayer.FIRE);
-        }
         nextAttack = p;
         attacking = true;
     }
@@ -487,6 +491,11 @@ public class Player extends Entity {
         // the attack should only be checked once on 6th frame (index 5)
         if (aniIndex != attackAniIndex) {
             return;
+        }
+        
+        // play the sound effect when loosing arrow
+        if (playing != null) {
+            playing.getGame().getAudioPlayer().playEffect(AudioPlayer.FIRE);
         }
 
         attackChecked = true;
@@ -701,6 +710,10 @@ public class Player extends Entity {
      */
     public void setNextAttack(Point p) {
         nextAttack = p;
+        // check for null parameter
+        if (nextAttack == null) {
+            return;
+        }
         // checking that if the next attack's x-coordinate if less than the where the player's,
         // then the player should face towards the left
         if (nextAttack.getX() < (hitbox.x - xLevelOffset)) {
@@ -851,6 +864,48 @@ public class Player extends Entity {
      */
     public Point getNextAttack() {
         return nextAttack;
+    }
+    
+    /**
+     * Setter for the score, this includes a check that it doesn't go below 0. If it does go below 0, it will revert back to 0.
+     * 
+     * @param scoreChange   - this is the amount that the score will change by. Include the sign in the parameter, so positives increase score and negatives decrease.
+     */
+    public void changeScore(int scoreChange) {
+        this.score += scoreChange;
+        // no negative scores
+        if (this.score < 0) {
+            score = 0;
+        }
+    }
+
+    /**
+     * Getter for this players current score
+     * @return the current score of this player, accumulated across levels.
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * This method will reset the player entity to full health, and get it ready to spawn in for a new level at the specified point.
+     * @param x - the x-coordinate to spawn at
+     * @param y - the y-coordinate to spawn at
+     */
+    public void spawnAt(int x, int y) {
+        // move the player
+        this.hitbox.x = x;
+        this.hitbox.y = y;
+        // reset the health
+        this.currentHealth = PlayerStates.STARTING_HEALTH;
+        // reset movement
+        this.resetDirBools();
+        // remove the next arrow path
+        this.setNextAttack(null);
+        this.drawArrowPath = false;
+        // check if in air
+        this.inAir = true;
+        this.killed = false;
     }
 
 }

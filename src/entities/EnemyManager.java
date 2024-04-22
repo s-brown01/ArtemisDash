@@ -164,10 +164,11 @@ public class EnemyManager {
                 allEnemiesKilled = false;
             }
 
-            // if the skeleton is killed, they cannot be hit over and over agian.
-            // if the player has hit a Skeleton then the Skeleton died and the Player should get
-            // points
-            if (!s.isKilled() && playing.getProjectileManager().checkEnemyHit(s)) {
+            /*
+             * Check the contact first so the enemy knows if it should die. Then check if it is dead.          
+             *  
+             */
+            if (playing.getProjectileManager().checkEnemyHit(s) && s.isKilled()) {
                 playing.updateScore(s.score);
             }
         }
@@ -183,7 +184,7 @@ public class EnemyManager {
                 allEnemiesKilled = false;
             }
 
-            if (!sk.isKilled() && playing.getProjectileManager().checkEnemyHit(sk)) {
+            if (playing.getProjectileManager().checkEnemyHit(sk) && sk.isKilled()) {
                 playing.updateScore(sk.score);
             }
         }

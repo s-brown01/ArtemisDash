@@ -185,6 +185,7 @@ public abstract class Enemy extends Entity {
      * @param g - the graphics where to draw the Enemy
      */
     public void draw(Graphics g) {
+        // not used
     }
 
     /**

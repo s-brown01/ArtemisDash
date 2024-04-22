@@ -1,11 +1,5 @@
 package levels;
 
-import static utils.Constants.EnemyConstants.SKELETON_HEIGHT;
-import static utils.Constants.EnemyConstants.SKELETON_KING_HEIGHT;
-import static utils.Constants.EnemyConstants.SKELETON_KING_WIDTH;
-import static utils.Constants.EnemyConstants.SKELETON_WIDTH;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import entities.Skeleton;
@@ -20,7 +14,11 @@ import utils.LoadSave;
  * @author johnbotonakis and Sean-Paul Brown
  */
 public class Level {
-
+    
+    /**
+     * This is how much each level will be worth
+     */
+    public static final int SCORE_VALUE = 2000;
     /**
      * the levelData that represents the environment of the level as a 2D int array
      */

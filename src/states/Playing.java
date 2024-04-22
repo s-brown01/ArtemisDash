@@ -9,6 +9,7 @@ import java.util.Random;
 import entities.EnemyManager;
 import entities.Player;
 import gameaudio.AudioPlayer;
+import levels.Level;
 import levels.LevelManager;
 import main.Game;
 import projectiles.ProjectileManager;
@@ -88,10 +89,6 @@ public class Playing extends State implements StateMethods {
      * The overlay for when all 5 Demo levels are completed
      */
     private final DemoOverlay demoOverlay = new DemoOverlay(this);
-    /**
-     * the player's score
-     */
-    private int score;
 
     // Level Expansion vars
     /**
@@ -176,7 +173,11 @@ public class Playing extends State implements StateMethods {
      * A Random that will generate the mist positions
      */
     private Random rnd = new Random();
-
+    /**
+     * This is a variable that stores the score gained from enemies during play, and is added to the players score once the level is completed.
+     */
+    private int scoreFromEnemies = 0;
+    
     /**
      * Runs the logic once the game state has switched to PLAYING Loads in the enemies,
      * backgrounds, and player
@@ -185,6 +186,7 @@ public class Playing extends State implements StateMethods {
      */
     public Playing(Game game) {
         super(game);
+        player = new Player(200, 300, (int) (IMAGE_WIDTH * Game.SCALE), (int) (IMAGE_HEIGHT * Game.SCALE), this);
         initBackgroundAssets();
     }
 
@@ -204,12 +206,13 @@ public class Playing extends State implements StateMethods {
      * booleans to get the Level ready to play for the user
      */
     private void loadCurrentLevel() {
-        player = new Player(200, 300, (int) (IMAGE_WIDTH * Game.SCALE), (int) (IMAGE_HEIGHT * Game.SCALE), this);
+        player.spawnAt(200, 300);
+//        player = new Player(200, 300, (int) (IMAGE_WIDTH * Game.SCALE), (int) (IMAGE_HEIGHT * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();
         hud = new HUD(this);
-        this.score = 0;
+        scoreFromEnemies = 0;
         levelComplete = levelManager.getCurrentLevel().getCompleted();
     }
 
@@ -403,6 +406,8 @@ public class Playing extends State implements StateMethods {
     public void completeLevel() {
         this.levelComplete = true;
         game.getAudioPlayer().lvlCompleted();
+        player.changeScore(Level.SCORE_VALUE);
+        player.changeScore(scoreFromEnemies);
         levelManager.getCurrentLevel().setCompleted(true);
         if (!levelManager.unhideNextLevels()) {
             demoOver = true;
@@ -462,7 +467,6 @@ public class Playing extends State implements StateMethods {
         else if (e.getButton() == MouseEvent.BUTTON1) {
             player.setDrawArrowPath(false);
             player.shoot(e.getPoint());
-            game.getAudioPlayer().playEffect(AudioPlayer.FIRE);
         }
 
     }
@@ -579,7 +583,7 @@ public class Playing extends State implements StateMethods {
      * @return the current score
      */
     public int getScore() {
-        return this.score;
+        return player.getScore();
     }
 
     /**
@@ -589,7 +593,7 @@ public class Playing extends State implements StateMethods {
      * @param scoreval - the value to be added to the score, can be positive or negative
      */
     public void updateScore(int scoreval) {
-        this.score += scoreval;
+        player.changeScore(scoreval);
     }
 
     /**
@@ -615,7 +619,6 @@ public class Playing extends State implements StateMethods {
      */
     public void resetAll() {
         gameOver = false;
-        score = 0;
         paused = false;
         levelComplete = false;
         levelManager.getCurrentLevel().setCompleted(false);
@@ -627,6 +630,15 @@ public class Playing extends State implements StateMethods {
      * Let's the playing state know the Player Entity died.
      */
     public void playerDied() {
+        scoreFromEnemies = 0;
         gameOver = true;
+    }
+    
+    /**
+     * This is a setter for the enemy score for this level. It is used to keep track of score from killing enemies, which isn't given to the player until the level is completed
+     * @param value     - the value to change the score by
+     */
+    public void addEnemyScore(int value) {
+        scoreFromEnemies += value;
     }
 }
