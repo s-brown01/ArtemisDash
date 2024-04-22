@@ -61,6 +61,7 @@ public class Instructions extends State implements StateMethods {
         final int spacing_Y = 60;
         g.setFont(LoadSave.loadFont(LoadSave.FONT, 25));
         g.setColor(Color.WHITE);
+        
         // all keyboard instructions
         g.drawString("A - Left      D - right", key_X, init_Y + spacing_Y);
         g.drawString("Space - Jump      Shift - Dash", key_X, init_Y + 2 * spacing_Y);

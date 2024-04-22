@@ -184,7 +184,7 @@ public class AudioPlayer {
      */
     public void lvlCompleted() {
         stopSong();
-//        playEffect(LEVELCOMPLETE);
+        playEffect(LEVELCOMPLETE);
     }
 
     /**

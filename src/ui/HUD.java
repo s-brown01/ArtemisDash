@@ -136,22 +136,18 @@ public class HUD {
         return playerHealth;
 
     }
-
+    /**
+     * 
+     */
     public void updateScore() {
         this.playerScore = playing.getScore();
     }
 
-    /**
-     * Function to keep the HUD element tied to lives up to date
-     */
-    public void updateLives() {
-        this.playerLives = playing.getPlayer().getLives();
-    }
 
     /**
      * Function to keep the HUD element tied to the dash up to date
      */
-    public void updateCharge() {
+    public void updateEnemyCount() {
 
     }
 
