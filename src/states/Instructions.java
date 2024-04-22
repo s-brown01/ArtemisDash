@@ -18,7 +18,7 @@ import utils.LoadSave;
  * 
  * @author John Botonakis
  */
-public class Options {
+public class Instructions {
     /**
      * The background image for this menu
      */
@@ -37,7 +37,7 @@ public class Options {
      * 
      * @param game - the Game that created and is managing this Class
      */
-    public Options(Game game) {
+    public Instructions(Game game) {
         this.game = game;
         backgroundImg = LoadSave.getSpriteSheet(LoadSave.OPTIONS_SCREEN);
         createButtons();

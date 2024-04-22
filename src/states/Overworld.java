@@ -98,9 +98,9 @@ public class Overworld extends State implements StateMethods {
         // only update the Level booleans if the state has changed, only need to update it once
         // per change.
         // this should hopefully help with performance as it is not checked every update
-        if (changed) {
+//        if (changed) {
             updateLevelBooleans();
-        }
+//        }
         for (OverworldButton ob : buttonArr) {
             ob.update();
         }

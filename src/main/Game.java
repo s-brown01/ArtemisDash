@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import gameaudio.AudioPlayer;
 import states.GameStates;
 import states.Menu;
-import states.Options;
+import states.Instructions;
 import states.Overworld;
 import states.Playing;
 
@@ -38,7 +38,7 @@ public class Game implements Runnable {
     /**
      * This will show the options menu
      */
-    private Options options;
+    private Instructions instructions;
 
     /**
      * The GamePanel where to draw the Game
@@ -133,7 +133,7 @@ public class Game implements Runnable {
         playing = new Playing(this);
         // overworld needs to be created AFTER the playing class since it uses the playing's
         // levelManager
-        options = new Options(this);
+        instructions = new Instructions(this);
         audioPlayer = new AudioPlayer();
         overworld = new Overworld(this);
     }
@@ -202,7 +202,7 @@ public class Game implements Runnable {
             overworld.draw(g);
             break;
         case OPTIONS:
-            options.draw(g);
+            instructions.draw(g);
             break;
         // if quitting, then exit the system
         case QUIT:
@@ -227,7 +227,7 @@ public class Game implements Runnable {
             overworld.update();
             break;
         case OPTIONS:
-            options.update();
+            instructions.update();
             break;
         case QUIT:
             // if quitting, then exit the system
@@ -280,8 +280,8 @@ public class Game implements Runnable {
      * 
      * @return the Options state of the game
      */
-    public Options getOptions() {
-        return options;
+    public Instructions getOptions() {
+        return instructions;
     }
 
     /**
