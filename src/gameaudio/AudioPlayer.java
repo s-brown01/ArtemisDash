@@ -139,8 +139,7 @@ public class AudioPlayer {
             return c;
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         return null;
