@@ -222,7 +222,12 @@ public class AudioPlayer {
         currentID = song;
         updateSongVolume();
         music[currentID].setMicrosecondPosition(0);
-        music[currentID].loop(Clip.LOOP_CONTINUOUSLY);
+        if (song == GAMEOVER) {
+            music[currentID].loop(0);
+        }
+        else {
+            music[currentID].loop(Clip.LOOP_CONTINUOUSLY);
+        }
     }
 
     /**

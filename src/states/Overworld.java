@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import gameaudio.AudioPlayer;
 import levels.Level;
 import levels.LevelManager;
 import main.Game;
@@ -160,6 +161,7 @@ public class Overworld extends State implements StateMethods {
         for (OverworldButton ob : buttonArr) {
             // if the mouse is in a button, set that button to true
             if (isInOB(e, ob)) {
+                game.getAudioPlayer().playEffect(AudioPlayer.BTN_CONFIRM);
                 ob.setMousePressed(true);
                 // return because it will only be over 1 button at a time
                 return;
@@ -168,11 +170,10 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This is called when the mouse is pressed then released; ignored in this class
+     * THIS FUNCTION IS UNUSED
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        // disregard this function, using mousePressed/mouseReleased instead
     }
 
     /**

@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import gameaudio.AudioPlayer;
 import main.Game;
 import states.GameStates;
 import states.Playing;
@@ -91,8 +92,10 @@ public class DeathOverlay {
      */
     public void mousePressed(MouseEvent e) {
         if (isIn(e, menu)) {
+            playing.getGame().getAudioPlayer().playEffect(AudioPlayer.BTN_CONFIRM);
             menu.setMousePressed(true);
         } else if (isIn(e, play)) {
+            playing.getGame().getAudioPlayer().playEffect(AudioPlayer.BTN_CONFIRM);
             play.setMousePressed(true);
         }
     }
