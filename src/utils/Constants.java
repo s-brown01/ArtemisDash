@@ -101,7 +101,7 @@ public class Constants {
         /**
          * This is the size of 1 side of the square Overworld Buttons
          */
-        public static final int BUTTON_SIZE = (int) (25 / 1.75f * Game.SCALE);
+        public static final int BUTTON_SIZE = (int) (30 / 1.75f * Game.SCALE);
 
         /**
          * The color of buttons representing hidden levels
@@ -161,23 +161,23 @@ public class Constants {
         /**
          * The point on the overworld screen for level 2
          */
-        private static final Point LEVEL_2 = new Point((int) (680 / 1.75f * Game.SCALE),
-                (int) (220 / 1.75f * Game.SCALE));
+        private static final Point LEVEL_2 = new Point((int) (620 / 1.75f * Game.SCALE),
+                (int) (250 / 1.75f * Game.SCALE));
         /**
          * The point on the overworld screen for level 3
          */
-        private static final Point LEVEL_3 = new Point((int) (680 / 1.75f * Game.SCALE),
-                (int) (280 / 1.75f * Game.SCALE));
+        private static final Point LEVEL_3 = new Point((int) (700 / 1.75f * Game.SCALE),
+                (int) (285 / 1.75f * Game.SCALE));
         /**
          * The point on the overworld screen for level 4
          */
-        private static final Point LEVEL_4 = new Point((int) (720 / 1.75f * Game.SCALE),
-                (int) (250 / 1.75f * Game.SCALE));
+        private static final Point LEVEL_4 = new Point((int) (580 / 1.75f * Game.SCALE),
+                (int) (350 / 1.75f * Game.SCALE));
         /**
          * The point on the overworld screen for level 5
          */
-        private static final Point LEVEL_5 = new Point((int) (520 / 1.75f * Game.SCALE),
-                (int) (340 / 1.75f * Game.SCALE));
+        private static final Point LEVEL_5 = new Point((int) (710 / 1.75f * Game.SCALE),
+                (int) (415 / 1.75f * Game.SCALE));
 //        private static final Point LEVEL_6 = new Point((int) (650 / 1.75f * Game.SCALE),
 //                (int) (380 / 1.75f * Game.SCALE));
 //        private static final Point LEVEL_7 = new Point((int) (795 / 1.75f * Game.SCALE),
