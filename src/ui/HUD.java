@@ -82,7 +82,7 @@ public class HUD {
      * Draws every HUD element to the screen starting from left most element to right most
      * element
      * 
-     * @param g
+     * @param g - the Graphics where to draw all of the elements.
      */
     public void draw(Graphics g) {
         // Score Positioning Vars

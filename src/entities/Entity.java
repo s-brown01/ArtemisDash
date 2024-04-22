@@ -13,18 +13,69 @@ import java.awt.geom.Rectangle2D;
  * 
  */
 public abstract class Entity {
-    protected float x, y;
-    protected int width, height;
+    /**
+     * The left coordinate of the Entity
+     */
+    protected float x, 
+    /**
+     * The top coordinate of the Entity
+     */
+    y;
+    /**
+     * How wide the Entity is
+     */
+    protected int width, 
+    /**
+     * how tall the Entity is
+     */
+    height;
+    /**
+     * The area that represents where the Entity can interact with objects/environment/other Entities. <BR>
+     * The game uses the hitbox to determine if there is contact with other items
+     */
     protected Rectangle2D.Float hitbox;
+    /**
+     * This is the area that represets where the Entity's attack would hit. It is the area that is attacked when the Entity attacks.
+     */
     protected Rectangle2D.Float attackbox;
 
-    protected int state; // this determines what "mode" the entity is in
-    protected int aniIndex, aniTick, aniSpeed = utils.Constants.ANISPEED;
-    protected int currentHealth, maxHealth;
+    /**
+     * This determines what "mode" the Entity is in. Based on the Constants (specific for each implementation of Entity)
+     */
+    protected int state;
+    /**
+     * This represents what animation index to draw to the screen.
+     */
+    protected int aniIndex, 
+    /**
+     * This is a counter that keeps track of how many updates have passed since the last frame change
+     */
+    aniTick, 
+    /**
+     * This keeps track of how often the animations change. The higher the animation, the less often it changes.
+     */
+    aniSpeed = utils.Constants.ANISPEED;
+    /**
+     * This is how much health the Entity has at a given times
+     */
+    protected int currentHealth, 
+    /**
+     * This is how much health an Entity could have at any time. 
+     */
+    maxHealth;
 
+    /**
+     * This boolean represents in the Entity is in the air and if gravity should be impacting them
+     */
     protected boolean inAir = true;
-    protected float gravity = utils.Constants.GRAVITY; // How quickly the entity falls to earth
-    protected float airSpeed = 0f; // How quickly the player moves in the air
+    /**
+     * How quickly the entity falls to earth, this will never change
+     */
+    protected float gravity = utils.Constants.GRAVITY;
+    /**
+     * How quickly the player is moving in the air at a given time
+     */
+    protected float airSpeed = 0f;
 
     /**
      * Constructor class for every entity instance
@@ -56,7 +107,8 @@ public abstract class Entity {
     /**
      * Draws the attack hitbox around the caller entity. This is for debugging attacks
      * 
-     * @param g - Graphics to be called and drawn from
+     * @param g             - Graphics to be called and drawn from
+     * @param xLevelOffset  - The amount of horizontal offset from screenscrolling
      */
     protected void drawAttackbox(Graphics g, int xLevelOffset) {
         g.setColor(Color.RED);

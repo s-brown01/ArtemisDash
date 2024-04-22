@@ -202,6 +202,7 @@ public class LoadSave {
      * enemy Blue value sets the object 50 Green Value = Skeleton 51 Green Value = Skeleton
      * KING
      * 
+     * @param level - The path to the file containing the RGB data map for the specific level.
      * @return - A 2D array that is representative of tiles making up the level
      */
     public static int[][] getLevelData(String level) {

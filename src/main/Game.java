@@ -16,13 +16,28 @@ import states.Playing;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class Game implements Runnable {
+    /*
+     * States
+     */
     /**
-     * States and Entities
+     * This is the Playing class that will show all of the levels 
      */
     private Playing playing;
+    /**
+     * This Menu class will be the main menu of the game
+     */
     private Menu menu;
+    /**
+     * This Overworld class will show all of the levels available for selection in the game
+     */
     private Overworld overworld;
+    /**
+     * This is the AudioPlayer that will play all of the audio in every state of the game
+     */
     private AudioPlayer audioPlayer;
+    /**
+     * This will show the options menu
+     */
     private Options options;
 
     /**
@@ -30,13 +45,24 @@ public class Game implements Runnable {
      */
     private GamePanel gamePanel;
 
-    /**
+    /*
      * Updates and Frame Logic
      */
+    /**
+     * This is Thread that the main game will be running on
+     */
     private Thread gameThread;
+    /**
+     * This is how many Frames Per Second there will be in game, how often the draw function is called.
+     */
     private final int FPS_SET = 120;
+    /**
+     * This is how many Updates Per Second there will be in game, how often the update function is called.
+     */
     private final int UPS_SET = 200;
-    // this is the amount of nanoseconds in 1 second: 1 Billion nanoseconds
+    /**
+     *  This is the amount of nanoseconds in 1 second: 1 Billion nanoseconds. This is used in the run method instead of the real number so it is easier to read
+     */
     private final double NANOSECONDS_IN_SEC = 1000000000.0;
 
     /*

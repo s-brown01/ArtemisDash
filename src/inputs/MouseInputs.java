@@ -14,6 +14,9 @@ import states.GameStates;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class MouseInputs implements MouseListener, MouseMotionListener {
+    /**
+     * The game panel that all of the inputs will be coming through
+     */
     private GamePanel gamePanel;
 
     /**

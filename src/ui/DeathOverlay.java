@@ -19,14 +19,44 @@ import utils.LoadSave;
  */
 public class DeathOverlay {
 
+    /**
+     * The main background image of the overlay
+     */
     private BufferedImage img;
-    private int imgX, imgY, imgW, imgH;
-    private EndButtons menu, play;
+    /**
+     * The left co-ordinate of the overlay
+     */
+    private int imgX, 
+    /**
+     * The top co-ordinate of the overlay
+     */
+    imgY, 
+    /**
+     * The width of the overlay
+     */
+    imgW, 
+    /**
+     * The heght of the overlay
+     */
+    imgH;
+    /**
+     * An EndButton that connects to the MENU GameState
+     */
+    private EndButtons menu, 
+    /**
+     * An EndButton that connects to the OVERWORLD GameState
+     */
+    play;
+    /**
+     * The Playing object that will be displaying the overlay
+     */
     private Playing playing;
 
     /**
      * Initializes the Pause Overlay by creating and loading in sprite for the menu and its
      * buttons
+     * 
+     * @param playing   - the Playing object that will be displaying the overlay
      */
     public DeathOverlay(Playing playing) {
         this.playing = playing;

@@ -1,10 +1,11 @@
 package drivers;
 
+/**
+ * This will test all of the classes in the utils package
+ * @author Sean-Paul Brown
+ *
+ */
 public class UtilsDriver implements DriverInterface {
-
-    public UtilsDriver() {
-        // TODO Auto-generated constructor stub
-    }
 
     @Override
     public boolean test() {

@@ -19,14 +19,44 @@ import main.Game;
  * @author John Botonakis
  */
 public class PauseOverlay {
+    /**
+     * The background image of the overlay 
+     */
     private BufferedImage backgroundImage;
-    private int bgX, bgY, bgH, bgW;
-    private SoundButton musicButton, sfxButton;
+    /**
+     * the left coordinate of the overlay
+     */
+    private int bgX, 
+    /**
+     * the top coordinate of the overlay
+     */
+    bgY, 
+    /**
+     * the height of the overlay
+     */
+    bgH, 
+    /**
+     * the width of the overlay
+     */
+    bgW;
+    /**
+     * The sound button that will mute or unmute music
+     */
+    private SoundButton musicButton, 
+    /**
+     * The Sound Button that will mute or unmute sound effects
+     */
+    sfxButton;
+    /**
+     * The main game class that has is using the audio players
+     */
     private Game game;
 
     /**
      * Initializes the Pause Overlay by creating and loading in sprite for the menu and its
      * buttons
+     * 
+     * @param game - the game that is containing the playing class that holds this
      */
     public PauseOverlay(Game game) {
         this.game = game;
@@ -154,12 +184,6 @@ public class PauseOverlay {
      */
     private boolean isIn(MouseEvent e, PauseButton b) {
         return b.getBounds().contains(e.getX(), e.getY());
-    }
-
-    /**
-     * THIS FUNCTION IS NOT USED
-     */
-    public void mouseDragged(MouseEvent e) {
     }
 
 }

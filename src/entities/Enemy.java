@@ -60,15 +60,30 @@ public abstract class Enemy extends Entity {
      * The offset is 55 when game scale is 1.75, so divide to make it work for all scales
      */
     protected float hitboxYOffset = (55 / 1.75f) * Game.SCALE;
+    /**
+     * This is the score that an Enemy will give to the player when they die
+     */
     protected int score = 0;
+    /**
+     * This shows if the Enemy has been killed by the player/is currently dying
+     */
     protected boolean killed = false;
+    /**
+     * This shows if the Enemy is in the state of being hurt. 
+     */
     protected boolean hurting = false;
 
     /**
-     * the variables that keep track of how the player sees and attacks the palyer
+     * the variables that keep track of how the player sees and attacks the player
      */
     protected float attackDistance;
+    /**
+     * This represents how far the Enemy can see in pixels
+     */
     protected float eyeSight;
+    /**
+     * This is what direction the Enemy is walking towards, based on the Constants.Directions values.
+     */
     protected int walkDirection = LEFT;
 
     /**
@@ -281,6 +296,8 @@ public abstract class Enemy extends Entity {
     /**
      * This is the first update, should only run once when it is the first update. Since
      * enemies can't jump, it checks if they spawned in the air.
+     * 
+     * @param lvlData - the current level's environmental data as a 2D int array
      */
     protected void firstUpdateCheck(int[][] lvlData) {
         // if this happens, the first update has happened

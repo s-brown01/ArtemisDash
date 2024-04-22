@@ -5,7 +5,6 @@ import static utils.Constants.ProjectileConstants.getProjWidth;
 import static utils.Constants.ProjectileConstants.getProjSpeed;
 
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Float;
 import java.awt.image.BufferedImage;
 
 /**
@@ -20,15 +19,42 @@ public abstract class Projectile {
      * y, where b is y(0)
      */
     protected final float slope;
-    protected float x, y;
-//    protected int width, height;
-    protected final Float hitbox;
-    protected int aniIndex = 0, aniTick = 0;
+    /**
+     * the initial left coordinate of the projectile
+     */
+    protected float x, 
+    /**
+     * the initial top coordinate of the projectile
+     */
+    y;
+    /**
+     * The hitbox of the projectile (where it can hit other in-game objects)
+     */
+    protected final Rectangle2D.Float hitbox;
+    /**
+     * the current animation index to draw
+     */
+    protected int aniIndex = 0,
+    /**
+     * A counter that represents when it is time to change animation frames
+     */
+    aniTick = 0;
+    /**
+     * how often the frames switch. A higher number means the less often frames are changed
+     */
     protected int aniSpeed = utils.Constants.ANISPEED;
-    protected BufferedImage[] animations;
+    /**
+     * The horizontal speed of the Projectiles
+     */
     protected final float SPEED;
 
+    /**
+     * This lets the arrow face left or right, so it can face the direction of travel
+     */
     protected final float FLIP_X;
+    /**
+     * This will draw the width one direction or the opposite. This lets the arrow face left or right, so it can face the direction of travel
+     */
     protected final int FLIP_W;
 
     /** active is used to determine if this Projectile should be 'alive' in the Game */

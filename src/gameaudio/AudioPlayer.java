@@ -91,7 +91,6 @@ public class AudioPlayer {
      * Effects, then plays the Main Menu music as it is the first to load in when starting the
      * program.
      * 
-     * @param game
      */
     public AudioPlayer() {
         loadSong();

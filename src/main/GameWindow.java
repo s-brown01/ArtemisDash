@@ -10,9 +10,10 @@ import javax.swing.JFrame;
  * 
  * @author John Botonakis and Sean-Paul Brown
  */
-//DOUBLE BUFFERING HERE NOWHERE ELSE!
 public class GameWindow extends JFrame {
-
+    /**
+     * This is to help prevent InvalidClassExceptions when serialized objects are deserialized. Suggested by IDE.
+     */
     private static final long serialVersionUID = 1L;
 
     /**

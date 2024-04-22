@@ -31,36 +31,136 @@ import utils.LoadSave;
 public class Playing extends State implements StateMethods {
 
     // will keep track if the pause menu/ death overlay should be up or not
-    private boolean paused, levelComplete, gameOver;
+    /**
+     * This will keep track of if the pause overlay should show
+     */
+    private boolean paused, 
+    /**
+     * This will keep track of if the levelComplete overlay should show
+     */
+    levelComplete, 
+    /**
+     * This will keep track of if the gameOver overlay should show
+     */
+    gameOver;
+    /**
+     * The Player entity that travels between levels
+     */
     private Player player;
+    /**
+     * The Heads Up Display (HUD) that will be shown
+     */
     private HUD hud;
 
+    /**
+     * The overlay for when the game is paused
+     */
     private final PauseOverlay pauseOverlay = new PauseOverlay(game);
+    /**
+     * The manager that will load/handle each Level
+     */
     private final LevelManager levelManager = new LevelManager(game);
+    /**
+     * The manager that will load/handle each enemy and if the level has been completed (every enemy killed)
+     */
     private final EnemyManager enemyManager = new EnemyManager(this);
+    /**
+     * The manager that will load/handle each projectile and if they have collided with other Entities
+     */
     private final ProjectileManager projManager = new ProjectileManager(this);
+    /**
+     * The overlay for when the Player is killed
+     */
     private final DeathOverlay deathOverlay = new DeathOverlay(this);
+    /**
+     * The overlay for when the level is completed
+     */
     private final WinOverlay winOverlay = new WinOverlay(this);
+    /**
+     * the player's score
+     */
     private int score;
 
     // Level Expansion vars
-    private int xLevelOffset;// X-Offset being added to and subtracted from to render the level itself
-    private int borderLeft = (int) (0.5 * Game.GAME_WIDTH);// 50% of the screen is rendered
-    private int borderRight = (int) (0.5 * Game.GAME_WIDTH);// 50% of the screen is hidden
-    private int levelTilesWide = levelManager.getCurrentLevel().getLevelData()[0].length; //
-    private int maxTileOffset = levelTilesWide - Game.TILES_IN_WIDTH; //
-    private int maxXOffset = maxTileOffset * Game.TILES_SIZE; //
+    /**
+     * X-Offset being added to and subtracted from to render the level itself.
+     */
+    private int xLevelOffset;
 
-    // Y Expansion Vars for longer levels
-    private int yLevelOffset;// Y-Offset being added to and subtracted from to render the level itself
-    private int borderTop = (int) (0.5 * Game.GAME_HEIGHT);// 50% of the screen is rendered
-    private int borderBottom = (int) (0.5 * Game.GAME_HEIGHT);// 50% of the screen is hidden
-    private int levelTilesHigh = levelManager.getCurrentLevel().getLevelData().length; //
-    private int maxYTileOffset = levelTilesHigh - Game.TILES_IN_HEIGHT; //
-    private int maxYOffset = maxYTileOffset * Game.TILES_SIZE; //
+    /**
+     * 50% of the screen is rendered, used as the left border for screen rendering.
+     */
+    private int borderLeft = (int) (0.5 * Game.GAME_WIDTH);
 
-    private BufferedImage backgroundimg, background_myst_img, background_rocks;
-    private int[] mystPos;// Position of myst background asset
+    /**
+     * 50% of the screen is hidden, used as the right border for screen rendering.
+     */
+    private int borderRight = (int) (0.5 * Game.GAME_WIDTH);
+
+    /**
+     * The length of the level in tiles.
+     */
+    private int levelTilesWide = levelManager.getCurrentLevel().getLevelData()[0].length;
+
+    /**
+     * The maximum tiles offset that can occur from screen scrolling.
+     */
+    private int maxTileOffset = levelTilesWide - Game.TILES_IN_WIDTH;
+
+    /**
+     * The maximum pixels offset that can occur from screen scrolling.
+     */
+    private int maxXOffset = maxTileOffset * Game.TILES_SIZE;
+
+    /**
+     * Y-Offset being added to and subtracted from to render the level itself.
+     */
+    private int yLevelOffset;
+
+    /**
+     * 50% of the screen is rendered, used as the top border for screen rendering.
+     */
+    private int borderTop = (int) (0.5 * Game.GAME_HEIGHT);
+
+    /**
+     * 50% of the screen is hidden, used as the bottom border for screen rendering.
+     */
+    private int borderBottom = (int) (0.5 * Game.GAME_HEIGHT);
+
+    /**
+     * The height of the level in tiles.
+     */
+    private int levelTilesHigh = levelManager.getCurrentLevel().getLevelData().length;
+
+    /**
+     * The maximum tiles offset that can occur from screen scrolling in the vertical direction.
+     */
+    private int maxYTileOffset = levelTilesHigh - Game.TILES_IN_HEIGHT;
+
+    /**
+     * The maximum pixels offset that can occur from screen scrolling in the vertical direction.
+     */
+    private int maxYOffset = maxYTileOffset * Game.TILES_SIZE;
+
+    /**
+     * the static image in the background
+     */
+    private BufferedImage backgroundimg, 
+    /**
+     * The background of they mist/clouds that slowly move by
+     */
+    background_myst_img, 
+    /**
+     * the rocks that scroll by as the Player moves
+     */
+    background_rocks;
+    /**
+     * all positions of myst background asset
+     */
+    private int[] mystPos;
+    /**
+     * A Random that will generate the mist positions
+     */
     private Random rnd = new Random();
 
     /**
@@ -287,10 +387,6 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // if paused, only send the mouse input into the paused overlay
-        if (paused) {
-            pauseOverlay.mouseDragged(e);
-        }
         // if the mouse is moved, store the point that it moved to and keep drawing.
         // this does not work if you check that it is mouse button 1 was moved.
         player.setNextAttack(e.getPoint());
@@ -428,18 +524,6 @@ public class Playing extends State implements StateMethods {
      */
     public void setPaused(boolean paused) {
         this.paused = paused;
-    }
-
-    /**
-     * Setter for Game Over boolean (determines if the screen should display Death Overlay or
-     * not)
-     * 
-     * @param paused - true if the screen should display Death Overlay, false if not
-     */
-    public void setGameOver(boolean gameOver) {
-        this.gameOver = gameOver;
-        if (gameOver == true) {
-        }
     }
 
     /**

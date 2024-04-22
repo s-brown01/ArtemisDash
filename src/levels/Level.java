@@ -25,8 +25,17 @@ public class Level {
      * the levelData that represents the environment of the level as a 2D int array
      */
     private int[][] lvlData;
+    /**
+     * The path to the file containing the RGB data-map for this level
+     */
     private String fileName;
+    /**
+     * This keeps track of if the level has been 100% completed by the user
+     */
     private Boolean completed = false;
+    /**
+     * This keeps track of if this level is able to be played by the user or if it should be hidden from them.
+     */
     private Boolean hidden = true;
 
     /**

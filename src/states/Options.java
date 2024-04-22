@@ -19,11 +19,24 @@ import utils.LoadSave;
  * @author John Botonakis
  */
 public class Options {
-
+    /**
+     * The background image for this menu
+     */
     private final BufferedImage backgroundImg;
+    /**
+     * All of the buttons that will be displayed
+     */
     private OptionsButton[] buttons = new OptionsButton[2];
+    /**
+     * The game class that created this options menu class
+     */
     private Game game;
 
+    /**
+     * This is the initializer, it will load in the background image and create the OptionsButtons
+     * 
+     * @param game - the Game that created and is managing this Class
+     */
     public Options(Game game) {
         this.game = game;
         backgroundImg = LoadSave.getSpriteSheet(LoadSave.OPTIONS_SCREEN);
@@ -35,7 +48,7 @@ public class Options {
      * affect the button sprite state
      */
     public void update() {
-
+        // update each button in the array
         for (OptionsButton ob : buttons) {
             ob.update();
         }
@@ -66,7 +79,10 @@ public class Options {
 //        button.resetButtons();
     }
 
-    public void createButtons() {
+    /**
+     * This method creates all of the buttons for the buttons array.
+     */
+    private void createButtons() {
         // Had to touch up the overall size so decreased it by 5 in its height
         buttons[0] = new OptionsButton(Game.GAME_WIDTH / 6, (int) (370 * Game.SCALE), 0, GameStates.MENU);
         buttons[1] = new OptionsButton(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), 0, GameStates.OVERWORLD);

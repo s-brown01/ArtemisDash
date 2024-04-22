@@ -1,10 +1,11 @@
 package drivers;
 
+/**
+ * This will test all class in the projectile package
+ * @author Sean-Paul Brown
+ *
+ */
 public class ProjectilesDriver implements DriverInterface {
-
-    public ProjectilesDriver() {
-        // TODO Auto-generated constructor stub
-    }
 
     @Override
     public boolean test() {

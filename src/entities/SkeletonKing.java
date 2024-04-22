@@ -10,6 +10,12 @@ import static utils.Constants.EnemyConstants.SKELETON_KING_HITBOX_WIDTH;
 
 import java.awt.geom.Rectangle2D;
 
+/**
+ * Skeleton King is a child-class of Enemy. It is a specific instance of Enemy, that will use
+ * the skeleton king constants and implement all behaviors/updates here.
+ * 
+ * @author Sean-Paul Brown
+ */
 public class SkeletonKing extends Enemy {
 
     /**

@@ -10,12 +10,24 @@ import utils.LoadSave;
  * This class will handle things such as importing level sprites, drawing the level to the
  * screen, and keep track of the current level played
  * 
- * @author johnbotonakis and Sean-Paul Brown
+ * @author John Botonakis and Sean-Paul Brown
  */
 public class LevelManager {
+    /**
+     * This holds all of the environmental sprites that is used to create the levels
+     */
     private BufferedImage[] levelSprite;
-    private Level[] levels = new Level[15]; // 15 total levels
+    /**
+     * This holds all of the levels that can be played in the game
+     */
+    private Level[] levels = new Level[15];
+    /**
+     * The current level that the user is on
+     */
     private Level currentLevel;
+    /**
+     * The index of the current level in the levels array
+     */
     private int currentLevelIndex;
 
     /**

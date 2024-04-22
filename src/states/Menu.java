@@ -18,7 +18,13 @@ import utils.LoadSave;
  */
 public class Menu extends State implements StateMethods {
 
+    /**
+     * All of the buttons that will displayed on screen
+     */
     private MenuButton[] buttons = new MenuButton[3];
+    /**
+     * The background image that will be displayed with everything else on top
+     */
     private final BufferedImage backgroundImg;
 
     /**

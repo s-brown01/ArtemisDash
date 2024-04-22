@@ -64,10 +64,61 @@ public class Player extends Entity {
     private int[][] levelData;
 
     // Player Actions
+    /**
+     * The state/action the player is int
+     */
     private int player_action = IDLE;
-    private boolean moving, attacking, killed, hurting, falling, dash = false;
-    private boolean left, right, jump;
+    /**
+     * A boolean indicating whether the player is currently moving.
+     */
+    private boolean moving;
+
+    /**
+     * A boolean indicating whether the player is currently attacking.
+     */
+    private boolean attacking;
+
+    /**
+     * A boolean indicating whether the player has been killed.
+     */
+    private boolean killed;
+
+    /**
+     * A boolean indicating whether the player is currently hurting.
+     */
+    private boolean hurting;
+
+    /**
+     * A boolean indicating whether the player is currently falling.
+     */
+    private boolean falling;
+
+    /**
+     * A boolean indicating whether the player is currently dashing.
+     */
+    private boolean dash;
+
+    /**
+     * A boolean indicating whether the player is currently moving left.
+     */
+    private boolean left;
+
+    /**
+     * A boolean indicating whether the player is currently moving right.
+     */
+    private boolean right;
+
+    /**
+     * A boolean indicating whether the player is currently jumping.
+     */
+    private boolean jump;
+    /**
+     * How fast the player moves horizontally
+     */
     private float playerSpeed = 1.25f * Game.SCALE;
+    /**
+     * The amount of lives that the player has
+     */
     private int playerLives = 3;
     /** flipX and flipY are for having the player able to flip the sprite left and right */
     private int flipX = 0, flipW = 1;
@@ -396,7 +447,7 @@ public class Player extends Entity {
     /**
      * This will start the Player attacking. If this is called then
      * 
-     * @param e - the information about what the mouse is currently doing
+     * @param p - the Point where the next attack would be heading
      */
     public void shoot(Point p) {
         // checking validation
@@ -737,6 +788,10 @@ public class Player extends Entity {
         return playerSpeed;
     }
 
+    /**
+     * Get the current 2D int array of level data
+     * @return the current level data array
+     */
     public int[][] getLevelData() {
         return levelData;
     }
@@ -750,91 +805,43 @@ public class Player extends Entity {
         return player_action;
     }
 
+    /**
+     * Getter for the maximum number of jumps the Player can have
+     * @return the constant maximum number of jumps
+     */
     public static int getMaxJumps() {
         return MAX_JUMPS;
     }
 
-    public Playing getPlaying() {
-        return playing;
-    }
-
-    public BufferedImage[][] getAnimations() {
-        return animations;
-    }
-
-    public int getPlayer_action() {
-        return player_action;
-    }
-
-    public boolean isMoving() {
-        return moving;
-    }
-
+    /**
+     * Getter for the current value of attacking
+     * @return return the value currently stored
+     */
     public boolean isAttacking() {
         return attacking;
     }
 
-    public boolean isFalling() {
-        return falling;
-    }
-
-    public boolean isDash() {
-        return dash;
-    }
-
-    public boolean isJump() {
-        return jump;
-    }
-
-    public int getPlayerLives() {
-        return playerLives;
-    }
-
+    /**
+     * Getter for the current value of flipX
+     * @return If facing right, this should be 0. If left, it will be the width
+     */
     public int getFlipX() {
         return flipX;
     }
-
+    /**
+     * Getter for the current value of flipW
+     * @return If facing right, this should be 1. If left, it will be -1
+     */
     public int getFlipW() {
         return flipW;
     }
 
-    public int getxLevelOffset() {
-        return xLevelOffset;
-    }
-
-    public float getxDrawOffset() {
-        return xDrawOffset;
-    }
-
-    public float getyDrawOffset() {
-        return yDrawOffset;
-    }
-
-    public float getHitboxOffset() {
-        return hitboxOffset;
-    }
-
-    public boolean isAttackChecked() {
-        return attackChecked;
-    }
-
+    /**
+     * Getter for the stored Point for the next attack
+     * @return return the Point that was placed into the shoot() or setNextAttack() functions. 
+     */
     public Point getNextAttack() {
         return nextAttack;
     }
 
-    public boolean isDrawArrowPath() {
-        return drawArrowPath;
-    }
-
-    public float getJumpSpeed() {
-        return jumpSpeed;
-    }
-
-    public float getFallCollisionSpeed() {
-        return fallCollisionSpeed;
-    }
-
-    public int getJumps() {
-        return jumps;
-    }
 }

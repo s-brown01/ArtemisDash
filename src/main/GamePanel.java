@@ -17,8 +17,13 @@ import inputs.MouseInputs;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class GamePanel extends JPanel {
+    /**
+     * This is to help prevent InvalidClassExceptions when serialized objects are deserialized. Suggested by IDE.
+     */
     private static final long serialVersionUID = 1L;
-    private MouseInputs mouseInputs;
+    /**
+     * This is the game where all of the mouseInputs should be directed to
+     */
     private Game game;
 
     /**
@@ -27,7 +32,10 @@ public class GamePanel extends JPanel {
      * @param game - The Game instance to which the game will be drawn to
      */
     public GamePanel(Game game) {
-        mouseInputs = new MouseInputs(this);
+        /*
+         * This is the MouseInputs handler for the Game. Unlike the keyboard listener, this needs to be created outside of the addMouseListener commands because otherwise it would create 2 different inputs 
+         */
+        MouseInputs mouseInputs = new MouseInputs(this);
         this.game = game;
 
         setPanelSize();
@@ -50,7 +58,9 @@ public class GamePanel extends JPanel {
      * built in tools rather than make from scratch
      */
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);// Calls the super class to clean everything and then draw
+        // Calls the super class to clean everything and then draw.
+        // This also makes the program use DoubleBuffering to load sprites faster.
+        super.paintComponent(g);
         game.render(g);
     }
 

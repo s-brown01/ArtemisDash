@@ -24,17 +24,37 @@ import utils.LoadSave;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class Overworld extends State implements StateMethods {
-
+    /**
+     * The image that will be dispalyed in the background of the overworld menu
+     */
     private final BufferedImage background;
+    /**
+     * The array of button locations that will be displayed on screen, it is the same array as the Constants.OverworldButtonConstants.BUTTON_POINT_ARRAY.
+     */
     private final Point[] btnLocations = BUTTON_POINT_ARRAY;
+    /**
+     * The array of OverworldButtons that will be displayed on screen that match to the locations array
+     */
     private OverworldButton[] buttonArr = new OverworldButton[btnLocations.length];
+    /** 
+     * The level that was selected by the user
+     */
     private OverworldButton selectedLvl = null;
+    /**
+     * All of the level names correlate to the buttonArr
+     */
     private String[] lvlNames = { "DARRING DESCENT", "LAVA LAKE", "BURNING BADLANDS", "ROCKY RELIEF", "KILL THE KING" };
+    /**
+     * This should be the same LevelManager as the Game's Playing class. This allows it to influence the current levels and what will be loaded next.
+     */
     private final LevelManager levelManager;
     /**
      * This boolean keeps track of if the state has changed at all. Default it to true
      */
     private boolean changed = true;
+    /**
+     * The font to use in the overworld.
+     */
     private Font owFont;
 
     /**

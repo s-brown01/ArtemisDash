@@ -145,7 +145,7 @@ public class Constants {
          */
         public static final Color OUTLINE = new Color(0, 0, 55);
 
-        /**
+        /*
          * Each point here represents one of the clickable buttons that map to different levels on
          * the Overworld menu. The point is the top-right coordinate of each button.
          * 
@@ -153,14 +153,29 @@ public class Constants {
          * 1.75f because that is the default scale, then multiple by scale
          * 
          */
+        /**
+         * The point on the overworld screen for level 1
+         */
         private static final Point LEVEL_1 = new Point((int) (660 / 1.75f * Game.SCALE),
                 (int) (190 / 1.75f * Game.SCALE));
+        /**
+         * The point on the overworld screen for level 2
+         */
         private static final Point LEVEL_2 = new Point((int) (680 / 1.75f * Game.SCALE),
                 (int) (220 / 1.75f * Game.SCALE));
+        /**
+         * The point on the overworld screen for level 3
+         */
         private static final Point LEVEL_3 = new Point((int) (680 / 1.75f * Game.SCALE),
                 (int) (280 / 1.75f * Game.SCALE));
+        /**
+         * The point on the overworld screen for level 4
+         */
         private static final Point LEVEL_4 = new Point((int) (720 / 1.75f * Game.SCALE),
                 (int) (250 / 1.75f * Game.SCALE));
+        /**
+         * The point on the overworld screen for level 5
+         */
         private static final Point LEVEL_5 = new Point((int) (520 / 1.75f * Game.SCALE),
                 (int) (340 / 1.75f * Game.SCALE));
 //        private static final Point LEVEL_6 = new Point((int) (650 / 1.75f * Game.SCALE),
@@ -187,9 +202,9 @@ public class Constants {
          * This is a final array of all 5 Levels, so that it can be easily access by the Overworld
          * GameState
          */
-//        public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5,
-//                LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
         public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5 };
+//      public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5,
+//      LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
 
     }
 
@@ -197,8 +212,14 @@ public class Constants {
      * End Screen buttons (Both for level completed and Death screen)
      */
     public static class EndButtons {
-        public static final int ENDBUTTON = 56;
-        public static final int ENDBUTTON_SIZE = (int) (ENDBUTTON * Game.SCALE);
+        /**
+         * This is how large the images are in the sprite sheet
+         */
+        public static final int ENDBUTTON_DEFAULT = 56;
+        /**
+         * This is how large (in pixels) each button will be for overlays in the scaled game
+         */
+        public static final int ENDBUTTON_SIZE = (int) (ENDBUTTON_DEFAULT * Game.SCALE);
     }
 
     /**

@@ -30,10 +30,27 @@ import utils.LoadSave;
  */
 public class EnemyManager {
 
+    /**
+     * The playing class that is holding this class and managing the levels
+     */
     private final Playing playing;
+    /**
+     * All of the skeleton's animations. First index is the state that the enemy is in, the second is the specific frame of that state. 
+     */
     private BufferedImage[][] skeletonAnis;
+    /**
+     * All of the skeleton king's animations. First index is the state that the enemy is in, the second is the specific frame of that state. 
+     */
     private BufferedImage[][] skelKingAnis;
+    /**
+     * A list containing all of the Skeletons in a certain Level. <BR>
+     * This does not have to be an array list, any type of List would work in the program.
+     */
     private final List<Skeleton> skeletonList = new ArrayList<>();
+    /**
+     * A list containing all of the Skeleton Kings in a certain Level. <BR>
+     * This does not have to be an array list, any type of List would work in the program.
+     */
     private final List<SkeletonKing> kingList = new ArrayList<>();
 
     /**

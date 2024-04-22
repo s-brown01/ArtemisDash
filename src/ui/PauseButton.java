@@ -10,7 +10,25 @@ import java.awt.Rectangle;
  * @author John Botonakis and Sean-Paul Brown
  */
 public class PauseButton {
-    protected int x, y, width, height;
+    /**
+     * The left coordinate
+     */
+    protected int x, 
+    /**
+     * the top coordinate
+     */
+    y, 
+    /**
+     * the width of the button
+     */
+    width, 
+    /**
+     * the height of the buton
+     */
+    height;
+    /**
+     * the area where the mouse can hover/click on the button
+     */
     protected Rectangle bounds;
 
     /**

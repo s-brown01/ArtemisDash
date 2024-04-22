@@ -28,6 +28,10 @@ public class LevelsDriver implements DriverInterface {
         return allSuccess;
     }
 
+    /**
+     * This tests the methods of the Level class 
+     * @return true if all of the tests were passed. False if at least 1 was failed.
+     */
     private boolean testLevel() {
         boolean allSuccess = true;
 
@@ -99,6 +103,10 @@ public class LevelsDriver implements DriverInterface {
         return allSuccess;
     }
 
+    /**
+     * This tests the methods of the LevelManager class
+     * @return true if all of the tests were passed. False if at least 1 was failed.
+     */
     private boolean testLevelManager() {
         boolean allSuccess = true;
 

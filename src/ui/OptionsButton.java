@@ -19,15 +19,45 @@ import utils.LoadSave;
  * @author John Botonakis
  */
 public class OptionsButton {
-    private int xpos, ypos, rowIndex, index;
+    /**
+     * The left coordinate in pixels
+     */
+    private int xpos, 
+    /**
+     * The top coordinate in pixels
+     */
+    ypos, 
+    /**
+     * This correlates to the image state to draw (default/hover/pressed)
+     */
+    index;
+    /**
+     * Since x is the left coordinate, 1/2 of the width means that the button can be centered on the x-coordinate
+     */
     private int XOffsetCenter = B_WIDTH / 2;
+    /**
+     * The GameState to switch to
+     */
     private GameStates state;
+    /**
+     * The images to draw that contain all of the images for the index property
+     */
     private BufferedImage[] imgs;
-    private boolean mouseOver, mousePressed;
+    /**
+     * Represents if the mouse is hovering over the button
+     */
+    private boolean mouseOver, 
+    /**
+     * Represents if the mouse is pressed while on this button
+     */
+    mousePressed;
+    /**
+     * The bounds that determine where the user can click on a button
+     */
     private Rectangle bounds;
 
     /**
-     * Generates a menu button object
+     * Generates a options button object
      * 
      * @param xpos     - X-Position on the Screen
      * @param ypos     - Y-Position on the screen
@@ -38,9 +68,8 @@ public class OptionsButton {
     public OptionsButton(int xpos, int ypos, int rowIndex, GameStates state) {
         this.xpos = xpos;
         this.ypos = ypos;
-        this.rowIndex = rowIndex;
         this.state = state;
-        loadImgs();
+        loadImgs(rowIndex);
         initBounds();
     }
 
@@ -53,8 +82,10 @@ public class OptionsButton {
 
     /**
      * Loads in image to represent the button from a specified sprite sheet
+     * 
+     * @param rowIndex - the index of the sprites to load in
      */
-    private void loadImgs() {
+    private void loadImgs(int rowIndex) {
         imgs = new BufferedImage[3];
         BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.MENU_BUTTONS);
         for (int i = 0; i < imgs.length; i++) {

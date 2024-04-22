@@ -23,7 +23,13 @@ import utils.LoadSave;
  * @author Sean-Paul Brown
  */
 public class ProjectileManager {
+    /**
+     * all of the images that the arrows will use
+     */
     private final BufferedImage[] arrowImgs;
+    /**
+     * a list containing all active Arrows
+     */
     private final List<Arrow> arrowList;
 
     /**
@@ -66,7 +72,10 @@ public class ProjectileManager {
      * Checks to see if the Projectile placed into the equation collides with the level or
      * exceeds the bounds
      * 
+     * @param hitbox    - the hitbox of the Projectile to check
      * @param levelData - the current Level represented as a 2D int array
+     * @param xSpeed    - the horizontal speed of the Projectile
+     * @param ySpeed    - the vertical speed of the Projectile
      * 
      * @return true if the arrow collides with anything, false if not.
      */
