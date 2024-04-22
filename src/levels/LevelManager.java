@@ -20,7 +20,7 @@ public class LevelManager {
     /**
      * This holds all of the levels that can be played in the game
      */
-    private Level[] levels = new Level[15];
+    private Level[] levels = new Level[5];
     /**
      * The current level that the user is on
      */
@@ -136,7 +136,7 @@ public class LevelManager {
      * Set hidden to false on certain levels based on the current Level. This lets the Player
      * 'progress' through the different Levels
      */
-    public void unhideNextLevels() {
+    public boolean unhideNextLevels() {
         // depending what the current level is, it should unhide different levels
         // for now just unlock the next level
         switch (currentLevelIndex) {
@@ -144,20 +144,13 @@ public class LevelManager {
         case 1:
         case 2:
         case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-        case 14:
             unhideLevel(currentLevelIndex + 1);
-        case 15:
-            return;
+            return true;
+        case 4:
+            // at this point the demo was completed
+            return false;
+        default:
+            return true;    
         }
     }
 
