@@ -28,7 +28,7 @@ public class AudioPlayer {
     /**
      * Level 1 music
      */
-    public static int W_1L_1 = 1;
+    public static int ODDLEVELS = 1;
     /**
      * Game over music
      */
@@ -36,7 +36,7 @@ public class AudioPlayer {
     /**
      * Level 2 music
      */
-    public static int W_1L_2 = 3;
+    public static int EVENLEVELS = 3;
 //    public static int W_1L_3 = 3;
 //    public static int W_1L_4 = 4;
 //    public static int W_1L_5 = 5;
@@ -171,9 +171,9 @@ public class AudioPlayer {
      */
     public void setLevelSong(int lvlIndex) {
         if (lvlIndex % 2 == 0)
-            playSong(W_1L_1);
+            playSong(ODDLEVELS);
         else
-            playSong(W_1L_2);
+            playSong(EVENLEVELS);
     }
 
     /**
