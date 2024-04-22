@@ -5,7 +5,7 @@ package main;
  * 
  * @author John Botonakis and Sean-Paul Brown
  */
-public class MainClass {
+public class ArtemisDash {
     /**
      * This function will create and start the Game
      * 
