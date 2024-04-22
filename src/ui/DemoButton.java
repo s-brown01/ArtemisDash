@@ -24,30 +24,31 @@ public class DemoButton extends PauseButton {
     /**
      * This boolean will represent if the mouse is hovering over the button without clicking
      */
-    private boolean mouseOver, 
-    /**
-     * This boolean represents if the mouse has clicked down on the button
-     */
-    mousePressed;
-    
+    private boolean mouseOver,
+            /**
+             * This boolean represents if the mouse has clicked down on the button
+             */
+            mousePressed;
+
     /**
      * This is the color that the button will be when drawn
      */
     private Color color;
-    
+
     /**
      * This is the constructor for 1 Demo Button
-     * @param title     - the string to be displayed on screen
-     * @param x         - the left coordinate
-     * @param y         - the top coordinate
-     * @param width     - how wide to make the button
-     * @param height    - how tall to make the button
+     * 
+     * @param title  - the string to be displayed on screen
+     * @param x      - the left coordinate
+     * @param y      - the top coordinate
+     * @param width  - how wide to make the button
+     * @param height - how tall to make the button
      */
     public DemoButton(String title, int x, int y, int width, int height) {
         super(x, y, width, height);
         this.title = title;
     }
-    
+
     /**
      * Draws everything to the screen using Graphics for this specfic button
      * 
@@ -65,10 +66,10 @@ public class DemoButton extends PauseButton {
         g.drawString(title, x + width / 4, y + height / 4 * 3);
 
     }
-    
+
     /**
-     * Handles any updates that are to be processed by the demo button, such as
-     * changing its appearance when hovered over or clicked
+     * Handles any updates that are to be processed by the demo button, such as changing its
+     * appearance when hovered over or clicked
      */
     public void update() {
         color = DEFAULT;
@@ -79,7 +80,7 @@ public class DemoButton extends PauseButton {
             color = DEFAULT_CLICKED;
         }
     }
-    
+
     /**
      * Resets all boolean values associated with this Sound button object
      */

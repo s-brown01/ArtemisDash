@@ -35,11 +35,13 @@ public class EnemyManager {
      */
     private final Playing playing;
     /**
-     * All of the skeleton's animations. First index is the state that the enemy is in, the second is the specific frame of that state. 
+     * All of the skeleton's animations. First index is the state that the enemy is in, the
+     * second is the specific frame of that state.
      */
     private BufferedImage[][] skeletonAnis;
     /**
-     * All of the skeleton king's animations. First index is the state that the enemy is in, the second is the specific frame of that state. 
+     * All of the skeleton king's animations. First index is the state that the enemy is in,
+     * the second is the specific frame of that state.
      */
     private BufferedImage[][] skelKingAnis;
     /**

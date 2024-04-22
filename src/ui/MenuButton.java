@@ -22,17 +22,18 @@ public class MenuButton {
     /**
      * The left coordinate in pixels
      */
-    private int xpos, 
+    private int xpos,
+            /**
+             * The top coordinate in pixels
+             */
+            ypos,
+            /**
+             * This correlates to the image state to draw (default/hover/pressed)
+             */
+            index;
     /**
-     * The top coordinate in pixels
-     */
-    ypos, 
-    /**
-     * This correlates to the image state to draw (default/hover/pressed)
-     */
-    index;
-    /**
-     * Since x is the left coordinate, 1/2 of the width means that the button can be centered on the x-coordinate
+     * Since x is the left coordinate, 1/2 of the width means that the button can be centered
+     * on the x-coordinate
      */
     private int XOffsetCenter = B_WIDTH / 2;
     /**
@@ -46,11 +47,11 @@ public class MenuButton {
     /**
      * Represents if the mouse is hovering over the button
      */
-    private boolean mouseOver, 
-    /**
-     * Represents if the mouse is pressed while on this button
-     */
-    mousePressed;
+    private boolean mouseOver,
+            /**
+             * Represents if the mouse is pressed while on this button
+             */
+            mousePressed;
     /**
      * The bounds that determine where the user can click on a button
      */

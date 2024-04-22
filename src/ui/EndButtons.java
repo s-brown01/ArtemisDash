@@ -26,20 +26,20 @@ public class EndButtons extends PauseButton {
     /**
      * This boolean will represent if the mouse is hovering over the button without clicking
      */
-    private boolean mouseOver, 
-    /**
-     * This boolean represents if the mouse has clicked down on the button
-     */
-    mousePressed;
+    private boolean mouseOver,
+            /**
+             * This boolean represents if the mouse has clicked down on the button
+             */
+            mousePressed;
 
     /**
      * Creates a button for use ONLY in the Death Overlay
      * 
-     * @param x         - X-Position placement of the created button
-     * @param y         - Y-Position placement of the created button
-     * @param width     - Width of the sprite
-     * @param height    - Height of the sprite
-     * @param rowindex  - The row of of the image to get in the sprite sheet
+     * @param x        - X-Position placement of the created button
+     * @param y        - Y-Position placement of the created button
+     * @param width    - Width of the sprite
+     * @param height   - Height of the sprite
+     * @param rowindex - The row of of the image to get in the sprite sheet
      */
     public EndButtons(int x, int y, int width, int height, int rowindex) {
         super(x, y, width, height);
@@ -56,7 +56,8 @@ public class EndButtons extends PauseButton {
         BufferedImage temp = LoadSave.getSpriteSheet(LoadSave.ENDBUTTONS);
         buttonImgs = new BufferedImage[3];
         for (int i = 0; i < buttonImgs.length; i++) {
-            buttonImgs[i] = temp.getSubimage(i * ENDBUTTON_DEFAULT, rowIndex * ENDBUTTON_DEFAULT, ENDBUTTON_DEFAULT, ENDBUTTON_DEFAULT);
+            buttonImgs[i] = temp.getSubimage(i * ENDBUTTON_DEFAULT, rowIndex * ENDBUTTON_DEFAULT, ENDBUTTON_DEFAULT,
+                    ENDBUTTON_DEFAULT);
         }
     }
 

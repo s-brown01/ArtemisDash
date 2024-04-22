@@ -35,20 +35,20 @@ public class Playing extends State implements StateMethods {
     /**
      * This will keep track of if the pause overlay should show
      */
-    private boolean paused, 
-    /**
-     * This will keep track of if the levelComplete overlay should show
-     */
-    levelComplete, 
-    /**
-     * This will keep track of if the gameOver overlay should show
-     */
-    gameOver,
-    /**
-     * This will keep track of if the demo screen should be showing (true to show).
-     */
-    demoOver;
-    
+    private boolean paused,
+            /**
+             * This will keep track of if the levelComplete overlay should show
+             */
+            levelComplete,
+            /**
+             * This will keep track of if the gameOver overlay should show
+             */
+            gameOver,
+            /**
+             * This will keep track of if the demo screen should be showing (true to show).
+             */
+            demoOver;
+
     /**
      * The Player entity that travels between levels
      */
@@ -67,11 +67,13 @@ public class Playing extends State implements StateMethods {
      */
     private final LevelManager levelManager = new LevelManager(game);
     /**
-     * The manager that will load/handle each enemy and if the level has been completed (every enemy killed)
+     * The manager that will load/handle each enemy and if the level has been completed (every
+     * enemy killed)
      */
     private final EnemyManager enemyManager = new EnemyManager(this);
     /**
-     * The manager that will load/handle each projectile and if they have collided with other Entities
+     * The manager that will load/handle each projectile and if they have collided with other
+     * Entities
      */
     private final ProjectileManager projManager = new ProjectileManager(this);
     /**
@@ -143,27 +145,29 @@ public class Playing extends State implements StateMethods {
     private int levelTilesHigh = levelManager.getCurrentLevel().getLevelData().length;
 
     /**
-     * The maximum tiles offset that can occur from screen scrolling in the vertical direction.
+     * The maximum tiles offset that can occur from screen scrolling in the vertical
+     * direction.
      */
     private int maxYTileOffset = levelTilesHigh - Game.TILES_IN_HEIGHT;
 
     /**
-     * The maximum pixels offset that can occur from screen scrolling in the vertical direction.
+     * The maximum pixels offset that can occur from screen scrolling in the vertical
+     * direction.
      */
     private int maxYOffset = maxYTileOffset * Game.TILES_SIZE;
 
     /**
      * the static image in the background
      */
-    private BufferedImage backgroundimg, 
-    /**
-     * The background of they mist/clouds that slowly move by
-     */
-    background_myst_img, 
-    /**
-     * the rocks that scroll by as the Player moves
-     */
-    background_rocks;
+    private BufferedImage backgroundimg,
+            /**
+             * The background of they mist/clouds that slowly move by
+             */
+            background_myst_img,
+            /**
+             * the rocks that scroll by as the Player moves
+             */
+            background_rocks;
     /**
      * all positions of myst background asset
      */
@@ -236,11 +240,11 @@ public class Playing extends State implements StateMethods {
         if (demoOver) {
             demoOverlay.update();
         } else if (levelComplete) {
-        // here is where we do anything when the level is completed
+            // here is where we do anything when the level is completed
             winOverlay.update();
             return;
-        // If the game is paused,
-        // update pause overlay
+            // If the game is paused,
+            // update pause overlay
         } else if (paused) {
             pauseOverlay.update();
             return;
@@ -304,13 +308,12 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void draw(Graphics g) {
-        // if the demo is over, only draw the demo screen nothing else 
+        // if the demo is over, only draw the demo screen nothing else
         if (demoOver) {
             demoOverlay.draw(g);
             return;
         }
-        
-        
+
         // draw background first so everything else sits on it
         drawBackground(g);
         // if it is paused, only draw the background and the pauseOverlay.
@@ -450,11 +453,9 @@ public class Playing extends State implements StateMethods {
         if (paused) {
             pauseOverlay.mouseReleased(e);
             return;
-        }
-        else if (gameOver) {
+        } else if (gameOver) {
             deathOverlay.mouseReleased(e);
-        }
-        else if(levelComplete) {
+        } else if (levelComplete) {
             winOverlay.mouseReleased(e);
         }
         // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
@@ -568,7 +569,7 @@ public class Playing extends State implements StateMethods {
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
         if (gameOver == true) {
-            //Display demo screen
+            // Display demo screen
         }
     }
 

@@ -2,6 +2,7 @@ package drivers;
 
 /**
  * This will test all of the classes in the UI package
+ * 
  * @author Sean-Paul Brown
  *
  */
@@ -18,6 +19,7 @@ public class UIDriver implements DriverInterface {
 
     /**
      * This will test all of the method in the HUD class
+     * 
      * @return true if all of the tests were passed, false if not
      */
     private boolean testHUD() {

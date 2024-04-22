@@ -69,7 +69,7 @@ public abstract class Enemy extends Entity {
      */
     protected boolean killed = false;
     /**
-     * This shows if the Enemy is in the state of being hurt. 
+     * This shows if the Enemy is in the state of being hurt.
      */
     protected boolean hurting = false;
 
@@ -82,7 +82,8 @@ public abstract class Enemy extends Entity {
      */
     protected float eyeSight;
     /**
-     * This is what direction the Enemy is walking towards, based on the Constants.Directions values.
+     * This is what direction the Enemy is walking towards, based on the Constants.Directions
+     * values.
      */
     protected int walkDirection = LEFT;
 
@@ -349,8 +350,8 @@ public abstract class Enemy extends Entity {
 
         // if the Enemy can move to the tile that is xSpeed away AND they can walk on that tile,
         // move there.
-        if (canMoveHere(hitbox.x + xSpeed + 5*widthFlipped(), hitbox.y, hitbox.width, hitbox.height, lvlData)
-                && isTileWalkable(hitbox, xSpeed + 5*widthFlipped(), lvlData)) {
+        if (canMoveHere(hitbox.x + xSpeed + 5 * widthFlipped(), hitbox.y, hitbox.width, hitbox.height, lvlData)
+                && isTileWalkable(hitbox, xSpeed + 5 * widthFlipped(), lvlData)) {
             // moving the hitbox will move the enemy
             hitbox.x += xSpeed;
             // return after this so it doesn't switch direction

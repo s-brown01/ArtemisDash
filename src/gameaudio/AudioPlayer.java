@@ -10,7 +10,6 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
 /**
  * Audio Player is a class that allows WAV files to be played through the use of Java
  * CLIPS. The songs are loaded into an array which finds the files in the correct folder,
@@ -104,7 +103,7 @@ public class AudioPlayer {
      * files as Clip objects
      */
     public void loadSong() {
-        String[] names = { "mm", "W1L1", "game-over","W1L2","W1L5" };
+        String[] names = { "mm", "W1L1", "game-over", "W1L2", "W1L5" };
         music = new Clip[names.length];
         for (int i = 0; i < music.length; i++)
             music[i] = getSound(names[i]);
@@ -142,7 +141,6 @@ public class AudioPlayer {
             return null;
         }
 
-
     }
 
     /**
@@ -171,7 +169,7 @@ public class AudioPlayer {
     public void setLevelSong(int lvlIndex) {
         if (lvlIndex == 4) {
             playSong(WORLD1BOSS);
-        }else {
+        } else {
             if (lvlIndex % 2 == 0)
                 playSong(ODDLEVELS);
             else
@@ -218,8 +216,7 @@ public class AudioPlayer {
         music[currentID].setMicrosecondPosition(0);
         if (song == GAMEOVER) {
             music[currentID].loop(0);
-        }
-        else {
+        } else {
             music[currentID].loop(Clip.LOOP_CONTINUOUSLY);
         }
     }

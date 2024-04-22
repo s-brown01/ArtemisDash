@@ -22,11 +22,11 @@ public abstract class Projectile {
     /**
      * the initial left coordinate of the projectile
      */
-    protected float x, 
-    /**
-     * the initial top coordinate of the projectile
-     */
-    y;
+    protected float x,
+            /**
+             * the initial top coordinate of the projectile
+             */
+            y;
     /**
      * The hitbox of the projectile (where it can hit other in-game objects)
      */
@@ -35,10 +35,10 @@ public abstract class Projectile {
      * the current animation index to draw
      */
     protected int aniIndex = 0,
-    /**
-     * A counter that represents when it is time to change animation frames
-     */
-    aniTick = 0;
+            /**
+             * A counter that represents when it is time to change animation frames
+             */
+            aniTick = 0;
     /**
      * how often the frames switch. A higher number means the less often frames are changed
      */
@@ -53,7 +53,8 @@ public abstract class Projectile {
      */
     protected final float FLIP_X;
     /**
-     * This will draw the width one direction or the opposite. This lets the arrow face left or right, so it can face the direction of travel
+     * This will draw the width one direction or the opposite. This lets the arrow face left
+     * or right, so it can face the direction of travel
      */
     protected final int FLIP_W;
 

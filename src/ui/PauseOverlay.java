@@ -20,33 +20,33 @@ import main.Game;
  */
 public class PauseOverlay {
     /**
-     * The background image of the overlay 
+     * The background image of the overlay
      */
     private BufferedImage backgroundImage;
     /**
      * the left coordinate of the overlay
      */
-    private int bgX, 
-    /**
-     * the top coordinate of the overlay
-     */
-    bgY, 
-    /**
-     * the height of the overlay
-     */
-    bgH, 
-    /**
-     * the width of the overlay
-     */
-    bgW;
+    private int bgX,
+            /**
+             * the top coordinate of the overlay
+             */
+            bgY,
+            /**
+             * the height of the overlay
+             */
+            bgH,
+            /**
+             * the width of the overlay
+             */
+            bgW;
     /**
      * The sound button that will mute or unmute music
      */
-    private SoundButton musicButton, 
-    /**
-     * The Sound Button that will mute or unmute sound effects
-     */
-    sfxButton;
+    private SoundButton musicButton,
+            /**
+             * The Sound Button that will mute or unmute sound effects
+             */
+            sfxButton;
     /**
      * The main game class that has is using the audio players
      */

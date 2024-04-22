@@ -9,14 +9,16 @@ import states.Playing;
 import utils.Constants.PlayerStates;
 
 /**
- * This class tests all of the classes in the inputs package (Mouse and Keyboard inputs). 
+ * This class tests all of the classes in the inputs package (Mouse and Keyboard inputs).
+ * 
  * @author Sean-Paul Brown
  *
  */
 public class InputsDriver implements DriverInterface {
 
     /**
-     * This will test the Keyboard and Mouse inputs. It will return the result of all of the tests.
+     * This will test the Keyboard and Mouse inputs. It will return the result of all of the
+     * tests.
      * 
      * @return true if all tests were passed. False, if at least 1 was failed.
      */

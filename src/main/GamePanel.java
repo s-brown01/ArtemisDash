@@ -18,7 +18,8 @@ import inputs.MouseInputs;
  */
 public class GamePanel extends JPanel {
     /**
-     * This is to help prevent InvalidClassExceptions when serialized objects are deserialized. Suggested by IDE.
+     * This is to help prevent InvalidClassExceptions when serialized objects are
+     * deserialized. Suggested by IDE.
      */
     private static final long serialVersionUID = 1L;
     /**
@@ -33,7 +34,9 @@ public class GamePanel extends JPanel {
      */
     public GamePanel(Game game) {
         /*
-         * This is the MouseInputs handler for the Game. Unlike the keyboard listener, this needs to be created outside of the addMouseListener commands because otherwise it would create 2 different inputs 
+         * This is the MouseInputs handler for the Game. Unlike the keyboard listener, this needs
+         * to be created outside of the addMouseListener commands because otherwise it would
+         * create 2 different inputs
          */
         MouseInputs mouseInputs = new MouseInputs(this);
         this.game = game;

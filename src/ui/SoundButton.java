@@ -22,11 +22,11 @@ public class SoundButton extends PauseButton {
     /**
      * Represents if the mouse is hovering over the button
      */
-    private boolean mouseOver, 
-    /**
-     * Represents if the mouse is pressed on the button
-     */
-    mousePressed;
+    private boolean mouseOver,
+            /**
+             * Represents if the mouse is pressed on the button
+             */
+            mousePressed;
     /**
      * if the sound for this button should be muted or not
      */
@@ -34,11 +34,11 @@ public class SoundButton extends PauseButton {
     /**
      * the row that relates to the sprites images
      */
-    private int rowIndex, 
-    /**
-     * the column that relates to the sprites images
-     */
-    colIndex;
+    private int rowIndex,
+            /**
+             * the column that relates to the sprites images
+             */
+            colIndex;
 
     /**
      * Creates a button for use ONLY in the pause menu

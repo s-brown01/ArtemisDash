@@ -50,13 +50,13 @@ public class LevelManager {
 //        for (int i = 0; i < levels.length; i++) {
 //            levels[i] = new Level(LoadSave.LEVEL1_DATA);
 //        }
-       levels[0] = new Level(LoadSave.LEVEL1_DATA);
-       levels[1] = new Level(LoadSave.LEVEL2_DATA);
-       levels[2] = new Level(LoadSave.LEVEL3_DATA);
-       levels[3] = new Level(LoadSave.LEVEL4_DATA);
-       for (int i =4; i <levels.length; i ++) {
-           levels[i] = new Level(LoadSave.LEVEL2_DATA);
-       }
+        levels[0] = new Level(LoadSave.LEVEL1_DATA);
+        levels[1] = new Level(LoadSave.LEVEL2_DATA);
+        levels[2] = new Level(LoadSave.LEVEL3_DATA);
+        levels[3] = new Level(LoadSave.LEVEL4_DATA);
+        for (int i = 4; i < levels.length; i++) {
+            levels[i] = new Level(LoadSave.LEVEL2_DATA);
+        }
 //       levels[4] = new Level(LoadSave.getLevelData(LoadSave.LEVEL4_DATA));
 //       levels[5] = new Level(LoadSave.getLevelData(LoadSave.LEVEL5_DATA));
     }
@@ -151,7 +151,7 @@ public class LevelManager {
             // at this point the demo was completed
             return false;
         default:
-            return true;    
+            return true;
         }
     }
 

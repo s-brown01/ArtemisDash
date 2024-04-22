@@ -20,7 +20,7 @@ public class Game implements Runnable {
      * States
      */
     /**
-     * This is the Playing class that will show all of the levels 
+     * This is the Playing class that will show all of the levels
      */
     private Playing playing;
     /**
@@ -53,15 +53,18 @@ public class Game implements Runnable {
      */
     private Thread gameThread;
     /**
-     * This is how many Frames Per Second there will be in game, how often the draw function is called.
+     * This is how many Frames Per Second there will be in game, how often the draw function
+     * is called.
      */
     private final int FPS_SET = 120;
     /**
-     * This is how many Updates Per Second there will be in game, how often the update function is called.
+     * This is how many Updates Per Second there will be in game, how often the update
+     * function is called.
      */
     private final int UPS_SET = 200;
     /**
-     *  This is the amount of nanoseconds in 1 second: 1 Billion nanoseconds. This is used in the run method instead of the real number so it is easier to read
+     * This is the amount of nanoseconds in 1 second: 1 Billion nanoseconds. This is used in
+     * the run method instead of the real number so it is easier to read
      */
     private final double NANOSECONDS_IN_SEC = 1000000000.0;
 

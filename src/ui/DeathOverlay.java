@@ -27,27 +27,27 @@ public class DeathOverlay {
     /**
      * The left co-ordinate of the overlay
      */
-    private int imgX, 
-    /**
-     * The top co-ordinate of the overlay
-     */
-    imgY, 
-    /**
-     * The width of the overlay
-     */
-    imgW, 
-    /**
-     * The heght of the overlay
-     */
-    imgH;
+    private int imgX,
+            /**
+             * The top co-ordinate of the overlay
+             */
+            imgY,
+            /**
+             * The width of the overlay
+             */
+            imgW,
+            /**
+             * The heght of the overlay
+             */
+            imgH;
     /**
      * An EndButton that connects to the MENU GameState
      */
-    private EndButtons menu, 
-    /**
-     * An EndButton that connects to the OVERWORLD GameState
-     */
-    play;
+    private EndButtons menu,
+            /**
+             * An EndButton that connects to the OVERWORLD GameState
+             */
+            play;
     /**
      * The Playing object that will be displaying the overlay
      */
@@ -57,7 +57,7 @@ public class DeathOverlay {
      * Initializes the Pause Overlay by creating and loading in sprite for the menu and its
      * buttons
      * 
-     * @param playing   - the Playing object that will be displaying the overlay
+     * @param playing - the Playing object that will be displaying the overlay
      */
     public DeathOverlay(Playing playing) {
         this.playing = playing;

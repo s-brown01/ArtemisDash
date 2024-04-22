@@ -271,7 +271,7 @@ public class Player extends Entity {
                 hurting = false;
                 // at the very end of the death animation, let the Playing State know the player died
                 if (killed) {
-                    playerLives --;
+                    playerLives--;
                     playing.playerDied();
                 }
             }
@@ -792,6 +792,7 @@ public class Player extends Entity {
 
     /**
      * Get the current 2D int array of level data
+     * 
      * @return the current level data array
      */
     public int[][] getLevelData() {
@@ -809,6 +810,7 @@ public class Player extends Entity {
 
     /**
      * Getter for the maximum number of jumps the Player can have
+     * 
      * @return the constant maximum number of jumps
      */
     public static int getMaxJumps() {
@@ -817,6 +819,7 @@ public class Player extends Entity {
 
     /**
      * Getter for the current value of attacking
+     * 
      * @return return the value currently stored
      */
     public boolean isAttacking() {
@@ -825,13 +828,16 @@ public class Player extends Entity {
 
     /**
      * Getter for the current value of flipX
+     * 
      * @return If facing right, this should be 0. If left, it will be the width
      */
     public int getFlipX() {
         return flipX;
     }
+
     /**
      * Getter for the current value of flipW
+     * 
      * @return If facing right, this should be 1. If left, it will be -1
      */
     public int getFlipW() {
@@ -840,7 +846,8 @@ public class Player extends Entity {
 
     /**
      * Getter for the stored Point for the next attack
-     * @return return the Point that was placed into the shoot() or setNextAttack() functions. 
+     * 
+     * @return return the Point that was placed into the shoot() or setNextAttack() functions.
      */
     public Point getNextAttack() {
         return nextAttack;

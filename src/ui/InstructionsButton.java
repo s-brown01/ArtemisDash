@@ -21,8 +21,9 @@ import states.GameStates;
 import utils.LoadSave;
 
 /**
- * This class represents 1 Button on the Instructions GameState. A button will be linked to
- * different GameStates so that the Game can change states based on what button is pushed.
+ * This class represents 1 Button on the Instructions GameState. A button will be linked
+ * to different GameStates so that the Game can change states based on what button is
+ * pushed.
  * 
  * @author Sean-Paul Brown
  */
@@ -38,24 +39,25 @@ public class InstructionsButton extends PauseButton {
     /**
      * Represents if the mouse is hovering over the button
      */
-    private boolean mouseOver, 
-    /**
-     * Represents if the mouse is pressed while on this button
-     */
-    mousePressed;
+    private boolean mouseOver,
+            /**
+             * Represents if the mouse is pressed while on this button
+             */
+            mousePressed;
     /**
      * This is the color that the button will be on screen
      */
     private Color color;
-    
+
     /**
-     * This is the constructor for 1 Instructions  Button
-     * @param title     - the string to be displayed on screen
-     * @param x         - the left coordinate
-     * @param y         - the top coordinate
+     * This is the constructor for 1 Instructions Button
+     * 
+     * @param title - the string to be displayed on screen
+     * @param x     - the left coordinate
+     * @param y     - the top coordinate
      */
     public InstructionsButton(String title, int x, int y, GameStates state) {
-        super(x, y, (int)(B_WIDTH * .75), (int)(B_HEIGHT * .75));
+        super(x, y, (int) (B_WIDTH * .75), (int) (B_HEIGHT * .75));
         this.title = title;
         this.state = state;
     }

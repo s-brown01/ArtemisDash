@@ -19,7 +19,7 @@ import utils.LoadSave;
  * @author Sean-Paul Brown
  */
 public class DemoOverlay {
-    
+
     /**
      * The main background image of the overlay
      */
@@ -27,19 +27,19 @@ public class DemoOverlay {
     /**
      * The left co-ordinate of the overlay
      */
-    private int imgX, 
-    /**
-     * The top co-ordinate of the overlay
-     */
-    imgY, 
-    /**
-     * The width of the overlay
-     */
-    imgW, 
-    /**
-     * The heght of the overlay
-     */
-    imgH;
+    private int imgX,
+            /**
+             * The top co-ordinate of the overlay
+             */
+            imgY,
+            /**
+             * The width of the overlay
+             */
+            imgW,
+            /**
+             * The heght of the overlay
+             */
+            imgH;
     /**
      * An EndButton that connects to the QUIT GameState
      */
@@ -53,14 +53,14 @@ public class DemoOverlay {
      * Initializes the Demo Overlay by creating and loading in sprite for the menu and its
      * buttons
      * 
-     * @param playing   - the Playing object that will be displaying the overlay
+     * @param playing - the Playing object that will be displaying the overlay
      */
     public DemoOverlay(Playing playing) {
         this.playing = playing;
         loadBackground();
-        createButtons();    
+        createButtons();
     }
-    
+
     /**
      * Updates the buttons based on the users actions. Things such as hover and mouse click
      * affect the button sprite state
@@ -68,7 +68,7 @@ public class DemoOverlay {
     public void update() {
         quit.update();
     }
-    
+
     /**
      * Draws everything that is intended to be visible, to the screen
      * 
@@ -83,8 +83,8 @@ public class DemoOverlay {
 
         // buttons
         quit.draw(g);
-    } 
-    
+    }
+
     /**
      * Loads in a background based on the specified image name Background width, height,
      * X-Position and Y-Position are also set here
@@ -98,7 +98,7 @@ public class DemoOverlay {
         imgY = 0;
 
     }
-    
+
     /**
      * Creates the buttons for use only on the death overlay Scale, X position, Y position and
      * offsets are set here
@@ -111,7 +111,7 @@ public class DemoOverlay {
 
         quit = new DemoButton("QUIT", quitX, yPos, ENDBUTTON_SIZE * 2, ENDBUTTON_SIZE);
     }
-    
+
     /**
      * Specifies behavior when the mouse is pressed signifying the start of a complete click.
      * 
@@ -123,7 +123,7 @@ public class DemoOverlay {
             quit.setMousePressed(true);
         }
     }
-    
+
     /**
      * Executes a specific action based on the mouse movement In this case, changing the
      * sprite to the "hover" sprite
@@ -137,7 +137,6 @@ public class DemoOverlay {
             quit.setMouseOver(true);
         }
     }
-    
 
     /**
      * Specifies behavior when the mouse button is released, signifying the end of a complete
@@ -155,7 +154,7 @@ public class DemoOverlay {
 
         quit.resetBools();
     }
-    
+
     /**
      * Checks to see if the mouse cursor is within the bounds of a end button
      * 

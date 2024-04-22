@@ -31,27 +31,28 @@ public class OverworldButton {
     /**
      * The world number of a level
      */
-    private final int worldNumber, 
-    /**
-     * the stage number of a level. This should be the same index as the index of the level that this button correlates to in the LevelManager levels array/
-     */
-    stageNumber;
+    private final int worldNumber,
+            /**
+             * the stage number of a level. This should be the same index as the index of the level
+             * that this button correlates to in the LevelManager levels array/
+             */
+            stageNumber;
     /**
      * Represents if this level has been completed
      */
-    private boolean completed = false, 
-    /**
-     * Represents if the level is hidden from the user or not
-     */
-    hidden = true, 
-    /**
-     * if the mouse is currently hovering over this button
-     */
-    mouseOver = false, 
-    /**
-     * if the mouse is currently pressed on this button
-     */
-    mousePressed = false;
+    private boolean completed = false,
+            /**
+             * Represents if the level is hidden from the user or not
+             */
+            hidden = true,
+            /**
+             * if the mouse is currently hovering over this button
+             */
+            mouseOver = false,
+            /**
+             * if the mouse is currently pressed on this button
+             */
+            mousePressed = false;
     /**
      * The color to draw this button on the menu
      */

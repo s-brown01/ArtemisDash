@@ -13,19 +13,19 @@ public class PauseButton {
     /**
      * The left coordinate
      */
-    protected int x, 
-    /**
-     * the top coordinate
-     */
-    y, 
-    /**
-     * the width of the button
-     */
-    width, 
-    /**
-     * the height of the buton
-     */
-    height;
+    protected int x,
+            /**
+             * the top coordinate
+             */
+            y,
+            /**
+             * the width of the button
+             */
+            width,
+            /**
+             * the height of the buton
+             */
+            height;
     /**
      * the area where the mouse can hover/click on the button
      */

@@ -12,7 +12,8 @@ import javax.swing.JFrame;
  */
 public class GameWindow extends JFrame {
     /**
-     * This is to help prevent InvalidClassExceptions when serialized objects are deserialized. Suggested by IDE.
+     * This is to help prevent InvalidClassExceptions when serialized objects are
+     * deserialized. Suggested by IDE.
      */
     private static final long serialVersionUID = 1L;
 

@@ -16,56 +16,62 @@ public abstract class Entity {
     /**
      * The left coordinate of the Entity
      */
-    protected float x, 
-    /**
-     * The top coordinate of the Entity
-     */
-    y;
+    protected float x,
+            /**
+             * The top coordinate of the Entity
+             */
+            y;
     /**
      * How wide the Entity is
      */
-    protected int width, 
+    protected int width,
+            /**
+             * how tall the Entity is
+             */
+            height;
     /**
-     * how tall the Entity is
-     */
-    height;
-    /**
-     * The area that represents where the Entity can interact with objects/environment/other Entities. <BR>
+     * The area that represents where the Entity can interact with objects/environment/other
+     * Entities. <BR>
      * The game uses the hitbox to determine if there is contact with other items
      */
     protected Rectangle2D.Float hitbox;
     /**
-     * This is the area that represets where the Entity's attack would hit. It is the area that is attacked when the Entity attacks.
+     * This is the area that represets where the Entity's attack would hit. It is the area
+     * that is attacked when the Entity attacks.
      */
     protected Rectangle2D.Float attackbox;
 
     /**
-     * This determines what "mode" the Entity is in. Based on the Constants (specific for each implementation of Entity)
+     * This determines what "mode" the Entity is in. Based on the Constants (specific for each
+     * implementation of Entity)
      */
     protected int state;
     /**
      * This represents what animation index to draw to the screen.
      */
-    protected int aniIndex, 
-    /**
-     * This is a counter that keeps track of how many updates have passed since the last frame change
-     */
-    aniTick, 
-    /**
-     * This keeps track of how often the animations change. The higher the animation, the less often it changes.
-     */
-    aniSpeed = utils.Constants.ANISPEED;
+    protected int aniIndex,
+            /**
+             * This is a counter that keeps track of how many updates have passed since the last frame
+             * change
+             */
+            aniTick,
+            /**
+             * This keeps track of how often the animations change. The higher the animation, the less
+             * often it changes.
+             */
+            aniSpeed = utils.Constants.ANISPEED;
     /**
      * This is how much health the Entity has at a given times
      */
-    protected int currentHealth, 
-    /**
-     * This is how much health an Entity could have at any time. 
-     */
-    maxHealth;
+    protected int currentHealth,
+            /**
+             * This is how much health an Entity could have at any time.
+             */
+            maxHealth;
 
     /**
-     * This boolean represents in the Entity is in the air and if gravity should be impacting them
+     * This boolean represents in the Entity is in the air and if gravity should be impacting
+     * them
      */
     protected boolean inAir = true;
     /**
@@ -107,8 +113,8 @@ public abstract class Entity {
     /**
      * Draws the attack hitbox around the caller entity. This is for debugging attacks
      * 
-     * @param g             - Graphics to be called and drawn from
-     * @param xLevelOffset  - The amount of horizontal offset from screenscrolling
+     * @param g            - Graphics to be called and drawn from
+     * @param xLevelOffset - The amount of horizontal offset from screenscrolling
      */
     protected void drawAttackbox(Graphics g, int xLevelOffset) {
         g.setColor(Color.RED);

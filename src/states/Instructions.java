@@ -11,7 +11,8 @@ import ui.InstructionsButton;
 import utils.LoadSave;
 
 /**
- * Instructions State class gives functionality to the Instructions button on the Main Menu
+ * Instructions State class gives functionality to the Instructions button on the Main
+ * Menu
  * 
  * @author John Botonakis and Sean-Paul Brown
  */
@@ -23,14 +24,17 @@ public class Instructions extends State implements StateMethods {
     /**
      * This is the button that will link back to the main menu
      */
-    private InstructionsButton menu = new InstructionsButton("MENU", Game.GAME_WIDTH/5, Game.GAME_HEIGHT/6*5, GameStates.MENU);
+    private InstructionsButton menu = new InstructionsButton("MENU", Game.GAME_WIDTH / 5, Game.GAME_HEIGHT / 6 * 5,
+            GameStates.MENU);
     /**
      * This is the button that will link to the overworld
      */
-    private InstructionsButton play = new InstructionsButton("PLAY", Game.GAME_WIDTH/5 * 4, Game.GAME_HEIGHT/6*5, GameStates.OVERWORLD);
-    
+    private InstructionsButton play = new InstructionsButton("PLAY", Game.GAME_WIDTH / 5 * 4, Game.GAME_HEIGHT / 6 * 5,
+            GameStates.OVERWORLD);
+
     /**
-     * This is the initializer, it will load in the background image and create the InstructionsButtons
+     * This is the initializer, it will load in the background image and create the
+     * InstructionsButtons
      * 
      * @param game - the Game that created and is managing this Class
      */
@@ -55,7 +59,7 @@ public class Instructions extends State implements StateMethods {
      */
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
-        
+
         final int key_X = 425;
         final int init_Y = 300;
         final int spacing_Y = 60;
@@ -67,7 +71,7 @@ public class Instructions extends State implements StateMethods {
         g.drawString("Press Mouse - Show Arrow Path", key_X, init_Y + 3 * spacing_Y);
         g.drawString("Release Mouse - Shoot", key_X, init_Y + 4 * spacing_Y);
         g.drawString("P - Pause", key_X, init_Y + 5 * spacing_Y);
-        
+
         menu.draw(g);
         play.draw(g);
     }
@@ -110,8 +114,8 @@ public class Instructions extends State implements StateMethods {
                 GameStates.state = GameStates.OVERWORLD;
             }
         }
-        
-        resetButtons();       
+
+        resetButtons();
     }
 
     @Override
@@ -123,7 +127,7 @@ public class Instructions extends State implements StateMethods {
             menu.setMouseOver(true);
         } else if (isInInstructionsButton(e, play)) {
             play.setMouseOver(true);
-        }     
+        }
     }
 
     @Override
@@ -132,10 +136,8 @@ public class Instructions extends State implements StateMethods {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {   
+    public void keyReleased(KeyEvent e) {
         // not using key inputs here
     }
-    
-    
 
 }

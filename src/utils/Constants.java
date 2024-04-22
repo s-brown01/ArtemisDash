@@ -178,33 +178,11 @@ public class Constants {
          */
         private static final Point LEVEL_5 = new Point((int) (710 / 1.75f * Game.SCALE),
                 (int) (415 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_6 = new Point((int) (650 / 1.75f * Game.SCALE),
-//                (int) (380 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_7 = new Point((int) (795 / 1.75f * Game.SCALE),
-//                (int) (420 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_8 = new Point((int) (760 / 1.75f * Game.SCALE),
-//                (int) (350 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_9 = new Point((int) (870 / 1.75f * Game.SCALE),
-//                (int) (390 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_10 = new Point((int) (400 / 1.75f * Game.SCALE),
-//                (int) (475 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_11 = new Point((int) (600 / 1.75f * Game.SCALE),
-//                (int) (515 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_12 = new Point((int) (800 / 1.75f * Game.SCALE),
-//                (int) (540 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_13 = new Point((int) (870 / 1.75f * Game.SCALE),
-//                (int) (480 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_14 = new Point((int) (800 / 1.75f * Game.SCALE),
-//                (int) (610 / 1.75f * Game.SCALE));
-//        private static final Point LEVEL_15 = new Point((int) (900 / 1.75f * Game.SCALE),
-//                (int) (625 / 1.75f * Game.SCALE));
         /**
          * This is a final array of all 5 Levels, so that it can be easily access by the Overworld
          * GameState
          */
         public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5 };
-//      public static final Point[] BUTTON_POINT_ARRAY = new Point[] { LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4, LEVEL_5,
-//      LEVEL_6, LEVEL_7, LEVEL_8, LEVEL_9, LEVEL_10, LEVEL_11, LEVEL_12, LEVEL_13, LEVEL_14, LEVEL_15 };
 
     }
 

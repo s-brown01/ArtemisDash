@@ -34,7 +34,8 @@ public class Level {
      */
     private Boolean completed = false;
     /**
-     * This keeps track of if this level is able to be played by the user or if it should be hidden from them.
+     * This keeps track of if this level is able to be played by the user or if it should be
+     * hidden from them.
      */
     private Boolean hidden = true;
 
