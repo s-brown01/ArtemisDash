@@ -38,9 +38,10 @@ public class AudioPlayer {
      * Level 2 music
      */
     public static int EVENLEVELS = 3;
-//    public static int W_1L_3 = 3;
-//    public static int W_1L_4 = 4;
-//    public static int W_1L_5 = 5;
+    /**
+     * World 1 Boss Music
+     */
+    public static int WORLD1BOSS = 4;
 
     /**
      * Death sound effect
@@ -106,7 +107,7 @@ public class AudioPlayer {
      * files as Clip objects
      */
     public void loadSong() {
-        String[] names = { "mm", "W1L1", "game-over" };
+        String[] names = { "mm", "W1L1", "game-over","W1L2","W1L5" };
         music = new Clip[names.length];
         for (int i = 0; i < music.length; i++)
             music[i] = getSound(names[i]);
@@ -174,10 +175,14 @@ public class AudioPlayer {
      * @param lvlIndex - The index of the level that corresponds to the selected song
      */
     public void setLevelSong(int lvlIndex) {
-        if (lvlIndex % 2 == 0)
-            playSong(ODDLEVELS);
-        else
-            playSong(EVENLEVELS);
+        if (lvlIndex == 4) {
+            playSong(WORLD1BOSS);
+        }else {
+            if (lvlIndex % 2 == 0)
+                playSong(ODDLEVELS);
+            else
+                playSong(EVENLEVELS);
+        }
     }
 
     /**
