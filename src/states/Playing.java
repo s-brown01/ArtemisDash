@@ -225,11 +225,11 @@ public class Playing extends State implements StateMethods {
         // If the level is complete,
         // update Level Complete Overlay
         if (levelComplete) {
-            // here is where we do anything when the level is completed
+        // here is where we do anything when the level is completed
             winOverlay.update();
             return;
-            // If the game is paused,
-            // update pause overlay
+        // If the game is paused,
+        // update pause overlay
         } else if (paused) {
             pauseOverlay.update();
             return;
@@ -237,6 +237,7 @@ public class Playing extends State implements StateMethods {
             // update death overlay
         } else if (gameOver) {
             deathOverlay.update();
+            return;
             // Otherwise, the game is still being played,
             // so update everything else
         } else {
@@ -424,14 +425,14 @@ public class Playing extends State implements StateMethods {
             pauseOverlay.mouseReleased(e);
             return;
         }
-        if (gameOver) {
+        else if (gameOver) {
             deathOverlay.mouseReleased(e);
         }
-        if (levelComplete) {
+        else if(levelComplete) {
             winOverlay.mouseReleased(e);
         }
         // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
-        if (e.getButton() == MouseEvent.BUTTON1) {
+        else if (e.getButton() == MouseEvent.BUTTON1) {
             player.setDrawArrowPath(false);
             player.shoot(e.getPoint());
             game.getAudioPlayer().playEffect(AudioPlayer.FIRE);
@@ -457,7 +458,7 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * This method is unused for Playing, instead using mouseReleased and mousePressed
+     * THIS FUNCTION IS UNUSED
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -527,6 +528,19 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
+     * Setter for Game Over boolean (determines if the screen should display Death Overlay or
+     * not)
+     * 
+     * @param paused - true if the screen should display Death Overlay, false if not
+     */
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+        if (gameOver == true) {
+            //Display demo screen
+        }
+    }
+
+    /**
      * Getter for the current score
      * 
      * @return the current score
@@ -580,7 +594,6 @@ public class Playing extends State implements StateMethods {
      * Let's the playing state know the Player Entity died.
      */
     public void playerDied() {
-        game.getAudioPlayer().playSong(AudioPlayer.GAMEOVER);
         gameOver = true;
     }
 }
