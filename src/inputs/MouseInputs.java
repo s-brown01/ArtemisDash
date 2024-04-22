@@ -38,6 +38,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         case MENU:
             gamePanel.getGame().getMenu().mouseDragged(e);
             break;
+        case INSTRUCTIONS:
+            gamePanel.getGame().getInstructions().mouseDragged(e);
+            break;
         case OVERWORLD:
             gamePanel.getGame().getOverworld().mouseDragged(e);
             break;
@@ -59,6 +62,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         switch (GameStates.state) {
         case MENU:
             gamePanel.getGame().getMenu().mouseMoved(e);
+            break;
+        case INSTRUCTIONS:
+            gamePanel.getGame().getInstructions().mouseMoved(e);
             break;
         case OVERWORLD:
             gamePanel.getGame().getOverworld().mouseMoved(e);
@@ -82,6 +88,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         case MENU:
             gamePanel.getGame().getMenu().mouseClicked(e);
             break;
+        case INSTRUCTIONS:
+            gamePanel.getGame().getInstructions().mouseClicked(e);
+            break;
         case OVERWORLD:
             gamePanel.getGame().getOverworld().mouseClicked(e);
             break;
@@ -103,6 +112,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         case MENU:
             gamePanel.getGame().getMenu().mousePressed(e);
             break;
+        case INSTRUCTIONS:
+            gamePanel.getGame().getInstructions().mousePressed(e);
+            break;
         case OVERWORLD:
             gamePanel.getGame().getOverworld().mousePressed(e);
             break;
@@ -121,10 +133,12 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        // to be filled in
         switch (GameStates.state) {
         case MENU:
             gamePanel.getGame().getMenu().mouseReleased(e);
+            break;
+        case INSTRUCTIONS:
+            gamePanel.getGame().getInstructions().mouseReleased(e);
             break;
         case OVERWORLD:
             gamePanel.getGame().getOverworld().mouseReleased(e);
@@ -141,14 +155,12 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-
+        // method not used
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-
+        // method not used
     }
 
 }

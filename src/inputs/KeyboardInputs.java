@@ -38,6 +38,9 @@ public class KeyboardInputs implements KeyListener {
         case MENU:
             gamePanel.getGame().getMenu().keyPressed(e);
             break;
+        case INSTRUCTIONS:
+            gamePanel.getGame().getInstructions().keyPressed(e);
+            break;
         case OVERWORLD:
             gamePanel.getGame().getOverworld().keyPressed(e);
             break;
@@ -60,6 +63,9 @@ public class KeyboardInputs implements KeyListener {
         // this allows us to deal with case-switch logic per class instead of all at once
         case MENU:
             gamePanel.getGame().getMenu().keyReleased(e);
+            break;
+        case INSTRUCTIONS:
+            gamePanel.getGame().getInstructions().keyReleased(e);
             break;
         case OVERWORLD:
             gamePanel.getGame().getOverworld().keyReleased(e);
