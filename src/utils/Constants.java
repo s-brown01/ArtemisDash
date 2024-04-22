@@ -215,7 +215,7 @@ public class Constants {
         /**
          * This is how large the images are in the sprite sheet
          */
-        public static final int ENDBUTTON_DEFAULT = 56;
+        public static final int ENDBUTTON_DEFAULT = (int) (56 / 1.75);
         /**
          * This is how large (in pixels) each button will be for overlays in the scaled game
          */

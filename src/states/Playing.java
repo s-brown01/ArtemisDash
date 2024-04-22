@@ -13,6 +13,7 @@ import levels.LevelManager;
 import main.Game;
 import projectiles.ProjectileManager;
 import ui.DeathOverlay;
+import ui.DemoOverlay;
 import ui.HUD;
 import ui.PauseOverlay;
 import ui.WinOverlay;
@@ -42,7 +43,12 @@ public class Playing extends State implements StateMethods {
     /**
      * This will keep track of if the gameOver overlay should show
      */
-    gameOver;
+    gameOver,
+    /**
+     * This will keep track of if the demo screen should be showing (true to show).
+     */
+    demoOver;
+    
     /**
      * The Player entity that travels between levels
      */
@@ -76,6 +82,10 @@ public class Playing extends State implements StateMethods {
      * The overlay for when the level is completed
      */
     private final WinOverlay winOverlay = new WinOverlay(this);
+    /**
+     * The overlay for when all 5 Demo levels are completed
+     */
+    private final DemoOverlay demoOverlay = new DemoOverlay(this);
     /**
      * the player's score
      */
@@ -222,9 +232,10 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void update() {
-        // If the level is complete,
-        // update Level Complete Overlay
-        if (levelComplete) {
+        // update the playing screen depending on what state the it is in
+        if (demoOver) {
+            demoOverlay.update();
+        } else if (levelComplete) {
         // here is where we do anything when the level is completed
             winOverlay.update();
             return;
@@ -293,6 +304,13 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void draw(Graphics g) {
+        // if the demo is over, only draw the demo screen nothing else 
+        if (demoOver) {
+            demoOverlay.draw(g);
+            return;
+        }
+        
+        
         // draw background first so everything else sits on it
         drawBackground(g);
         // if it is paused, only draw the background and the pauseOverlay.
@@ -383,7 +401,9 @@ public class Playing extends State implements StateMethods {
         this.levelComplete = true;
         game.getAudioPlayer().lvlCompleted();
         levelManager.getCurrentLevel().setCompleted(true);
-        levelManager.unhideNextLevels();
+        if (!levelManager.unhideNextLevels()) {
+            demoOver = true;
+        }
     }
 
     @Override
@@ -396,6 +416,9 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if (demoOver) {
+            demoOverlay.mousePressed(e);
+        }
         // if paused, only send the mouse input into the paused overlay
         if (paused) {
             pauseOverlay.mousePressed(e);
@@ -420,6 +443,9 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (demoOver) {
+            demoOverlay.mouseReleased(e);
+        }
         // if paused, only send the mouse input into the paused overlay
         if (paused) {
             pauseOverlay.mouseReleased(e);
@@ -445,6 +471,9 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void mouseMoved(MouseEvent e) {
+        if (demoOver) {
+            demoOverlay.mouseMoved(e);
+        }
         if (paused) {
             pauseOverlay.mouseMoved(e);
         }
@@ -488,7 +517,10 @@ public class Playing extends State implements StateMethods {
             player.setDash(true);
             break;
         case KeyEvent.VK_BACK_SPACE:
-            GameStates.state = GameStates.MENU;
+            GameStates.state = GameStates.OVERWORLD;
+            break;
+        case KeyEvent.VK_H:
+            demoOver = true;
             break;
 //Debugging tool: Press 9 to increment the score by 9
 //        case KeyEvent.VK_9:
