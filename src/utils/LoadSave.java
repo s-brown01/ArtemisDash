@@ -142,13 +142,13 @@ public class LoadSave {
      */
     public static final String LEVEL1_DATA = "/World1/W1_level_one.png";
     /**
-     * the RGB values for Level 1
+     * the RGB values for Level 2
      */
     public static final String LEVEL2_DATA = "/World1/W1_level_two.png";
-//    /**
-//     * the RGB values for Level 1
-//     */
-//    public static final String LEVEL3_DATA = "/World1/level_three_data_long.png";
+    /**
+     * the RGB values for Level 3
+     */
+    public static final String LEVEL3_DATA = "/World1/W1_level_three.png";
 //    /**
 //     * the RGB values for Level 1
 //     */

@@ -52,7 +52,8 @@ public class LevelManager {
 //        }
        levels[0] = new Level(LoadSave.LEVEL1_DATA);
        levels[1] = new Level(LoadSave.LEVEL2_DATA);
-       for (int i =2; i <levels.length; i ++) {
+       levels[2] = new Level(LoadSave.LEVEL3_DATA);
+       for (int i =3; i <levels.length; i ++) {
            levels[i] = new Level(LoadSave.LEVEL2_DATA);
        }
 //       levels[3] = new Level(LoadSave.getLevelData(LoadSave.LEVEL3_DATA));
