@@ -174,10 +174,11 @@ public class Playing extends State implements StateMethods {
      */
     private Random rnd = new Random();
     /**
-     * This is a variable that stores the score gained from enemies during play, and is added to the players score once the level is completed.
+     * This is a variable that stores the score gained from enemies during play, and is added
+     * to the players score once the level is completed.
      */
     private int scoreFromEnemies = 0;
-    
+
     /**
      * Runs the logic once the game state has switched to PLAYING Loads in the enemies,
      * backgrounds, and player
@@ -633,10 +634,12 @@ public class Playing extends State implements StateMethods {
         scoreFromEnemies = 0;
         gameOver = true;
     }
-    
+
     /**
-     * This is a setter for the enemy score for this level. It is used to keep track of score from killing enemies, which isn't given to the player until the level is completed
-     * @param value     - the value to change the score by
+     * This is a setter for the enemy score for this level. It is used to keep track of score
+     * from killing enemies, which isn't given to the player until the level is completed
+     * 
+     * @param value - the value to change the score by
      */
     public void addEnemyScore(int value) {
         scoreFromEnemies += value;

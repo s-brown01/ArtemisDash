@@ -14,7 +14,7 @@ import utils.LoadSave;
  * @author johnbotonakis and Sean-Paul Brown
  */
 public class Level {
-    
+
     /**
      * This is how much each level will be worth
      */

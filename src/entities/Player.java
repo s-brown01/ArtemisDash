@@ -163,7 +163,7 @@ public class Player extends Entity {
      * Counts the number of jumps allowed to the player; Resets back to 0
      */
     private int jumps = 0;
-    
+
     /**
      * This is the score of the player across all levels combined
      */
@@ -492,7 +492,7 @@ public class Player extends Entity {
         if (aniIndex != attackAniIndex) {
             return;
         }
-        
+
         // play the sound effect when loosing arrow
         if (playing != null) {
             playing.getGame().getAudioPlayer().playEffect(AudioPlayer.FIRE);
@@ -865,11 +865,14 @@ public class Player extends Entity {
     public Point getNextAttack() {
         return nextAttack;
     }
-    
+
     /**
-     * Setter for the score, this includes a check that it doesn't go below 0. If it does go below 0, it will revert back to 0.
+     * Setter for the score, this includes a check that it doesn't go below 0. If it does go
+     * below 0, it will revert back to 0.
      * 
-     * @param scoreChange   - this is the amount that the score will change by. Include the sign in the parameter, so positives increase score and negatives decrease.
+     * @param scoreChange - this is the amount that the score will change by. Include the sign
+     *                    in the parameter, so positives increase score and negatives
+     *                    decrease.
      */
     public void changeScore(int scoreChange) {
         this.score += scoreChange;
@@ -881,6 +884,7 @@ public class Player extends Entity {
 
     /**
      * Getter for this players current score
+     * 
      * @return the current score of this player, accumulated across levels.
      */
     public int getScore() {
@@ -888,7 +892,9 @@ public class Player extends Entity {
     }
 
     /**
-     * This method will reset the player entity to full health, and get it ready to spawn in for a new level at the specified point.
+     * This method will reset the player entity to full health, and get it ready to spawn in
+     * for a new level at the specified point.
+     * 
      * @param x - the x-coordinate to spawn at
      * @param y - the y-coordinate to spawn at
      */
