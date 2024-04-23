@@ -14,7 +14,7 @@ import utils.LoadSave;
  * 
  * @author John Botonakis
  */
-public class EndButtons extends PauseButton {
+public class EndButton extends PauseButton {
     /**
      * The different images for the end button (default/hover/click images)
      */
@@ -41,7 +41,7 @@ public class EndButtons extends PauseButton {
      * @param height   - Height of the sprite
      * @param rowindex - The row of of the image to get in the sprite sheet
      */
-    public EndButtons(int x, int y, int width, int height, int rowindex) {
+    public EndButton(int x, int y, int width, int height, int rowindex) {
         super(x, y, width, height);
         loadDeathImages(rowindex);
     }

@@ -43,7 +43,7 @@ public class DeathOverlay {
     /**
      * An EndButton that connects to the MENU GameState
      */
-    private EndButtons menu,
+    private EndButton menu,
             /**
              * An EndButton that connects to the OVERWORLD GameState
              */
@@ -111,8 +111,8 @@ public class DeathOverlay {
         int playX = (int) (450 * Game.SCALE);
         int yPos = (int) (195 * Game.SCALE);
 
-        play = new EndButtons(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 0);
-        menu = new EndButtons(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 2);
+        play = new EndButton(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 0);
+        menu = new EndButton(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 2);
     }
 
     /**
@@ -176,7 +176,7 @@ public class DeathOverlay {
      * @param b - Button bounding box
      * @return - Returns true if the mous is within the confines of the buttons bounding box
      */
-    private boolean isIn(MouseEvent e, EndButtons b) {
+    private boolean isIn(MouseEvent e, EndButton b) {
         return b.getBounds().contains(e.getX(), e.getY());
     }
 

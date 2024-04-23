@@ -18,14 +18,44 @@ import utils.LoadSave;
  */
 public class WinOverlay {
 
+    /**
+     * The background image of this overlay
+     */
     private BufferedImage img;
-    private int imgX, imgY, imgW, imgH;
-    private EndButtons returnToMenu, continuePlay;
+    /**
+     * The left coordinate of the image
+     */
+    private int imgX, 
+    /**
+     * The top coordinate of the image
+     */
+    imgY, 
+    /**
+     * The width of the image
+     */
+    imgW, 
+    /**
+     * The height of the image
+     */
+    imgH;
+    /**
+     * The EndButton that will return the player to the menu
+     */
+    private EndButton returnToMenu, 
+    /**
+     * The EndButton that will continue playing - return player to overworld
+     */
+    continuePlay;
+    /**
+     * The playing that is holding/controlling this overlay
+     */
     private Playing playing;
 
     /**
      * Initializes the Pause Overlay by creating and loading in sprite for the menu and its
      * buttons
+     * 
+     * @param playing - the playing that is holding (will be controlling) this overlay
      */
     public WinOverlay(Playing playing) {
         this.playing = playing;
@@ -79,8 +109,8 @@ public class WinOverlay {
         int playX = (int) (450 * Game.SCALE);
         int yPos = (int) (205 * Game.SCALE);
 
-        continuePlay = new EndButtons(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 0);
-        returnToMenu = new EndButtons(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 2);
+        continuePlay = new EndButton(playX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 0);
+        returnToMenu = new EndButton(menuX, yPos, ENDBUTTON_SIZE, ENDBUTTON_SIZE, 2);
         returnToMenu.resetBools();
         continuePlay.resetBools();
     }
@@ -146,7 +176,7 @@ public class WinOverlay {
      * @param b - Button bounding box
      * @return - Returns true if the mous is within the confines of the buttons bounding box
      */
-    private boolean isIn(MouseEvent e, EndButtons b) {
+    private boolean isIn(MouseEvent e, EndButton b) {
         return b.getBounds().contains(e.getX(), e.getY());
     }
 
