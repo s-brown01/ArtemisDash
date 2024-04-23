@@ -201,14 +201,26 @@ public class Playing extends State implements StateMethods {
         levelManager.setCurrentLevel(nextLevelIndex);
         loadCurrentLevel();
     }
+    
+    /**
+     * This methods will restart the current level in game. It uses the private loadCurrentLevel method.
+     */
+    public void restartLevel() {
+        scoreFromEnemies = 0;
+        this.demoOver = false;
+        this.gameOver = false;
+        this.paused = false;
+        this.levelComplete = false;
+        loadCurrentLevel();
+    }
 
     /**
      * Load in all of the enemies and other items in from the current Level. It will reset all
      * booleans to get the Level ready to play for the user
      */
     private void loadCurrentLevel() {
+        // don't create a new player, but "respawn" player
         player.spawnAt(200, 300);
-//        player = new Player(200, 300, (int) (IMAGE_WIDTH * Game.SCALE), (int) (IMAGE_HEIGHT * Game.SCALE), this);
         player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
         enemyManager.loadEnemies(levelManager.getCurrentLevel());
         projManager.reset();

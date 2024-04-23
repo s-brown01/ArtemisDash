@@ -12,8 +12,7 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * This class handles the Death overlay when the Player entity health reaches 0 during
- * gameplay
+ * This class handles the level complete overlay, which shows when the player kills every enemy in a level
  * 
  * @author John Botonakis
  */

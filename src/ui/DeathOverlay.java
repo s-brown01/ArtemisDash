@@ -161,8 +161,7 @@ public class DeathOverlay {
             }
         } else if (isIn(e, play)) {
             if (play.isMousePressed()) {
-                playing.resetAll();
-                GameStates.state = GameStates.OVERWORLD;
+                playing.restartLevel();
             }
         }
 

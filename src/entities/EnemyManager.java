@@ -71,6 +71,7 @@ public class EnemyManager {
      * @param level - what level to load enemies in from
      */
     public void loadEnemies(Level level) {
+        resetAllEnemies();
         skeletonList.addAll(level.getSkeletons());
         kingList.addAll(level.getSkeletonKings());
     }
