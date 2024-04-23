@@ -99,6 +99,7 @@ public class Skeleton extends Enemy {
             break;
         // if attacking, update the attackbox and check the attack
         case (ATTACK):
+            
             // change where the attackbox is located
             updateAttackbox();
             // check if first update with attack (i.e. first frame)
