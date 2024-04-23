@@ -373,7 +373,7 @@ public abstract class Enemy extends Entity {
     public int xFlipped() {
         // if the enemy is walking to the left, then the draw offset should be the width
         if (walkDirection == LEFT) {
-            return width;
+            return (int)(width*2.5);
         } else {
             // if the enemy is walking to the left, then the x to draw is the same as hitbox
             return 0;

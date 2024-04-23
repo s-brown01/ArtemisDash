@@ -169,7 +169,7 @@ public class EnemyManager {
              * 
              */
             if (playing.getProjectileManager().checkEnemyHit(s) && s.isKilled()) {
-                playing.updateScore(s.score);
+                playing.addEnemyScore(s.score);
             }
         }
 
@@ -185,7 +185,7 @@ public class EnemyManager {
             }
 
             if (playing.getProjectileManager().checkEnemyHit(sk) && sk.isKilled()) {
-                playing.updateScore(sk.score);
+                playing.addEnemyScore(sk.score);
             }
         }
 

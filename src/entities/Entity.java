@@ -102,12 +102,13 @@ public abstract class Entity {
     /**
      * Draws the hitbox around the caller entities sprite. This is for debugging the hitbox
      * 
-     * @param g - Graphics to be called and drawn from
+     * @param g             - Graphics to be called and drawn from
+     * @param xLevelOffset  - The horizontal offset from screen scrolling
      */
-    protected void drawHitbox(Graphics g) {
+    protected void drawHitbox(Graphics g, int xLevelOffset) {
         // For debugging hitbox
         g.setColor(Color.PINK);
-        g.fillRect((int) hitbox.x, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
+        g.fillRect((int) hitbox.x - xLevelOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
     }
 
     /**
