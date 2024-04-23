@@ -1,10 +1,7 @@
 package ui;
 
 import static utils.Constants.ButtonStates.B_HEIGHT;
-import static utils.Constants.ButtonStates.B_HEIGHT_DEFAULT;
 import static utils.Constants.ButtonStates.B_WIDTH;
-import static utils.Constants.ButtonStates.B_WIDTH_DEFAULT;
-import static utils.Constants.EndButtons.ENDBUTTON_SIZE;
 import static utils.Constants.OverworldButtonConstants.DEFAULT;
 import static utils.Constants.OverworldButtonConstants.DEFAULT_CLICKED;
 import static utils.Constants.OverworldButtonConstants.DEFAULT_HIGHLIGHT;
@@ -15,7 +12,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 import states.GameStates;
 import utils.LoadSave;
