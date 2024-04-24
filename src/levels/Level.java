@@ -82,6 +82,10 @@ public class Level {
      * @param completed - true if the level has been 100%'d, false if not
      */
     public void setCompleted(Boolean completed) {
+        if (this.completed != completed) {
+            System.out.println("CHANGING BUTTON #" + this.fileName + " ");
+
+        }
         this.completed = completed;
     }
 
@@ -112,10 +116,6 @@ public class Level {
      */
     public List<Skeleton> getSkeletons() {
         return LoadSave.getSkeletons(fileName);
-//        List<Skeleton> skels = new ArrayList<>();
-//        skels.add(new Skeleton(1200, 300, SKELETON_WIDTH, SKELETON_HEIGHT));
-//        skels.add(new Skeleton(600, 300, SKELETON_WIDTH, SKELETON_HEIGHT));
-//        return skels;
     }
 
     /**
@@ -126,9 +126,6 @@ public class Level {
      */
     public List<SkeletonKing> getSkeletonKings() {
         return LoadSave.getSkeletonKings(fileName);
-//        List<SkeletonKing> skels = new ArrayList<>();
-//        skels.add(new SkeletonKing(2200, 300, SKELETON_KING_WIDTH, SKELETON_KING_HEIGHT));
-//        return skels;
     }
 
     /**

@@ -47,18 +47,18 @@ public class LevelManager {
      * Load in the levels arrays with template levels.
      */
     private void loadLevels() {
-//        for (int i = 0; i < levels.length; i++) {
-//            levels[i] = new Level(LoadSave.LEVEL1_DATA);
-//        }
         levels[0] = new Level(LoadSave.LEVEL1_DATA);
         levels[1] = new Level(LoadSave.LEVEL2_DATA);
         levels[2] = new Level(LoadSave.LEVEL3_DATA);
         levels[3] = new Level(LoadSave.LEVEL4_DATA);
+        // load in rest of array with LEVEL2_DATA
         for (int i = 4; i < levels.length; i++) {
             levels[i] = new Level(LoadSave.LEVEL2_DATA);
         }
-//       levels[4] = new Level(LoadSave.getLevelData(LoadSave.LEVEL4_DATA));
-//       levels[5] = new Level(LoadSave.getLevelData(LoadSave.LEVEL5_DATA));
+//      levels[4] = new Level(LoadSave.getLevelData(LoadSave.LEVEL4_DATA));
+
+        // the first level should be unhidden initially
+        levels[0].setHidden(false);
     }
 
     /**

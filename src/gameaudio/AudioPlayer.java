@@ -102,7 +102,8 @@ public class AudioPlayer {
      */
     private boolean effectMute;
     /**
-     * Sets the volume for every sound that will be played. 1f is 100% volume, 0f is 0% volume. 
+     * Sets the volume for every sound that will be played. 1f is 100% volume, 0f is 0%
+     * volume.
      */
     private float volume = 1f;
 

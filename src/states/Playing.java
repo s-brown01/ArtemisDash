@@ -421,12 +421,17 @@ public class Playing extends State implements StateMethods {
      * Sets the levelComplete to true and sets the current Level's complete to true
      */
     public void completeLevel() {
+        // tell the playing that the level is completed
         this.levelComplete = true;
+        // play the level complete sounds
         game.getAudioPlayer().lvlCompleted();
+        // add the score from completing the level and from killing enemies
         player.changeScore(Level.SCORE_VALUE);
         player.changeScore(scoreFromEnemies);
+        // set the current level to completed and unhide the next level
         levelManager.getCurrentLevel().setCompleted(true);
         if (!levelManager.unhideNextLevels()) {
+            // if unhide returns false, the end of the array has been reached
             demoOver = true;
         }
     }
@@ -536,6 +541,7 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_SPACE:
             player.setJump(true);
             player.incJumpCount();
+            game.getAudioPlayer().playEffect(AudioPlayer.JUMP);
             break;
         case KeyEvent.VK_P:
             paused = !paused;
@@ -549,11 +555,6 @@ public class Playing extends State implements StateMethods {
         case KeyEvent.VK_H:
             demoOver = true;
             break;
-//Debugging tool: Press 9 to increment the score by 9
-//        case KeyEvent.VK_9:
-//            updateScore(9);
-//            break;
-
         }
     }
 
@@ -571,8 +572,6 @@ public class Playing extends State implements StateMethods {
             break;
         case KeyEvent.VK_SPACE:
             player.setJump(false);
-            game.getAudioPlayer().playEffect(AudioPlayer.JUMP);
-
             break;
         }
     }

@@ -35,8 +35,7 @@ public class MenuButton {
      * This is the index for the MENU button sprites
      */
     public static final int MENU_INDEX = 3;
-    
-    
+
     /**
      * The left coordinate in pixels
      */
@@ -49,7 +48,7 @@ public class MenuButton {
      * This correlates to the image state to draw (default/hover/pressed)
      */
     private int index;
-    
+
     /**
      * Since x is the left coordinate, 1/2 of the width means that the button can be centered
      * on the x-coordinate
@@ -92,7 +91,6 @@ public class MenuButton {
         loadImgs(rowIndex);
         initBounds();
     }
-    
 
     /**
      * Initializes a rectangle around the button to determine if mouse is intersecting within.

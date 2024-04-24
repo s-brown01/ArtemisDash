@@ -128,7 +128,7 @@ public class Constants {
         /**
          * The color of buttons representing not hidden and not completed levels
          */
-        public static final Color DEFAULT = new Color(179, 102, 255);
+        public static final Color DEFAULT = new Color(25, 250, 75);
         /**
          * The color of buttons representing not hidden and not completed levels when the mouse is
          * hovering on it

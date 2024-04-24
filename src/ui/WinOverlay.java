@@ -21,12 +21,12 @@ public class WinOverlay {
     /**
      * The EndButton that will return the player to the menu
      */
-    private EndButton returnToMenu; 
+    private EndButton returnToMenu;
     /**
      * The EndButton that will continue playing - return player to overworld
      */
     private EndButton continuePlay;
-    
+
     /**
      * Buffered Image for button display
      */
@@ -52,13 +52,12 @@ public class WinOverlay {
      */
     private Playing playing;
 
-
     /**
      * Initializes the Pause Overlay by creating and loading in sprite for the menu and its
      * buttons
      * 
      * @param playing - the playing that is holding (will be controlling) this overlay
-
+     * 
      */
     public WinOverlay(Playing playing) {
         this.playing = playing;

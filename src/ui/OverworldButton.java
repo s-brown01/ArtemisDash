@@ -31,28 +31,28 @@ public class OverworldButton {
     /**
      * The world number of a level
      */
-    private final int worldNumber,
-            /**
-             * the stage number of a level. This should be the same index as the index of the level
-             * that this button correlates to in the LevelManager levels array/
-             */
-            stageNumber;
+    private final int worldNumber;
+    /**
+     * the stage number of a level. This should be the same index as the index of the level
+     * that this button correlates to in the LevelManager levels array/
+     */
+    private final int stageNumber;
     /**
      * Represents if this level has been completed
      */
-    private boolean completed = false,
-            /**
-             * Represents if the level is hidden from the user or not
-             */
-            hidden = true,
-            /**
-             * if the mouse is currently hovering over this button
-             */
-            mouseOver = false,
-            /**
-             * if the mouse is currently pressed on this button
-             */
-            mousePressed = false;
+    private boolean completed = false;
+    /**
+     * Represents if the level is hidden from the user or not
+     */
+    private boolean hidden = true;
+    /**
+     * if the mouse is currently hovering over this button
+     */
+    private boolean mouseOver = false;
+    /**
+     * if the mouse is currently pressed on this button
+     */
+    private boolean mousePressed = false;
     /**
      * The color to draw this button on the menu
      */
@@ -83,17 +83,24 @@ public class OverworldButton {
      * hidden/completed and mouseOver/mousePressed
      */
     public void update() {
+        // check if the level is hidden
         if (hidden) {
             color = HIDDEN;
-            if (mouseOver)
+            if (mouseOver) {
                 color = HIDDEN_HIGHLIGHT;
-        } else if (completed) {
+            }
+            // if hidden, only use these colors
+            return;
+        }
+        // check if it is completed
+        if (completed) {
             color = COMPLETED;
             if (mouseOver)
                 color = COMPLETED_HIGHLIGHT;
             if (mousePressed)
                 color = COMPLETED_CLICKED;
         } else {
+            // if not completed, use the DEFAULT color
             color = DEFAULT;
             if (mouseOver)
                 color = DEFAULT_HIGHLIGHT;
@@ -166,7 +173,12 @@ public class OverworldButton {
      * @param completed - the next value of completed
      */
     public void setCompleted(boolean completed) {
+        if (this.completed != completed) {
+            System.out.println("CHANGING BUTTON #" + this.stageNumber + " ");
+
+        }
         this.completed = completed;
+
     }
 
     /**

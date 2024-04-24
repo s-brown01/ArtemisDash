@@ -38,7 +38,8 @@ public class Overworld extends State implements StateMethods {
     /**
      * This will be a button that will link back to the Instructions
      */
-    private final MenuButton menu = new MenuButton(Game.GAME_WIDTH / 6, Game.GAME_HEIGHT - Game.GAME_HEIGHT / 4, MenuButton.INSTRUCTIONS_INDEX, GameStates.INSTRUCTIONS);
+    private final MenuButton menu = new MenuButton(Game.GAME_WIDTH / 6, Game.GAME_HEIGHT - Game.GAME_HEIGHT / 4,
+            MenuButton.INSTRUCTIONS_INDEX, GameStates.INSTRUCTIONS);
     /**
      * The array of OverworldButtons that will be displayed on screen that match to the
      * locations array
@@ -86,11 +87,6 @@ public class Overworld extends State implements StateMethods {
         for (int i = 0; i < buttonArr.length; i++) {
             buttonArr[i] = new OverworldButton(btnLocations[i].x, btnLocations[i].y, lvlNames[i], 1, i);
         }
-        // this is just to see how the levels look at different stages
-        // should be removed by game starting
-        buttonArr[0].setHidden(false);
-        buttonArr[0].setCompleted(true);
-        buttonArr[1].setHidden(false);
     }
 
     /**
@@ -120,11 +116,6 @@ public class Overworld extends State implements StateMethods {
             ob.setCompleted(currLevel.getCompleted());
             ob.setHidden(currLevel.getHidden());
         }
-        // the first level should not be hidden no matter what.
-        // completed can either be true or false, so that doesn't change from above
-        levelManager.getLevelAtIndex(0).setHidden(false);
-        buttonArr[0].setHidden(levelManager.getLevelAtIndex(0).getHidden());
-
     }
 
     /**
@@ -157,7 +148,7 @@ public class Overworld extends State implements StateMethods {
         g.drawString("CLICK A LEVEL TO START", owsubTitleXPos, owsubTitleYPos);
 
         g.drawString("Press Backspace to return to main menu", backXPOs, backYPos);
-        
+
         menu.draw(g);
 
         // selected level, make sure its not null
@@ -245,7 +236,7 @@ public class Overworld extends State implements StateMethods {
             selectedLvl = null;
         }
         menu.resetButton();
-        
+
         // since everything is false, check if the mouse is over any of the buttons
         for (OverworldButton ob : buttonArr) {
             if (isInOB(e, ob)) {
@@ -256,7 +247,7 @@ public class Overworld extends State implements StateMethods {
         if (isInMenuButton(e, menu)) {
             menu.setMouseOver(true);
         }
-        
+
     }
 
     /**
@@ -323,5 +314,5 @@ public class Overworld extends State implements StateMethods {
         for (String line : text.split("\n"))
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
     }
-    
+
 }

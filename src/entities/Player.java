@@ -169,7 +169,7 @@ public class Player extends Entity {
      * This is the score of the player across all levels combined
      */
     private int score = 0;
-    
+
     /**
      * Constructor for the player class
      * 
@@ -207,7 +207,7 @@ public class Player extends Entity {
         if (attacking) {
             checkAttack();
         }
-        // make sure they are not outside of the boundaries 
+        // make sure they are not outside of the boundaries
         worldBoundsCheck();
         // make sure not on lava
         checkOnLava();
@@ -332,7 +332,7 @@ public class Player extends Entity {
             faceRight();
 
         }
-        
+
         if (dash) {
             xSpeed += (playerSpeed + 2f) * flipW;
         }
@@ -390,9 +390,11 @@ public class Player extends Entity {
             hitbox.y += hitbox.height * 1.5;
         }
     }
-    
+
     /**
-     * This is a helper method to check if the player is currently standing on a lava tile. If they player is standing on lava and not already hurting, they will get hurt and get knocked back
+     * This is a helper method to check if the player is currently standing on a lava tile. If
+     * they player is standing on lava and not already hurting, they will get hurt and get
+     * knocked back
      */
     private void checkOnLava() {
         // make sure not dead or hurting before checking
@@ -401,10 +403,11 @@ public class Player extends Entity {
         }
         // this is a buffer that gives the player a little extra room before they take lava damage
         final float lavaBuffer = 7.5f;
-        
+
         // check if the tile Player is on is lava
-        // subtract the lava buffer from the width then multiply by the flipW so can move both directions
-        if (isTileLava(hitbox.x + (hitbox.width - lavaBuffer)*flipW, hitbox.y + hitbox.height, levelData)) {
+        // subtract the lava buffer from the width then multiply by the flipW so can move both
+        // directions
+        if (isTileLava(hitbox.x + (hitbox.width - lavaBuffer) * flipW, hitbox.y + hitbox.height, levelData)) {
             // if it is lava, take damage
             // hurting has already been checked
             this.hurt();
@@ -587,7 +590,6 @@ public class Player extends Entity {
                 aniIndex = 1;
             }
         }
-
     }
 
     /**
@@ -679,7 +681,6 @@ public class Player extends Entity {
      * @param dashing - true if the player is dashing. False if not.
      */
     public void setDash(boolean dashing) {
-//        playing.getGame().getAudioPlayer().s
         // If already dashing and you press the button again,
         // stop dashing
         if (this.dash == true && dashing == true) {
@@ -765,9 +766,11 @@ public class Player extends Entity {
      * maximum amount of health.
      */
     public void heal() {
+        // stop hurting and add 1 to the health
         hurting = false;
         currentHealth++;
 
+        // check that not too much health
         if (currentHealth > MAX_HEALTH) {
             currentHealth = maxHealth;
         }

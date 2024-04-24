@@ -182,13 +182,14 @@ public class DeathOverlay {
     }
 
     /**
-     * This handles what happens when  key is pressed down on the keyboard
+     * This handles what happens when key is pressed down on the keyboard
+     * 
      * @param e - the key press Event
      */
     public void keyPressed(KeyEvent e) {
         // enter - play again
         // escape - main menu
-        switch (e.getKeyCode()){
+        switch (e.getKeyCode()) {
         case (KeyEvent.VK_ENTER):
             playing.restartLevel();
             break;
@@ -196,7 +197,7 @@ public class DeathOverlay {
             GameStates.state = GameStates.MENU;
             break;
         }
-        
+
     }
 
 }

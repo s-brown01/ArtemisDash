@@ -23,7 +23,8 @@ public class Instructions extends State implements StateMethods {
     /**
      * This is the button that will link back to the main menu
      */
-    private MenuButton menu = new MenuButton(Game.GAME_WIDTH / 4, Game.GAME_HEIGHT / 6 * 5, MenuButton.MENU_INDEX, GameStates.MENU);
+    private MenuButton menu = new MenuButton(Game.GAME_WIDTH / 4, Game.GAME_HEIGHT / 6 * 5, MenuButton.MENU_INDEX,
+            GameStates.MENU);
 
     /**
      * This is the initializer, it will load in the background image and create the

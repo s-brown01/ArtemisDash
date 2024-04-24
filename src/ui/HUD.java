@@ -157,7 +157,8 @@ public class HUD {
     }
 
     /**
-     * Function to continuously check that the health is up to date 
+     * Function to continuously check that the health is up to date
+     * 
      * @return playerHealth - Returns the current value of the Player's Health
      */
     public int updateHealth() {
@@ -167,7 +168,7 @@ public class HUD {
     }
 
     /**
-     * Function to keep the HUD element tied to player score up to date 
+     * Function to keep the HUD element tied to player score up to date
      */
     public void updateScore() {
         this.playerScore = playing.getScore();
@@ -177,7 +178,7 @@ public class HUD {
      * Function to keep the HUD element of Enemies Remaining tied to the dash up to date
      */
     private void updateEnemiesLeft() {
-        this.enemiesRemaining = playing.getEnemyManager().getEnemiesLeft();        
+        this.enemiesRemaining = playing.getEnemyManager().getEnemiesLeft();
     }
 
 }
