@@ -40,7 +40,7 @@ public class Instructions extends State implements StateMethods {
      */
     public Instructions(Game game) {
         super(game);
-        backgroundImg = LoadSave.getSpriteSheet(LoadSave.MENU_SCREEN);
+        backgroundImg = LoadSave.getSpriteSheet(LoadSave.INSTRUCTIONS_SCREEN);
     }
 
     /**
@@ -59,19 +59,6 @@ public class Instructions extends State implements StateMethods {
      */
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
-
-        final int key_X = 425;
-        final int init_Y = 300;
-        final int spacing_Y = 60;
-        g.setFont(LoadSave.loadFont(LoadSave.FONT, 25));
-        g.setColor(Color.WHITE);
-        // all keyboard instructions
-        g.drawString("A - Left      D - right", key_X, init_Y + spacing_Y);
-        g.drawString("Space - Jump      Shift - Dash", key_X, init_Y + 2 * spacing_Y);
-        g.drawString("Press Mouse - Show Arrow Path", key_X, init_Y + 3 * spacing_Y);
-        g.drawString("Release Mouse - Shoot", key_X, init_Y + 4 * spacing_Y);
-        g.drawString("P - Pause", key_X, init_Y + 5 * spacing_Y);
-
         menu.draw(g);
         play.draw(g);
     }

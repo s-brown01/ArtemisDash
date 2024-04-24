@@ -34,7 +34,7 @@ public class HUD {
      */
     private final int height = 80;
     private final Playing playing;
-    private int playerHealth, playerScore, playerLives;
+    private int playerHealth, playerScore, enemiesRemaining;
     private Font hudFont;
 
     /**
@@ -45,7 +45,8 @@ public class HUD {
     public HUD(Playing playing) {
         this.playing = playing;
         this.playerScore = playing.getScore();
-        this.playerLives = playing.getPlayer().getLives();
+        //UPDATE ENEMIES REMAINING
+        this.enemiesRemaining = playing.getPlayer().getLives();
         loadAssets();
     }
 
@@ -123,8 +124,9 @@ public class HUD {
         g.drawString("Score ", scoreXPos, scoreYPos);
         g.drawString(String.valueOf(playerScore), playerScoreX, playerScoreY);
 
-        g.drawString("Lives ", livesXPos, livesYPos);
-        g.drawString(String.valueOf(playerLives), playerLivesX, playerLivesY);
+        g.drawString("Enemies Left ", livesXPos, livesYPos);
+        //CHANGE TO ENEMIES REMAINING
+        g.drawString(String.valueOf(enemiesRemaining), playerLivesX, playerLivesY);
     }
 
     /**
@@ -136,22 +138,18 @@ public class HUD {
         return playerHealth;
 
     }
-
+    /**
+     * 
+     */
     public void updateScore() {
         this.playerScore = playing.getScore();
     }
 
-    /**
-     * Function to keep the HUD element tied to lives up to date
-     */
-    public void updateLives() {
-        this.playerLives = playing.getPlayer().getLives();
-    }
 
     /**
      * Function to keep the HUD element tied to the dash up to date
      */
-    public void updateCharge() {
+    public void updateEnemyCount() {
 
     }
 
