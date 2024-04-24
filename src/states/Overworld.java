@@ -14,6 +14,7 @@ import gameaudio.AudioPlayer;
 import levels.Level;
 import levels.LevelManager;
 import main.Game;
+import ui.MenuButton;
 import ui.OverworldButton;
 import utils.LoadSave;
 
@@ -35,6 +36,10 @@ public class Overworld extends State implements StateMethods {
      */
     private final Point[] btnLocations = BUTTON_POINT_ARRAY;
     /**
+     * This will be a button that will link back to the Instructions
+     */
+    private final MenuButton menu = new MenuButton(Game.GAME_WIDTH / 6, Game.GAME_HEIGHT - Game.GAME_HEIGHT / 4, MenuButton.INSTRUCTIONS_INDEX, GameStates.INSTRUCTIONS);
+    /**
      * The array of OverworldButtons that will be displayed on screen that match to the
      * locations array
      */
@@ -52,10 +57,6 @@ public class Overworld extends State implements StateMethods {
      * influence the current levels and what will be loaded next.
      */
     private final LevelManager levelManager;
-    /**
-     * This boolean keeps track of if the state has changed at all. Default it to true
-     */
-    private boolean changed = true;
     /**
      * The font to use in the overworld.
      */
@@ -98,13 +99,13 @@ public class Overworld extends State implements StateMethods {
      */
     @Override
     public void update() {
-        // only update the Level booleans if the state has changed, only need to update it once
-        // per change.
-        // this should hopefully help with performance as it is not checked every update
+        // make sure each button is hidden/completed appropriately
         updateLevelBooleans();
+        // update all of the buttons
         for (OverworldButton ob : buttonArr) {
             ob.update();
         }
+        menu.update();
     }
 
     /**
@@ -155,8 +156,9 @@ public class Overworld extends State implements StateMethods {
         g.drawString("OVERWORLD", owTitleXPos, owTitleYPos);
         g.drawString("CLICK A LEVEL TO START", owsubTitleXPos, owsubTitleYPos);
 
-        g.setFont(LoadSave.loadFont(LoadSave.FONT, 20));
         g.drawString("Press Backspace to return to main menu", backXPOs, backYPos);
+        
+        menu.draw(g);
 
         // selected level, make sure its not null
         if (selectedLvl != null)
@@ -193,6 +195,9 @@ public class Overworld extends State implements StateMethods {
                 return;
             }
         }
+        if (isInMenuButton(e, menu)) {
+            menu.setMousePressed(true);
+        }
     }
 
     /**
@@ -200,6 +205,7 @@ public class Overworld extends State implements StateMethods {
      */
     @Override
     public void mouseClicked(MouseEvent e) {
+        // do not use
     }
 
     /**
@@ -215,11 +221,15 @@ public class Overworld extends State implements StateMethods {
                 applyState(ob);
             }
         }
+        if (isInMenuButton(e, menu)) {
+            menu.applyGamestate();
+        }
         // if it wasn't over any button, reset everything
         for (OverworldButton ob : buttonArr) {
             ob.setMouseOver(false);
             ob.setMousePressed(false);
         }
+        menu.resetButton();
 
     }
 
@@ -234,6 +244,8 @@ public class Overworld extends State implements StateMethods {
             ob.setMouseOver(false);
             selectedLvl = null;
         }
+        menu.resetButton();
+        
         // since everything is false, check if the mouse is over any of the buttons
         for (OverworldButton ob : buttonArr) {
             if (isInOB(e, ob)) {
@@ -241,10 +253,14 @@ public class Overworld extends State implements StateMethods {
                 selectedLvl = ob;
             }
         }
+        if (isInMenuButton(e, menu)) {
+            menu.setMouseOver(true);
+        }
+        
     }
 
     /**
-     * This handles what happens when a key is pressed; Ignored in this class
+     * This handles what happens when a key is pressed.
      */
     @Override
     public void keyPressed(KeyEvent e) {
@@ -291,7 +307,6 @@ public class Overworld extends State implements StateMethods {
         // if not hidden, then they can play it.
         // load the next level in Playing and also change the changed boolean to true
         game.getPlaying().nextLevel(ob.getStageNumber());
-        changed = true;
         GameStates.state = GameStates.PLAYING;
         // Set the music to the playing music
         game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getCurrentLevelIndex());

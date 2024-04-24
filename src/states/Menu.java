@@ -64,9 +64,9 @@ public class Menu extends State implements StateMethods {
      * game state to the button function
      */
     private void loadButtons() {
-        buttons[0] = new MenuButton(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), 0, GameStates.OVERWORLD);
-        buttons[1] = new MenuButton(Game.GAME_WIDTH / 6, (int) (270 * Game.SCALE), 1, GameStates.INSTRUCTIONS);
-        buttons[2] = new MenuButton(Game.GAME_WIDTH / 6, (int) (340 * Game.SCALE), 2, GameStates.QUIT);
+        buttons[0] = new MenuButton(Game.GAME_WIDTH / 6, (int) (200 * Game.SCALE), MenuButton.PLAY_INDEX, GameStates.OVERWORLD);
+        buttons[1] = new MenuButton(Game.GAME_WIDTH / 6, (int) (270 * Game.SCALE), MenuButton.INSTRUCTIONS_INDEX, GameStates.INSTRUCTIONS);
+        buttons[2] = new MenuButton(Game.GAME_WIDTH / 6, (int) (340 * Game.SCALE), MenuButton.QUIT_INDEX, GameStates.QUIT);
     }
 
     /**
@@ -74,7 +74,7 @@ public class Menu extends State implements StateMethods {
      */
     private void resetButtons() {
         for (MenuButton mb : buttons) {
-            mb.resetButtons();
+            mb.resetButton();
         }
     }
 
@@ -84,7 +84,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mousePressed(MouseEvent e) {
         for (MenuButton mb : buttons) {
-            if (hoverOverMenuButton(e, mb)) {
+            if (isInMenuButton(e, mb)) {
                 mb.setMousePressed(true);
                 game.getAudioPlayer().playEffect(4);
                 break;
@@ -98,7 +98,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mouseReleased(MouseEvent e) {
         for (MenuButton mb : buttons) {
-            if (hoverOverMenuButton(e, mb)) {
+            if (isInMenuButton(e, mb)) {
                 if (mb.isMousePressed()) {
                     mb.applyGamestate();
                     break;
@@ -114,7 +114,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mouseMoved(MouseEvent e) {
         for (MenuButton mb : buttons) {
-            if (hoverOverMenuButton(e, mb)) {
+            if (isInMenuButton(e, mb)) {
                 mb.setMouseOver(true);
             } else {
                 mb.setMouseOver(false);

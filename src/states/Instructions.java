@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import main.Game;
-import ui.InstructionsButton;
+import ui.MenuButton;
 import utils.LoadSave;
 
 /**
@@ -23,8 +23,7 @@ public class Instructions extends State implements StateMethods {
     /**
      * This is the button that will link back to the main menu
      */
-    private InstructionsButton menu = new InstructionsButton("MENU", Game.GAME_WIDTH / 5, Game.GAME_HEIGHT / 6 * 5,
-            GameStates.MENU);
+    private MenuButton menu = new MenuButton(Game.GAME_WIDTH / 4, Game.GAME_HEIGHT / 6 * 5, MenuButton.MENU_INDEX, GameStates.MENU);
 
     /**
      * This is the initializer, it will load in the background image and create the
@@ -69,7 +68,7 @@ public class Instructions extends State implements StateMethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (isInInstructionsButton(e, menu)) {
+        if (isInMenuButton(e, menu)) {
             menu.setMousePressed(true);
         }
     }
@@ -81,7 +80,7 @@ public class Instructions extends State implements StateMethods {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (isInInstructionsButton(e, menu)) {
+        if (isInMenuButton(e, menu)) {
             if (menu.isMousePressed()) {
                 GameStates.state = GameStates.MENU;
             }
@@ -94,7 +93,7 @@ public class Instructions extends State implements StateMethods {
     public void mouseMoved(MouseEvent e) {
         menu.setMouseOver(false);
 
-        if (isInInstructionsButton(e, menu)) {
+        if (isInMenuButton(e, menu)) {
             menu.setMouseOver(true);
         }
     }

@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 import gameaudio.AudioPlayer;
 import main.Game;
-import ui.InstructionsButton;
+//import ui.InstructionsButton;
 import ui.MenuButton;
 
 /**
@@ -38,7 +38,7 @@ public abstract class State {
      * @param mb - the MenuButton to be checked
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
-    public boolean hoverOverMenuButton(MouseEvent e, MenuButton mb) {
+    public boolean isInMenuButton(MouseEvent e, MenuButton mb) {
         return mb.getBounds().contains(e.getX(), e.getY());
     }
 
@@ -50,9 +50,9 @@ public abstract class State {
      * @param ib - the InstructionsButton to be checked
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
-    public boolean isInInstructionsButton(MouseEvent e, InstructionsButton ib) {
-        return ib.getBounds().contains(e.getX(), e.getY());
-    }
+//    public boolean isInInstructionsButton(MouseEvent e, InstructionsButton ib) {
+//        return ib.getBounds().contains(e.getX(), e.getY());
+//    }
 
     /**
      * Getter for the game
