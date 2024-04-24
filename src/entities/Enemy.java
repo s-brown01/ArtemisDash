@@ -177,18 +177,6 @@ public abstract class Enemy extends Entity {
     }
 
     /**
-     * This function will have no purpose. The EnemyManager will draw all Enemies since it is
-     * better for memory to have imgs stored there.
-     * 
-     * USE ENEMY MANAGER DRAW INSTEAD
-     * 
-     * @param g - the graphics where to draw the Enemy
-     */
-    public void draw(Graphics g) {
-        // not used
-    }
-
-    /**
      * This will check if this enemy's attack box intersects with the players hitbox. If it
      * does, the attack connected and player takes damage.
      * 
@@ -458,5 +446,15 @@ public abstract class Enemy extends Entity {
      */
     public float getAttackWalkSpeed() {
         return attackWalkSpeed;
+    }
+    
+    /**
+     * THIS FUNCTION IS UNUSED
+     * USE ENEMY MANAGER DRAW INSTEAD
+     * 
+     * @param g - the graphics where to draw the Enemy
+     */
+    public void draw(Graphics g) {
+        // not used
     }
 }

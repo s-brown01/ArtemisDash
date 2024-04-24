@@ -304,10 +304,7 @@ public class Player extends Entity {
         if (jump) {
             jump();
         }
-        // if the user is dashing, try to dash
-//        if (dash) {
-//            dash();
-//        }
+
 
         // make sure they are not dashing and not inAir before trying to short circut
         // check if holding both left and right or holding neither

@@ -232,7 +232,6 @@ public class AudioPlayer {
         stopSong();
 
         currentID = song;
-//        updateSongVolume();
         music[currentID].setMicrosecondPosition(0);
         if (song == GAMEOVER) {
             music[currentID].loop(0);
@@ -265,16 +264,6 @@ public class AudioPlayer {
                 booleanControl.setValue(effectMute);
             }
         }
-    }
-
-    /**
-     * Updates the currently playing song's volume as a float.
-     */
-    private void updateSongVolume() {
-        FloatControl gainControl = (FloatControl) music[currentID].getControl(FloatControl.Type.MASTER_GAIN);
-        float range = gainControl.getMaximum() - gainControl.getMinimum();
-        float gain = (range * volume) + gainControl.getMinimum();
-        gainControl.setValue(gain);
     }
 
 }

@@ -153,11 +153,16 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     }
 
+    /**
+     * THIS FUNCTION IS UNUSED
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
         // method not used
     }
-
+    /**
+     * THIS FUNCTION IS UNUSED
+     */
     @Override
     public void mouseExited(MouseEvent e) {
         // method not used

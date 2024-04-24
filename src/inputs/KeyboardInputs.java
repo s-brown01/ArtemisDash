@@ -81,7 +81,7 @@ public class KeyboardInputs implements KeyListener {
     }
 
     /**
-     * This is called when a key is pressed and released, never used in the game.
+     * THIS FUNCTION IS UNUSED
      */
     @Override
     public void keyTyped(KeyEvent e) {

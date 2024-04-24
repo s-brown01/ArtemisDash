@@ -171,14 +171,6 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This is called when the mouse is pressed and moved; ignored in this class
-     */
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        // ignore this method, not using it
-    }
-
-    /**
      * This deals with that happens when the mouse is pressed down. It checks if the mouse is
      * over any button, and if so then sets the mousePressed of that button to true.
      */
@@ -198,14 +190,6 @@ public class Overworld extends State implements StateMethods {
         if (isInMenuButton(e, menu)) {
             menu.setMousePressed(true);
         }
-    }
-
-    /**
-     * THIS FUNCTION IS UNUSED
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // do not use
     }
 
     /**
@@ -272,15 +256,6 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * This handles what happens when a key is released; Ignored in this class
-     */
-    @Override
-    public void keyReleased(KeyEvent e) {
-        // ignore this method, not using key bindings in OverWorld
-
-    }
-
-    /**
      * This function will determine if the cursor of the mouse is inside the bounds of a
      * button.
      * 
@@ -324,4 +299,28 @@ public class Overworld extends State implements StateMethods {
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
     }
     
+    /**
+     * THIS FUNCTION IS UNUSED
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // do not use
+    }
+    
+    /**
+     * THIS FUNCTION IS UNUSED
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // ignore this method, not using key bindings in OverWorld
+
+    }
+
+    /**
+     * THIS FUNCTION IS UNUSED
+     */
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        // ignore this method, not using it
+    }
 }

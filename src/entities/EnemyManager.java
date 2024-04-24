@@ -176,7 +176,7 @@ public class EnemyManager {
                 enemiesLeft++;
             }
 
-//            Check the contact first so the enemy knows if it should die. Then check if it is dead.
+            //Check the contact first so the enemy knows if it should die. Then check if it is dead.
             if (playing.getProjectileManager().checkEnemyHit(s) && s.isKilled()) {
                 playing.addEnemyScore(s.score);
             }
