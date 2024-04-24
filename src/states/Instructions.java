@@ -26,11 +26,6 @@ public class Instructions extends State implements StateMethods {
      */
     private InstructionsButton menu = new InstructionsButton("MENU", Game.GAME_WIDTH / 5, Game.GAME_HEIGHT / 6 * 5,
             GameStates.MENU);
-    /**
-     * This is the button that will link to the overworld
-     */
-    private InstructionsButton play = new InstructionsButton("PLAY", Game.GAME_WIDTH / 5 * 4, Game.GAME_HEIGHT / 6 * 5,
-            GameStates.OVERWORLD);
 
     /**
      * This is the initializer, it will load in the background image and create the
@@ -49,7 +44,6 @@ public class Instructions extends State implements StateMethods {
      */
     public void update() {
         menu.update();
-        play.update();
     }
 
     /**
@@ -60,7 +54,6 @@ public class Instructions extends State implements StateMethods {
     public void draw(Graphics g) {
         g.drawImage(backgroundImg, 0, 0, backgroundImg.getWidth(), backgroundImg.getHeight(), null);
         menu.draw(g);
-        play.draw(g);
     }
 
     /**
@@ -68,7 +61,6 @@ public class Instructions extends State implements StateMethods {
      */
     private void resetButtons() {
         menu.resetButton();
-        play.resetButton();
     }
 
     @Override
@@ -80,8 +72,6 @@ public class Instructions extends State implements StateMethods {
     public void mousePressed(MouseEvent e) {
         if (isInInstructionsButton(e, menu)) {
             menu.setMousePressed(true);
-        } else if (isInInstructionsButton(e, play)) {
-            play.setMousePressed(true);
         }
     }
 
@@ -96,10 +86,6 @@ public class Instructions extends State implements StateMethods {
             if (menu.isMousePressed()) {
                 GameStates.state = GameStates.MENU;
             }
-        } else if (isInInstructionsButton(e, play)) {
-            if (play.isMousePressed()) {
-                GameStates.state = GameStates.OVERWORLD;
-            }
         }
 
         resetButtons();
@@ -108,12 +94,9 @@ public class Instructions extends State implements StateMethods {
     @Override
     public void mouseMoved(MouseEvent e) {
         menu.setMouseOver(false);
-        play.setMouseOver(false);
 
         if (isInInstructionsButton(e, menu)) {
             menu.setMouseOver(true);
-        } else if (isInInstructionsButton(e, play)) {
-            play.setMouseOver(true);
         }
     }
 
