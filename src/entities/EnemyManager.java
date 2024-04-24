@@ -56,6 +56,11 @@ public class EnemyManager {
     private final List<SkeletonKing> kingList = new ArrayList<>();
 
     /**
+     * This will keep track of how many alive and active enemies there are in the enemyManager
+     */
+    private int enemiesLeft = 0;
+
+    /**
      * This class manages every entity instance that is currently loaded into the game
      * 
      * @param playing - The game state to which the entities will be loaded onto
@@ -148,6 +153,8 @@ public class EnemyManager {
      * @param player  - the current Player that the user is using
      */
     public void update(int[][] lvlData, Player player) {
+        // restart at 0
+        enemiesLeft = 0;
         // this boolean will keep track of if every enemy has died, defaulted to true
         boolean allEnemiesKilled = true;
         for (Skeleton s : skeletonList) {
@@ -164,11 +171,12 @@ public class EnemyManager {
             if (allEnemiesKilled) {
                 allEnemiesKilled = false;
             }
+            // only add non-killed enemies to the counter
+            if (!s.isKilled()) {
+                enemiesLeft++;
+            }
 
-            /*
-             * Check the contact first so the enemy knows if it should die. Then check if it is dead.
-             * 
-             */
+//            Check the contact first so the enemy knows if it should die. Then check if it is dead.
             if (playing.getProjectileManager().checkEnemyHit(s) && s.isKilled()) {
                 playing.addEnemyScore(s.score);
             }
@@ -183,6 +191,10 @@ public class EnemyManager {
 
             if (allEnemiesKilled) {
                 allEnemiesKilled = false;
+            }
+            // only add non-killed enemies to the counter
+            if (!sk.isKilled()) {
+                enemiesLeft++;
             }
 
             if (playing.getProjectileManager().checkEnemyHit(sk) && sk.isKilled()) {
@@ -221,5 +233,14 @@ public class EnemyManager {
      */
     public List<SkeletonKing> getSkeletonKings() {
         return kingList;
+    }
+
+    /**
+     * Getter for the alive and active enemies left
+     * 
+     * @return the current amount of alive and active enemies
+     */
+    public int getEnemiesLeft() {
+        return enemiesLeft;
     }
 }

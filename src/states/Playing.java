@@ -229,6 +229,8 @@ public class Playing extends State implements StateMethods {
         hud = new HUD(this);
         scoreFromEnemies = 0;
         levelComplete = levelManager.getCurrentLevel().getCompleted();
+        game.getAudioPlayer().setLevelSong(levelManager.getCurrentLevelIndex());
+
     }
 
     /**
@@ -519,6 +521,11 @@ public class Playing extends State implements StateMethods {
      */
     @Override
     public void keyPressed(KeyEvent e) {
+        // if on the death otherlay screen give the keypressed event to it
+        if (gameOver) {
+            deathOverlay.keyPressed(e);
+            return;
+        }
         switch (e.getKeyCode()) {
         case KeyEvent.VK_A:
             player.setLeft(true);

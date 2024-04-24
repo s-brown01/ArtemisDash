@@ -45,8 +45,7 @@ public class HUD {
     public HUD(Playing playing) {
         this.playing = playing;
         this.playerScore = playing.getScore();
-        // UPDATE ENEMIES REMAINING
-        this.enemiesRemaining = playing.getPlayer().getLives();
+        this.enemiesRemaining = playing.getEnemyManager().getEnemiesLeft();
         loadAssets();
     }
 
@@ -75,6 +74,7 @@ public class HUD {
         } else {
             updateHealth();
             updateScore();
+            updateEnemiesLeft();
         }
 
     }
@@ -96,15 +96,15 @@ public class HUD {
         // Y-Position of the Score Count
         int playerScoreY = yPos + 75;
 
-        // Lives Positioning Vars
+        // Enemies Remaining Vars
         // X-Position of the Lives Title
-        int livesXPos = xPos * 5;
+        int remainXPos = xPos * 5;
         // Y-Position of the Lives Title
-        int livesYPos = yPos * 3;
+        int remainYPos = yPos * 3;
         // X-Position of the Lives Count
-        int playerLivesX = xPos * 5;
+        int enemyRemainingX = xPos * 5;
         // Y-Position of the Lives Count
-        int playerLivesY = yPos + 75;
+        int enemyRemainingY = yPos + 75;
 
         // X-Position of the Player health represented in hearts
         int heartsXpos = xPos + 80;
@@ -124,9 +124,8 @@ public class HUD {
         g.drawString("Score ", scoreXPos, scoreYPos);
         g.drawString(String.valueOf(playerScore), playerScoreX, playerScoreY);
 
-        g.drawString("Enemies Left ", livesXPos, livesYPos);
-        // CHANGE TO ENEMIES REMAINING
-        g.drawString(String.valueOf(enemiesRemaining), playerLivesX, playerLivesY);
+        g.drawString("Enemies Left ", remainXPos, remainYPos);
+        g.drawString(String.valueOf(enemiesRemaining), enemyRemainingX, enemyRemainingY);
     }
 
     /**
@@ -140,17 +139,17 @@ public class HUD {
     }
 
     /**
-     * 
+     * This function updates the score from the playing's score
      */
     public void updateScore() {
         this.playerScore = playing.getScore();
     }
 
     /**
-     * Function to keep the HUD element tied to the dash up to date
+     * Function to keep the HUD element of Enemies Remaining tied to the dash up to date
      */
-    public void updateEnemyCount() {
-
+    private void updateEnemiesLeft() {
+        this.enemiesRemaining = playing.getEnemyManager().getEnemiesLeft();        
     }
 
 }

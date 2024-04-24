@@ -3,6 +3,7 @@ package ui;
 import static utils.Constants.EndButtons.ENDBUTTON_SIZE;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
@@ -178,6 +179,24 @@ public class DeathOverlay {
      */
     private boolean isIn(MouseEvent e, EndButton b) {
         return b.getBounds().contains(e.getX(), e.getY());
+    }
+
+    /**
+     * This handles what happens when  key is pressed down on the keyboard
+     * @param e - the key press Event
+     */
+    public void keyPressed(KeyEvent e) {
+        // enter - play again
+        // escape - main menu
+        switch (e.getKeyCode()){
+        case (KeyEvent.VK_ENTER):
+            playing.restartLevel();
+            break;
+        case (KeyEvent.VK_ESCAPE):
+            GameStates.state = GameStates.MENU;
+            break;
+        }
+        
     }
 
 }

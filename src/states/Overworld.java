@@ -308,8 +308,6 @@ public class Overworld extends State implements StateMethods {
         // load the next level in Playing and also change the changed boolean to true
         game.getPlaying().nextLevel(ob.getStageNumber());
         GameStates.state = GameStates.PLAYING;
-        // Set the music to the playing music
-        game.getAudioPlayer().setLevelSong(game.getPlaying().getLevelManager().getCurrentLevelIndex());
     }
 
     /**
