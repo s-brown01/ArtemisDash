@@ -123,7 +123,7 @@ public class AudioPlayer {
      * files as Clip objects
      */
     public void loadSong() {
-        String[] names = { "mm", "W1L1", "game-over", "W1L2", "W1L5" };
+        String[] names = { "mm16", "W1L116", "game-over15", "W1L216", "W1L516" };
         music = new Clip[names.length];
         for (int i = 0; i < music.length; i++)
             music[i] = getSound(names[i]);
@@ -134,8 +134,8 @@ public class AudioPlayer {
      * files as Clip objects
      */
     public void loadEffect() {
-        String[] effectNames = { "player_death", "jump", "bow_fire", "button_hover", "button_confirm", "dash",
-                "enemy_attack", "player_hurt", "level_complete" };
+        String[] effectNames = { "playerdeath16", "jump16", "bowfire16", "buttonhover16", "buttonconfirm16", "dash16",
+                "enemyattack16", "playerhurt16", "levelcomplete16" };
         fx = new Clip[effectNames.length];
         for (int i = 0; i < fx.length; i++)
             fx[i] = getSound(effectNames[i]);
