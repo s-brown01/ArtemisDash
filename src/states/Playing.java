@@ -605,7 +605,7 @@ public class Playing extends State implements StateMethods {
      * @return the current score
      */
     public int getScore() {
-        return player.getScore();
+        return player.getScore() + scoreFromEnemies;
     }
 
     /**
