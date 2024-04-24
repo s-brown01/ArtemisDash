@@ -11,7 +11,7 @@ import utils.LoadSave;
 
 /**
  * The HUD or Heads Up Display will always be visible during gameplay to inform the player
- * of their score, their current health, and their lives remaining
+ * of their score, their current health, and the enemies remaining
  * 
  * @author John Botonakis
  */
