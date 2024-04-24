@@ -1,11 +1,5 @@
 package levels;
 
-import static utils.Constants.EnemyConstants.SKELETON_HEIGHT;
-import static utils.Constants.EnemyConstants.SKELETON_KING_HEIGHT;
-import static utils.Constants.EnemyConstants.SKELETON_KING_WIDTH;
-import static utils.Constants.EnemyConstants.SKELETON_WIDTH;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import entities.Skeleton;
