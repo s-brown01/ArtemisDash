@@ -43,18 +43,6 @@ public abstract class State {
     }
 
     /**
-     * This function determines if the mouseEvent parameter is contained within the
-     * OptionsButtons' bounds.
-     * 
-     * @param e  - the current information about the MouseEvent
-     * @param ib - the InstructionsButton to be checked
-     * @return true if the mouse is contained in the MenuButton's bounds, false if not
-     */
-//    public boolean isInInstructionsButton(MouseEvent e, InstructionsButton ib) {
-//        return ib.getBounds().contains(e.getX(), e.getY());
-//    }
-
-    /**
      * Getter for the game
      * 
      * @return the Game holding this state
