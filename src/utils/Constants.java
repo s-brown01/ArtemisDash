@@ -263,7 +263,7 @@ public class Constants {
         /**
          * This is how much health the Player will be starting each level with
          */
-        public static final int STARTING_HEALTH = 2;
+        public static final int STARTING_HEALTH = 3;
         /**
          * This is the maximum amount of hearts that a Player could have
          */

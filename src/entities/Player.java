@@ -22,6 +22,7 @@ import static utils.HelperMethods.canMoveHere;
 import static utils.HelperMethods.floorCheck;
 import static utils.HelperMethods.getXPosWall;
 import static utils.HelperMethods.getYPosRoof;
+import static utils.HelperMethods.isTileLava;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -168,7 +169,7 @@ public class Player extends Entity {
      * This is the score of the player across all levels combined
      */
     private int score = 0;
-
+    
     /**
      * Constructor for the player class
      * 
@@ -206,6 +207,10 @@ public class Player extends Entity {
         if (attacking) {
             checkAttack();
         }
+        // make sure they are not outside of the boundaries 
+        worldBoundsCheck();
+        // make sure not on lava
+        checkOnLava();
         setAnimation();
     }
 
@@ -295,20 +300,18 @@ public class Player extends Entity {
     private void updatePos() {
         moving = false;
 
-        // before moving, make sure that they are not outside of the world
-        worldBoundsCheck();
-
         // if the user is jumping, try to jump
         if (jump) {
             jump();
         }
         // if the user is dashing, try to dash
-        if (dash) {
-            dash();
-        }
+//        if (dash) {
+//            dash();
+//        }
 
+        // make sure they are not dashing and not inAir before trying to short circut
         // check if holding both left and right or holding neither
-        if (!inAir) {
+        if (!inAir && !dash) {
             if ((!left && !right) || (right && left)) {
                 return;
             }
@@ -328,6 +331,10 @@ public class Player extends Entity {
             xSpeed += playerSpeed;
             faceRight();
 
+        }
+        
+        if (dash) {
+            xSpeed += (playerSpeed + 2f) * flipW;
         }
 
         // Checks if the player wanted to be in the air
@@ -383,6 +390,32 @@ public class Player extends Entity {
             hitbox.y += hitbox.height * 1.5;
         }
     }
+    
+    /**
+     * This is a helper method to check if the player is currently standing on a lava tile. If they player is standing on lava and not already hurting, they will get hurt and get knocked back
+     */
+    private void checkOnLava() {
+        // make sure not dead or hurting before checking
+        if (killed || hurting) {
+            return;
+        }
+        // this is a buffer that gives the player a little extra room before they take lava damage
+        final float lavaBuffer = 7.5f;
+        
+        // check if the tile Player is on is lava
+        // subtract the lava buffer from the width then multiply by the flipW so can move both directions
+        if (isTileLava(hitbox.x + (hitbox.width - lavaBuffer)*flipW, hitbox.y + hitbox.height, levelData)) {
+            // if it is lava, take damage
+            // hurting has already been checked
+            this.hurt();
+            // this is the knockback of the player
+            final float xSpeed = (hitbox.width * flipW);
+            // make sure the player can move to the knockback spot
+            if (canMoveHere(hitbox.x + xSpeed, hitbox.x, hitbox.width, hitbox.height, levelData)) {
+                this.hitbox.x -= xSpeed;
+            }
+        }
+    }
 
     /**
      * This is a helper function to "flip" the sprite so that it is facing towards the right
@@ -420,36 +453,6 @@ public class Player extends Entity {
             return;
         }
         jump = false;
-    }
-
-    /**
-     * Handles event where the dash button (Shift) is pressed
-     */
-    private void dash() {
-        // if not dashing, return
-        if (!dash) {
-            return;
-        }
-        // if dashing...
-        // check they can move to the next step, then they should move
-        while (canMoveHere(hitbox.x, hitbox.y, hitbox.width, hitbox.height, levelData)) {
-            // multiply by the flip width, so that dashing can go both directions
-            hitbox.x += (playerSpeed + 2f) * flipW;
-            break;
-        }
-        if (!canMoveHere(hitbox.x, hitbox.y, hitbox.width + 5, hitbox.height, levelData)) {
-            for (int i = 0; i < 5; i++) {// idea is to have a parabola but going backwards? hard to make
-                hitbox.x -= i * 2;
-                hitbox.y -= i * i;
-
-            }
-            // if (the hitbox is over a certain threshold ABOVE the floor), inAir is TRUE
-            inAir = true;
-            airSpeed = 0;
-            gravity = GRAVITY;
-            dash = false;
-
-        }
     }
 
     /**
@@ -533,6 +536,9 @@ public class Player extends Entity {
         if (canMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
             hitbox.x += xSpeed;
         } else {
+            if (dash) {
+                dash = false;
+            }
             hitbox.x = getXPosWall(hitbox, xSpeed);
 
         }

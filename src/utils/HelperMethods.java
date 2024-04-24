@@ -106,7 +106,7 @@ public class HelperMethods {
             return tileXPos + xOffset - 1;
         } else {
             // Collision on the Left Side
-            return currentTile * Game.TILES_SIZE;
+            return currentTile * Game.TILES_SIZE + 1;
         }
 
     }
@@ -189,10 +189,13 @@ public class HelperMethods {
     public static boolean isTileWalkable(Rectangle2D.Float hitbox, float xSpeed, int[][] lvlData) {
         if (xSpeed < 0) {
             // moving left, x = x
-            return isSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
+            return (isSolid(hitbox.x - xSpeed, hitbox.y + hitbox.height + 1, lvlData)
+                    && !isTileLava(hitbox.x - xSpeed, hitbox.y + hitbox.height + 1, lvlData));
         } else {
             // moving right, x = x + width
-            return isSolid(hitbox.x + hitbox.width + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
+            return (isSolid(hitbox.x + hitbox.width + xSpeed, hitbox.y + hitbox.height + 1, lvlData)
+                    && !isTileLava(hitbox.x + hitbox.width + xSpeed, hitbox.y + hitbox.height, lvlData));
+
         }
     }
 
@@ -217,4 +220,19 @@ public class HelperMethods {
         return true;
     }
 
+    /**
+     * Check if a specific tile is lava based on the coordinates given into the function.
+     * 
+     * @param x_coord - the x-coordinate to check (not the tile). The width should be
+     *                added/not added depending on what direction the Entity is moving.
+     * @param y_coord - the y-coordinate to check (not the tile). For entities, this should
+     *                include the height.
+     * @return true if the specific tile away is lava
+     */
+    public static boolean isTileLava(float x_coord, float y_coord, int[][] lvlData) {
+        final int xTile = (int) (x_coord / Game.TILES_SIZE);
+        // add 1 to the y_coord so the tile underneath the Entity is checked
+        final int yTile = (int) ((y_coord + 1) / Game.TILES_SIZE);
+        return (lvlData[yTile][xTile] == 45);
+    }
 }
