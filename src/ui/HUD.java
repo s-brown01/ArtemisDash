@@ -96,14 +96,14 @@ public class HUD {
         // Y-Position of the Score Count
         int playerScoreY = yPos + 75;
 
-        // Enemy Positioning Vars
-        // X-Position of the Lives Title
+        // Enemy Count Vars
+        // X-Position of the Enemy Count Title
         int enemyTitleX = xPos * 5;
-        // Y-Position of the Lives Title
+        // Y-Position of the Enemy Count Title
         int enemyTitleY = yPos * 3;
-        // X-Position of the Lives Count
+        // X-Position of the Enemy Count
         int enemyRemainCountX = xPos * 5;
-        // Y-Position of the Lives Count
+        // Y-Position of the Enemy Count
         int enemyRemainCountY = yPos + 75;
 
         // X-Position of the Player health represented in hearts
