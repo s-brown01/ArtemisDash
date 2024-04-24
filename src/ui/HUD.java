@@ -16,7 +16,18 @@ import utils.LoadSave;
  * @author John Botonakis
  */
 public class HUD {
-    private BufferedImage portrait, hudbg, hearts;
+    /**
+     * Buffered Image to represent the character portrait
+     */
+    private BufferedImage portrait;
+    /**
+     * Buffered Image to represent the HUD background
+     */
+    private BufferedImage hudbg;
+    /**
+     * Buffered Image to represent Hearts
+     */
+    private BufferedImage hearts;
     /**
      * X-Position of the Portrait Sprite
      */
@@ -33,8 +44,25 @@ public class HUD {
      * Height of the Portrait Sprite
      */
     private final int height = 80;
+    /**
+     * Game state that the HUD will be drawn over
+     */
     private final Playing playing;
-    private int playerHealth, playerScore, enemiesRemaining;
+    /**
+     * Integer value representing player health
+     */
+    private int playerHealth;
+    /**
+     * Integer value representing player score
+     */
+    private int playerScore;
+    /**
+     * Integer value representing the amount of enemies remaining
+     */
+    private int enemiesRemaining;
+    /**
+     * The font used for the HUD as well as other parts of the game
+     */
     private Font hudFont;
 
     /**
@@ -131,6 +159,7 @@ public class HUD {
 
     /**
      * Function to continuously check that the health is up to date 
+     * @return playerHealth - Returns the current value of the Player's Health
      */
     public int updateHealth() {
         playerHealth = playing.getPlayer().getHealth();

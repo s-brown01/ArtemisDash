@@ -136,6 +136,8 @@ public class LevelManager {
     /**
      * Set hidden to false on certain levels based on the current Level. This lets the Player
      * 'progress' through the different Levels
+     * 
+     * @return Returns True if X, and False otherwise
      */
     public boolean unhideNextLevels() {
         // depending what the current level is, it should unhide different levels

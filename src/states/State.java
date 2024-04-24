@@ -47,7 +47,8 @@ public abstract class State {
      * OptionsButtons' bounds.
      * 
      * @param e  - the current information about the MouseEvent
-     * @param ob - the MenuButton to be checked
+     * @param ib - the MenuButton to be checked
+     * 
      * @return true if the mouse is contained in the MenuButton's bounds, false if not
      */
     public boolean isInInstructionsButton(MouseEvent e, InstructionsButton ib) {

@@ -193,13 +193,6 @@ public class Overworld extends State implements StateMethods {
     }
 
     /**
-     * THIS FUNCTION IS UNUSED
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    /**
      * When the mouse is released, this method should be called. It checks if the mouse in on
      * a button and it is was pressed on that button.
      */
@@ -306,6 +299,13 @@ public class Overworld extends State implements StateMethods {
     private void drawString(Graphics g, String text, int x, int y) {
         for (String line : text.split("\n"))
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
+    }
+    
+    /**
+     * THIS FUNCTION IS UNUSED
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
     }
 
 }

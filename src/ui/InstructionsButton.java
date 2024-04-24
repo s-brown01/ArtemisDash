@@ -53,6 +53,7 @@ public class InstructionsButton extends PauseButton {
      * @param title     - the string to be displayed on screen
      * @param x         - the left coordinate
      * @param y         - the top coordinate
+     * @param state     - The game state to draw onto
      */
     public InstructionsButton(String title, int x, int y, GameStates state) {
         super(x, y, (int)(B_WIDTH * .75), (int)(B_HEIGHT * .75));

@@ -563,7 +563,7 @@ public class Playing extends State implements StateMethods {
      * Setter for Game Over boolean (determines if the screen should display Death Overlay or
      * not)
      * 
-     * @param paused - true if the screen should display Death Overlay, false if not
+     * @param gameOver - true if the screen should display Death Overlay, false if not
      */
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
