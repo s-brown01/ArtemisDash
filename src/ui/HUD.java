@@ -96,15 +96,15 @@ public class HUD {
         // Y-Position of the Score Count
         int playerScoreY = yPos + 75;
 
-        // Lives Positioning Vars
+        // Enemy Positioning Vars
         // X-Position of the Lives Title
-        int livesXPos = xPos * 5;
+        int enemyTitleX = xPos * 5;
         // Y-Position of the Lives Title
-        int livesYPos = yPos * 3;
+        int enemyTitleY = yPos * 3;
         // X-Position of the Lives Count
-        int playerLivesX = xPos * 5;
+        int enemyRemainCountX = xPos * 5;
         // Y-Position of the Lives Count
-        int playerLivesY = yPos + 75;
+        int enemyRemainCountY = yPos + 75;
 
         // X-Position of the Player health represented in hearts
         int heartsXpos = xPos + 80;
@@ -124,14 +124,13 @@ public class HUD {
         g.drawString("Score ", scoreXPos, scoreYPos);
         g.drawString(String.valueOf(playerScore), playerScoreX, playerScoreY);
 
-        g.drawString("Enemies Left ", livesXPos, livesYPos);
+        g.drawString("Enemies Left ", enemyTitleX, enemyTitleY);
         //CHANGE TO ENEMIES REMAINING
-        g.drawString(String.valueOf(enemiesRemaining), playerLivesX, playerLivesY);
+        g.drawString(String.valueOf(enemiesRemaining), enemyRemainCountX, enemyRemainCountY);
     }
 
     /**
-     * Function to continuously check that the health is up to date with what the actual value
-     * is
+     * Function to continuously check that the health is up to date 
      */
     public int updateHealth() {
         playerHealth = playing.getPlayer().getHealth();
@@ -139,7 +138,7 @@ public class HUD {
 
     }
     /**
-     * 
+     * Function to keep the HUD element tied to player score up to date 
      */
     public void updateScore() {
         this.playerScore = playing.getScore();
