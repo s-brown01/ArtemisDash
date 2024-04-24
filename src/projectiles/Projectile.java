@@ -1,11 +1,10 @@
 package projectiles;
 
 import static utils.Constants.ProjectileConstants.getProjHeight;
-import static utils.Constants.ProjectileConstants.getProjWidth;
 import static utils.Constants.ProjectileConstants.getProjSpeed;
+import static utils.Constants.ProjectileConstants.getProjWidth;
 
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 
 /**
  * This class will provide the framework for how all Projectiles in game and the basis for

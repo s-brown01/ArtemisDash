@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 import gameaudio.AudioPlayer;
 import states.GameStates;
-import states.Menu;
 import states.Instructions;
+import states.Menu;
 import states.Overworld;
 import states.Playing;
 

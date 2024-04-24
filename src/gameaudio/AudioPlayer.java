@@ -1,7 +1,8 @@
 package gameaudio;
 
-import java.net.URL;
 import java.io.IOException;
+import java.net.URL;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.BooleanControl;

@@ -1,5 +1,8 @@
 package states;
 
+import static utils.Constants.PlayerStates.IMAGE_HEIGHT;
+import static utils.Constants.PlayerStates.IMAGE_WIDTH;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -19,8 +22,6 @@ import ui.HUD;
 import ui.PauseOverlay;
 import ui.WinOverlay;
 import utils.Constants.BackgroundStates;
-import static utils.Constants.PlayerStates.IMAGE_WIDTH;
-import static utils.Constants.PlayerStates.IMAGE_HEIGHT;
 import utils.LoadSave;
 
 /**
@@ -201,9 +202,10 @@ public class Playing extends State implements StateMethods {
         levelManager.setCurrentLevel(nextLevelIndex);
         loadCurrentLevel();
     }
-    
+
     /**
-     * This methods will restart the current level in game. It uses the private loadCurrentLevel method.
+     * This methods will restart the current level in game. It uses the private
+     * loadCurrentLevel method.
      */
     public void restartLevel() {
         scoreFromEnemies = 0;

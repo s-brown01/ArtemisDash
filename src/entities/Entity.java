@@ -102,8 +102,8 @@ public abstract class Entity {
     /**
      * Draws the hitbox around the caller entities sprite. This is for debugging the hitbox
      * 
-     * @param g             - Graphics to be called and drawn from
-     * @param xLevelOffset  - The horizontal offset from screen scrolling
+     * @param g            - Graphics to be called and drawn from
+     * @param xLevelOffset - The horizontal offset from screen scrolling
      */
     protected void drawHitbox(Graphics g, int xLevelOffset) {
         // For debugging hitbox

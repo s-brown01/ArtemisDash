@@ -34,8 +34,8 @@ import gameaudio.AudioPlayer;
 import main.Game;
 import states.Playing;
 import utils.Constants;
-import utils.LoadSave;
 import utils.Constants.PlayerStates;
+import utils.LoadSave;
 
 /**
  * This player class will hold every variable and funciton relating to the active player's

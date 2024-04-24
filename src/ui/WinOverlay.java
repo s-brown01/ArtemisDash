@@ -12,7 +12,8 @@ import states.Playing;
 import utils.LoadSave;
 
 /**
- * This class handles the level complete overlay, which shows when the player kills every enemy in a level
+ * This class handles the level complete overlay, which shows when the player kills every
+ * enemy in a level
  * 
  * @author John Botonakis
  */
@@ -25,27 +26,27 @@ public class WinOverlay {
     /**
      * The left coordinate of the image
      */
-    private int imgX, 
-    /**
-     * The top coordinate of the image
-     */
-    imgY, 
-    /**
-     * The width of the image
-     */
-    imgW, 
-    /**
-     * The height of the image
-     */
-    imgH;
+    private int imgX,
+            /**
+             * The top coordinate of the image
+             */
+            imgY,
+            /**
+             * The width of the image
+             */
+            imgW,
+            /**
+             * The height of the image
+             */
+            imgH;
     /**
      * The EndButton that will return the player to the menu
      */
-    private EndButton returnToMenu, 
-    /**
-     * The EndButton that will continue playing - return player to overworld
-     */
-    continuePlay;
+    private EndButton returnToMenu,
+            /**
+             * The EndButton that will continue playing - return player to overworld
+             */
+            continuePlay;
     /**
      * The playing that is holding/controlling this overlay
      */

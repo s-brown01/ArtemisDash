@@ -45,7 +45,7 @@ public class HUD {
     public HUD(Playing playing) {
         this.playing = playing;
         this.playerScore = playing.getScore();
-        //UPDATE ENEMIES REMAINING
+        // UPDATE ENEMIES REMAINING
         this.enemiesRemaining = playing.getPlayer().getLives();
         loadAssets();
     }
@@ -125,7 +125,7 @@ public class HUD {
         g.drawString(String.valueOf(playerScore), playerScoreX, playerScoreY);
 
         g.drawString("Enemies Left ", livesXPos, livesYPos);
-        //CHANGE TO ENEMIES REMAINING
+        // CHANGE TO ENEMIES REMAINING
         g.drawString(String.valueOf(enemiesRemaining), playerLivesX, playerLivesY);
     }
 
@@ -138,13 +138,13 @@ public class HUD {
         return playerHealth;
 
     }
+
     /**
      * 
      */
     public void updateScore() {
         this.playerScore = playing.getScore();
     }
-
 
     /**
      * Function to keep the HUD element tied to the dash up to date
