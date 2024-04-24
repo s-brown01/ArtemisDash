@@ -91,7 +91,7 @@ public class OverworldButton {
             }
             // if hidden, only use these colors
             return;
-        }
+        } 
         // check if it is completed
         if (completed) {
             color = COMPLETED;
@@ -173,12 +173,8 @@ public class OverworldButton {
      * @param completed - the next value of completed
      */
     public void setCompleted(boolean completed) {
-        if (this.completed != completed) {
-            System.out.println("CHANGING BUTTON #" + this.stageNumber + " ");
-
-        }
         this.completed = completed;
-
+        
     }
 
     /**

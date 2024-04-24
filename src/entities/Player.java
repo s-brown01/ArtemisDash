@@ -447,9 +447,6 @@ public class Player extends Entity {
         if (jump && jumps <= MAX_JUMPS) {
             inAir = true;
             airSpeed = jumpSpeed + JUMP_OFFSET;
-            if (hitbox.y < 170) {
-                System.err.println("Hit ceiling, too high");
-            }
         }
 
         if (jumps > MAX_JUMPS) {

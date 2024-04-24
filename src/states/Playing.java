@@ -636,17 +636,19 @@ public class Playing extends State implements StateMethods {
     }
 
     /**
-     * Resets all entities to their original values
+     * Resets all value to play again or play a new level.
      */
     public void resetAll() {
         gameOver = false;
         paused = false;
+        // set the completed value to whatever the level resulted in 
+        levelManager.getCurrentLevel().setCompleted(levelComplete);
+        // now reset level complete
         levelComplete = false;
-        levelManager.getCurrentLevel().setCompleted(false);
         player.resetDirBools();
         enemyManager.resetAllEnemies();
     }
-
+    
     /**
      * Let's the playing state know the Player Entity died.
      */

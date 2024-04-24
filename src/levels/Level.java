@@ -82,10 +82,6 @@ public class Level {
      * @param completed - true if the level has been 100%'d, false if not
      */
     public void setCompleted(Boolean completed) {
-        if (this.completed != completed) {
-            System.out.println("CHANGING BUTTON #" + this.fileName + " ");
-
-        }
         this.completed = completed;
     }
 
