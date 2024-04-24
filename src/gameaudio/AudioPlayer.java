@@ -80,10 +80,29 @@ public class AudioPlayer {
      * Level complete music
      */
     public static int LEVELCOMPLETE = 8;
-
+    /**
+     * The integer value assigned to an effect or song for retrieval
+     */
     private int currentID;
-    private Clip[] music, fx;
-    private boolean songMute, effectMute;
+    /**
+     * An array of Clip objects storing songs, labeled "music"
+     */
+    private Clip[] music;
+    /**
+     * An array of Clip objects storing effect sounds, labeled "fx"
+     */
+    private Clip[] fx;
+    /**
+     * A boolean value to mute songs. True is mute, False is unmute
+     */
+    private boolean songMute;
+    /**
+     * A boolean value to mute effects. True is mute, False is unmute
+     */
+    private boolean effectMute;
+    /**
+     * Sets the volume for every sound that will be played. 1f is 100% volume, 0f is 0% volume. 
+     */
     private float volume = 1f;
 
     /**

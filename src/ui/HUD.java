@@ -11,12 +11,23 @@ import utils.LoadSave;
 
 /**
  * The HUD or Heads Up Display will always be visible during gameplay to inform the player
- * of their score, their current health, and their lives remaining
+ * of their score, their current health, and the enemies remaining
  * 
  * @author John Botonakis
  */
 public class HUD {
-    private BufferedImage portrait, hudbg, hearts;
+    /**
+     * Buffered Image to represent the character portrait
+     */
+    private BufferedImage portrait;
+    /**
+     * Buffered Image to represent the HUD background
+     */
+    private BufferedImage hudbg;
+    /**
+     * Buffered Image to represent Hearts
+     */
+    private BufferedImage hearts;
     /**
      * X-Position of the Portrait Sprite
      */
@@ -33,8 +44,25 @@ public class HUD {
      * Height of the Portrait Sprite
      */
     private final int height = 80;
+    /**
+     * Game state that the HUD will be drawn over
+     */
     private final Playing playing;
-    private int playerHealth, playerScore, enemiesRemaining;
+    /**
+     * Integer value representing player health
+     */
+    private int playerHealth;
+    /**
+     * Integer value representing player score
+     */
+    private int playerScore;
+    /**
+     * Integer value representing the amount of enemies remaining
+     */
+    private int enemiesRemaining;
+    /**
+     * The font used for the HUD as well as other parts of the game
+     */
     private Font hudFont;
 
     /**
@@ -96,15 +124,15 @@ public class HUD {
         // Y-Position of the Score Count
         int playerScoreY = yPos + 75;
 
-        // Lives Positioning Vars
-        // X-Position of the Lives Title
-        int livesXPos = xPos * 5;
-        // Y-Position of the Lives Title
-        int livesYPos = yPos * 3;
-        // X-Position of the Lives Count
-        int playerLivesX = xPos * 5;
-        // Y-Position of the Lives Count
-        int playerLivesY = yPos + 75;
+        // Enemy Count Vars
+        // X-Position of the Enemy Count Title
+        int enemyTitleX = xPos * 5;
+        // Y-Position of the Enemy Count Title
+        int enemyTitleY = yPos * 3;
+        // X-Position of the Enemy Count
+        int enemyRemainCountX = xPos * 5;
+        // Y-Position of the Enemy Count
+        int enemyRemainCountY = yPos + 75;
 
         // X-Position of the Player health represented in hearts
         int heartsXpos = xPos + 80;
@@ -124,14 +152,14 @@ public class HUD {
         g.drawString("Score ", scoreXPos, scoreYPos);
         g.drawString(String.valueOf(playerScore), playerScoreX, playerScoreY);
 
-        g.drawString("Enemies Left ", livesXPos, livesYPos);
+        g.drawString("Enemies Left ", enemyTitleX, enemyTitleY);
         //CHANGE TO ENEMIES REMAINING
-        g.drawString(String.valueOf(enemiesRemaining), playerLivesX, playerLivesY);
+        g.drawString(String.valueOf(enemiesRemaining), enemyRemainCountX, enemyRemainCountY);
     }
 
     /**
-     * Function to continuously check that the health is up to date with what the actual value
-     * is
+     * Function to continuously check that the health is up to date 
+     * @return playerHealth - Returns the current value of the Player's Health
      */
     public int updateHealth() {
         playerHealth = playing.getPlayer().getHealth();
@@ -139,7 +167,7 @@ public class HUD {
 
     }
     /**
-     * 
+     * Function to keep the HUD element tied to player score up to date 
      */
     public void updateScore() {
         this.playerScore = playing.getScore();
