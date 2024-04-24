@@ -323,5 +323,5 @@ public class Overworld extends State implements StateMethods {
         for (String line : text.split("\n"))
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
     }
-
+    
 }

@@ -18,45 +18,47 @@ import utils.LoadSave;
  * @author John Botonakis
  */
 public class WinOverlay {
-
-    /**
-     * The background image of this overlay
-     */
-    private BufferedImage img;
-    /**
-     * The left coordinate of the image
-     */
-    private int imgX,
-            /**
-             * The top coordinate of the image
-             */
-            imgY,
-            /**
-             * The width of the image
-             */
-            imgW,
-            /**
-             * The height of the image
-             */
-            imgH;
     /**
      * The EndButton that will return the player to the menu
      */
-    private EndButton returnToMenu,
-            /**
-             * The EndButton that will continue playing - return player to overworld
-             */
-            continuePlay;
+    private EndButton returnToMenu; 
+    /**
+     * The EndButton that will continue playing - return player to overworld
+     */
+    private EndButton continuePlay;
+    
+    /**
+     * Buffered Image for button display
+     */
+    private BufferedImage img;
+    /**
+     * Image X-positioning variable
+     */
+    private int imgX;
+    /**
+     * Image Y-positioning variable
+     */
+    private int imgY;
+    /**
+     * Image width variable
+     */
+    private int imgW;
+    /**
+     * Image height variable
+     */
+    private int imgH;
     /**
      * The playing that is holding/controlling this overlay
      */
     private Playing playing;
+
 
     /**
      * Initializes the Pause Overlay by creating and loading in sprite for the menu and its
      * buttons
      * 
      * @param playing - the playing that is holding (will be controlling) this overlay
+
      */
     public WinOverlay(Playing playing) {
         this.playing = playing;
