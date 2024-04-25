@@ -80,13 +80,4 @@ public class Arrow extends Projectile {
                 (int) hitbox.y - ARROW_DRAW_OFFSET_Y, (int) (ARROW_WIDTH) * FLIP_W, (int) (ARROW_HEIGHT), null);
     }
 
-    /**
-     * Getter for the horizontal speed of the Arrow
-     * 
-     * @return the SPEED of the arrow
-     */
-    public float getSpeed() {
-        return SPEED;
-    }
-
 }

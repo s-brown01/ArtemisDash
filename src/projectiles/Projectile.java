@@ -82,13 +82,13 @@ public abstract class Projectile {
         // get the specific height and width depending on the type given
         hitbox = new Rectangle2D.Float(this.x, this.y, getProjWidth(projType), getProjHeight(projType));
 
-        // if it is moving left, it should have a positive slope
+        // if it is moving left, it should have a negative sleep
         if (left) {
             this.SPEED = -1 * calculateHorizontalSpeed(getProjSpeed(projType), slope);
             this.FLIP_X = hitbox.width;
             this.FLIP_W = -1;
         }
-        // if the arrow is moving right, it should be the reversed slope
+        // if the arrow is moving right, it should have a positive speed
         else {
             this.SPEED = calculateHorizontalSpeed(getProjSpeed(projType), slope);
             this.FLIP_X = 0;
@@ -107,13 +107,13 @@ public abstract class Projectile {
 
     /**
      * This is a helper method to calculate the horizontal speed of a projectile for the
-     * diagonal speed to be consistent with ARROW_SPEED no matter the slope. This was
-     * calculated from using the pythagorean theorem (a^2 +b^2 = c^2). For Projectiles, it is
-     * (xSpeed^2 + ySpeed = slopeSpeed, where ySpeed = xSpeed*slope).
+     * diagonal speed to be consistent with ARROW_SPEED no matter the slope. <br>
+     * This was calculated from using the pythagorean theorem (a^2 +b^2 = c^2). For
+     * Projectiles, it is (xSpeed^2 + ySpeed = slopeSpeed, where ySpeed = xSpeed*slope).
      * 
      * @param slopeSpeed - the desired diagonal speed for the projectiles
      * @param slope      - the slope of the projectile
-     * @return - the horizontal speed for the proctile to have a consistent speed
+     * @return - the horizontal speed for the projectile to have a consistent speed
      */
     protected float calculateHorizontalSpeed(float slopeSpeed, float slope) {
         // xSpeed = square root of (slopeSpeed^2 / (1+slope^2)
@@ -145,6 +145,15 @@ public abstract class Projectile {
      */
     public boolean isColliding() {
         return colliding;
+    }
+
+    /**
+     * Getter for the horizontal speed of the Projectile
+     * 
+     * @return the SPEED of the Projectile
+     */
+    public float getSpeed() {
+        return SPEED;
     }
 
 }
