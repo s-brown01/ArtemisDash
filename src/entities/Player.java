@@ -613,7 +613,9 @@ public class Player extends Entity {
      */
     public void kill() {
         killed = true;
-        playing.getGame().getAudioPlayer().playSong(AudioPlayer.GAMEOVER);
+        if (playing != null) {
+            playing.getGame().getAudioPlayer().playSong(AudioPlayer.GAMEOVER);
+        }
     }
 
     /**
