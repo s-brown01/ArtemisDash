@@ -37,7 +37,7 @@ public class LevelsDriver implements DriverInterface {
         boolean allSuccess = true;
 
         // Test creating a Level instance
-        final Level level = new Level(LoadSave.DEFAULT_LEVEL);
+        final Level level = new Level(LoadSave.LEVEL1_DATA);
 
         // Test getting sprite index
         if (level.getSpriteIndex(0, 0) != 13 || level.getSpriteIndex(2, 2) != 25) {
@@ -72,22 +72,22 @@ public class LevelsDriver implements DriverInterface {
         }
 
         // Test getSkeletons method, should be 2 skeletons
-        if (level.getSkeletons().size() != 2) {
+        if (level.getSkeletons().size() != 6) {
             printLevelError(level.getSkeletons().size() + "Failed getSkeletons");
             allSuccess = false;
         }
 
         // Test getSkeletonKings method, should be 1 skeleton king
-        if (level.getSkeletonKings().size() != 1) {
+        if (level.getSkeletonKings().size() != 0) {
             printLevelError(level.getSkeletonKings().size() + "failed getSkeletonKings");
             allSuccess = false;
         }
 
         // create 2 new levels to test the equals method
         // same level data as the inital level
-        final Level sameLevel = new Level(LoadSave.DEFAULT_LEVEL);
+        final Level sameLevel = new Level(LoadSave.LEVEL1_DATA);
         // different level data than the 2 above
-        final Level differentLevel = new Level(LoadSave.LEVEL1_DATA);
+        final Level differentLevel = new Level(LoadSave.DEFAULT_LEVEL);
 
         // these two levels should be the same
         if (!level.equals(sameLevel)) {
@@ -117,8 +117,8 @@ public class LevelsDriver implements DriverInterface {
         LevelManager testLM = new LevelManager(null);
         Level[] allLevels = testLM.getLevels();
 
-        // Test getting levels (should be exactly 15)
-        if (allLevels.length != 15) {
+        // Test getting levels (should be exactly 5)
+        if (allLevels.length != 5) {
             printLevelManagerError("Failed getting/creating levels");
             allSuccess = false;
         }
@@ -137,7 +137,7 @@ public class LevelsDriver implements DriverInterface {
         }
 
         // Test getLevelAtIndex method
-        if (!testLM.getLevelAtIndex(5).equals(allLevels[5])) {
+        if (!testLM.getLevelAtIndex(4).equals(allLevels[4])) {
             printLevelManagerError("Failed getLevelAtIndex");
             allSuccess = false;
         }

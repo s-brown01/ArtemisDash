@@ -1,5 +1,6 @@
 package drivers;
 
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -40,6 +41,13 @@ public class InputsDriver implements DriverInterface {
      * @return true if all tests are passed, false if not
      */
     private boolean testMouse() {
+        /*
+         * this component class is to remove to IllegalArumentException: null source when creating
+         * a MouseEvent. So, it should have no functionality.
+         */
+        @SuppressWarnings("serial")
+        Component mockComponenet = new Component() {
+        };
         boolean allSuccess = true;
         Playing testPlaying = new Playing(null);
         Player testPlayer = testPlaying.getPlayer();
@@ -49,8 +57,9 @@ public class InputsDriver implements DriverInterface {
         }
 
         // create a mouseEvent to the left of the player
-        MouseEvent pressLeft = new MouseEvent(null, MouseEvent.MOUSE_PRESSED, System.currentTimeMillis(), 0,
-                (int) (testPlayer.getHitbox().x - 40), (int) (testPlayer.getHitbox().y - 40), 1, false);
+        MouseEvent pressLeft = new MouseEvent(mockComponenet, MouseEvent.MOUSE_PRESSED, System.currentTimeMillis(), 0,
+                (int) (testPlayer.getHitbox().x - 40), (int) (testPlayer.getHitbox().y - 40), MouseEvent.BUTTON1,
+                false);
         testPlaying.mousePressed(pressLeft);
         // make sure not attacking...yet
         if (testPlayer.isAttacking()) {
@@ -69,7 +78,7 @@ public class InputsDriver implements DriverInterface {
         }
 
         // drag the "mouse" to the right of the player
-        MouseEvent dragRight = new MouseEvent(null, MouseEvent.MOUSE_DRAGGED, System.currentTimeMillis(), 0,
+        MouseEvent dragRight = new MouseEvent(mockComponenet, MouseEvent.MOUSE_DRAGGED, System.currentTimeMillis(), 0,
                 (int) (testPlayer.getHitbox().x + 40), (int) (testPlayer.getHitbox().y + 40), 1, false);
         testPlaying.mouseDragged(dragRight);
         // still not attacking yet
@@ -89,7 +98,7 @@ public class InputsDriver implements DriverInterface {
         }
 
         // create a release event at a different point that the other two
-        MouseEvent release = new MouseEvent(null, MouseEvent.MOUSE_RELEASED, System.currentTimeMillis(), 0,
+        MouseEvent release = new MouseEvent(mockComponenet, MouseEvent.MOUSE_RELEASED, System.currentTimeMillis(), 0,
                 (int) (testPlayer.getHitbox().x + 50), (int) (testPlayer.getHitbox().y - 100), 1, false);
         testPlaying.mouseReleased(release);
         // now is attacking
@@ -118,6 +127,13 @@ public class InputsDriver implements DriverInterface {
      * @return true if all tests are passed, false if not
      */
     private boolean testKeyboard() {
+        /*
+         * this component class is to remove to IllegalArumentException: null source when creating
+         * a KeyEvent. So, it should have no functionality.
+         */
+        @SuppressWarnings("serial")
+        Component mockComponenet = new Component() {
+        };
         boolean allSuccess = true;
         Playing testPlaying = new Playing(null);
         Player testPlayer = testPlaying.getPlayer();
@@ -127,8 +143,10 @@ public class InputsDriver implements DriverInterface {
         }
 
         // create 2 keyEvent that simulates pushing A and D
-        KeyEvent aPress = new KeyEvent(null, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_A, '\0');
-        KeyEvent dPress = new KeyEvent(null, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_D, '\0');
+        KeyEvent aPress = new KeyEvent(mockComponenet, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
+                KeyEvent.VK_A, '\0');
+        KeyEvent dPress = new KeyEvent(mockComponenet, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,
+                KeyEvent.VK_D, '\0');
         testPlaying.keyPressed(aPress);
         testPlaying.keyPressed(dPress);
         if (!testPlayer.isLeft() || !testPlayer.isRight()) {
@@ -137,20 +155,21 @@ public class InputsDriver implements DriverInterface {
         }
 
         // releasing a random key (not A or D), picked T arbitrarily
-        KeyEvent tRelease = new KeyEvent(null, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, KeyEvent.VK_T,
-                '\0');
+        KeyEvent tRelease = new KeyEvent(mockComponenet, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0,
+                KeyEvent.VK_T, '\0');
         testPlaying.keyPressed(tRelease);
         if (!testPlayer.isLeft() || !testPlayer.isRight()) {
             printKeyError("Failed invalid release test");
             allSuccess = false;
         }
 
-        KeyEvent aRelease = new KeyEvent(null, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, KeyEvent.VK_A,
-                '\0');
-        KeyEvent dRelease = new KeyEvent(null, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0, KeyEvent.VK_D,
-                '\0');
-        testPlaying.keyPressed(aRelease);
-        testPlaying.keyPressed(dRelease);
+        // make sure that releasing A and D deactivate left and right
+        KeyEvent aRelease = new KeyEvent(mockComponenet, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0,
+                KeyEvent.VK_A, '\0');
+        KeyEvent dRelease = new KeyEvent(mockComponenet, KeyEvent.KEY_RELEASED, System.currentTimeMillis(), 0,
+                KeyEvent.VK_D, '\0');
+        testPlaying.keyReleased(aRelease);
+        testPlaying.keyReleased(dRelease);
         if (testPlayer.isLeft() || testPlayer.isRight()) {
             printKeyError("Failed valid release test");
             allSuccess = false;
@@ -165,7 +184,7 @@ public class InputsDriver implements DriverInterface {
      * @param message - the message to be printed
      */
     private void printKeyError(String message) {
-        System.err.println("KEYBOARD - " + message);
+        System.err.println("\tKEYBOARD - " + message);
     }
 
     /**
@@ -174,6 +193,6 @@ public class InputsDriver implements DriverInterface {
      * @param message - the message to be printed
      */
     private void printMouseError(String message) {
-        System.err.println("KEYBOARD - " + message);
+        System.err.println("\tMOUSE - " + message);
     }
 }

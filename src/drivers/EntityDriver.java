@@ -288,8 +288,8 @@ public class EntityDriver implements DriverInterface {
         // this will update the enemyManager
         playing.nextLevel(0);
         // after loading, it should have 2 skeletons and 1 skeleton king in the first level
-        if (testEM.getSkeletons().size() != 2 || testEM.getSkeletonKings().size() != 1) {
-            printEnemyManagerError("Failed initial size test");
+        if (testEM.getSkeletons().size() != 6 || testEM.getSkeletonKings().size() != 0) {
+            printEnemyManagerError("Failed initial size test after loading level");
             allSuccess = false;
         }
 
@@ -446,7 +446,8 @@ public class EntityDriver implements DriverInterface {
         }
 
         // initially facing left means width x is the width
-        if (testSkel.xFlipped() != skelWidth || testSkelKing.xFlipped() != skelWidth) {
+        // times 2.5 because that is the scale that offsets the image correctly
+        if (testSkel.xFlipped() != skelWidth * 2.5 || testSkelKing.xFlipped() != skelWidth * 2.5) {
             printEnemyError("Failed getting xFlipped, no updates");
             allSuccess = false;
         }

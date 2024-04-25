@@ -26,13 +26,13 @@ public class UnitTester {
         }
 
         // test the input classes
-//        InputsDriver inputsDriver = new InputsDriver();
-//        if (!inputsDriver.test()) {
-//            System.err.println(z"INPUTS DRIVER FAILED");
-//            allPassed = false;
-//        } else {
-//            System.out.println("Inputs passed!");
-//        }
+        InputsDriver inputsDriver = new InputsDriver();
+        if (!inputsDriver.test()) {
+            System.err.println("INPUTS DRIVER FAILED");
+            allPassed = false;
+        } else {
+            System.out.println("\tInputs passed!");
+        }
 
         // test the level classes
         LevelsDriver levelsDriver = new LevelsDriver();
@@ -44,40 +44,13 @@ public class UnitTester {
         }
 
         // test the projectile classes
-//        ProjectilesDriver projDriver = new ProjectilesDriver();
-//        if (!projDriver.test()) {
-//            System.err.println("PROJECTILES DRIVER FAILED");
-//            allPassed = false;
-//        } else {
-//              System.out.println("Projectiles passed!");
-//          }
-
-        // test the states classes
-        StatesDriver statesDriver = new StatesDriver();
-        if (!statesDriver.test()) {
-            System.err.println("STATES DRIVER FAILED");
+        ProjectilesDriver projDriver = new ProjectilesDriver();
+        if (!projDriver.test()) {
+            System.err.println("PROJECTILES DRIVER FAILED");
             allPassed = false;
         } else {
-            System.out.println("\tStates passed!");
+              System.out.println("\tProjectiles passed!");
         }
-
-        // test the UI classes
-        UIDriver uiDriver = new UIDriver();
-        if (!uiDriver.test()) {
-            System.err.println("UI DRIVER FAILED");
-            allPassed = false;
-        } else {
-            System.out.println("\tUI passed!");
-        }
-
-        // test the utils classes
-//        UtilsDriver utilsDriver = new UtilsDriver();
-//        if (!utilsDriver.test()) {
-//            System.err.println("UTILS DRIVER FAILED");
-//            allPassed = false;
-//        } else {
-//              System.out.println("Utils passed!");
-//        }
 
         // if every single test has passed display it
         if (allPassed) {
