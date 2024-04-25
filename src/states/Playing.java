@@ -229,7 +229,9 @@ public class Playing extends State implements StateMethods {
         hud = new HUD(this);
         scoreFromEnemies = 0;
         levelComplete = levelManager.getCurrentLevel().getCompleted();
-        game.getAudioPlayer().setLevelSong(levelManager.getCurrentLevelIndex());
+        if (game != null) {
+            game.getAudioPlayer().setLevelSong(levelManager.getCurrentLevelIndex());
+        }
 
     }
 
@@ -461,10 +463,8 @@ public class Playing extends State implements StateMethods {
             winOverlay.mousePressed(e);
         }
         // if mouse button 1 is pressed, store that point and draw the arrow path to that point
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            player.setNextAttack(e.getPoint());
-            player.setDrawArrowPath(true);
-        }
+        player.setNextAttack(e.getPoint());
+        player.setDrawArrowPath(true);
     }
 
     /**
@@ -486,10 +486,8 @@ public class Playing extends State implements StateMethods {
             winOverlay.mouseReleased(e);
         }
         // if mouse button 1 is released, then try to shoot an arrow and stop drawing the path
-        else if (e.getButton() == MouseEvent.BUTTON1) {
-            player.setDrawArrowPath(false);
-            player.shoot(e.getPoint());
-        }
+        player.setDrawArrowPath(false);
+        player.shoot(e.getPoint());
 
     }
 
