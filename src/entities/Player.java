@@ -401,22 +401,11 @@ public class Player extends Entity {
         if (killed || hurting) {
             return;
         }
-        // this is a buffer that gives the player a little extra room before they take lava damage
-        final float lavaBuffer = 7.5f;
-
-        // check if the tile Player is on is lava
-        // subtract the lava buffer from the width then multiply by the flipW so can move both
-        // directions
-        if (isTileLava(hitbox.x + (hitbox.width - lavaBuffer) * flipW, hitbox.y + hitbox.height, levelData)) {
+        // check if the tile Player is on is lava. Always check the middle of the hitbox
+        if (isTileLava(hitbox.x + (hitbox.width/2), hitbox.y + hitbox.height, levelData)) {
             // if it is lava, take damage
             // hurting has already been checked
             this.hurt();
-            // this is the knockback of the player
-            final float xSpeed = (hitbox.width * flipW);
-            // make sure the player can move to the knockback spot
-            if (canMoveHere(hitbox.x + xSpeed, hitbox.x, hitbox.width, hitbox.height, levelData)) {
-                this.hitbox.x -= xSpeed;
-            }
         }
     }
 
