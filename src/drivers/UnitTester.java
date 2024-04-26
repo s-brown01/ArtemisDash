@@ -49,7 +49,7 @@ public class UnitTester {
             System.err.println("PROJECTILES DRIVER FAILED");
             allPassed = false;
         } else {
-              System.out.println("\tProjectiles passed!");
+            System.out.println("\tProjectiles passed!");
         }
 
         // if every single test has passed display it

@@ -23,6 +23,7 @@ public class ProjectilesDriver implements DriverInterface {
 
     /**
      * This will test the methods of the Arrow class
+     * 
      * @return ture if Arrrow passed all tests, false if not
      */
     private boolean testArrow() {
@@ -44,7 +45,8 @@ public class ProjectilesDriver implements DriverInterface {
             allSuccess = false;
             printArrowError("Failed initial colliding test");
         }
-        final float horizSpeed = (float) Math.sqrt((getProjSpeed(ARROW) * (getProjSpeed(ARROW)) / (1 + (slope * slope))));
+        final float horizSpeed = (float) Math
+                .sqrt((getProjSpeed(ARROW) * (getProjSpeed(ARROW)) / (1 + (slope * slope))));
         if (testArrow.getSpeed() != horizSpeed) {
             allSuccess = false;
             printArrowError("Failed Calculating speed");
@@ -58,10 +60,10 @@ public class ProjectilesDriver implements DriverInterface {
             allSuccess = false;
             printArrowError("Failed vertical movement");
         }
-        
+
         return allSuccess;
     }
-    
+
     /**
      * This prints out an error format for arrow tests
      * 

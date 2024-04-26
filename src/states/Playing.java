@@ -180,7 +180,7 @@ public class Playing extends State implements StateMethods {
      * to the players score once the level is completed.
      */
     private int scoreFromEnemies = 0;
-    
+
     /**
      * Runs the logic once the game state has switched to PLAYING Loads in the enemies,
      * backgrounds, and player
@@ -641,14 +641,14 @@ public class Playing extends State implements StateMethods {
     public void resetAll() {
         gameOver = false;
         paused = false;
-        // set the completed value to whatever the level resulted in 
+        // set the completed value to whatever the level resulted in
         levelManager.getCurrentLevel().setCompleted(levelComplete);
         // now reset level complete
         levelComplete = false;
         player.resetDirBools();
         enemyManager.resetAllEnemies();
     }
-    
+
     /**
      * Let's the playing state know the Player Entity died.
      */

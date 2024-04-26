@@ -402,7 +402,7 @@ public class Player extends Entity {
             return;
         }
         // check if the tile Player is on is lava. Always check the middle of the hitbox
-        if (isTileLava(hitbox.x + (hitbox.width/2), hitbox.y + hitbox.height, levelData)) {
+        if (isTileLava(hitbox.x + (hitbox.width / 2), hitbox.y + hitbox.height, levelData)) {
             // if it is lava, take damage
             // hurting has already been checked
             this.hurt();
@@ -907,6 +907,7 @@ public class Player extends Entity {
 
     /**
      * Getter for the amount of deaths stored in deathCount
+     * 
      * @return the current amount of deaths
      */
     public int getDeaths() {

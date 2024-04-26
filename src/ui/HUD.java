@@ -138,7 +138,7 @@ public class HUD {
         int enemyRemainingX = xPos * 4;
         // Y-Position of the Lives Count
         int enemyRemainingY = yPos + 75;
-        
+
         // Death Counter Vars
         // X-Position of the Lives Title
         int deathXPos = xPos * 8;
@@ -169,7 +169,7 @@ public class HUD {
 
         g.drawString("Enemies Left ", remainXPos, remainYPos);
         g.drawString(String.valueOf(enemiesRemaining), enemyRemainingX, enemyRemainingY);
-        
+
         g.drawString("Deaths ", deathXPos, deathYPos);
         g.drawString(String.valueOf(deathCount), deathCountX, deathCountY);
     }
@@ -198,7 +198,7 @@ public class HUD {
     private void updateEnemiesLeft() {
         this.enemiesRemaining = playing.getEnemyManager().getEnemiesLeft();
     }
-    
+
     private void updateDeaths() {
         this.deathCount = playing.getPlayer().getDeaths();
     }
