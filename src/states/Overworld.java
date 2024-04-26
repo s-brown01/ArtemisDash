@@ -135,6 +135,8 @@ public class Overworld extends State implements StateMethods {
         final int levelTitleY = 100;
         final int backXPOs = 500;
         final int backYPos = Game.GAME_HEIGHT - 50;
+        final int scoreXPos = 900;
+        final int scoreYPos = 375;
 
         // background
         g.drawImage(background, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
@@ -146,6 +148,7 @@ public class Overworld extends State implements StateMethods {
         // instructions for user
         g.drawString("OVERWORLD", owTitleXPos, owTitleYPos);
         g.drawString("CLICK A LEVEL TO START", owsubTitleXPos, owsubTitleYPos);
+        g.drawString("Current Score: " + game.getPlaying().getPlayer().getScore(), scoreXPos, scoreYPos);
 
         g.drawString("Press Backspace to return to main menu", backXPOs, backYPos);
 

@@ -284,6 +284,11 @@ public class Constants {
          * This is how tall the players hit box will be in game - scaled
          */
         public static final int HITBOX_HEIGHT = (int) (45 * Game.SCALE);
+        
+        /**
+         * This will be how many points per health points remaining.
+         */
+        public static final int POINTS_PER_HEALTH = 250;
 
         /**
          * This is how far (horizontally) the arrow should be spawning from the Player's hitbox's

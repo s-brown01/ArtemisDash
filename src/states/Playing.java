@@ -22,6 +22,7 @@ import ui.HUD;
 import ui.PauseOverlay;
 import ui.WinOverlay;
 import utils.Constants.BackgroundStates;
+import utils.Constants.PlayerStates;
 import utils.LoadSave;
 
 /**
@@ -37,19 +38,19 @@ public class Playing extends State implements StateMethods {
     /**
      * This will keep track of if the pause overlay should show
      */
-    private boolean paused,
-            /**
-             * This will keep track of if the levelComplete overlay should show
-             */
-            levelComplete,
-            /**
-             * This will keep track of if the gameOver overlay should show
-             */
-            gameOver,
-            /**
-             * This will keep track of if the demo screen should be showing (true to show).
-             */
-            demoOver;
+    private boolean paused;
+    /**
+     * This will keep track of if the levelComplete overlay should show
+     */
+    private boolean levelComplete;
+    /**
+     * This will keep track of if the gameOver overlay should show
+     */
+    private boolean gameOver;
+    /**
+     * This will keep track of if the demo screen should be showing (true to show).
+     */
+    private boolean demoOver;
 
     /**
      * The Player entity that travels between levels
@@ -157,15 +158,15 @@ public class Playing extends State implements StateMethods {
     /**
      * the static image in the background
      */
-    private BufferedImage backgroundimg,
-            /**
-             * The background of they mist/clouds that slowly move by
-             */
-            background_myst_img,
-            /**
-             * the rocks that scroll by as the Player moves
-             */
-            background_rocks;
+    private BufferedImage backgroundimg;
+    /**
+     * The background of they mist/clouds that slowly move by
+     */
+    private BufferedImage background_myst_img;
+    /**
+     * the rocks that scroll by as the Player moves
+     */
+    private BufferedImage background_rocks;
     /**
      * all positions of myst background asset
      */
@@ -179,7 +180,7 @@ public class Playing extends State implements StateMethods {
      * to the players score once the level is completed.
      */
     private int scoreFromEnemies = 0;
-
+    
     /**
      * Runs the logic once the game state has switched to PLAYING Loads in the enemies,
      * backgrounds, and player
@@ -427,9 +428,10 @@ public class Playing extends State implements StateMethods {
         this.levelComplete = true;
         // play the level complete sounds
         game.getAudioPlayer().lvlCompleted();
-        // add the score from completing the level and from killing enemies
+        // add the score from completing the level, killing enemies, and health remaining
         player.changeScore(Level.SCORE_VALUE);
         player.changeScore(scoreFromEnemies);
+        player.changeScore(player.getHealth() * PlayerStates.POINTS_PER_HEALTH);
         // set the current level to completed and unhide the next level
         levelManager.getCurrentLevel().setCompleted(true);
         if (!levelManager.unhideNextLevels()) {

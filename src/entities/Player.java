@@ -476,6 +476,9 @@ public class Player extends Entity {
      * Check if the Players attack. If the attack has already been checked, don't check it
      */
     private void checkAttack() {
+        if (nextAttack == null) {
+            return;
+        }
         // this is the horizontal (x) difference between where the next arrow will go and where
         // the Player is
         final float xDiff = (float) ((nextAttack.getX()) - (hitbox.x + SHOT_OFFSET_X - xLevelOffset));
