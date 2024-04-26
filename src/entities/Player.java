@@ -118,10 +118,6 @@ public class Player extends Entity {
      * How fast the player moves horizontally
      */
     private float playerSpeed = 1.25f * Game.SCALE;
-    /**
-     * The amount of lives that the player has
-     */
-    private int playerLives = 3;
     /** flipX and flipY are for having the player able to flip the sprite left and right */
     private int flipX = 0, flipW = 1;
     /** xLevelOffset represents how far the level has scrolled */
@@ -169,6 +165,10 @@ public class Player extends Entity {
      * This is the score of the player across all levels combined
      */
     private int score = 0;
+    /**
+     * The amount of times that the player has died
+     */
+    private int deathCount = 0;
 
     /**
      * Constructor for the player class
@@ -282,7 +282,7 @@ public class Player extends Entity {
                 hurting = false;
                 // at the very end of the death animation, let the Playing State know the player died
                 if (killed) {
-                    playerLives--;
+                    deathCount++;
                     changeScore(-100);
                     playing.playerDied();
                 }
@@ -703,15 +703,6 @@ public class Player extends Entity {
     }
 
     /**
-     * Getter for the amount of lives the player has
-     * 
-     * @return the current amount of lives left
-     */
-    public int getLives() {
-        return playerLives;
-    }
-
-    /**
      * Setter for the nextAttack Point and will switch where the player is facing based on
      * where the mouse is
      * 
@@ -923,6 +914,14 @@ public class Player extends Entity {
         // check if in air
         this.inAir = true;
         this.killed = false;
+    }
+
+    /**
+     * Getter for the amount of deaths stored in deathCount
+     * @return the current amount of deaths
+     */
+    public int getDeaths() {
+        return deathCount;
     }
 
 }

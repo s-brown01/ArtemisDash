@@ -61,6 +61,10 @@ public class HUD {
      */
     private int enemiesRemaining;
     /**
+     * Integer value representing the amount of Player's deaths
+     */
+    private int deathCount;
+    /**
      * The font used for the HUD as well as other parts of the game
      */
     private Font hudFont;
@@ -103,6 +107,7 @@ public class HUD {
             updateHealth();
             updateScore();
             updateEnemiesLeft();
+            updateDeaths();
         }
 
     }
@@ -126,13 +131,23 @@ public class HUD {
 
         // Enemies Remaining Vars
         // X-Position of the Lives Title
-        int remainXPos = xPos * 5;
+        int remainXPos = xPos * 4;
         // Y-Position of the Lives Title
         int remainYPos = yPos * 3;
         // X-Position of the Lives Count
-        int enemyRemainingX = xPos * 5;
+        int enemyRemainingX = xPos * 4;
         // Y-Position of the Lives Count
         int enemyRemainingY = yPos + 75;
+        
+        // Death Counter Vars
+        // X-Position of the Lives Title
+        int deathXPos = xPos * 8;
+        // Y-Position of the Lives Title
+        int deathYPos = yPos * 3;
+        // X-Position of the Lives Count
+        int deathCountX = xPos * 8;
+        // Y-Position of the Lives Count
+        int deathCountY = yPos + 75;
 
         // X-Position of the Player health represented in hearts
         int heartsXpos = xPos + 80;
@@ -154,6 +169,9 @@ public class HUD {
 
         g.drawString("Enemies Left ", remainXPos, remainYPos);
         g.drawString(String.valueOf(enemiesRemaining), enemyRemainingX, enemyRemainingY);
+        
+        g.drawString("Deaths ", deathXPos, deathYPos);
+        g.drawString(String.valueOf(deathCount), deathCountX, deathCountY);
     }
 
     /**
@@ -179,6 +197,10 @@ public class HUD {
      */
     private void updateEnemiesLeft() {
         this.enemiesRemaining = playing.getEnemyManager().getEnemiesLeft();
+    }
+    
+    private void updateDeaths() {
+        this.deathCount = playing.getPlayer().getDeaths();
     }
 
 }
