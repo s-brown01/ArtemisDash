@@ -115,7 +115,7 @@ public class Constants {
         /**
          * The color of buttons representing completed levels
          */
-        public static final Color COMPLETED = new Color(128, 191, 255);
+        public static final Color COMPLETED = new Color(104, 187, 252);
         /**
          * The color of buttons representing completed levels when the mouse is over it
          */
@@ -128,7 +128,7 @@ public class Constants {
         /**
          * The color of buttons representing not hidden and not completed levels
          */
-        public static final Color DEFAULT = new Color(179, 102, 255);
+        public static final Color DEFAULT = new Color(184, 93, 255);
         /**
          * The color of buttons representing not hidden and not completed levels when the mouse is
          * hovering on it
