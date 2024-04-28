@@ -227,6 +227,7 @@ public class HelperMethods {
      *                added/not added depending on what direction the Entity is moving.
      * @param y_coord - the y-coordinate to check (not the tile). For entities, this should
      *                include the height.
+     * @param lvlData - The data of the level to be read in
      * @return true if the specific tile away is lava
      */
     public static boolean isTileLava(float x_coord, float y_coord, int[][] lvlData) {
