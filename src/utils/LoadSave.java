@@ -156,7 +156,7 @@ public class LoadSave {
     /**
      * the RGB values for Level 5
      */
-    public static final String LEVEL5_DATA = "/World1/level_five.png";
+    public static final String LEVEL5_DATA = "/World1/W1_level_five.png";
 
     // WORLD LEVEL TILE ASSETS
     /**
