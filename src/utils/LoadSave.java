@@ -150,13 +150,13 @@ public class LoadSave {
      */
     public static final String LEVEL3_DATA = "/World1/W1_level_three.png";
     /**
-     * the RGB values for Level 1
+     * the RGB values for Level 4
      */
     public static final String LEVEL4_DATA = "/World1/W1_level_four.png";
-//    /**
-//     * the RGB values for Level 1
-//     */
-//    public static final String LEVEL5_DATA = "/World1/level_five_data_long.png";
+    /**
+     * the RGB values for Level 5
+     */
+    public static final String LEVEL5_DATA = "/World1/level_five.png";
 
     // WORLD LEVEL TILE ASSETS
     /**
@@ -199,8 +199,9 @@ public class LoadSave {
 
     /**
      * Uses RGB values to generate a tiled level. Red Value sets the tile Green Value sets the
-     * enemy Blue value sets the object 50 Green Value = Skeleton 51 Green Value = Skeleton
-     * KING
+     * enemy Blue value sets the object 
+     * 50 Green Value = Skeleton 
+     * 51 Green Value = Skeleton KING
      * 
      * @param level - The path to the file containing the RGB data map for the specific level.
      * @return - A 2D array that is representative of tiles making up the level
