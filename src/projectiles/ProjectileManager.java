@@ -60,7 +60,6 @@ public class ProjectileManager {
             // update the arrow
             a.update();
             // check for collision
-            // TODO: CHANGE THE GETSPEED HERE
             if (collisionCheck(a.getHitbox(), levelData, a.getSpeed(), a.getSpeed())) {
                 // if an Arrow collides with something it is destroyed
                 arrowIter.remove();

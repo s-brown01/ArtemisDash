@@ -198,6 +198,7 @@ public class HUD {
     private void updateEnemiesLeft() {
         this.enemiesRemaining = playing.getEnemyManager().getEnemiesLeft();
     }
+
     /**
      * Updates the death counter in the HUD to be as accurate as possible when dying
      */

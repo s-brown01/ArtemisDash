@@ -115,7 +115,7 @@ public abstract class Projectile {
      * @param slope      - the slope of the projectile
      * @return - the horizontal speed for the projectile to have a consistent speed
      */
-    protected float calculateHorizontalSpeed(float slopeSpeed, float slope) {
+    private float calculateHorizontalSpeed(float slopeSpeed, float slope) {
         // xSpeed = square root of (slopeSpeed^2 / (1+slope^2)
         return (float) Math.sqrt((slopeSpeed * slopeSpeed) / (1 + (slope * slope)));
     }

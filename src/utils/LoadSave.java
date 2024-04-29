@@ -198,10 +198,9 @@ public class LoadSave {
     }
 
     /**
-     * Uses RGB values to generate a tiled level. Red Value sets the tile, Green Value sets the
-     * enemy, Blue value sets the object 
-     * 50 Green Value = Skeleton 
-     * 51 Green Value = Skeleton KING
+     * Uses RGB values to generate a tiled level. Red Value sets the tile, Green Value sets
+     * the enemy, Blue value sets the object 50 Green Value = Skeleton 51 Green Value =
+     * Skeleton KING
      * 
      * @param level - The path to the file containing the RGB data map for the specific level.
      * @return - A 2D array that is representative of tiles making up the level

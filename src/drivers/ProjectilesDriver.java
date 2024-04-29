@@ -1,8 +1,9 @@
 package drivers;
 
-import projectiles.Arrow;
+import static utils.Constants.ProjectileConstants.ARROW;
+import static utils.Constants.ProjectileConstants.getProjSpeed;
 
-import static utils.Constants.ProjectileConstants.*;
+import projectiles.Arrow;
 
 /**
  * This will test all class in the projectile package
